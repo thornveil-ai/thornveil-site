@@ -1,0 +1,47 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/5">
+  <div class="container-max mx-auto section-padding !py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+      <!-- Brand -->
+      <div class="space-y-4">
+        <img src="/logo-stacked-white.png" alt="Thornveil" class="h-16 w-auto opacity-80" />
+        <p class="text-white/40 text-sm leading-relaxed max-w-xs">
+          Defense AI and autonomous systems.<br />Built at the Edge.
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div class="space-y-4">
+        <h4 class="text-xs font-semibold tracking-widest uppercase text-white/30">Navigation</h4>
+        <nav class="flex flex-col gap-2">
+          <a href="/capabilities" class="text-sm text-white/50 hover:text-white transition-colors">Capabilities</a>
+          <a href="/about" class="text-sm text-white/50 hover:text-white transition-colors">About</a>
+          <a href="/contact" class="text-sm text-white/50 hover:text-white transition-colors">Contact</a>
+        </nav>
+      </div>
+
+      <!-- Contact -->
+      <div class="space-y-4">
+        <h4 class="text-xs font-semibold tracking-widest uppercase text-white/30">Contact</h4>
+        <div class="space-y-2">
+          <a href="mailto:contact@thornveil.ai" class="text-sm text-white/50 hover:text-white transition-colors block">
+            contact@thornveil.ai
+          </a>
+          <p class="text-sm text-white/30">Virginia, USA</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-white/25">
+        &copy; {currentYear} Thornveil LLC. All rights reserved.
+      </p>
+      <p class="text-xs text-white/25">
+        NAICS 541511 &middot; 541512
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<BaseLayout
+  title="About | Thornveil"
+  description="One engineer. Three SBIR wins. Six active defense programs. Thornveil builds defense AI at a pace that shouldn't be possible."
+>
+  <PageHero
+    title="About Thornveil"
+    subtitle="One engineer building defense technology that competes with teams of hundreds."
+  />
+
+  <!-- Mission -->
+  <section class="section-padding relative">
+    <div class="container-max mx-auto">
+      <div class="max-w-3xl">
+        <p class="text-xs font-semibold tracking-[0.3em] uppercase text-teal mb-6 reveal">Mission</p>
+        <blockquote class="text-2xl md:text-3xl font-light leading-relaxed text-white/80 reveal reveal-delay-1">
+          "Thornveil builds defense technology at the edge — where constraints are tightest, timelines shortest, and the margin for error is zero. We move from concept to working prototype faster than teams ten times our size."
+        </blockquote>
+        <div class="mt-6 w-12 h-0.5 bg-teal reveal reveal-delay-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Founder -->
+  <section class="section-padding relative bg-navy-dark/50">
+    <div class="container-max mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+        <!-- Bio -->
+        <div class="lg:col-span-3">
+          <p class="text-xs font-semibold tracking-[0.3em] uppercase text-teal mb-6 reveal">Founder</p>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8 reveal reveal-delay-1">
+            Jesse Heywood
+          </h2>
+
+          <div class="space-y-5 text-white/50 leading-relaxed reveal reveal-delay-2">
+            <p>
+              Marine. Arabic linguist trained at the Defense Language Institute. Software engineer.
+              Machine learning researcher. The kind of person who wins SBIR awards and then builds
+              the deliverable before the contract is signed.
+            </p>
+            <p>
+              Thornveil exists to prove a thesis: one disciplined engineer with the right tools,
+              deep domain expertise, and zero organizational overhead can outpace teams of dozens.
+              Not in theory — in competitive federal acquisitions, with working code, passing tests,
+              and shipping prototypes.
+            </p>
+            <p>
+              The track record speaks for itself.
+            </p>
+          </div>
+        </div>
+
+        <!-- Track Record -->
+        <div class="lg:col-span-2 reveal reveal-delay-3">
+          <div class="bg-white/[0.02] border border-white/5 rounded-lg p-8 space-y-6">
+            <h3 class="text-xs font-semibold tracking-[0.3em] uppercase text-teal mb-6">Track Record</h3>
+
+            <div class="space-y-5">
+              <div class="border-b border-white/5 pb-5">
+                <div class="text-sm font-semibold text-white/80 mb-1">AI Digital Staff Officer</div>
+                <div class="text-xs text-white/40 leading-relaxed">
+                  Built for a Marine Corps training command. 8,400 lines Go, 4,400 lines TypeScript.
+                  FIPS 140-3, CAC/PKI auth, 5 database backends, 12 AI tools, Microsoft 365 integration.
+                </div>
+              </div>
+
+              <div class="border-b border-white/5 pb-5">
+                <div class="text-sm font-semibold text-white/80 mb-1">Thermal Drone Detection</div>
+                <div class="text-xs text-white/40 leading-relaxed">
+                  State-of-the-art deep learning model for thermal UAV detection.
+                  80.4% mAP@50 at 1280px resolution on benchmark datasets.
+                </div>
+              </div>
+
+              <div class="border-b border-white/5 pb-5">
+                <div class="text-sm font-semibold text-white/80 mb-1">Acoustic Swarm Comms</div>
+                <div class="text-xs text-white/40 leading-relaxed">
+                  GPS-denied positioning to 0.069m accuracy. Sub-centimeter ranging.
+                  14 feasibility experiments, 177 tests passing.
+                </div>
+              </div>
+
+              <div class="border-b border-white/5 pb-5">
+                <div class="text-sm font-semibold text-white/80 mb-1">Arabic NLP Research</div>
+                <div class="text-xs text-white/40 leading-relaxed">
+                  Grammatical error correction at 95.4% of SOTA with 1/10th model size.
+                  Diacritization engine 62x smaller than state of the art. 2.29% DER.
+                </div>
+              </div>
+
+              <div>
+                <div class="text-sm font-semibold text-white/80 mb-1">S&T Decision Platform</div>
+                <div class="text-xs text-white/40 leading-relaxed">
+                  Technology radar, capital flow tracking, MCDA scoring — 44 NIST 800-53 controls.
+                  Direct-to-Phase-II SBIR award for the U.S. Space Force.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Approach -->
+  <section class="section-padding relative">
+    <div class="container-max mx-auto">
+      <p class="text-xs font-semibold tracking-[0.3em] uppercase text-teal mb-6 reveal">The Approach</p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-12 reveal reveal-delay-1">
+        Speed through simplicity
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="reveal reveal-delay-1">
+          <div class="text-6xl font-bold text-white/5 mb-4">01</div>
+          <h3 class="text-lg font-semibold mb-3">No overhead</h3>
+          <p class="text-white/40 text-sm leading-relaxed">
+            No middle management. No six-month procurement cycles for a database decision.
+            No meetings about meetings. Every hour goes to building.
+          </p>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="text-6xl font-bold text-white/5 mb-4">02</div>
+          <h3 class="text-lg font-semibold mb-3">Prototype velocity</h3>
+          <p class="text-white/40 text-sm leading-relaxed">
+            Concept to working code in days. Working code to SBIR win in weeks.
+            Every proposal ships with a functioning prototype — not a slide deck.
+          </p>
+        </div>
+
+        <div class="reveal reveal-delay-3">
+          <div class="text-6xl font-bold text-white/5 mb-4">03</div>
+          <h3 class="text-lg font-semibold mb-3">Full-stack depth</h3>
+          <p class="text-white/40 text-sm leading-relaxed">
+            From PyTorch model training on NVIDIA GH200s to Go backend servers to React tactical dashboards
+            to LaTeX proposals. One person means one coherent vision, end to end.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding relative bg-navy-dark">
+    <div class="container-max mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight reveal">
+        Let's build something.
+      </h2>
+      <p class="mt-4 text-white/40 text-lg max-w-lg mx-auto reveal reveal-delay-1">
+        If you have a hard problem and need it solved fast — not eventually — reach out.
+      </p>
+      <div class="mt-10 reveal reveal-delay-2">
+        <a href="/contact" class="btn-primary">
+          Get in Touch
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

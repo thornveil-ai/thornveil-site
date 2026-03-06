@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-navy text-white font-poppins;
+  }
+
+  ::selection {
+    @apply bg-teal/40 text-white;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-6 md:px-12 lg:px-20 py-20 md:py-28 lg:py-32;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-teal hover:bg-teal-light text-white font-semibold
+           px-8 py-3.5 rounded transition-all duration-300 tracking-wide text-sm uppercase;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border border-teal/50 hover:border-teal hover:bg-teal/10
+           text-white font-semibold px-8 py-3.5 rounded transition-all duration-300 tracking-wide text-sm uppercase;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-white to-teal-light bg-clip-text text-transparent;
+  }
+
+  .tag {
+    @apply inline-block text-xs font-semibold tracking-wider uppercase
+           bg-teal/15 text-teal-light px-3 py-1 rounded-full border border-teal/20;
+  }
+}
+
+@layer utilities {
+  /* Scroll-triggered animation targets */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Subtle glow on hover for cards */
+  .card-glow {
+    @apply transition-all duration-500;
+    box-shadow: 0 0 0 1px rgba(74, 110, 125, 0.1);
+  }
+
+  .card-glow:hover {
+    box-shadow: 0 0 30px rgba(74, 110, 125, 0.15), 0 0 0 1px rgba(74, 110, 125, 0.3);
+  }
+}
