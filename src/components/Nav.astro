@@ -1,8 +1,7 @@
 ---
 const navLinks = [
-  { href: '/capabilities', label: 'Capabilities' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: '#work', label: 'Work' },
+  { href: '#contact', label: 'Contact' },
 ];
 ---
 
@@ -11,21 +10,28 @@ const navLinks = [
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
 >
   <nav class="container-max mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between h-20">
-    <!-- Logo -->
-    <a href="/" class="flex items-center gap-3 group">
+    <!-- Logo — swaps dark/white based on scroll -->
+    <a href="/" class="flex items-center group relative h-8 md:h-10">
       <img
-        src="/logo-horizontal-white.png"
+        src="/favicon.png"
         alt="Thornveil"
-        class="h-8 md:h-10 w-auto opacity-90 group-hover:opacity-100 transition-opacity"
+        id="nav-logo-dark"
+        class="h-8 md:h-10 w-auto transition-opacity duration-300"
+      />
+      <img
+        src="/favicon.png"
+        alt="Thornveil"
+        id="nav-logo-light"
+        class="h-8 md:h-10 w-auto absolute left-0 top-0 opacity-0 transition-opacity duration-300 brightness-0 invert"
       />
     </a>
 
     <!-- Desktop nav -->
-    <div class="hidden md:flex items-center gap-10">
+    <div class="hidden md:flex items-center gap-8">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="text-sm font-medium tracking-wider uppercase text-white/70 hover:text-white transition-colors duration-300"
+          class="nav-link text-xs font-medium tracking-widest uppercase text-navy/40 hover:text-navy/80 transition-colors duration-300"
         >
           {link.label}
         </a>
@@ -38,9 +44,9 @@ const navLinks = [
       class="md:hidden flex flex-col gap-1.5 p-2"
       aria-label="Toggle navigation"
     >
-      <span class="block w-6 h-0.5 bg-white/80 transition-all duration-300 origin-center" id="bar1"></span>
-      <span class="block w-6 h-0.5 bg-white/80 transition-all duration-300" id="bar2"></span>
-      <span class="block w-6 h-0.5 bg-white/80 transition-all duration-300 origin-center" id="bar3"></span>
+      <span class="block w-5 h-px bg-navy/60 transition-all duration-300 origin-center" id="bar1"></span>
+      <span class="block w-5 h-px bg-navy/60 transition-all duration-300" id="bar2"></span>
+      <span class="block w-5 h-px bg-navy/60 transition-all duration-300 origin-center" id="bar3"></span>
     </button>
   </nav>
 
@@ -49,11 +55,11 @@ const navLinks = [
     id="mobile-menu"
     class="md:hidden overflow-hidden max-h-0 transition-all duration-500 bg-navy-dark/98 backdrop-blur-lg"
   >
-    <div class="px-6 py-6 flex flex-col gap-4">
+    <div class="px-6 py-4 flex flex-col gap-3">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="text-base font-medium tracking-wider uppercase text-white/70 hover:text-white transition-colors py-2 border-b border-white/5"
+          class="text-sm font-medium tracking-widest uppercase text-white/50 hover:text-white transition-colors py-2"
         >
           {link.label}
         </a>
@@ -63,19 +69,34 @@ const navLinks = [
 </header>
 
 <script>
-  // Scroll-based nav background
   const nav = document.getElementById('nav');
+  const logoDark = document.getElementById('nav-logo-dark');
+  const logoLight = document.getElementById('nav-logo-light');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const bars = [document.getElementById('bar1'), document.getElementById('bar2'), document.getElementById('bar3')];
+
+  const heroSection = document.getElementById('hero');
+  const heroBottom = heroSection ? heroSection.offsetTop + heroSection.offsetHeight : 600;
+
   const onScroll = () => {
-    if (window.scrollY > 80) {
-      nav?.classList.add('bg-navy-dark/95', 'backdrop-blur-lg', 'shadow-lg', 'shadow-black/20');
+    const pastHero = window.scrollY > heroBottom - 100;
+    if (pastHero) {
+      nav?.classList.add('bg-navy-dark/95', 'backdrop-blur-lg');
+      if (logoDark) logoDark.style.opacity = '0';
+      if (logoLight) logoLight.style.opacity = '0.9';
+      navLinks.forEach(l => { l.classList.remove('text-navy/40', 'hover:text-navy/80'); l.classList.add('text-white/40', 'hover:text-white/80'); });
+      bars.forEach(b => { b?.classList.remove('bg-navy/60'); b?.classList.add('bg-white/60'); });
     } else {
-      nav?.classList.remove('bg-navy-dark/95', 'backdrop-blur-lg', 'shadow-lg', 'shadow-black/20');
+      nav?.classList.remove('bg-navy-dark/95', 'backdrop-blur-lg');
+      if (logoDark) logoDark.style.opacity = '0.9';
+      if (logoLight) logoLight.style.opacity = '0';
+      navLinks.forEach(l => { l.classList.remove('text-white/40', 'hover:text-white/80'); l.classList.add('text-navy/40', 'hover:text-navy/80'); });
+      bars.forEach(b => { b?.classList.remove('bg-white/60'); b?.classList.add('bg-navy/60'); });
     }
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // Mobile toggle
   const toggle = document.getElementById('mobile-toggle');
   const menu = document.getElementById('mobile-menu');
   const bar1 = document.getElementById('bar1');
@@ -87,14 +108,24 @@ const navLinks = [
     open = !open;
     if (open) {
       menu!.style.maxHeight = menu!.scrollHeight + 'px';
-      bar1?.classList.add('rotate-45', 'translate-y-[4px]');
+      bar1?.classList.add('rotate-45', 'translate-y-[3px]');
       bar2?.classList.add('opacity-0');
-      bar3?.classList.add('-rotate-45', '-translate-y-[4px]');
+      bar3?.classList.add('-rotate-45', '-translate-y-[3px]');
     } else {
       menu!.style.maxHeight = '0';
-      bar1?.classList.remove('rotate-45', 'translate-y-[4px]');
+      bar1?.classList.remove('rotate-45', 'translate-y-[3px]');
       bar2?.classList.remove('opacity-0');
-      bar3?.classList.remove('-rotate-45', '-translate-y-[4px]');
+      bar3?.classList.remove('-rotate-45', '-translate-y-[3px]');
     }
+  });
+
+  menu?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      open = false;
+      menu!.style.maxHeight = '0';
+      bar1?.classList.remove('rotate-45', 'translate-y-[3px]');
+      bar2?.classList.remove('opacity-0');
+      bar3?.classList.remove('-rotate-45', '-translate-y-[3px]');
+    });
   });
 </script>
