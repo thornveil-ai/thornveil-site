@@ -19,7 +19,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-transitions">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,7 +29,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <!-- Open Graph -->
@@ -45,36 +44,75 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Self-hosted fonts -->
+    <link rel="preload" href="/fonts/inter-variable-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jetbrains-mono-variable-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <style is:inline>
+      @font-face {
+        font-family: 'InterVariable';
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url('/fonts/inter-variable-latin.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'JetBrains Mono Variable';
+        font-style: normal;
+        font-weight: 100 800;
+        font-display: swap;
+        src: url('/fonts/jetbrains-mono-variable-latin.woff2') format('woff2');
+      }
+    </style>
+
+    <!-- Theme FOUC prevention -->
+    <script is:inline>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var useDark = stored === 'dark' || (stored !== 'light' && prefersDark);
+        if (!useDark) {
+          document.documentElement.classList.add('light');
+        }
+      })();
+    </script>
   </head>
   <body class="min-h-screen flex flex-col">
+    <!-- Film grain noise overlay -->
+    <div class="noise-overlay" aria-hidden="true">
+      <svg><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" /></filter><rect width="100%" height="100%" filter="url(#noiseFilter)" /></svg>
+    </div>
+
     <Nav />
     <main class="flex-1">
       <slot />
     </main>
     <Footer />
 
-    <!-- Scroll reveal observer -->
+    <!-- Scroll reveal observer (Firefox fallback) -->
     <script>
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-      );
+      // Remove no-transitions class after first paint
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          document.documentElement.classList.remove('no-transitions');
+        });
+      });
 
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      // Only use IntersectionObserver if CSS scroll-driven animations unsupported
+      if (!CSS.supports('animation-timeline: view()')) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+        );
+        document.querySelectorAll('.reveal, .text-reveal').forEach((el) => observer.observe(el));
+      }
     </script>
   </body>
 </html>

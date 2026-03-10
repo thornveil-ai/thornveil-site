@@ -1,65 +1,99 @@
 ---
 const navLinks = [
-  { href: '#work', label: 'Work' },
+  { href: '#work', label: 'Capabilities' },
+  { href: '#background', label: 'Background' },
   { href: '#contact', label: 'Contact' },
 ];
 ---
 
 <header
   id="nav"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
 >
-  <nav class="container-max mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between h-20">
-    <!-- Logo — swaps dark/white based on scroll -->
-    <a href="/" class="flex items-center group relative h-8 md:h-10">
+  <nav class="container-max mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between h-16 md:h-20">
+    <!-- Logo: dark + light variants -->
+    <a href="/" class="flex items-center relative h-16 md:h-20">
       <img
-        src="/favicon.png"
+        src="/logo-horizontal-white.png"
         alt="Thornveil"
-        id="nav-logo-dark"
-        class="h-8 md:h-10 w-auto transition-opacity duration-300"
+        class="logo-dark h-16 md:h-20 w-auto transition-opacity duration-300"
       />
       <img
-        src="/favicon.png"
+        src="/logo-horizontal.png"
         alt="Thornveil"
-        id="nav-logo-light"
-        class="h-8 md:h-10 w-auto absolute left-0 top-0 opacity-0 transition-opacity duration-300 brightness-0 invert"
+        class="logo-light h-16 md:h-20 w-auto absolute left-0 top-0 opacity-0 transition-opacity duration-300"
       />
     </a>
 
-    <!-- Desktop nav -->
+    <!-- Desktop nav + theme toggle -->
     <div class="hidden md:flex items-center gap-8">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="nav-link text-xs font-medium tracking-widest uppercase text-navy/40 hover:text-navy/80 transition-colors duration-300"
+          class="nav-link text-[11px] font-medium tracking-[0.15em] uppercase transition-colors duration-300"
+          style="color: var(--color-text-tertiary);"
         >
           {link.label}
         </a>
       ))}
+
+      <!-- Theme toggle -->
+      <button
+        id="theme-toggle"
+        class="relative w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300"
+        style="color: var(--color-text-tertiary);"
+        aria-label="Toggle theme"
+        title="Toggle theme"
+      >
+        <svg class="theme-icon-sun w-4 h-4 absolute transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+        </svg>
+        <svg class="theme-icon-moon w-4 h-4 absolute transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+      </button>
     </div>
 
-    <!-- Mobile hamburger -->
-    <button
-      id="mobile-toggle"
-      class="md:hidden flex flex-col gap-1.5 p-2"
-      aria-label="Toggle navigation"
-    >
-      <span class="block w-5 h-px bg-navy/60 transition-all duration-300 origin-center" id="bar1"></span>
-      <span class="block w-5 h-px bg-navy/60 transition-all duration-300" id="bar2"></span>
-      <span class="block w-5 h-px bg-navy/60 transition-all duration-300 origin-center" id="bar3"></span>
-    </button>
+    <!-- Mobile: theme toggle + hamburger -->
+    <div class="flex md:hidden items-center gap-3">
+      <button
+        id="theme-toggle-mobile"
+        class="w-8 h-8 rounded-lg flex items-center justify-center relative transition-colors"
+        style="color: var(--color-text-tertiary);"
+        aria-label="Toggle theme"
+      >
+        <svg class="theme-icon-sun w-4 h-4 absolute transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+        </svg>
+        <svg class="theme-icon-moon w-4 h-4 absolute transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+      </button>
+
+      <button
+        id="mobile-toggle"
+        class="flex flex-col gap-1.5 p-2"
+        aria-label="Toggle navigation"
+      >
+        <span class="block w-5 h-px transition-all duration-300 origin-center" style="background: var(--color-text-tertiary);" id="bar1"></span>
+        <span class="block w-5 h-px transition-all duration-300" style="background: var(--color-text-tertiary);" id="bar2"></span>
+        <span class="block w-5 h-px transition-all duration-300 origin-center" style="background: var(--color-text-tertiary);" id="bar3"></span>
+      </button>
+    </div>
   </nav>
 
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="md:hidden overflow-hidden max-h-0 transition-all duration-500 bg-navy-dark/98 backdrop-blur-lg"
+    class="md:hidden overflow-hidden max-h-0 transition-all duration-500"
+    style="background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur));"
   >
     <div class="px-6 py-4 flex flex-col gap-3">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="text-sm font-medium tracking-widest uppercase text-white/50 hover:text-white transition-colors py-2"
+          class="text-sm font-medium tracking-[0.15em] uppercase transition-colors py-2"
+          style="color: var(--color-text-secondary);"
         >
           {link.label}
         </a>
@@ -69,34 +103,54 @@ const navLinks = [
 </header>
 
 <script>
+  // Glassmorphic nav on scroll
   const nav = document.getElementById('nav');
-  const logoDark = document.getElementById('nav-logo-dark');
-  const logoLight = document.getElementById('nav-logo-light');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const bars = [document.getElementById('bar1'), document.getElementById('bar2'), document.getElementById('bar3')];
-
-  const heroSection = document.getElementById('hero');
-  const heroBottom = heroSection ? heroSection.offsetTop + heroSection.offsetHeight : 600;
-
   const onScroll = () => {
-    const pastHero = window.scrollY > heroBottom - 100;
-    if (pastHero) {
-      nav?.classList.add('bg-navy-dark/95', 'backdrop-blur-lg');
-      if (logoDark) logoDark.style.opacity = '0';
-      if (logoLight) logoLight.style.opacity = '0.9';
-      navLinks.forEach(l => { l.classList.remove('text-navy/40', 'hover:text-navy/80'); l.classList.add('text-white/40', 'hover:text-white/80'); });
-      bars.forEach(b => { b?.classList.remove('bg-navy/60'); b?.classList.add('bg-white/60'); });
+    if (window.scrollY > 50) {
+      nav?.classList.add('glass-nav');
     } else {
-      nav?.classList.remove('bg-navy-dark/95', 'backdrop-blur-lg');
-      if (logoDark) logoDark.style.opacity = '0.9';
-      if (logoLight) logoLight.style.opacity = '0';
-      navLinks.forEach(l => { l.classList.remove('text-white/40', 'hover:text-white/80'); l.classList.add('text-navy/40', 'hover:text-navy/80'); });
-      bars.forEach(b => { b?.classList.remove('bg-white/60'); b?.classList.add('bg-navy/60'); });
+      nav?.classList.remove('glass-nav');
     }
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  // Theme toggle
+  function updateThemeIcons() {
+    const isLight = document.documentElement.classList.contains('light');
+    document.querySelectorAll('.theme-icon-sun').forEach(el => {
+      (el as HTMLElement).style.opacity = isLight ? '0' : '1';
+      (el as HTMLElement).style.transform = isLight ? 'rotate(-90deg) scale(0)' : 'rotate(0) scale(1)';
+    });
+    document.querySelectorAll('.theme-icon-moon').forEach(el => {
+      (el as HTMLElement).style.opacity = isLight ? '1' : '0';
+      (el as HTMLElement).style.transform = isLight ? 'rotate(0) scale(1)' : 'rotate(90deg) scale(0)';
+    });
+    document.querySelectorAll('.logo-dark').forEach(el => {
+      (el as HTMLElement).style.opacity = isLight ? '0' : '1';
+    });
+    document.querySelectorAll('.logo-light').forEach(el => {
+      (el as HTMLElement).style.opacity = isLight ? '1' : '0';
+    });
+  }
+
+  function toggleTheme() {
+    const isCurrentlyLight = document.documentElement.classList.contains('light');
+    if (isCurrentlyLight) {
+      document.documentElement.classList.remove('light');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.add('light');
+      localStorage.setItem('theme', 'light');
+    }
+    updateThemeIcons();
+  }
+
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
+  updateThemeIcons();
+
+  // Mobile hamburger
   const toggle = document.getElementById('mobile-toggle');
   const menu = document.getElementById('mobile-menu');
   const bar1 = document.getElementById('bar1');
