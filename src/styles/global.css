@@ -13,17 +13,17 @@
     --color-text-tertiary: rgba(250, 250, 250, 0.30);
     --color-border: rgba(255, 255, 255, 0.08);
     --color-border-subtle: rgba(255, 255, 255, 0.04);
-    --color-accent: #4a6e7d;
-    --color-accent-hover: #5d8a9d;
-    --color-accent-muted: rgba(74, 110, 125, 0.15);
+    --color-accent: #C9A84E;
+    --color-accent-hover: #D4B865;
+    --color-accent-muted: rgba(201, 168, 78, 0.12);
     --mesh-1: #132a4c;
-    --mesh-2: #4a6e7d;
+    --mesh-2: #2a1f10;
     --mesh-3: #0A0A0B;
     --noise-opacity: 0.03;
     --glass-bg: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.06);
     --glass-blur: 12px;
-    --selection-bg: rgba(74, 110, 125, 0.40);
+    --selection-bg: rgba(201, 168, 78, 0.40);
     --selection-text: #FAFAFA;
     color-scheme: dark;
   }
@@ -38,23 +38,23 @@
     --color-text-tertiary: rgba(10, 10, 11, 0.35);
     --color-border: rgba(0, 0, 0, 0.08);
     --color-border-subtle: rgba(0, 0, 0, 0.04);
-    --color-accent: #132a4c;
-    --color-accent-hover: #1a3a66;
-    --color-accent-muted: rgba(19, 42, 76, 0.10);
+    --color-accent: #8B6914;
+    --color-accent-hover: #A47D1A;
+    --color-accent-muted: rgba(139, 105, 20, 0.08);
     --mesh-1: #d4dce6;
-    --mesh-2: #b8cdd6;
+    --mesh-2: #ddd5c0;
     --mesh-3: #FAFAFA;
     --noise-opacity: 0.015;
     --glass-bg: rgba(255, 255, 255, 0.60);
     --glass-border: rgba(0, 0, 0, 0.06);
     --glass-blur: 16px;
-    --selection-bg: rgba(19, 42, 76, 0.25);
+    --selection-bg: rgba(139, 105, 20, 0.25);
     --selection-text: #0A0A0B;
     color-scheme: light;
   }
 
   html {
-    scroll-behavior: smooth;
+    /* scroll-behavior handled by Lenis */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scrollbar-width: none;

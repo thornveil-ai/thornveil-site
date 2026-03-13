@@ -25,7 +25,7 @@ export default {
           muted: 'var(--color-accent-muted)',
         },
         navy: { DEFAULT: '#132a4c', light: '#1a3a66', dark: '#0d1f38' },
-        teal: { DEFAULT: '#4a6e7d', light: '#5d8a9d', dark: '#3a5a68' },
+        gold: { DEFAULT: '#C9A84E', light: '#D4B865', dark: '#8B6914' },
       },
       fontFamily: {
         sans: ['InterVariable', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
