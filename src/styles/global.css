@@ -10,7 +10,7 @@
     --color-surface-elevated: #18181B;
     --color-text-primary: #FAFAFA;
     --color-text-secondary: rgba(250, 250, 250, 0.55);
-    --color-text-tertiary: rgba(250, 250, 250, 0.30);
+    --color-text-tertiary: rgba(250, 250, 250, 0.50);
     --color-border: rgba(255, 255, 255, 0.08);
     --color-border-subtle: rgba(255, 255, 255, 0.04);
     --color-accent: #C9A84E;
@@ -23,6 +23,9 @@
     --glass-bg: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.06);
     --glass-blur: 12px;
+    --patent-text: #eab308;
+    --patent-bg: rgba(234, 179, 8, 0.1);
+    --patent-border: rgba(234, 179, 8, 0.2);
     --selection-bg: rgba(201, 168, 78, 0.40);
     --selection-text: #FAFAFA;
     color-scheme: dark;
@@ -35,11 +38,11 @@
     --color-surface-elevated: #FFFFFF;
     --color-text-primary: #0A0A0B;
     --color-text-secondary: rgba(10, 10, 11, 0.60);
-    --color-text-tertiary: rgba(10, 10, 11, 0.35);
+    --color-text-tertiary: rgba(10, 10, 11, 0.55);
     --color-border: rgba(0, 0, 0, 0.08);
     --color-border-subtle: rgba(0, 0, 0, 0.04);
     --color-accent: #8B6914;
-    --color-accent-hover: #A47D1A;
+    --color-accent-hover: #946F15;
     --color-accent-muted: rgba(139, 105, 20, 0.08);
     --mesh-1: #d4dce6;
     --mesh-2: #ddd5c0;
@@ -48,6 +51,9 @@
     --glass-bg: rgba(255, 255, 255, 0.60);
     --glass-border: rgba(0, 0, 0, 0.06);
     --glass-blur: 16px;
+    --patent-text: #7a5a10;
+    --patent-bg: rgba(139, 105, 20, 0.08);
+    --patent-border: rgba(139, 105, 20, 0.15);
     --selection-bg: rgba(139, 105, 20, 0.25);
     --selection-text: #0A0A0B;
     color-scheme: light;
