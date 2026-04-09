@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Technology | Thornveil"
+  description="RigRun sovereign AI infrastructure, Mycelium P2P mesh network, and Agent Factory meta-agent system. Built on a single GPU with 24 patents filed."
+>
+  <!-- HERO -->
+  <section class="section-padding pt-32 md:pt-40">
+    <div class="container-max mx-auto">
+      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Technology</p>
+      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">The stack</h1>
+      <p class="text-base mt-4 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+        Three interlocking systems that prove sovereign AI works today. One GPU, zero cloud dependency, 24 patents protecting the approach.
+      </p>
+    </div>
+  </section>
+
+  <!-- RIGRUN -->
+  <section class="section-padding pt-12" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+        <div class="lg:col-span-3">
+          <div class="flex items-center gap-3 mb-6 reveal">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-border);">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+            </div>
+            <div>
+              <h2 class="text-fluid-xl font-semibold tracking-tight">RigRun</h2>
+              <span class="text-xs" style="color: var(--color-text-tertiary);">Single-Node Sovereign AI</span>
+            </div>
+          </div>
+
+          <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+            <p>Complete AI infrastructure running on one RTX PRO 6000 Blackwell (96GB VRAM). Qwen3.5-122B at 48 tok/s. The entire system operates with zero cloud dependency and $0 marginal inference cost.</p>
+            <p>The system includes an autonomous ops center (Navigator) that manages 37+ projects, a 5-layer safety stack with 100% adversarial block rate, and a zeroth-order training pipeline that improves the model overnight through the live inference API with zero downtime.</p>
+          </div>
+
+          <div class="mt-8 space-y-3 reveal reveal-delay-2">
+            {[
+              { label: 'TurboQuant KV Integration', detail: "Google's compression algorithm integrated into production serving. 5.2x KV cache compression, 99.92% quality retention. Per-request state pooling for batched inference." },
+              { label: 'ZO2 Training Pipeline', detail: '10 preference loss functions, 8 zeroth-order techniques, cyclic LoRA rotation. 2,600 steps in 22 minutes. Trains through the live API without stopping inference.' },
+              { label: '5-Layer Safety Stack', detail: 'Action gate, learned classifier, trajectory anomaly detection, declarative safety DSL, classification spillage detection. Defense in depth.' },
+              { label: 'Dual-Model Cascade', detail: '35B generates at 184 tok/s, 122B reviews for quality. 7-stage router with entropy-based escalation. 93% routing accuracy across 15.8M tokens.' },
+            ].map((item) => (
+              <div class="rounded-lg p-4" style="border: 1px solid var(--color-border-subtle);">
+                <div class="text-sm font-semibold mb-1">{item.label}</div>
+                <div class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">{item.detail}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 reveal reveal-delay-2">
+          <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <h3 class="text-xs font-semibold tracking-wider uppercase mb-5" style="color: var(--color-text-tertiary);">Specs</h3>
+            <div class="space-y-4">
+              {[
+                { label: 'Model', value: 'Qwen3.5-122B-A10B' },
+                { label: 'Parameters', value: '397B total / 17B active' },
+                { label: 'Generation', value: '48 tok/s (122B)' },
+                { label: 'Fast mode', value: '184 tok/s (35B)' },
+                { label: 'Context', value: '131K tokens' },
+                { label: 'KV Compression', value: '5.2x (TurboQuant)' },
+                { label: 'VRAM', value: '96GB (82% utilized)' },
+                { label: 'Hardware', value: 'RTX PRO 6000 Blackwell' },
+                { label: 'Cost', value: '$16K one-time, $0/token' },
+                { label: 'Patents', value: '9 filed (002-005, 010, 018-021, 023)' },
+              ].map((s) => (
+                <div class="flex justify-between items-baseline">
+                  <span class="text-xs" style="color: var(--color-text-tertiary);">{s.label}</span>
+                  <span class="font-mono text-xs font-medium">{s.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MYCELIUM -->
+  <section class="section-padding">
+    <div class="container-max mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+        <div class="lg:col-span-2 reveal reveal-delay-1 order-2 lg:order-1">
+          <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <h3 class="text-xs font-semibold tracking-wider uppercase mb-5" style="color: var(--color-text-tertiary);">Device Tiers</h3>
+            <div class="space-y-4">
+              {[
+                { tier: 'Phone', model: '0.6-1.7B', ram: '4-8GB', speed: '15-30 tok/s' },
+                { tier: 'Laptop', model: '4-30B', ram: '8-32GB', speed: '10-40 tok/s' },
+                { tier: 'Workstation', model: '30-72B', ram: '24-48GB', speed: '20-50 tok/s' },
+                { tier: 'Server', model: '122B+', ram: '96GB+', speed: '48+ tok/s' },
+                { tier: 'Cluster', model: '400B+ distributed', ram: 'Pooled', speed: 'Variable' },
+              ].map((t) => (
+                <div class="flex items-center gap-3 text-xs">
+                  <span class="font-semibold w-20">{t.tier}</span>
+                  <span class="font-mono flex-1" style="color: var(--color-text-tertiary);">{t.model}</span>
+                  <span class="font-mono" style="color: var(--color-accent);">{t.speed}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3 order-1 lg:order-2">
+          <div class="flex items-center gap-3 mb-6 reveal">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-border);">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+            </div>
+            <div>
+              <h2 class="text-fluid-xl font-semibold tracking-tight">Mycelium</h2>
+              <span class="text-xs" style="color: var(--color-text-tertiary);">P2P AI Mesh Network</span>
+            </div>
+          </div>
+
+          <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+            <p>A peer-to-peer mesh that connects any device into a self-healing AI network. Phones, laptops, vehicles, servers. Works offline. Degrades gracefully. Never returns "service unavailable."</p>
+            <p>Three patented innovations make distributed AI work over consumer networks where conventional wisdom says you need InfiniBand.</p>
+          </div>
+
+          <div class="mt-8 space-y-3 reveal reveal-delay-2">
+            {[
+              { label: 'Distributed MoE over Consumer TCP', detail: 'MoE models activate only 3% of experts per token. Hidden state transfer is 6KB. Predictive prefetching hides latency inside the attention compute window. Lab-measured p50: 0.5ms over WiFi.' },
+              { label: 'Proof-of-Inference without TEE', detail: 'Software-only trust verification: behavioral fingerprinting (pop quizzes), Merkle execution traces (show your work), economic reputation (cheating never pays). No special hardware chips required.' },
+              { label: 'Style Consistency Across Model Tiers', detail: 'A 0.6B phone model and a 122B server model answering together. Output normalization ensures the user cannot tell which device answered.' },
+              { label: 'Classification-Aware Routing', detail: 'UNCLASSIFIED routes anywhere. CUI stays on-mesh. SECRET never leaves the device. Classification is metadata on every query, enforced at the routing layer.' },
+            ].map((item) => (
+              <div class="rounded-lg p-4" style="border: 1px solid var(--color-border-subtle);">
+                <div class="text-sm font-semibold mb-1">{item.label}</div>
+                <div class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">{item.detail}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENT FACTORY -->
+  <section class="section-padding" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto max-w-3xl">
+      <div class="flex items-center gap-3 mb-6 reveal">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-border);">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H20.4" /></svg>
+        </div>
+        <div>
+          <h2 class="text-fluid-xl font-semibold tracking-tight">Agent Factory</h2>
+          <span class="text-xs" style="color: var(--color-text-tertiary);">AI That Builds AI Agents</span>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+        <p>Describe what you need in plain English. The factory decomposes requirements, generates a multi-pass system prompt with independent critique, selects tools, assembles a RAG knowledge base, generates few-shot examples, runs adversarial stress tests, calibrates against Claude Opus, and deploys through a human approval gate.</p>
+        <p>Currently producing 6 domain expert agents averaging 9/10 quality scores. Each agent has 7-11 tools, 2+ few-shot examples, and structured evaluation rubrics. The factory's output improves over time as agents generate DPO training pairs from production usage.</p>
+      </div>
+
+      <div class="mt-8 reveal reveal-delay-2">
+        <a href="/products" class="btn-primary text-sm">
+          See the agents &rarr;
+        </a>
+      </div>
+
+      <div class="divider my-12 reveal reveal-delay-3"></div>
+
+      <div class="grid grid-cols-3 gap-8 text-center reveal reveal-delay-3">
+        <div>
+          <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">14</div>
+          <div class="text-xs mt-1" style="color: var(--color-text-tertiary);">Pipeline<br/>steps</div>
+        </div>
+        <div>
+          <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">12</div>
+          <div class="text-xs mt-1" style="color: var(--color-text-tertiary);">Tools in<br/>registry</div>
+        </div>
+        <div>
+          <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">5</div>
+          <div class="text-xs mt-1" style="color: var(--color-text-tertiary);">Adversarial<br/>probes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import Lenis from 'lenis';
+  const lenis = new Lenis({ duration: 1.2, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+</script>

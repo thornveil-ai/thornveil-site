@@ -1,9 +1,13 @@
 ---
 const navLinks = [
-  { href: '#products', label: 'Capabilities' },
-  { href: '#background', label: 'Background' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/products', label: 'Products' },
+  { href: '/technology', label: 'Technology' },
+  { href: '/defense', label: 'Defense' },
+  { href: '/research', label: 'Research' },
+  { href: '/contact', label: 'Contact' },
 ];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <header
@@ -11,7 +15,6 @@ const navLinks = [
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
 >
   <nav class="container-max mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between h-16 md:h-20">
-    <!-- Logo: dark + light variants -->
     <a href="/" class="flex items-center relative h-16 md:h-20">
       <img
         src="/logo-horizontal-white.png"
@@ -25,19 +28,25 @@ const navLinks = [
       />
     </a>
 
-    <!-- Desktop nav + theme toggle -->
     <div class="hidden md:flex items-center gap-8">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="nav-link text-[11px] font-medium tracking-[0.15em] uppercase transition-colors duration-300"
-          style="color: var(--color-text-tertiary);"
+          class={`nav-link text-[11px] font-medium tracking-[0.15em] uppercase transition-colors duration-300 ${
+            currentPath === link.href || (currentPath.startsWith(link.href) && link.href !== '/')
+              ? 'nav-active'
+              : ''
+          }`}
+          style={
+            currentPath === link.href || (currentPath.startsWith(link.href) && link.href !== '/')
+              ? 'color: var(--color-accent);'
+              : 'color: var(--color-text-tertiary);'
+          }
         >
           {link.label}
         </a>
       ))}
 
-      <!-- Theme toggle -->
       <button
         id="theme-toggle"
         class="relative w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300"
@@ -54,7 +63,6 @@ const navLinks = [
       </button>
     </div>
 
-    <!-- Mobile: theme toggle + hamburger -->
     <div class="flex md:hidden items-center gap-3">
       <button
         id="theme-toggle-mobile"
@@ -82,7 +90,6 @@ const navLinks = [
     </div>
   </nav>
 
-  <!-- Mobile menu -->
   <div
     id="mobile-menu"
     class="md:hidden overflow-hidden max-h-0 transition-all duration-500"
@@ -93,7 +100,11 @@ const navLinks = [
         <a
           href={link.href}
           class="text-sm font-medium tracking-[0.15em] uppercase transition-colors py-2"
-          style="color: var(--color-text-secondary);"
+          style={
+            currentPath === link.href
+              ? 'color: var(--color-accent);'
+              : 'color: var(--color-text-secondary);'
+          }
         >
           {link.label}
         </a>
@@ -103,7 +114,6 @@ const navLinks = [
 </header>
 
 <script>
-  // Glassmorphic nav on scroll
   const nav = document.getElementById('nav');
   const onScroll = () => {
     if (window.scrollY > 50) {
@@ -115,7 +125,6 @@ const navLinks = [
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // Theme toggle
   function updateThemeIcons() {
     const isLight = document.documentElement.classList.contains('light');
     document.querySelectorAll('.theme-icon-sun').forEach(el => {
@@ -150,7 +159,6 @@ const navLinks = [
   document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
   updateThemeIcons();
 
-  // Mobile hamburger
   const toggle = document.getElementById('mobile-toggle');
   const menu = document.getElementById('mobile-menu');
   const bar1 = document.getElementById('bar1');
