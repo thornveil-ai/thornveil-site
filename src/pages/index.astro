@@ -35,7 +35,7 @@ const metrics = [
   { value: '27', label: 'Patents Filed' },
   { value: '5', label: 'ArXiv Papers' },
   { value: '6', label: 'Production Agents' },
-  { value: '122B MoE', label: 'Parameters' },
+  { value: '122B MoE', label: 'Model' },
 ];
 
 const agents = [
@@ -205,22 +205,68 @@ const agents = [
         Background
       </p>
       <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 mb-6 reveal reveal-delay-1">
-        Founded by one engineer
+        One engineer. AI-augmented at scale.
       </h2>
-      <p class="text-fluid-base font-medium tracking-tight mb-4 reveal reveal-delay-2">
-        Marine. SIGINT linguist. Software engineer. ML researcher.
-      </p>
-      <div class="space-y-3 text-sm leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+      <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
         <p>
-          I build defense technology from PyTorch training runs to Go backends
-          to React tactical dashboards to LaTeX patent applications.
+          Thornveil was founded by Jesse Morgan — active duty Marine, SIGINT linguist, and ML researcher. The entire product portfolio was built by one person using the same AI-augmented workflow that RigRun enables for customers.
         </p>
         <p>
-          An autonomous agent factory that builds other AI agents. A P2P mesh
-          network. All running on one GPU with zero cloud dependency.
+          That's not a limitation — it's the proof of concept. One engineer with the right tools produced 220,000 lines of production code, 27 patent filings, and three interlocking products in under a year. RigRun exists to give every engineering team that same force multiplier.
+        </p>
+        <p>
+          Thornveil is actively expanding. We're hiring cleared Go engineers, ML researchers, and defense program managers to scale from a proven solo operation to a full product team.
         </p>
       </div>
+    </div>
+  </section>
 
+  <!-- HIRING -->
+  <section class="px-6 md:px-12 lg:px-20 py-16 md:py-24" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">
+          Careers
+        </p>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
+          We're Hiring
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {[
+          {
+            title: 'Go Systems Engineer',
+            description: 'Backend infrastructure, inference optimization, safety systems. Secret clearance preferred.',
+            subject: 'Go Systems Engineer — Interest',
+          },
+          {
+            title: 'ML Research Engineer',
+            description: 'Custom model training, architecture design, edge deployment. Experience with small-model optimization.',
+            subject: 'ML Research Engineer — Interest',
+          },
+          {
+            title: 'Defense Program Manager',
+            description: 'SBIR/STTR proposals, government customer relationships, compliance oversight. Active DoD clearance required.',
+            subject: 'Defense Program Manager — Interest',
+          },
+        ].map((role, i) => (
+          <a
+            href={`mailto:jesse@thornveil.ai?subject=${encodeURIComponent(role.subject)}`}
+            class={`reveal reveal-delay-${Math.min(i + 1, 4)} card-gradient-border p-7 group cursor-pointer`}
+          >
+            <div class="relative z-10">
+              <h3 class="text-base font-semibold tracking-tight mb-3">{role.title}</h3>
+              <p class="text-sm leading-relaxed mb-5" style="color: var(--color-text-secondary);">
+                {role.description}
+              </p>
+              <span class="text-[11px] font-medium tracking-wider uppercase" style="color: var(--color-accent);">
+                Learn more &rarr;
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 

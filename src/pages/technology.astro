@@ -58,7 +58,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="space-y-4">
               {[
                 { label: 'Model', value: 'Qwen3.5-122B-A10B' },
-                { label: 'Parameters', value: '397B total / 17B active' },
+                { label: 'Parameters', value: '397B total / 17B active (MoE)' },
                 { label: 'Generation', value: '105 tok/s (122B)' },
                 { label: 'Fast mode', value: '184 tok/s (35B)' },
                 { label: 'Context', value: '65K tokens' },
@@ -117,14 +117,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
 
           <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-            <p>A peer-to-peer mesh that connects any device into a self-healing AI network. Phones, laptops, vehicles, servers. Works offline. Degrades gracefully. Gracefully degrades under load -- no single point of failure.</p>
+            <p>A peer-to-peer mesh that connects any device into a self-healing AI network. Phones, laptops, vehicles, servers. Works offline, degrades gracefully under load, and eliminates single points of failure.</p>
             <p>Three patented innovations make distributed AI work over consumer networks where conventional wisdom says you need InfiniBand.</p>
           </div>
 
           <div class="mt-8 space-y-3 reveal reveal-delay-2">
             {[
               { label: 'Distributed MoE over Consumer TCP', detail: 'MoE models activate only 3% of experts per token. Hidden state transfer is 6KB. Predictive prefetching hides latency inside the attention compute window. Lab-measured p50: 0.5ms over WiFi.' },
-              { label: 'Proof-of-Inference without TEE', detail: 'Software-only trust verification: behavioral fingerprinting (pop quizzes), Merkle execution traces (show your work), economic reputation (cheating never pays). No special hardware chips required.' },
+              { label: 'Proof-of-Inference without TEE', detail: 'Software-only trust verification: behavioral fingerprinting (pop quizzes), Merkle execution traces (show your work), economic reputation (cheating never pays). No special hardware chips required. Designed for mesh environments where some nodes may be untrusted — prevents a compromised or lazy node from returning fabricated responses instead of running actual inference.' },
               { label: 'Style Consistency Across Model Tiers', detail: 'A 0.6B phone model and a 122B server model answering together. Output normalization ensures the user cannot tell which device answered.' },
               { label: 'Classification-Aware Routing', detail: 'UNCLASSIFIED routes anywhere. CUI stays on-mesh. SECRET never leaves the device. Classification is metadata on every query, enforced at the routing layer.' },
             ].map((item) => (
@@ -177,6 +177,111 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div>
           <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">5</div>
           <div class="text-xs mt-1" style="color: var(--color-text-tertiary);">Adversarial<br/>probes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPLIANCE -->
+  <section class="section-padding" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto">
+      <div class="mb-14 text-center">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">
+          Compliance
+        </p>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
+          Security & Compliance
+        </h2>
+        <p class="text-sm mt-4 max-w-xl mx-auto leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          Controls implemented. Certification in progress.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Implemented Controls -->
+        <div class="card-gradient-border p-7 reveal reveal-delay-1">
+          <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-border);">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+              </div>
+              <h3 class="text-base font-semibold tracking-tight">Implemented Controls</h3>
+            </div>
+
+            <div class="mb-5">
+              <h4 class="text-xs font-semibold tracking-wider uppercase mb-3" style="color: var(--color-text-tertiary);">NIST 800-53 Rev 5</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {[
+                  'AC-2 Account Management',
+                  'AC-4 Information Flow',
+                  'AU-2 Audit Events',
+                  'AU-9 Audit Protection',
+                  'IA-2 Multi-Factor Auth',
+                  'IA-5 Authenticator Mgmt',
+                  'IR-4 Incident Handling',
+                  'SC-8 Transmission Confidentiality',
+                  'SC-13 Cryptographic Protection',
+                  'SC-28 Data at Rest',
+                  'PS-6 Access Agreements',
+                ].map((ctrl) => (
+                  <div class="flex items-center gap-2 text-xs" style="color: var(--color-text-secondary);">
+                    <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background: var(--color-accent);"></span>
+                    {ctrl}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div class="space-y-2 mt-5">
+              {[
+                'Classification enforcement (UNCLASS through TS)',
+                'AES-256-GCM encryption at rest with PBKDF2 key derivation',
+                'HMAC-chained audit logs with tamper detection',
+                'JWT/OAuth/OIDC authentication with MFA (TOTP)',
+              ].map((item) => (
+                <div class="flex items-start gap-2 text-xs" style="color: var(--color-text-secondary);">
+                  <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1" style="background: var(--color-accent);"></span>
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Certification Roadmap -->
+        <div class="card-gradient-border p-7 reveal reveal-delay-2">
+          <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-border);">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" /></svg>
+              </div>
+              <h3 class="text-base font-semibold tracking-tight">Certification Roadmap</h3>
+            </div>
+
+            <div class="space-y-4">
+              {[
+                { cert: 'SOC 2 Type II', status: 'In planning', color: '#f97316' },
+                { cert: 'CMMC Level 2', status: 'Controls implemented, assessment pending', color: '#3b82f6' },
+                { cert: 'FedRAMP', status: 'Not yet pursued (requires sponsoring agency)', color: '#6b7280' },
+                { cert: 'ATO', status: 'SSP in development, pen test pending', color: '#f97316' },
+                { cert: 'FIPS 140-3', status: 'Runtime verification implemented, formal validation pending', color: '#3b82f6' },
+              ].map((item) => (
+                <div class="rounded-lg p-4" style="border: 1px solid var(--color-border-subtle);">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-sm font-semibold">{item.cert}</span>
+                    <span class="w-2 h-2 rounded-full" style={`background: ${item.color};`}></span>
+                  </div>
+                  <div class="text-xs" style="color: var(--color-text-tertiary);">{item.status}</div>
+                </div>
+              ))}
+            </div>
+
+            <div class="mt-6 rounded-lg p-4" style="border: 1px solid var(--color-border-subtle); background: var(--color-surface-elevated);">
+              <p class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">
+                We are transparent about what we have and what we're working toward. No certification is claimed until formally granted.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
