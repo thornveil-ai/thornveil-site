@@ -62,47 +62,49 @@ const agents = [
 
 const pricing = [
   {
-    tier: 'Individual',
-    price: '$199',
+    tier: 'API Access',
+    price: '$499',
     period: '/month',
-    description: 'For solo developers and small teams',
+    description: 'Connect your apps to our hosted 122B model. OpenAI-compatible API, 100K tokens/day, <3s latency, 99.9% uptime.',
     features: [
-      'Access to all 6 domain agents',
-      'Up to 100 agent runs/month',
-      'Structured output (JSON/Markdown)',
+      'OpenAI-compatible endpoint',
+      '100K tokens/day',
+      'All 6 domain agents',
+      'Structured output',
       'Email support',
     ],
-    cta: 'Get Started',
+    cta: 'Get API Key',
     featured: false,
   },
   {
-    tier: 'Business',
-    price: '$599',
-    period: '/month',
-    description: 'For teams that need production quality',
+    tier: 'RigRun License',
+    price: '$2,499',
+    period: '/year',
+    description: 'Deploy on your own hardware. Your data never leaves your building.',
     features: [
-      'Everything in Individual',
-      'Unlimited agent runs',
-      'Custom agent creation (up to 3)',
-      'RAG brain with your documents',
-      'Priority support',
-      'API access',
+      'Everything in API Access',
+      'Full server binary + desktop app',
+      'Unlimited local inference',
+      'Safety proxy + cascade routing',
+      'Self-training pipeline',
+      'Agent Factory (create unlimited agents)',
+      '1 year of updates',
     ],
-    cta: 'Get Started',
+    cta: 'Get RigRun',
     featured: true,
   },
   {
     tier: 'Enterprise',
     price: 'Custom',
     period: '',
-    description: 'For organizations with specific requirements',
+    description: 'Multi-node, classified environments, custom integration.',
     features: [
-      'Everything in Business',
-      'Unlimited custom agents',
-      'On-premise deployment option',
-      'Classification-aware routing',
-      'Dedicated support engineer',
-      'IP licensing available',
+      'Everything in RigRun License',
+      'Mycelium mesh networking',
+      'Classification-aware routing (CUI through TS)',
+      'On-premise installation support',
+      'Custom agent development',
+      'Dedicated technical support',
     ],
     cta: 'Contact Us',
     featured: false,
@@ -112,7 +114,7 @@ const pricing = [
 
 <BaseLayout
   title="Products | Thornveil"
-  description="Domain expert AI agents built by the Agent Factory. Code review, security audit, documentation, sprint planning, SBIR proposals, and patent drafting."
+  description="RigRun: local AI infrastructure on your hardware. 122B model inference, 5-layer safety stack, self-improving training pipeline, and domain expert agents."
 >
   <!-- HERO -->
   <section class="section-padding pt-32 md:pt-40">
@@ -121,10 +123,52 @@ const pricing = [
         Products
       </p>
       <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
-        AI agents that do real work
+        Local AI infrastructure. Your hardware, your data.
       </h1>
       <p class="text-base mt-4 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Each agent is built by the Agent Factory: a 14-step pipeline that decomposes requirements, generates multi-pass system prompts, assembles knowledge bases, runs adversarial stress tests, calibrates against frontier models, and deploys through a human approval gate. These aren't chatbot wrappers. They're production tools.
+        RigRun is a complete AI server that runs on your hardware with zero cloud dependency. One binary, one GPU, everything included — inference, safety, routing, training, and a full agent factory.
+      </p>
+    </div>
+  </section>
+
+  <!-- RIGRUN -->
+  <section class="section-padding pt-12">
+    <div class="container-max mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">
+          RigRun
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="reveal reveal-delay-1 card-gradient-border p-7" data-tilt>
+          <div class="relative z-10">
+            <h3 class="text-base font-semibold tracking-tight mb-3">122B Model Inference</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+              Run a 122-billion parameter model on a single GPU. 105 tokens/second, 65K context window, speculative decoding. Zero API costs.
+            </p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2 card-gradient-border p-7" data-tilt>
+          <div class="relative z-10">
+            <h3 class="text-base font-semibold tracking-tight mb-3">5-Layer Safety Stack</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+              Prompt injection detection, action gating, trajectory anomaly detection, learned classification, and spillage prevention. 94.86% adversarial block rate.
+            </p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-3 card-gradient-border p-7" data-tilt>
+          <div class="relative z-10">
+            <h3 class="text-base font-semibold tracking-tight mb-3">Self-Improving</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+              Overnight training pipeline learns from every conversation. DPO preference optimization on your own data. The model gets better at your specific workflows.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center font-mono text-xs tracking-wider mt-8 reveal reveal-delay-4" style="color: var(--color-text-tertiary);">
+        RTX PRO 6000 Blackwell &nbsp;///&nbsp; Qwen3.5-122B &nbsp;///&nbsp; 105 tok/s &nbsp;///&nbsp; 65K context &nbsp;///&nbsp; 27 patents filed
       </p>
     </div>
   </section>
@@ -132,6 +176,15 @@ const pricing = [
   <!-- AGENT CATALOG -->
   <section class="section-padding pt-12" style="background: var(--color-surface-secondary);">
     <div class="container-max mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">
+          Domain Expert Agents
+        </h2>
+        <p class="text-sm mt-3 reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+          Included with every RigRun license.
+        </p>
+      </div>
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         {agents.map((a, i) => (
           <div
@@ -260,7 +313,7 @@ const pricing = [
           >
             {p.featured && (
               <span class="inline-block self-start font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full mb-4" style="background: var(--color-accent-muted); color: var(--color-accent);">
-                Most Popular
+                Recommended
               </span>
             )}
             <h3 class="text-lg font-semibold">{p.tier}</h3>
@@ -282,7 +335,7 @@ const pricing = [
             </ul>
 
             <a
-              href={p.tier === 'Enterprise' ? '/contact' : 'mailto:jesse@thornveil.ai?subject=' + p.tier + ' Plan'}
+              href={p.tier === 'Enterprise' ? '/contact' : 'mailto:jesse@thornveil.ai?subject=' + encodeURIComponent(p.tier)}
               class={p.featured ? 'btn-primary text-sm text-center justify-center' : 'btn-outline text-sm text-center justify-center'}
             >
               {p.cta}
@@ -290,10 +343,6 @@ const pricing = [
           </div>
         ))}
       </div>
-
-      <p class="text-center text-xs mt-8 reveal reveal-delay-3" style="color: var(--color-text-tertiary);">
-        Need a custom agent for your specific domain? <a href="mailto:jesse@thornveil.ai" class="underline" style="color: var(--color-accent);">Let's talk.</a>
-      </p>
     </div>
   </section>
 
