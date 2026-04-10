@@ -62,42 +62,44 @@ const agents = [
 
 const pricing = [
   {
-    tier: 'API Access',
-    price: '$499',
+    tier: 'Beta Access',
+    price: '$250',
     period: '/month',
-    description: 'Connect your apps to our hosted 122B model. OpenAI-compatible API, 100K tokens/day, <3s latency, 99.9% uptime.',
+    description: '5 seats only. Unlimited inference on a 122B model. No token metering, no throttling. Direct access to the same stack that powers our products.',
     features: [
-      'OpenAI-compatible endpoint',
-      '100K tokens/day',
-      'All 6 domain agents',
-      'Structured output',
-      'Email support',
+      'OpenAI-compatible API endpoint',
+      'Unlimited tokens — no metering',
+      '122B model (Qwen3.5-122B-A10B)',
+      'All 6 domain agents included',
+      'Native tool calling + reasoning',
+      'Priority support (direct line)',
     ],
-    cta: 'Get API Key',
-    featured: false,
+    cta: 'Apply for Beta',
+    featured: true,
+    badge: '3 of 5 seats remaining',
   },
   {
     tier: 'RigRun License',
     price: '$2,499',
     period: '/year',
-    description: 'Deploy on your own hardware. Your data never leaves your building.',
+    description: 'Like what you see in the beta? Deploy the full stack on your own hardware. Your data never leaves your building.',
     features: [
-      'Everything in API Access',
       'Full server binary + desktop app',
       'Unlimited local inference',
-      'Safety proxy + cascade routing',
+      '5-layer safety proxy + cascade routing',
       'Self-training pipeline',
       'Agent Factory (create unlimited agents)',
-      '1 year of updates',
+      'Pyros 7-pillar inference engine',
+      '1 year of updates + support',
     ],
     cta: 'Get RigRun',
-    featured: true,
+    featured: false,
   },
   {
     tier: 'Enterprise',
     price: 'Custom',
     period: '',
-    description: 'Multi-node, classified environments, custom integration.',
+    description: 'Multi-node, classified environments, mesh networking.',
     features: [
       'Everything in RigRun License',
       'Mycelium mesh networking',
@@ -311,9 +313,9 @@ const pricing = [
             class={`reveal reveal-delay-${Math.min(i + 1, 4)} rounded-xl p-7 flex flex-col ${p.featured ? 'ring-1' : ''}`}
             style={`background: var(--color-surface-elevated); border: 1px solid ${p.featured ? 'var(--color-accent)' : 'var(--color-border)'}; ${p.featured ? `--tw-ring-color: var(--color-accent); box-shadow: 0 0 30px rgba(201, 168, 78, 0.08);` : ''}`}
           >
-            {p.featured && (
+            {p.badge && (
               <span class="inline-block self-start font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full mb-4" style="background: var(--color-accent-muted); color: var(--color-accent);">
-                Recommended
+                {p.badge}
               </span>
             )}
             <h3 class="text-lg font-semibold">{p.tier}</h3>
