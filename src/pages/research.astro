@@ -53,14 +53,14 @@ const domainColors: Record<string, string> = {
 
 <BaseLayout
   title="Research | Thornveil"
-  description="27 provisional patents filed, 5 ArXiv papers ready. Research spanning counter-UAS, AI safety, distributed inference, and Arabic NLP."
+  description="27 provisional patents filed, 5 research papers in draft. Work spanning counter-UAS, AI safety, distributed inference, and Arabic NLP."
 >
   <section class="section-padding pt-32 md:pt-40">
     <div class="container-max mx-auto">
       <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Research</p>
       <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Papers & patents</h1>
       <p class="text-base mt-4 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        27 provisional patents filed with the USPTO. 5 ArXiv papers ready for submission. All authored solo. All work done on a single GPU.
+        27 provisional patents filed with the USPTO. 5 research papers in draft. All authored solo. All work done on a single GPU.
       </p>
     </div>
   </section>
@@ -68,7 +68,7 @@ const domainColors: Record<string, string> = {
   <!-- PAPERS -->
   <section class="section-padding pt-12" style="background: var(--color-surface-secondary);">
     <div class="container-max mx-auto">
-      <h2 class="text-fluid-xl font-semibold tracking-tight mb-8 reveal">ArXiv papers</h2>
+      <h2 class="text-fluid-xl font-semibold tracking-tight mb-8 reveal">Research papers</h2>
       <div class="space-y-3">
         {papers.map((p, i) => (
           <div class={`reveal reveal-delay-${Math.min(i + 1, 4)} rounded-xl p-5`} style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
