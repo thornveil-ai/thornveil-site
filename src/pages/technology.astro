@@ -34,7 +34,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
           <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
             <p>Complete AI infrastructure running on one RTX PRO 6000 Blackwell (96GB VRAM). Qwen3.5-122B at 105 tok/s. The entire system operates with zero cloud dependency and $0 marginal inference cost.</p>
-            <p>The system includes an autonomous ops center (Navigator) that manages 37+ projects, a 5-layer safety stack with 100% adversarial block rate, and a zeroth-order training pipeline that improves the model overnight through the live inference API with zero downtime.</p>
+            <p>The system includes an autonomous ops center (Navigator) that manages 24 projects, a 5-layer safety stack with 94.86% adversarial block rate, and a zeroth-order training pipeline that improves the model overnight through the live inference API with zero downtime.</p>
           </div>
 
           <div class="mt-8 space-y-3 reveal reveal-delay-2">
@@ -66,7 +66,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 { label: 'VRAM', value: '96GB (98% utilized)' },
                 { label: 'Hardware', value: 'RTX PRO 6000 Blackwell' },
                 { label: 'Cost', value: '$16K one-time, $0/token' },
-                { label: 'Patents', value: '9 filed (002-005, 010, 018-021, 023)' },
+                { label: 'Patents', value: '10 filed (002-005, 010, 018-021, 023)' },
               ].map((s) => (
                 <div class="flex justify-between items-baseline">
                   <span class="text-xs" style="color: var(--color-text-tertiary);">{s.label}</span>
@@ -117,7 +117,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
 
           <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-            <p>A peer-to-peer mesh that connects any device into a self-healing AI network. Phones, laptops, vehicles, servers. Works offline. Degrades gracefully. Never returns "service unavailable."</p>
+            <p>A peer-to-peer mesh that connects any device into a self-healing AI network. Phones, laptops, vehicles, servers. Works offline. Degrades gracefully. Gracefully degrades under load -- no single point of failure.</p>
             <p>Three patented innovations make distributed AI work over consumer networks where conventional wisdom says you need InfiniBand.</p>
           </div>
 
