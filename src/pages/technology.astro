@@ -3,16 +3,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Technology | Thornveil"
-  description="RigRun sovereign AI infrastructure, Mycelium P2P mesh network, and Agent Factory meta-agent system. Built on a single GPU with 27 patents filed."
+  title="How It Works | Thornveil"
+  description="How RigRun, Mycelium, and the Agent Factory deliver sovereign AI — unlimited inference on your hardware, self-healing distributed mesh, and custom agents built in days."
 >
   <!-- HERO -->
   <section class="section-padding pt-32 md:pt-40">
     <div class="container-max mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Technology</p>
-      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">The stack</h1>
+      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">How it works</p>
+      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">What you get under the hood</h1>
       <p class="text-base mt-4 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Three interlocking systems that prove sovereign AI works today. One GPU, zero cloud dependency, 27 patents protecting the approach.
+        Three systems that turn a single GPU (or a room full of laptops) into a private AI stack your team controls end-to-end. No cloud, no per-token billing, no data leaving your building.
       </p>
     </div>
   </section>
@@ -28,21 +28,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
             <div>
               <h2 class="text-fluid-xl font-semibold tracking-tight">RigRun</h2>
-              <span class="text-xs" style="color: var(--color-text-tertiary);">Single-Node Sovereign AI</span>
+              <span class="text-xs" style="color: var(--color-text-tertiary);">Unlimited inference on your hardware</span>
             </div>
           </div>
 
           <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-            <p>Complete AI infrastructure running on one RTX PRO 6000 Blackwell (96GB VRAM). Qwen3.5-122B at 105 tok/s. The entire system operates with zero cloud dependency and $0 marginal inference cost.</p>
-            <p>The system includes an autonomous ops center (Navigator) that manages 24 projects, a 5-layer safety stack with 94.86% adversarial block rate, and a zeroth-order training pipeline that improves the model overnight through the live inference API with zero downtime.</p>
+            <p>A frontier-class model running in your server room, priced like electricity instead of tokens. One GPU, one binary, unlimited queries. Your sensitive code and documents never leave your network.</p>
+            <p>RigRun ships with everything your team needs on day one: a safety stack that blocks adversarial prompts, a fast-and-slow dual-model cascade that keeps latency down, and an overnight self-improvement loop so the model gets better on your workload without ever going offline.</p>
           </div>
 
           <div class="mt-8 space-y-3 reveal reveal-delay-2">
             {[
-              { label: 'TurboQuant KV Integration', detail: "Google's compression algorithm integrated into production serving. 5.2x KV cache compression, 99.92% quality retention. Per-request state pooling for batched inference." },
-              { label: 'ZO2 Training Pipeline', detail: '10 preference loss functions, 8 zeroth-order techniques, cyclic LoRA rotation. 2,600 steps in 22 minutes. Trains through the live API without stopping inference.' },
-              { label: '5-Layer Safety Stack', detail: 'Action gate, learned classifier, trajectory anomaly detection, declarative safety DSL, classification spillage detection. Defense in depth.' },
-              { label: 'Dual-Model Cascade', detail: '35B generates at 184 tok/s, 122B reviews for quality. 7-stage router with entropy-based escalation. 93% routing accuracy across 15.8M tokens.' },
+              { label: 'Fit more context into the same GPU', detail: "TurboQuant compresses KV cache 5.2x with 99.92% quality retention, so you get longer conversations and larger codebases in memory without buying a second GPU." },
+              { label: 'Model learns your workflow overnight', detail: 'ZO2 training pipeline improves the model from your real usage while inference keeps serving. Wake up to a model that knows your codebase better than yesterday. Zero downtime.' },
+              { label: 'Safety stack you can defend in an audit', detail: 'Five layers — action gating, learned classifier, trajectory anomaly detection, declarative policy DSL, and classification spillage detection — stop prompt-injection and data exfiltration before they reach the model.' },
+              { label: 'Fast by default, deep when it matters', detail: 'Easy questions run on a 35B model at 184 tok/s. Hard questions escalate to the 122B reviewer automatically. Your users get answers fast; you only pay the big-model cost when it counts.' },
             ].map((item) => (
               <div class="rounded-lg p-4" style="border: 1px solid var(--color-border-subtle);">
                 <div class="text-sm font-semibold mb-1">{item.label}</div>
@@ -65,8 +65,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 { label: 'KV Compression', value: '5.2x (TurboQuant)' },
                 { label: 'VRAM', value: '96GB (98% utilized)' },
                 { label: 'Hardware', value: 'RTX PRO 6000 Blackwell' },
-                { label: 'Cost', value: '$16K one-time, $0/token' },
-                { label: 'Patents', value: '10 filed (002-005, 010, 018-021, 023)' },
+                { label: 'Per-token fee', value: '$0 — ever' },
+                { label: 'Data egress', value: 'None (fully on-prem)' },
               ].map((s) => (
                 <div class="flex justify-between items-baseline">
                   <span class="text-xs" style="color: var(--color-text-tertiary);">{s.label}</span>
@@ -112,21 +112,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
             <div>
               <h2 class="text-fluid-xl font-semibold tracking-tight">Mycelium</h2>
-              <span class="text-xs" style="color: var(--color-text-tertiary);">P2P AI Mesh Network</span>
+              <span class="text-xs" style="color: var(--color-text-tertiary);">Scale out without a data center</span>
             </div>
           </div>
 
           <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-            <p>A peer-to-peer mesh that connects any device into a self-healing AI network. Phones, laptops, vehicles, servers. Works offline, degrades gracefully under load, and eliminates single points of failure.</p>
-            <p>Three patented innovations make distributed AI work over consumer networks where conventional wisdom says you need InfiniBand.</p>
+            <p>Turn any collection of devices — phones, laptops, vehicles, servers — into a single AI cluster that heals itself. Need more capacity? Plug in another node. Lose a node in the field? The mesh routes around it. Works offline, survives network partitions, and has no single point of failure to defend.</p>
+            <p>Mycelium runs over the network you already have. No InfiniBand. No specialized hardware. No data center buildout.</p>
           </div>
 
           <div class="mt-8 space-y-3 reveal reveal-delay-2">
             {[
-              { label: 'Distributed MoE over Consumer TCP', detail: 'MoE models activate only 3% of experts per token. Hidden state transfer is 6KB. Predictive prefetching hides latency inside the attention compute window. Lab-measured p50: 0.5ms over WiFi.' },
-              { label: 'Proof-of-Inference without TEE', detail: 'Software-only trust verification: behavioral fingerprinting (pop quizzes), Merkle execution traces (show your work), economic reputation (cheating never pays). No special hardware chips required. Designed for mesh environments where some nodes may be untrusted — prevents a compromised or lazy node from returning fabricated responses instead of running actual inference.' },
-              { label: 'Style Consistency Across Model Tiers', detail: 'A 0.6B phone model and a 122B server model answering together. Output normalization ensures the user cannot tell which device answered.' },
-              { label: 'Classification-Aware Routing', detail: 'UNCLASSIFIED routes anywhere. CUI stays on-mesh. SECRET never leaves the device. Classification is metadata on every query, enforced at the routing layer.' },
+              { label: 'Works over the WiFi you already have', detail: 'Inference distributes across devices with sub-millisecond hidden-state transfers by only moving the 3% of experts that matter per token. No need to upgrade your network or buy specialized interconnects.' },
+              { label: 'Trust nodes you do not own', detail: 'Every node proves it actually ran the work — through behavioral spot checks, signed execution traces, and reputation scoring. A compromised or lazy node gets caught and kicked out. No trusted hardware chips required.' },
+              { label: 'One consistent voice across devices', detail: 'A query that lands on a phone and one that lands on your server return answers in the same style and format. Your users never know (or care) which device answered.' },
+              { label: 'Classification stays put', detail: 'UNCLASSIFIED routes anywhere. CUI stays on your mesh. SECRET never leaves the device it originated on. Enforced at the routing layer — not as an afterthought.' },
             ].map((item) => (
               <div class="rounded-lg p-4" style="border: 1px solid var(--color-border-subtle);">
                 <div class="text-sm font-semibold mb-1">{item.label}</div>
@@ -148,13 +148,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
         <div>
           <h2 class="text-fluid-xl font-semibold tracking-tight">Agent Factory</h2>
-          <span class="text-xs" style="color: var(--color-text-tertiary);">AI That Builds AI Agents</span>
+          <span class="text-xs" style="color: var(--color-text-tertiary);">Custom AI agents in days, not months</span>
         </div>
       </div>
 
       <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        <p>Describe what you need in plain English. The factory decomposes requirements, generates a multi-pass system prompt with independent critique, selects tools, assembles a RAG knowledge base, generates few-shot examples, runs adversarial stress tests, calibrates against Claude Opus, and deploys through a human approval gate.</p>
-        <p>Currently producing 6 domain expert agents averaging 9/10 quality scores. Each agent has 7-11 tools, 2+ few-shot examples, and structured evaluation rubrics. The factory's output improves over time as agents generate DPO training pairs from production usage.</p>
+        <p>Tell us what you need your AI to do, in plain English. You get back a production-ready agent — with the right tools, the right knowledge base, the right guardrails, and an evaluation rubric your team can audit. Every agent goes through adversarial stress tests and a human approval gate before it ever touches your users.</p>
+        <p>The result: a bespoke AI specialist tuned to your workflow, delivered in days instead of months of prompt engineering. And every agent keeps getting better from real usage.</p>
       </div>
 
       <div class="mt-8 reveal reveal-delay-2">

@@ -4,8 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const pillars = [
   {
     name: 'RigRun',
-    subtitle: 'Single-Node Sovereign AI',
-    description: 'Complete AI infrastructure on one GPU. 122B model at 105 tok/s, autonomous agent factory, self-improving training pipeline, 5-layer safety stack. Zero cloud dependency.',
+    subtitle: 'Stop paying per token',
+    description: 'RigRun runs on your hardware. Unlimited inference. Your data never leaves your building. One binary, one GPU, zero cloud subscriptions.',
     metric: '105',
     metricLabel: 'tok/s',
     href: '/technology',
@@ -13,8 +13,8 @@ const pillars = [
   },
   {
     name: 'Mycelium',
-    subtitle: 'P2P AI Mesh Network',
-    description: 'Connect any device into a self-healing mesh. Distributed MoE over consumer WiFi, proof-of-inference trust verification. Gracefully degrades under load — no single point of failure.',
+    subtitle: 'Add nodes, not bills',
+    description: 'Deploy across laptops, phones, or servers. They discover each other automatically. Work survives network partitions. No data center required.',
     metric: '0.5',
     metricLabel: 'ms p50 transfer',
     href: '/technology',
@@ -22,8 +22,8 @@ const pillars = [
   },
   {
     name: 'Agent Factory',
-    subtitle: 'AI That Builds AI Agents',
-    description: 'Describe what you need in plain English. The factory designs, tests, and deploys a production-ready domain expert agent with tools, knowledge base, and quality assurance.',
+    subtitle: 'Custom AI for your workflow',
+    description: 'Describe what you need in plain English. Get a production-ready AI agent in days, not months. Every agent tested, hardened, and deployed through a quality gate.',
     metric: '6',
     metricLabel: 'agents live',
     href: '/products',
@@ -32,10 +32,10 @@ const pillars = [
 ];
 
 const metrics = [
-  { value: '27', label: 'Patents Filed' },
-  { value: '5', label: 'Research Papers' },
-  { value: '6', label: 'Production Agents' },
-  { value: '122B MoE', label: 'Model' },
+  { value: 'Zero', label: 'Cloud dependencies' },
+  { value: 'Your data', label: 'Stays on your hardware' },
+  { value: 'Unlimited', label: 'Inference (no per-token fees)' },
+  { value: 'One binary', label: 'Deploy in minutes' },
 ];
 
 const agents = [
@@ -50,7 +50,7 @@ const agents = [
 
 <BaseLayout
   title="Thornveil | Local AI Infrastructure"
-  description="Local AI infrastructure from edge to enterprise. 27 patents filed. Agent factory, P2P mesh, local model inference. Founded by Jesse Morgan."
+  description="Run AI on your own hardware. Unlimited inference, zero per-token fees, data never leaves your building. RigRun, Mycelium, and custom AI agents for defense and enterprise."
 >
   <!-- HERO -->
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh">
@@ -65,16 +65,20 @@ const agents = [
         <img src="/logo-stacked.png" alt="Thornveil" class="logo-light absolute inset-0 w-full h-full object-contain" style="opacity: 0; transition: opacity 0.5s;" />
       </div>
 
-      <h2 class="text-fluid-2xl max-w-xl mx-auto leading-tight font-semibold tracking-tight">
-        Local AI infrastructure.<br/>Edge to enterprise.
+      <h2 class="text-fluid-2xl max-w-2xl mx-auto leading-tight font-semibold tracking-tight">
+        Own your AI.<br/>Stop renting it.
       </h2>
 
+      <p class="mt-5 text-sm md:text-base max-w-xl mx-auto leading-relaxed" style="color: var(--color-text-secondary);">
+        Run frontier models on hardware you control. No per-token fees, no data leaving your building, no cloud subscription to cancel. Deploy in minutes with a single binary.
+      </p>
+
       <div class="mt-6 font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase" style="color: var(--color-text-tertiary);">
-        <span>27 Patents Filed</span>
+        <span>Runs on your hardware</span>
         <span class="mx-2 md:mx-3 opacity-40">///</span>
-        <span>5 Research Papers</span>
+        <span>Your data never leaves</span>
         <span class="mx-2 md:mx-3 opacity-40">///</span>
-        <span>Tampa, FL</span>
+        <span>No token fees, ever</span>
       </div>
 
       <div class="mt-10 flex gap-4 justify-center flex-wrap">
@@ -169,10 +173,10 @@ const agents = [
             Products
           </p>
           <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
-            Domain expert AI agents
+            Off-the-shelf experts for your team
           </h2>
           <p class="text-sm mt-3 max-w-lg reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-            Production-ready agents built by the Agent Factory. Each one stress-tested, calibrated, and deployed with tools, knowledge bases, and evaluation rubrics.
+            Drop-in AI specialists your team can use today — from code review to security audits to federal proposals. Each one stress-tested and ready to run on your hardware.
           </p>
         </div>
         <a href="/products" class="btn-outline text-xs uppercase reveal reveal-delay-2">
@@ -202,20 +206,17 @@ const agents = [
   <section class="px-6 md:px-12 lg:px-20 py-16 md:py-24">
     <div class="container-max mx-auto max-w-3xl text-center">
       <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">
-        Background
+        What this means for your team
       </p>
       <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 mb-6 reveal reveal-delay-1">
-        One engineer. AI-augmented at scale.
+        Your engineers, multiplied.
       </h2>
       <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
         <p>
-          Thornveil was founded by Jesse Morgan — active duty Marine, SIGINT linguist, and ML researcher. The entire product portfolio was built by one person using the same AI-augmented workflow that RigRun enables for customers.
+          RigRun exists so your engineers can ship more without adding headcount, touching the cloud, or exposing proprietary code to a third-party API. Every RigRun capability was first battle-tested building Thornveil's own product portfolio — if it works for us, it works for you.
         </p>
         <p>
-          That's not a limitation — it's the proof of concept. One engineer with the right tools produced 220,000 lines of production code, 27 patent filings, and three interlocking products in under a year. RigRun exists to give every engineering team that same force multiplier.
-        </p>
-        <p>
-          Thornveil is actively expanding. We're hiring cleared Go engineers, ML researchers, and defense program managers to scale from a proven solo operation to a full product team.
+          The same force multiplier: faster reviews, automated refactors, custom domain agents, unlimited inference on sensitive code. Your team keeps control of their data, their infrastructure, and their monthly bill.
         </p>
       </div>
     </div>
@@ -231,6 +232,9 @@ const agents = [
         <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
           We're Hiring
         </h2>
+        <p class="text-sm mt-4 max-w-xl mx-auto leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          The team building RigRun is scaling to serve more defense and enterprise customers. Current openings:
+        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -276,10 +280,10 @@ const agents = [
 
     <div class="relative container-max mx-auto max-w-2xl text-center">
       <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">
-        Get in touch
+        Ready to own your AI stack?
       </h2>
       <p class="mt-4 text-sm max-w-md mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        Software licensing, API access, custom AI agents, or enterprise deployment.
+        Tell us what you're running today. We'll show you how to bring it in-house — licensing, deployment, or a custom agent built for your workflow.
       </p>
 
       <div class="mt-8 reveal reveal-delay-2">

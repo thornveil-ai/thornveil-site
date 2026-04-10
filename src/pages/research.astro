@@ -52,15 +52,15 @@ const domainColors: Record<string, string> = {
 ---
 
 <BaseLayout
-  title="Research | Thornveil"
-  description="27 provisional patents filed, 5 research papers in draft. Work spanning counter-UAS, AI safety, distributed inference, and Arabic NLP."
+  title="Evidence | Thornveil"
+  description="Every claim we make about RigRun, Pyros, and Mycelium is backed by working code, measured benchmarks, and published research. Here's the evidence."
 >
   <section class="section-padding pt-32 md:pt-40">
     <div class="container-max mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Research</p>
-      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Papers & patents</h1>
+      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Evidence</p>
+      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">How we prove it works</h1>
       <p class="text-base mt-4 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        27 provisional patents filed with the USPTO. 5 research papers in draft. All authored solo. All work done on a single GPU.
+        Every claim we make about RigRun, Pyros, and Mycelium is backed by working code, measured benchmarks, and published research. Here's the evidence.
       </p>
     </div>
   </section>
@@ -68,7 +68,10 @@ const domainColors: Record<string, string> = {
   <!-- PAPERS -->
   <section class="section-padding pt-12" style="background: var(--color-surface-secondary);">
     <div class="container-max mx-auto">
-      <h2 class="text-fluid-xl font-semibold tracking-tight mb-8 reveal">Research papers</h2>
+      <h2 class="text-fluid-xl font-semibold tracking-tight mb-2 reveal">Published research</h2>
+      <p class="text-sm mb-8 max-w-2xl reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+        Peer-reviewable papers documenting the algorithms that make the product work. If a vendor can't show the math, you're buying marketing.
+      </p>
       <div class="space-y-3">
         {papers.map((p, i) => (
           <div class={`reveal reveal-delay-${Math.min(i + 1, 4)} rounded-xl p-5`} style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
@@ -96,9 +99,9 @@ const domainColors: Record<string, string> = {
     <div class="container-max mx-auto">
       <div class="flex items-end justify-between mb-8 flex-wrap gap-4">
         <div>
-          <h2 class="text-fluid-xl font-semibold tracking-tight reveal">Patent portfolio</h2>
-          <p class="text-sm mt-2 reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-            27 U.S. provisional patent applications filed. All micro entity. All assigned to Thornveil LLC.
+          <h2 class="text-fluid-xl font-semibold tracking-tight reveal">Protected IP you license, not rebuild</h2>
+          <p class="text-sm mt-2 max-w-2xl reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+            When you buy Thornveil, you get the benefit of filed, defensible methods — not a wrapper around someone else's API. Full U.S. provisional applications, assigned to Thornveil LLC, available for license.
           </p>
         </div>
         <div class="flex flex-wrap gap-2 reveal reveal-delay-2">
@@ -128,9 +131,9 @@ const domainColors: Record<string, string> = {
 
       <div class="grid grid-cols-3 gap-6 mt-12 reveal reveal-delay-3">
         {[
-          { value: '27', label: 'Patents Filed' },
-          { value: '8', label: 'Patent Families' },
-          { value: '8', label: 'Domains' },
+          { value: '27', label: 'Filed methods you can license' },
+          { value: '8', label: 'Problem areas we solve' },
+          { value: '5', label: 'Papers with reproducible math' },
         ].map((m) => (
           <div class="text-center">
             <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">{m.value}</div>
