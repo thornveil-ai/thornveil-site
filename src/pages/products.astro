@@ -179,9 +179,30 @@ const pyrosResearch = [
         <div class="grid grid-cols-1 md:grid-cols-1 gap-5 mt-5">
           <div class="reveal reveal-delay-4 card-gradient-border p-7" data-tilt>
             <div class="relative z-10">
-              <h3 class="text-base font-semibold tracking-tight mb-3">Rolling Memory — Effectively Infinite Context</h3>
-              <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
-                Beyond the 1M-token native window, Rolling Memory v4 extends effective context indefinitely through hierarchical summarization and semantic recall. Tested to 2.5M tokens / 10M characters with no quality cliff.
+              <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+                <h3 class="text-base font-semibold tracking-tight">Rolling Memory — Effectively Infinite Context</h3>
+                <span class="inline-flex items-center gap-1 font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full" style="background: var(--color-accent-muted); color: var(--color-accent);">
+                  Verified 2026-04-11
+                </span>
+              </div>
+              <p class="text-sm leading-relaxed mb-5" style="color: var(--color-text-secondary);">
+                Beyond the 1M-token native window, Rolling Memory v4 extends effective context indefinitely through per-session disk-backed verbatim, summary, and embedding tiers. Latency stays flat with depth because retrieval keeps each forward pass roughly the same size regardless of total context length.
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { value: '10M', label: 'Characters tested' },
+                  { value: '2.5M', label: 'Tokens tested' },
+                  { value: '100%', label: 'Needle recall' },
+                  { value: '~10s', label: 'Latency at any depth' },
+                ].map((m) => (
+                  <div class="rounded-lg p-3 text-center" style="background: var(--color-surface); border: 1px solid var(--color-border-subtle);">
+                    <div class="font-mono text-base font-bold" style="color: var(--color-accent);">{m.value}</div>
+                    <div class="font-mono text-[9px] tracking-wider uppercase mt-1" style="color: var(--color-text-tertiary);">{m.label}</div>
+                  </div>
+                ))}
+              </div>
+              <p class="text-[11px] mt-4 leading-relaxed" style="color: var(--color-text-tertiary);">
+                Test rig: needle-in-haystack 100% pass through 10M chars (8.9–9.1s), 5/5 fact consistency, 10/10 multi-turn retrieval, 17/17 smoke tests passed. Drop-in OpenAI/Anthropic-compatible reverse proxy on port 8096 with per-session isolation, dashboard, and Prometheus metrics.
               </p>
             </div>
           </div>
@@ -189,6 +210,69 @@ const pyrosResearch = [
 
         <p class="text-center font-mono text-xs tracking-wider mt-8 reveal reveal-delay-4" style="color: var(--color-text-tertiary);">
           RTX PRO 6000 Blackwell &nbsp;///&nbsp; Qwen3.5-122B &nbsp;///&nbsp; 105 tok/s &nbsp;///&nbsp; 1M token context &nbsp;///&nbsp; Runs on your hardware
+        </p>
+      </div>
+    </section>
+
+    <!-- COMPANION APPS -->
+    <section class="section-padding pt-0">
+      <div class="container-max mx-auto">
+        <div class="text-center mb-10">
+          <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Companion Apps</p>
+          <h3 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Talk to your stack from any surface</h3>
+          <p class="text-sm mt-3 max-w-2xl mx-auto reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+            Native desktop and mobile clients that speak directly to your RigRun server. Both ship with the same OpenAI-compatible API contract auto-generated from the Go server's OpenAPI spec.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="reveal reveal-delay-1 card-gradient-border p-7" data-tilt>
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+                <h4 class="text-base font-semibold tracking-tight">RigRun Desktop</h4>
+                <span class="inline-flex items-center gap-1 font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full" style="background: var(--color-accent-muted); color: var(--color-accent);">
+                  Pre-release
+                </span>
+              </div>
+              <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-secondary);">
+                Electron + Next.js 14 + React. Bundles its own RigRun Go backend so a single installer ships the server and the UI together. WebAssembly LLM in the renderer (via @mlc-ai/web-llm) provides a second inference path independent of the Go backend.
+              </p>
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                {['Electron', 'Next.js 14', 'React', 'Tiptap', 'Radix UI', 'Vitest + Playwright'].map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+              <div class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">
+                <span style="color: var(--color-accent);">~24,000 lines</span> &nbsp;TypeScript / TSX &nbsp;&middot;&nbsp; Windows / macOS / Linux
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal reveal-delay-2 card-gradient-border p-7" data-tilt>
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+                <h4 class="text-base font-semibold tracking-tight">RigRun Mobile</h4>
+                <span class="inline-flex items-center gap-1 font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full" style="background: var(--color-surface); color: var(--color-text-tertiary); border: 1px solid var(--color-border);">
+                  Not yet released
+                </span>
+              </div>
+              <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-secondary);">
+                Flutter native app for iOS and Android. Riverpod state, Hive storage, Dio HTTP, freezed models, flutter_secure_storage for credentials. Connects to your RigRun server over Tailscale or any private mesh — your data never touches a third-party cloud.
+              </p>
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                {['Flutter', 'Riverpod', 'Hive', 'Dio', 'Maestro E2E', 'Firebase Test Lab'].map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+              <div class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">
+                <span style="color: var(--color-accent);">~50,000 lines</span> &nbsp;Dart &nbsp;&middot;&nbsp; iOS / Android &nbsp;&middot;&nbsp; ~170 test files
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-center text-xs mt-6" style="color: var(--color-text-tertiary);">
+          Both apps are in active development. Desktop pre-release builds available on request. Mobile public release timing TBD.
         </p>
       </div>
     </section>
