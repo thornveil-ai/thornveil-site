@@ -166,32 +166,34 @@ const hawkDomains = [
       <div class="container-max mx-auto">
         <div class="text-center mb-14">
           <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Pricing</p>
-          <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Start with the beta. Scale to your own hardware.</h2>
+          <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Technical preview now. Production licensing soon.</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
           {[
             {
-              tier: 'Beta Access',
-              price: '$250',
-              period: '/month',
-              description: '5 seats only. Unlimited inference on a 122B model. No token metering. Direct access to the same stack that powers our products.',
+              tier: 'Founding Access',
+              price: 'Invite Only',
+              period: '',
+              description: 'Three founding seats. 90 days of unlimited inference on the same stack we use to ship Thornveil\'s products. Hand-selected previewers who shape the roadmap and lock in pricing when paid access opens.',
               features: [
-                'OpenAI-compatible API endpoint',
-                'Unlimited tokens — no metering',
-                '122B model (Qwen3.5-122B)',
+                'Unlimited inference on Qwen3.5-122B (no metering)',
                 'All 6 domain agents included',
-                'Native tool calling + reasoning',
-                'Priority support (direct line)',
+                'OpenAI-compatible API endpoint',
+                'Direct line to the builder',
+                'Roadmap input',
+                'Locked-in pricing when paid tiers open',
+                'Your conversations are preserved — when you bring RigRun in-house, your local copy ships pre-trained on your own usage',
               ],
-              cta: 'Apply for Beta',
+              cta: 'Apply for Founding Access',
               featured: true,
+              badge: '3 seats — Technical Preview',
             },
             {
               tier: 'RigRun License',
-              price: '$2,499',
-              period: '/year',
-              description: 'Like the beta? Deploy on your own hardware. Your data never leaves your building.',
+              price: 'TBD',
+              period: '',
+              description: 'Deploy on your own hardware. Your data never leaves your building. Pricing finalizes after the Founding Access program closes.',
               features: [
                 'Full server binary + desktop app',
                 'Unlimited local inference',
@@ -201,8 +203,9 @@ const hawkDomains = [
                 'Self-regulating inference engine (7 autonomous optimization layers)',
                 '1 year of updates + support',
               ],
-              cta: 'Get RigRun',
+              cta: 'Contact for Inquiries',
               featured: false,
+              badge: 'Coming Soon',
             },
             {
               tier: 'Enterprise',
@@ -269,7 +272,7 @@ const hawkDomains = [
         <div class="text-center mb-10">
           <h2 class="text-fluid-2xl font-semibold tracking-tight">Domain Expert Agents</h2>
           <p class="text-sm mt-2" style="color: var(--color-text-secondary);">
-            Built by the Agent Factory. 14-step pipeline. Included with every RigRun license and beta seat. Custom agents available as standalone projects — contact us for scoping.
+            Built by the Agent Factory. 14-step pipeline. Included with every Founding Access seat. Custom agents available as standalone projects — contact us for scoping.
           </p>
         </div>
 
