@@ -66,6 +66,35 @@ const hawkDomains = [
   { name: 'ForgeHawk', domain: 'PCB defect inspection', metric: '97.6% mAP', params: '1.5M', color: '#8b5cf6' },
   { name: 'WildHawk', domain: 'Wildlife camera trap ID', metric: 'Active R&D', params: '< 2M', color: '#C9A84E' },
 ];
+
+const pyrosPillars = [
+  { num: 'I', name: 'Oracle', role: 'Predictive intel', description: 'Forecasts request load via time-series, UCB1-routes by difficulty, emits skip signals so downstream pillars can short-circuit easy queries.' },
+  { num: 'II', name: 'Tribunal', role: 'Adversarial verification', description: '6-feature hallucination probe with weighted scoring. Optional reward-model integration. Courtroom-style structured verification workflow.' },
+  { num: 'III', name: 'Fortress', role: 'Pre-inference defense', description: 'Prompt injection BLOCKS at confidence ≥ 0.7. SmoothLLM stability check (Robey 2023). Negative-selection AIS detectors learn your traffic\'s baseline.' },
+  { num: 'IV', name: 'MindEye', role: 'Metacognition', description: 'Knowledge-graph context injection. Epigenetic temperature/token suggestions. Pure-Go isotonic calibration writing a QualityScore on every response.' },
+  { num: 'V', name: 'Forge', role: 'Self-improvement', description: 'EvoPrompt crossover for prompt evolution. MDL prompt compression. DICE training-exemplar capture. The pipeline gets sharper on your workload over time.' },
+  { num: 'VI', name: 'Crucible', role: 'Operational safety', description: 'Circuit breakers, OpenTelemetry trace spans, Shannon-entropy criticality scoring, pheromone-style stigmergic blackboard for inter-agent signaling.' },
+  { num: 'VII', name: 'Singularity', role: 'Homeostatic regulation', description: 'PID controller over runtime vitals with anti-windup. Superposition activation for parallel candidates. Discrete-event digital-twin simulator.' },
+];
+
+const pyrosFeatures = [
+  { title: 'Prompt injection blocking', detail: 'Blocks at confidence ≥ 0.7 before the request reaches the model. SmoothLLM perturbation + supermajority vote layered on top.', citation: 'pillar/fortress.go:47' },
+  { title: 'Hallucination probe', detail: '6 weighted features: 4-gram repetition, entity consistency, numeric density, hedge density, entropy variance, confidence gap.', citation: 'hallucination/probe.go:70' },
+  { title: 'Isotonic calibration', detail: 'Pure-Go PAVA implementation, validated against sklearn 1.4. Honestly labeled "QualityScore" — not a calibrated probability.', citation: 'calibration/calibration.go:226' },
+  { title: 'Constant-time auth', detail: 'Mandatory bearer token for non-localhost binds. Compared via subtle.ConstantTimeCompare. Timing-attack hardened by default.', citation: 'server_auth.go:53' },
+  { title: 'Admission + graceful shutdown', detail: 'Sized inbound semaphore, in-flight WaitGroup, async PostWorker drained before persistence so bookkeeping writes never get lost.', citation: 'pyros.go:138' },
+  { title: 'Audit chain', detail: 'JSON-Lines audit sink with mutex serialization. Pluggable backend interface — file sink ships, syslog/network sinks slot in.', citation: 'audit/file_sink.go' },
+];
+
+const pyrosResearch = [
+  { paper: 'SmoothLLM', authors: 'Robey, Wong, Hassani, Kolter (2023)', use: 'Fortress stability check' },
+  { paper: 'EvoPrompt', authors: 'Guo et al. (2023)', use: 'Forge prompt evolution' },
+  { paper: 'PAVA / isotonic regression', authors: 'Zadrozny & Elkan (2002)', use: 'MindEye calibration' },
+  { paper: 'UCB1 contextual bandit', authors: 'Auer, Cesa-Bianchi, Fischer (2002)', use: 'Oracle cascade routing' },
+  { paper: 'Negative Selection (AIS)', authors: 'Forrest, Perelson, Allen (1994)', use: 'Fortress immune detectors' },
+  { paper: 'PID with anti-windup', authors: 'Aström & Hägglund (2006)', use: 'Singularity homeostasis' },
+  { paper: 'Minimum Description Length', authors: 'Rissanen (1978)', use: 'Forge prompt compression' },
+];
 ---
 
 <BaseLayout
@@ -99,6 +128,9 @@ const hawkDomains = [
         </button>
         <button class="tab-btn" data-tab="hawkstack">
           Custom ML Models
+        </button>
+        <button class="tab-btn" data-tab="pyros">
+          Pyros Safety Engine
         </button>
       </div>
     </div>
@@ -548,6 +580,173 @@ const hawkDomains = [
           Target markets: defense/intelligence, medical devices, industrial inspection, wildlife conservation.
           <br />ROI story: a $15K model that runs on a $5 MCU saves $500K/year in GPU deployment costs across your fleet.
         </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- TAB 4: PYROS SAFETY ENGINE -->
+  <!-- ============================================================ -->
+  <div id="tab-pyros" class="tab-content">
+
+    <!-- HERO -->
+    <section class="section-padding pt-12">
+      <div class="container-max mx-auto">
+        <div class="text-center mb-10">
+          <h2 class="text-fluid-2xl font-semibold tracking-tight">Pyros Safety Engine</h2>
+          <p class="text-sm mt-3 max-w-2xl mx-auto" style="color: var(--color-text-secondary);">
+            A 17,000-line pure-Go engine that wraps any LLM in a 7-pillar safety pipeline. Drop it in front of RigRun, OpenAI, Anthropic, vLLM, llama.cpp, or Ollama — Pyros doesn't care which model is downstream.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-3 justify-center mb-10">
+          {[
+            { label: '17K LOC', sub: 'pure Go' },
+            { label: '7 pillars', sub: 'consolidating 23+ packages' },
+            { label: '144 files', sub: '36 test files' },
+            { label: 'Zero CGO', sub: 'one binary' },
+            { label: 'Zero Python', sub: 'no runtime deps' },
+          ].map((b) => (
+            <div class="rounded-lg px-4 py-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+              <div class="font-mono text-xs font-bold" style="color: var(--color-accent);">{b.label}</div>
+              <div class="font-mono text-[9px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">{b.sub}</div>
+            </div>
+          ))}
+        </div>
+
+        <div class="max-w-3xl mx-auto rounded-xl p-7 mb-12" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <p class="text-[11px] font-semibold tracking-[0.3em] uppercase mb-3" style="color: var(--color-accent);">Why this exists</p>
+          <p class="text-sm leading-relaxed mb-3" style="color: var(--color-text-secondary);">
+            Most LLM safety stacks are Python wrappers around a moderation API call. Pyros is a separate process you put between your application and the model, written in pure Go with no Python dependency, that implements the actual safety algorithms from the literature — SmoothLLM, isotonic calibration, EvoPrompt, negative-selection AIS, PID homeostasis — instead of forwarding the question to a hosted classifier.
+          </p>
+          <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+            Pyros does not require RigRun. It runs as a standalone HTTP service on port 3100 and accepts any backend that speaks the OpenAI-compatible chat completions format.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 PILLARS -->
+    <section class="section-padding pt-0" style="background: var(--color-surface-secondary);">
+      <div class="container-max mx-auto">
+        <div class="text-center mb-10">
+          <h3 class="text-fluid-xl font-semibold tracking-tight">The seven pillars</h3>
+          <p class="text-sm mt-3 max-w-2xl mx-auto" style="color: var(--color-text-secondary);">
+            Each pillar consolidates 2–5 algorithmic packages into a single Layer in the pipeline. The pipeline is variable-width — easy queries skip expensive pillars.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {pyrosPillars.map((p) => (
+            <div class="card-gradient-border p-6" data-tilt>
+              <div class="relative z-10">
+                <div class="flex items-baseline gap-3 mb-2 flex-wrap">
+                  <span class="font-mono text-sm font-bold" style="color: var(--color-accent);">{p.num}</span>
+                  <h4 class="text-base font-semibold tracking-tight">{p.name}</h4>
+                  <span class="text-xs" style="color: var(--color-text-tertiary);">{p.role}</span>
+                </div>
+                <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">{p.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- VERIFIED FEATURES -->
+    <section class="section-padding">
+      <div class="container-max mx-auto">
+        <div class="mb-10">
+          <h3 class="text-fluid-xl font-semibold tracking-tight">Every feature has a file:line citation</h3>
+          <p class="text-sm mt-3 max-w-2xl" style="color: var(--color-text-secondary);">
+            Pyros doesn't have marketing claims. It has code. Each feature below points at the specific file and line in the source where the algorithm lives.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {pyrosFeatures.map((f) => (
+            <div class="rounded-xl p-5" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+              <div class="flex items-baseline justify-between gap-3 mb-2 flex-wrap">
+                <h4 class="text-sm font-semibold tracking-tight">{f.title}</h4>
+                <span class="font-mono text-[10px] tracking-wider" style="color: var(--color-accent);">{f.citation}</span>
+              </div>
+              <p class="text-xs leading-relaxed" style="color: var(--color-text-secondary);">{f.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PURE GO + RESEARCH -->
+    <section class="section-padding pt-0" style="background: var(--color-surface-secondary);">
+      <div class="container-max mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12">
+          <div class="lg:col-span-2">
+            <p class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent);">Why pure Go</p>
+            <h3 class="text-fluid-xl font-semibold tracking-tight mt-3 mb-5">No Python.<br/>No CGO.<br/>One binary.</h3>
+            <div class="space-y-3 text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+              <p>
+                Pyros reimplements the algorithms it needs from primary sources rather than importing sklearn, numpy, chromadb, or simpy. PAVA isotonic regression. UCB1 bandit. Cosine vector store. Discrete-event simulator. MDL compressor. EvoPrompt crossover.
+              </p>
+              <p>
+                Ships as a single statically-linked artifact. Drops onto an air-gapped system without an installer. PAVA implementation is bit-for-bit validated against sklearn 1.4 in calibration/pava_reference_test.go.
+              </p>
+            </div>
+          </div>
+          <div class="lg:col-span-3">
+            <p class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent);">Research grounding</p>
+            <h3 class="text-fluid-xl font-semibold tracking-tight mt-3 mb-5">Built on the literature, not on vibes</h3>
+            <div class="rounded-xl overflow-hidden" style="border: 1px solid var(--color-border);">
+              {pyrosResearch.map((r, i) => (
+                <div class="px-5 py-3" style={`background: var(--color-surface-elevated); ${i < pyrosResearch.length - 1 ? 'border-bottom: 1px solid var(--color-border-subtle);' : ''}`}>
+                  <div class="flex items-baseline justify-between gap-3 flex-wrap">
+                    <div class="text-sm font-semibold">{r.paper}</div>
+                    <div class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-accent);">{r.use}</div>
+                  </div>
+                  <div class="text-xs mt-1" style="color: var(--color-text-tertiary);">{r.authors}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPATIBILITY -->
+    <section class="section-padding">
+      <div class="container-max mx-auto max-w-4xl">
+        <div class="rounded-xl p-7" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <h3 class="text-fluid-xl font-semibold tracking-tight mb-3">Works with anything that speaks chat completions</h3>
+          <p class="text-sm leading-relaxed mb-5" style="color: var(--color-text-secondary);">
+            Provider packages ship for Ollama, vLLM, and llama.cpp. Anything else that speaks the OpenAI-compatible chat completions format slots in through the same adapter.
+          </p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {['Ollama', 'vLLM', 'llama.cpp', 'OpenAI', 'Anthropic', 'Azure', 'Groq', 'OpenRouter'].map((m) => (
+              <div class="rounded-lg p-3 text-center" style="background: var(--color-surface); border: 1px solid var(--color-border-subtle);">
+                <span class="font-mono text-xs">{m}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-padding pt-0">
+      <div class="container-max mx-auto max-w-2xl text-center">
+        <h3 class="text-fluid-xl font-semibold tracking-tight">Want to put Pyros in front of your stack?</h3>
+        <p class="mt-4 text-sm max-w-md mx-auto leading-relaxed" style="color: var(--color-text-secondary);">
+          Pyros is in early access. If you're running an LLM in production and want a real safety perimeter — not a moderation API call — get in touch.
+        </p>
+        <div class="mt-8">
+          <a href="mailto:jesse@thornveil.ai?subject=Pyros — Early Access" class="btn-primary">
+            Request Pyros Access
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+        <div class="mt-8 font-mono text-[10px] tracking-[0.15em] uppercase" style="color: var(--color-text-tertiary);">
+          github.com/jeranaias/pyros &nbsp;&middot;&nbsp; v0.1.0
+        </div>
       </div>
     </section>
   </div>
