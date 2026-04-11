@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const stats = [
+  { value: '8+', label: 'Years SIGINT' },
+  { value: '6', label: 'Countries deployed' },
+  { value: '1,400+', label: 'National-level reports' },
+  { value: '27', label: 'Provisional patents' },
+];
+
+const credentials = [
+  { label: 'Clearance', value: 'TS/SCI' },
+  { label: 'Service', value: 'USMC, Staff Sergeant (8+ years)' },
+  { label: 'Discipline', value: 'Signals Intelligence' },
+  { label: 'Languages', value: 'Modern Standard Arabic + 3 dialects' },
+  { label: 'Education', value: 'BA, Arabic — Defense Language Institute' },
+  { label: 'Open Source', value: 'Marine Coders contributor' },
+];
+---
+
+<BaseLayout
+  title="About | Thornveil"
+  description="Thornveil is a one-person research and engineering shop founded by Jesse Lewis — a USMC Signals Intelligence veteran turned AI infrastructure builder."
+>
+  <!-- HERO -->
+  <section class="section-padding pt-32 md:pt-40">
+    <div class="container-max mx-auto max-w-3xl">
+      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">About</p>
+      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
+        Thornveil is one engineer who refuses to wait.
+      </h1>
+      <p class="text-base mt-6 leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+        I'm Jesse Lewis. I founded Thornveil to build the AI infrastructure I wanted to use as an analyst — local, sovereign, accountable to the people running it. I served eight years as a Signals Intelligence Marine, deployed to six countries, and produced over 1,400 national-level intelligence reports. I learned firsthand how brittle the cloud-dependent toolchain is for the people doing the actual mission.
+      </p>
+    </div>
+  </section>
+
+  <!-- BACKGROUND -->
+  <section class="section-padding pt-12">
+    <div class="container-max mx-auto max-w-3xl">
+      <div class="space-y-5 text-sm leading-relaxed reveal" style="color: var(--color-text-secondary);">
+        <p>
+          The shift from analyst to builder happened gradually, then all at once. I taught myself to code on overnight watches and ship codepaths in production. The patents started piling up. The agents started doing real work. By the time I left active service I had a portfolio of defense-relevant systems that nobody else was building — sub-2-million-parameter models that beat 60-million-parameter baselines, autonomous counter-UAS interceptors with acoustic targeting, an Arabic NLP stack 62 times smaller than the state of the art.
+        </p>
+        <p>
+          Thornveil is the company that ships those systems. RigRun runs frontier models on hardware you control with no per-token fees and no cloud dependencies. HawkStack trains custom small models for any domain where edge inference matters. The Agent Factory builds production-ready domain experts in days. Mycelium turns whatever devices you already have into a self-healing AI mesh. Every system was first battle-tested building Thornveil's own product portfolio — if it works for me, it works for you.
+        </p>
+        <p>
+          I'm still a one-person shop today. That means you talk directly to the engineer who built the thing. No account managers, no sales cycle, no quarter-end games. When you need a custom agent built, an audit run, or a model trained on your data, the work happens in days, not quarters.
+        </p>
+        <p>
+          When I'm not shipping, I contribute to <a href="https://github.com/marine-coders" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Marine Coders</a> — a community of active-duty and veteran Marines learning to build software. The same instinct that drove me to write my first script on a SCIF workstation is the one driving Thornveil now: the people closest to the mission should own the tools.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="py-16 md:py-24 overflow-hidden">
+    <div class="container-max mx-auto max-w-4xl">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
+        {stats.map((s, i) => (
+          <div class={`text-center reveal reveal-delay-${Math.min(i + 1, 4)} ${i > 0 ? 'md:border-l' : ''}`} style={i > 0 ? 'border-color: var(--color-border-subtle);' : ''}>
+            <div class="stat-number text-fluid-2xl" style="color: var(--color-accent);">{s.value}</div>
+            <div class="font-mono text-[10px] tracking-[0.15em] uppercase mt-2" style="color: var(--color-text-tertiary);">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section class="section-padding" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto max-w-3xl">
+      <div class="mb-10">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Credentials</p>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Background</h2>
+      </div>
+      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+        <div class="space-y-4">
+          {credentials.map((c) => (
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 pb-3" style="border-bottom: 1px solid var(--color-border-subtle);">
+              <span class="text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">{c.label}</span>
+              <span class="text-sm font-medium">{c.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding relative overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="opacity: 0.07; background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);"></div>
+    <div class="relative container-max mx-auto max-w-2xl text-center">
+      <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">Want to talk?</h2>
+      <p class="mt-4 text-sm max-w-md mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+        Direct line. No intake form. No SDR. Tell me what you're trying to build and I'll tell you what's possible.
+      </p>
+      <div class="mt-8 reveal reveal-delay-2">
+        <a href="mailto:jesse@thornveil.ai" class="btn-primary">
+          jesse@thornveil.ai
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import Lenis from 'lenis';
+  const lenis = new Lenis({ duration: 1.2, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+</script>

@@ -122,7 +122,7 @@ const hawkDomains = [
             <div class="relative z-10">
               <h3 class="text-base font-semibold tracking-tight mb-3">122B Model Inference</h3>
               <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
-                Run a 122-billion parameter model on a single GPU. 105 tokens/second, 65K context window. Zero per-token costs.
+                Run a 122-billion parameter model on a single GPU. 105 tokens/second, 1M-token context window (YaRN-scaled). Zero per-token costs.
               </p>
             </div>
           </div>
@@ -130,7 +130,7 @@ const hawkDomains = [
             <div class="relative z-10">
               <h3 class="text-base font-semibold tracking-tight mb-3">5-Layer Safety Stack</h3>
               <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
-                Prompt injection detection, action gating, trajectory anomaly detection, learned classification, and spillage prevention. 94.86% adversarial block rate.
+                Prompt injection detection, action gating, trajectory anomaly detection, learned classification, and spillage prevention. 100% adversarial block rate at confidence threshold.
               </p>
             </div>
           </div>
@@ -144,8 +144,19 @@ const hawkDomains = [
           </div>
         </div>
 
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-5 mt-5">
+          <div class="reveal reveal-delay-4 card-gradient-border p-7" data-tilt>
+            <div class="relative z-10">
+              <h3 class="text-base font-semibold tracking-tight mb-3">Rolling Memory — Effectively Infinite Context</h3>
+              <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+                Beyond the 1M-token native window, Rolling Memory v4 extends effective context indefinitely through hierarchical summarization and semantic recall. Tested to 2.5M tokens / 10M characters with no quality cliff.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <p class="text-center font-mono text-xs tracking-wider mt-8 reveal reveal-delay-4" style="color: var(--color-text-tertiary);">
-          RTX PRO 6000 Blackwell &nbsp;///&nbsp; Qwen3.5-122B &nbsp;///&nbsp; 105 tok/s &nbsp;///&nbsp; 65K context &nbsp;///&nbsp; Runs on your hardware
+          RTX PRO 6000 Blackwell &nbsp;///&nbsp; Qwen3.5-122B &nbsp;///&nbsp; 105 tok/s &nbsp;///&nbsp; 1M token context &nbsp;///&nbsp; Runs on your hardware
         </p>
       </div>
     </section>
@@ -175,7 +186,6 @@ const hawkDomains = [
               ],
               cta: 'Apply for Beta',
               featured: true,
-              badge: '3 of 5 seats remaining',
             },
             {
               tier: 'RigRun License',

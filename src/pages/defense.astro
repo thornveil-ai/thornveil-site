@@ -6,21 +6,31 @@ const programs = [
     name: 'DroneBane',
     subtitle: 'Counter-UAS Interceptor Platform',
     description: 'Armed intercept platform for small UAS threats. Acoustic target localization using RPM-indexed self-noise cancellation, multi-agent deep RL engagement guidance, direct MAVLink C2 from mobile tactical platforms, IFF re-verification at instant of discharge, and continuous engagement authorization with pursue-without-engagement fallback.',
-    patents: 7,
-    patentNums: '001, 006, 007, 008, 009, 011, 017',
+    patents: 8,
+    patentNums: '001, 006, 007, 008, 009, 011, 014, 017',
     trl: 'TRL 4',
     tags: ['Autonomous Intercept', 'TAK-Native', 'MAVLink C2', 'Deep RL', 'Acoustic'],
     href: 'https://jeranaias.github.io/dronebane/',
     featured: true,
   },
   {
-    name: 'ThermalHawk',
-    subtitle: 'Thermal Drone Detection',
-    description: 'Sub-2-million-parameter backbone for small object detection across thermal, EO, and SAR domains. Reparameterizable architecture with periodic optimizer reinitialization for small-dataset training. Cross-architecture knowledge distillation for edge deployment.',
-    patents: 1,
-    patentNums: '024 (drafted)',
+    name: 'HawkStack',
+    subtitle: 'Sub-2M-Parameter Detection Across 6 Domains',
+    description: 'Topology-driven model architecture that predicts the performance ceiling of a dataset before training, then builds models under 2M parameters that beat 30-60M-parameter SOTA competitors. Validated across thermal drone detection (ThermalHawk, 82.95% mAP), IRST/missile warning (SentryHawk, 86.7% IoU), sonar target detection (DepthHawk, 88.0% mAP), ECG arrhythmia classification (CardioHawk), PCB defect inspection (ForgeHawk, 97.6% mAP), and wildlife camera trap ID (WildHawk). One architecture, six domains, edge-deployable on $5 microcontrollers.',
+    patents: 2,
+    patentNums: '024, 026',
     trl: 'TRL 4',
-    tags: ['Computer Vision', 'Thermal IR', 'Edge Inference', 'Multi-Domain'],
+    tags: ['Computer Vision', 'Thermal IR', 'Sonar', 'Edge Inference', 'Multi-Domain'],
+    featured: true,
+  },
+  {
+    name: 'Meridian',
+    subtitle: 'Open-Source Rust Autopilot',
+    description: 'Flight controller autopilot written from scratch in Rust. 47 crates covering attitude control, navigation, sensor fusion, and mission planning. Open source. Distilled from ArduPilot with full parity verified by an independent 20-expert review panel.',
+    patents: 0,
+    patentNums: '',
+    trl: 'TRL 4',
+    tags: ['Autopilot', 'Rust', 'Sensor Fusion', 'Flight Control', 'Open Source'],
     featured: false,
   },
   {
@@ -37,7 +47,7 @@ const programs = [
   {
     name: 'Aurora',
     subtitle: 'Acoustic Swarm Communications',
-    description: 'Covert data transmission via engineered rotor acoustics. GPS-denied cooperative positioning through propeller-modulated acoustic ranging. Sub-decimeter accuracy, zero RF emissions.',
+    description: 'Covert data transmission via engineered rotor acoustics. GPS-denied cooperative positioning through propeller-modulated acoustic ranging. Sub-decimeter accuracy, zero RF emissions. Shares blade-geometry acoustic patent (014) with the DroneBane platform.',
     patents: 1,
     patentNums: '014',
     trl: 'TRL 3',
@@ -69,7 +79,7 @@ const programs = [
   {
     name: 'Learned DCLAHE',
     subtitle: 'Neural Image Enhancement',
-    description: 'Differentiable Contrast Limited Adaptive Histogram Equalization with backpropagation-optimized parameters. End-to-end trainable image enhancement module that plugs into any detection pipeline for degraded visual environments.',
+    description: 'Differentiable Contrast Limited Adaptive Histogram Equalization with backpropagation-optimized parameters. End-to-end trainable image enhancement module that plugs into any detection pipeline (including HawkStack) for degraded visual environments.',
     patents: 1,
     patentNums: '003',
     trl: 'Research',
@@ -81,15 +91,24 @@ const programs = [
 
 <BaseLayout
   title="Defense | Thornveil"
-  description="Counter-UAS autonomy, CBRN sensor fusion, thermal detection, acoustic communications. 13 provisional patent applications filed across 6 defense programs."
+  description="Counter-UAS autonomy, sub-2M-parameter detection across 6 domains, Rust autopilot, CBRN sensor fusion, acoustic communications, Arabic NLP. 27 provisional patent applications across 8 defense programs."
 >
   <section class="section-padding pt-32 md:pt-40">
     <div class="container-max mx-auto">
       <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Defense</p>
       <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Defense technology</h1>
       <p class="text-base mt-4 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Counter-UAS interceptors, CBRN sensor fusion, thermal detection, acoustic communications, and Arabic NLP. 13 provisional patent applications filed across 6 defense programs. Rapid prototyping from concept to functional demo.
+        Counter-UAS interceptors, sub-2M-parameter detection across six domains, an open-source Rust autopilot, CBRN sensor fusion, acoustic communications, and Arabic NLP. 27 provisional patent applications across 8 defense programs. Rapid prototyping from concept to functional demo.
       </p>
+      <div class="mt-6 max-w-2xl reveal reveal-delay-3 rounded-lg p-4" style="border: 1px solid var(--color-border-subtle); background: var(--color-surface-elevated);">
+        <div class="flex items-center gap-2 mb-1">
+          <svg class="w-4 h-4" style="color: var(--color-accent);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
+          <span class="text-xs font-semibold tracking-wider uppercase" style="color: var(--color-accent);">Compliance</span>
+        </div>
+        <p class="text-xs leading-relaxed" style="color: var(--color-text-secondary);">
+          All Thornveil AI infrastructure is engineered to NIST 800-53 / IL5 compliance standards with classification-gated routing, spillage detection, and FIPS cryptographic controls.
+        </p>
+      </div>
     </div>
   </section>
 
