@@ -1,16 +1,34 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const endpoints = [
+const rigrunEndpoints = [
   { method: 'POST', path: '/v1/chat/completions', description: 'Chat inference (OpenAI-compatible)' },
   { method: 'POST', path: '/v1/messages', description: 'Chat inference (Anthropic-compatible)' },
   { method: 'GET', path: '/v1/models', description: 'List available models' },
-  { method: 'GET', path: '/v1/health', description: 'Server health + backend probe' },
-  { method: 'GET', path: '/v1/layers', description: 'Pipeline layer status (Pyros)' },
-  { method: 'GET', path: '/v1/stats', description: 'Engine statistics' },
-  { method: 'GET', path: '/v1/signals', description: 'Active signal blackboard' },
+  { method: 'POST', path: '/v1/audio/transcribe', description: 'Audio transcription' },
+  { method: 'POST', path: '/v1/tools/{name}/execute', description: 'Tool execution with approval handshake' },
+  { method: 'GET', path: '/v1/memory/search', description: 'Semantic memory search' },
+  { method: 'POST', path: '/v1/research/sessions', description: 'Agentic research session (4-phase A-RAG)' },
+  { method: 'GET', path: '/metrics', description: 'Prometheus-format metrics' },
+];
+
+const pyrosEndpoints = [
+  { method: 'GET', path: '/v1/health', description: 'Engine health + backend probe' },
+  { method: 'GET', path: '/v1/layers', description: 'Pillar status and per-layer state' },
+  { method: 'GET', path: '/v1/stats', description: 'Engine statistics, vitals, throughput' },
+  { method: 'GET', path: '/v1/signals', description: 'Active signal blackboard (gate signals)' },
   { method: 'GET', path: '/v1/breakers', description: 'Circuit breaker states' },
   { method: 'GET', path: '/metrics', description: 'Prometheus-format metrics' },
+];
+
+const rollingMemoryEndpoints = [
+  { method: 'POST', path: '/v1/chat/completions', description: 'OpenAI-compatible chat with infinite context' },
+  { method: 'POST', path: '/v1/messages', description: 'Anthropic-compatible chat with infinite context' },
+  { method: 'GET', path: '/memory/session/{id}/summaries', description: 'Per-session summary tier' },
+  { method: 'GET', path: '/memory/session/{id}/export', description: 'Export full session for training/audit' },
+  { method: 'DELETE', path: '/memory/session/{id}', description: 'Wipe a session (cache + disk)' },
+  { method: 'GET', path: '/memory/ui', description: 'Live dashboard with semantic search' },
+  { method: 'GET', path: '/search', description: 'Built-in web search (SearxNG-backed)' },
 ];
 
 const configSections = [
@@ -18,18 +36,28 @@ const configSections = [
   { key: '[local]', fields: 'ollama_url, ollama_model', description: 'Points to your local inference backend. Supports Ollama, llama.cpp (OpenAI-compatible server), and vLLM. The model name here is what the router resolves when a request arrives.' },
   { key: '[cloud]', fields: 'openrouter_key, default_model', description: 'Optional cloud fallback for when local inference is unavailable or the request exceeds local model capability. Disabled by default. Only activates if explicitly configured and offline_mode is false.' },
   { key: '[security]', fields: 'classification, audit_enabled, session_timeout, mfa', description: 'Set the baseline classification level (UNCLASSIFIED, CUI, SECRET). When audit_enabled is true, every request and response is logged to an append-only audit trail. MFA gates the desktop app and API key management.' },
-  { key: '[training]', fields: 'enabled, schedule, methods', description: 'Controls the self-improving training pipeline. Schedule accepts cron syntax. Methods include DPO (direct preference optimization) and SimPO (simple preference optimization). Training runs through the live inference API with zero downtime.' },
+  { key: '[training]', fields: 'enabled, schedule, methods, scoring', description: 'Controls the self-improving overnight pipeline. Schedule accepts cron syntax. 11 training methods supported (DPO, SimPO, ORPO, KTO, CPO, GRPO, IPO, SPPO, RPO, AERO, iterative DPO-VP) plus ZO2 Ultimate (zeroth-order optimization with 12 advanced techniques: sparse MeZO, HiZOO Hessian, curriculum, cosine epsilon annealing, cross-night EMA, etc.). Pairs are dual-sourced from rolling-memory and legacy sessions, scored by a Skywork reward model + a sandboxed CodeRL+ execution scorer + the 122B itself as judge.' },
 ];
 
-const pipelineLayers = [
-  { name: 'Auth', description: 'API key validation, rate limiting, session binding' },
-  { name: 'Crucible', description: 'Distributed tracing, request tagging, latency instrumentation' },
-  { name: 'Fortress', description: 'Safety classification, prompt injection detection, action gating' },
-  { name: 'Oracle', description: 'Model routing, cascade decisions, entropy-based escalation' },
-  { name: 'Singularity', description: 'PID controller for throughput/latency balance, adaptive batching' },
-  { name: 'Forge', description: 'KV cache optimization, TurboQuant compression, prompt compaction' },
-  { name: "Mind's Eye", description: 'RAG retrieval, knowledge base injection, context assembly' },
-  { name: 'LLM Inference', description: 'Token generation via configured backend' },
+const pyrosPillars = [
+  { num: 'I', name: 'Oracle', description: 'Predictive intel — UCB1 cascade routing, gate signals to skip easy work' },
+  { num: 'II', name: 'Tribunal', description: 'Adversarial verification — 6-feature hallucination probe, courtroom debate' },
+  { num: 'III', name: 'Fortress', description: 'Pre-inference defense — prompt injection blocks at conf ≥ 0.7, SmoothLLM, AIS detectors' },
+  { num: 'IV', name: 'MindEye', description: 'Metacognition — knowledge graph injection, isotonic calibration, QualityScore' },
+  { num: 'V', name: 'Forge', description: 'Self-improvement — EvoPrompt evolution, MDL prompt compression, DICE exemplar capture' },
+  { num: 'VI', name: 'Crucible', description: 'Operational safety — circuit breakers, OTel spans, stigmergic blackboard' },
+  { num: 'VII', name: 'Singularity', description: 'Homeostatic regulation — PID over runtime vitals, superposition, digital twin' },
+  { num: '⊕', name: 'LLM Inference', description: 'Token generation via the configured backend (RigRun, vLLM, llama.cpp, OpenAI, Anthropic)' },
+];
+
+const services = [
+  { port: '8787', name: 'RigRun', detail: 'Go server: chat, tools, research, memory, audio, training control' },
+  { port: '3100', name: 'Pyros', detail: 'Pure-Go safety engine: 7-pillar pipeline, optional but recommended' },
+  { port: '8096', name: 'Rolling Memory', detail: 'Infinite-context proxy: speaks OpenAI + Anthropic, per-session disk store' },
+  { port: '8081', name: 'llama-embed', detail: 'CPU embedding service (Qwen3-Embedding-4B)' },
+  { port: '8082', name: 'llama-rerank', detail: 'CPU reranker (Qwen3-Reranker-0.6B)' },
+  { port: '8083', name: 'llama-classify', detail: 'CPU classifier for routing (Qwen3-0.6B)' },
+  { port: '8084', name: 'vision', detail: 'Vision model (Qwen3-VL-4B), idle-unloaded to free VRAM' },
 ];
 
 const agentConcepts = [
@@ -77,17 +105,18 @@ const agentConcepts = [
             </div>
             <div class="space-y-3 text-sm leading-relaxed" style="color: var(--color-text-secondary);">
               <div>
-                <span class="text-xs font-semibold tracking-wider uppercase block mb-1" style="color: var(--color-text-tertiary);">Minimum</span>
+                <span class="text-xs font-semibold tracking-wider uppercase block mb-1" style="color: var(--color-text-tertiary);">Minimum (small models)</span>
                 <p>NVIDIA GPU with 24GB+ VRAM, 64GB system RAM, Ubuntu 22.04+ or Windows 11.</p>
               </div>
               <div>
-                <span class="text-xs font-semibold tracking-wider uppercase block mb-1" style="color: var(--color-text-tertiary);">Recommended</span>
-                <p>RTX 4090 / A6000 / PRO 6000, 128GB RAM.</p>
+                <span class="text-xs font-semibold tracking-wider uppercase block mb-1" style="color: var(--color-text-tertiary);">Recommended (122B model + KV compression)</span>
+                <p>RTX PRO 6000 Blackwell (96GB), 128GB RAM, Ubuntu 24.04.</p>
               </div>
               <div class="flex flex-wrap gap-1.5 pt-1">
-                <span class="tag">Ollama</span>
-                <span class="tag">llama.cpp</span>
                 <span class="tag">vLLM</span>
+                <span class="tag">SGLang</span>
+                <span class="tag">llama.cpp</span>
+                <span class="tag">Ollama</span>
               </div>
             </div>
           </div>
@@ -100,8 +129,8 @@ const agentConcepts = [
               <h3 class="text-base font-semibold tracking-tight">Installation</h3>
             </div>
             <div class="space-y-3 text-sm leading-relaxed" style="color: var(--color-text-secondary);">
-              <p>Single binary deployment. Download, configure <code class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: var(--color-surface-secondary); color: var(--color-accent);">config.toml</code>, run.</p>
-              <p>Ships with a desktop app (Electron) for GUI management. No Docker required, no build step.</p>
+              <p>Single static binary. Download, configure <code class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: var(--color-surface-secondary); color: var(--color-accent);">config.toml</code>, run. No Docker required, no build step.</p>
+              <p>Companion apps available: <a href="/products" style="color: var(--color-accent); text-decoration: underline;">RigRun Desktop</a> (Electron, pre-release) and RigRun Mobile (Flutter, not yet released).</p>
               <div class="rounded-lg p-3 mt-2" style="background: var(--color-surface-secondary); border: 1px solid var(--color-border-subtle);">
                 <code class="font-mono text-xs block" style="color: var(--color-text-secondary);">
                   <span style="color: var(--color-text-tertiary);">$</span> ./rigrun serve
@@ -132,6 +161,60 @@ const agentConcepts = [
     </div>
   </section>
 
+  <!-- SERVICE TOPOLOGY -->
+  <section class="section-padding pt-12">
+    <div class="container-max mx-auto">
+      <div class="mb-10">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Topology</p>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">What's running on the box</h2>
+        <p class="text-sm mt-3 max-w-2xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          A full RigRun deployment is several cooperating services on different ports. The Go server is the front door; the rest are optional but recommended. Auxiliary models run on CPU to keep VRAM free for the main inference engine.
+        </p>
+      </div>
+
+      <div class="rounded-xl overflow-hidden reveal reveal-delay-2" style="border: 1px solid var(--color-border);">
+        {services.map((s, i) => (
+          <div class="grid grid-cols-12 items-center gap-3 px-5 py-3" style={`background: var(--color-surface-elevated); ${i < services.length - 1 ? 'border-bottom: 1px solid var(--color-border-subtle);' : ''}`}>
+            <code class="col-span-2 md:col-span-1 font-mono text-xs font-bold" style="color: var(--color-accent);">:{s.port}</code>
+            <div class="col-span-3 md:col-span-2 text-sm font-semibold">{s.name}</div>
+            <div class="col-span-7 md:col-span-9 text-xs" style="color: var(--color-text-tertiary);">{s.detail}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLLING MEMORY -->
+  <section class="section-padding pt-12">
+    <div class="container-max mx-auto">
+      <div class="mb-10">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Memory layer</p>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Rolling Memory v4 — infinite context proxy</h2>
+        <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          A drop-in OpenAI/Anthropic-compatible reverse proxy on port 8096 that gives any LLM effectively unlimited context via per-session disk-backed verbatim, summary, and embedding tiers. Latency stays flat with depth because retrieval keeps each forward pass roughly the same size regardless of total context length.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8 reveal reveal-delay-3">
+        {[
+          { value: '10M', label: 'Characters tested' },
+          { value: '2.5M', label: 'Tokens tested' },
+          { value: '100%', label: 'Needle recall' },
+          { value: '~10s', label: 'Latency at depth' },
+        ].map((m) => (
+          <div class="rounded-lg p-3 text-center" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <div class="font-mono text-base font-bold" style="color: var(--color-accent);">{m.value}</div>
+            <div class="font-mono text-[9px] tracking-wider uppercase mt-1" style="color: var(--color-text-tertiary);">{m.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-xs leading-relaxed mb-6" style="color: var(--color-text-tertiary);">
+        Verified 2026-04-11: needle-in-haystack 100% pass through 10M chars (8.9–9.1s), 5/5 fact consistency, 10/10 multi-turn retrieval, 17/17 smoke tests passed. Includes per-CWD session isolation, dashboard at /memory/ui, Prometheus metrics, and a built-in /search endpoint backed by SearxNG.
+      </p>
+    </div>
+  </section>
+
   <!-- API REFERENCE -->
   <section class="section-padding" style="background: var(--color-surface-secondary);">
     <div class="container-max mx-auto">
@@ -143,28 +226,67 @@ const agentConcepts = [
           API Reference
         </h2>
         <p class="text-sm mt-3 max-w-2xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          All endpoints listen on <code class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: var(--color-surface); color: var(--color-accent);">http://localhost:8787</code> by default. Authentication via <code class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: var(--color-surface); color: var(--color-accent);">Authorization: Bearer</code> header.
+          Endpoints listen on different ports per service. Authentication via <code class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: var(--color-surface); color: var(--color-accent);">Authorization: Bearer</code> header. RigRun has ~260 routes total — selected groups shown below.
         </p>
       </div>
 
-      <!-- Endpoints Table -->
-      <div class="card-gradient-border p-7 reveal reveal-delay-2">
+      <!-- RigRun endpoints -->
+      <div class="card-gradient-border p-7 reveal reveal-delay-2 mb-5">
         <div class="relative z-10">
-          <h3 class="text-sm font-semibold tracking-wider uppercase mb-5" style="color: var(--color-text-tertiary);">Endpoints</h3>
+          <div class="flex items-baseline justify-between mb-5 flex-wrap gap-2">
+            <h3 class="text-sm font-semibold tracking-wider uppercase" style="color: var(--color-text-tertiary);">RigRun</h3>
+            <code class="font-mono text-xs" style="color: var(--color-accent);">http://localhost:8787</code>
+          </div>
           <div class="space-y-0">
-            {endpoints.map((ep, i) => (
-              <div
-                class="flex items-center gap-4 py-3"
-                style={`${i < endpoints.length - 1 ? 'border-bottom: 1px solid var(--color-border-subtle);' : ''}`}
-              >
-                <span
-                  class={`font-mono text-[10px] font-bold tracking-wider w-12 text-center py-0.5 rounded flex-shrink-0 ${ep.method === 'POST' ? '' : ''}`}
-                  style={`color: ${ep.method === 'POST' ? '#10b981' : '#3b82f6'}; background: ${ep.method === 'POST' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(59, 130, 246, 0.1)'}; border: 1px solid ${ep.method === 'POST' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(59, 130, 246, 0.2)'};`}
-                >
+            {rigrunEndpoints.map((ep, i) => (
+              <div class="flex items-center gap-4 py-3" style={`${i < rigrunEndpoints.length - 1 ? 'border-bottom: 1px solid var(--color-border-subtle);' : ''}`}>
+                <span class="font-mono text-[10px] font-bold tracking-wider w-16 text-center py-0.5 rounded flex-shrink-0" style={`color: ${ep.method === 'POST' ? '#10b981' : ep.method === 'DELETE' ? '#ef4444' : '#3b82f6'}; background: ${ep.method === 'POST' ? 'rgba(16, 185, 129, 0.1)' : ep.method === 'DELETE' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(59, 130, 246, 0.1)'}; border: 1px solid ${ep.method === 'POST' ? 'rgba(16, 185, 129, 0.2)' : ep.method === 'DELETE' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(59, 130, 246, 0.2)'};`}>
                   {ep.method}
                 </span>
-                <code class="font-mono text-sm flex-shrink-0" style="color: var(--color-text-primary);">{ep.path}</code>
-                <span class="text-sm flex-1 text-right md:text-left" style="color: var(--color-text-tertiary);">{ep.description}</span>
+                <code class="font-mono text-xs md:text-sm flex-shrink-0 truncate" style="color: var(--color-text-primary);">{ep.path}</code>
+                <span class="text-xs md:text-sm flex-1 text-right md:text-left" style="color: var(--color-text-tertiary);">{ep.description}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Pyros endpoints -->
+      <div class="card-gradient-border p-7 reveal reveal-delay-3 mb-5">
+        <div class="relative z-10">
+          <div class="flex items-baseline justify-between mb-5 flex-wrap gap-2">
+            <h3 class="text-sm font-semibold tracking-wider uppercase" style="color: var(--color-text-tertiary);">Pyros Safety Engine</h3>
+            <code class="font-mono text-xs" style="color: var(--color-accent);">http://localhost:3100</code>
+          </div>
+          <div class="space-y-0">
+            {pyrosEndpoints.map((ep, i) => (
+              <div class="flex items-center gap-4 py-3" style={`${i < pyrosEndpoints.length - 1 ? 'border-bottom: 1px solid var(--color-border-subtle);' : ''}`}>
+                <span class="font-mono text-[10px] font-bold tracking-wider w-16 text-center py-0.5 rounded flex-shrink-0" style={`color: #3b82f6; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2);`}>
+                  {ep.method}
+                </span>
+                <code class="font-mono text-xs md:text-sm flex-shrink-0 truncate" style="color: var(--color-text-primary);">{ep.path}</code>
+                <span class="text-xs md:text-sm flex-1 text-right md:text-left" style="color: var(--color-text-tertiary);">{ep.description}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Rolling Memory endpoints -->
+      <div class="card-gradient-border p-7 reveal reveal-delay-4">
+        <div class="relative z-10">
+          <div class="flex items-baseline justify-between mb-5 flex-wrap gap-2">
+            <h3 class="text-sm font-semibold tracking-wider uppercase" style="color: var(--color-text-tertiary);">Rolling Memory v4</h3>
+            <code class="font-mono text-xs" style="color: var(--color-accent);">http://localhost:8096</code>
+          </div>
+          <div class="space-y-0">
+            {rollingMemoryEndpoints.map((ep, i) => (
+              <div class="flex items-center gap-4 py-3" style={`${i < rollingMemoryEndpoints.length - 1 ? 'border-bottom: 1px solid var(--color-border-subtle);' : ''}`}>
+                <span class="font-mono text-[10px] font-bold tracking-wider w-16 text-center py-0.5 rounded flex-shrink-0" style={`color: ${ep.method === 'POST' ? '#10b981' : ep.method === 'DELETE' ? '#ef4444' : '#3b82f6'}; background: ${ep.method === 'POST' ? 'rgba(16, 185, 129, 0.1)' : ep.method === 'DELETE' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(59, 130, 246, 0.1)'}; border: 1px solid ${ep.method === 'POST' ? 'rgba(16, 185, 129, 0.2)' : ep.method === 'DELETE' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(59, 130, 246, 0.2)'};`}>
+                  {ep.method}
+                </span>
+                <code class="font-mono text-xs md:text-sm flex-shrink-0 truncate" style="color: var(--color-text-primary);">{ep.path}</code>
+                <span class="text-xs md:text-sm flex-1 text-right md:text-left" style="color: var(--color-text-tertiary);">{ep.description}</span>
               </div>
             ))}
           </div>
@@ -238,34 +360,34 @@ const agentConcepts = [
           Internals
         </p>
         <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
-          Architecture
+          Pyros pipeline architecture
         </h2>
-        <p class="text-sm mt-3 max-w-2xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          Every request passes through a middleware pipeline of autonomous layers before and after inference. Each layer can modify the request, gate execution, or enrich the response. The pipeline adds &lt;10ms total overhead to inference.
+        <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          Pyros is the standalone safety engine that runs alongside RigRun (or any other LLM server) on port 3100. Every request flows through 7 pillars in middleware order — first listed is outermost wrapper. The pipeline is variable-width: easy queries skip expensive pillars based on Oracle's gate signals.
         </p>
       </div>
 
       <!-- Pipeline Flow -->
       <div class="card-gradient-border p-7 reveal reveal-delay-2">
         <div class="relative z-10">
-          <h3 class="text-sm font-semibold tracking-wider uppercase mb-6" style="color: var(--color-text-tertiary);">Request Pipeline</h3>
+          <h3 class="text-sm font-semibold tracking-wider uppercase mb-6" style="color: var(--color-text-tertiary);">Pyros 7-pillar pipeline</h3>
 
           <div class="flex flex-col gap-0 items-center">
-            {pipelineLayers.map((layer, i) => (
-              <div class="w-full max-w-xl">
+            {pyrosPillars.map((pillar, i) => (
+              <div class="w-full max-w-2xl">
                 <div
                   class="flex items-center gap-4 py-3 px-5 rounded-lg transition-all duration-200"
-                  style={`background: ${i === pipelineLayers.length - 1 ? 'var(--color-accent-muted)' : 'var(--color-surface-elevated)'}; border: 1px solid ${i === pipelineLayers.length - 1 ? 'var(--color-accent)' : 'var(--color-border-subtle)'};`}
+                  style={`background: ${i === pyrosPillars.length - 1 ? 'var(--color-accent-muted)' : 'var(--color-surface-elevated)'}; border: 1px solid ${i === pyrosPillars.length - 1 ? 'var(--color-accent)' : 'var(--color-border-subtle)'};`}
                 >
-                  <span class="font-mono text-[10px] font-bold tracking-wider w-6 text-center flex-shrink-0" style="color: var(--color-accent);">
-                    {String(i + 1).padStart(2, '0')}
+                  <span class="font-mono text-sm font-bold tracking-wider w-6 text-center flex-shrink-0" style="color: var(--color-accent);">
+                    {pillar.num}
                   </span>
-                  <span class={`text-sm font-semibold flex-shrink-0 w-28 ${i === pipelineLayers.length - 1 ? '' : ''}`} style={i === pipelineLayers.length - 1 ? 'color: var(--color-accent);' : ''}>
-                    {layer.name}
+                  <span class="text-sm font-semibold flex-shrink-0 w-24" style={i === pyrosPillars.length - 1 ? 'color: var(--color-accent);' : ''}>
+                    {pillar.name}
                   </span>
-                  <span class="text-xs flex-1" style="color: var(--color-text-tertiary);">{layer.description}</span>
+                  <span class="text-xs flex-1" style="color: var(--color-text-tertiary);">{pillar.description}</span>
                 </div>
-                {i < pipelineLayers.length - 1 && (
+                {i < pyrosPillars.length - 1 && (
                   <div class="flex justify-center py-1">
                     <svg class="w-4 h-4" style="color: var(--color-border);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
@@ -281,20 +403,24 @@ const agentConcepts = [
               <svg class="w-4 h-4" style="color: var(--color-accent);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
               </svg>
-              <span class="text-xs font-medium" style="color: var(--color-text-tertiary);">Response passes back through all layers in reverse</span>
+              <span class="text-xs font-medium" style="color: var(--color-text-tertiary);">Response passes back through all pillars in reverse for post-processing</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 mt-12 reveal reveal-delay-3">
+      <p class="text-xs leading-relaxed mt-8 max-w-3xl reveal reveal-delay-3" style="color: var(--color-text-tertiary);">
+        Note: Pyros runs as a separate process. RigRun has its own 11-layer Go middleware stack (CORS → Auth → SessionTimeout → JWT → Trace → Metrics → RateLimit → Logging → MaxBody → SecurityHeaders → Recovery) that runs before the request is forwarded to Pyros. The two engines are independent — either can run without the other.
+      </p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 mt-10 reveal reveal-delay-3">
         <div class="text-center">
-          <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">&lt;10ms</div>
-          <div class="font-mono text-[10px] tracking-[0.15em] uppercase mt-2" style="color: var(--color-text-tertiary);">Pipeline overhead</div>
+          <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">7</div>
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase mt-2" style="color: var(--color-text-tertiary);">Pyros pillars</div>
         </div>
         <div class="text-center md:border-l" style="border-color: var(--color-border-subtle);">
-          <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">8</div>
-          <div class="font-mono text-[10px] tracking-[0.15em] uppercase mt-2" style="color: var(--color-text-tertiary);">Middleware layers</div>
+          <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">11</div>
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase mt-2" style="color: var(--color-text-tertiary);">RigRun middleware</div>
         </div>
         <div class="text-center md:border-l" style="border-color: var(--color-border-subtle);">
           <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">100%</div>
@@ -362,11 +488,11 @@ const agentConcepts = [
         <div class="reveal reveal-delay-1 card-gradient-border p-7">
           <div class="relative z-10">
             <span class="inline-block font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full mb-4" style="background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2);">
-              Beta
+              Founding Access
             </span>
-            <h3 class="text-base font-semibold tracking-tight mb-3">Beta Customers</h3>
+            <h3 class="text-base font-semibold tracking-tight mb-3">Founding Access</h3>
             <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
-              Direct line to engineering. Typical response within 4 hours during business hours. You're working with the team that builds the product.
+              Direct line to the builder. Three founding seats, hand-selected. Roadmap input, locked-in pricing when paid tiers open, and your conversations preserved for your own eventual local copy.
             </p>
           </div>
         </div>
@@ -378,7 +504,7 @@ const agentConcepts = [
             </span>
             <h3 class="text-base font-semibold tracking-tight mb-3">License Customers</h3>
             <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
-              Email support included with every RigRun license. Priority queue for licensed deployments. Configuration assistance and upgrade guidance.
+              Pricing finalizes after the Founding Access program closes. Email support included with every RigRun license. Configuration assistance and upgrade guidance.
             </p>
           </div>
         </div>
