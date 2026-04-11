@@ -33,10 +33,10 @@ const patents = [
   { num: '021', app: '64/017,334', date: 'Mar 26, 2026', title: 'Classification-Isolated Memory with Hardware-Backed Encryption', domain: 'AI Safety' },
   { num: '022', app: '64/017,344', date: 'Mar 26, 2026', title: 'Distributed Adaptive AI Mesh with Predictive Expert Prefetching and PoI', domain: 'Mesh/P2P' },
   { num: '023', app: '64/020,331', date: 'Mar 28, 2026', title: 'Zero-Downtime Self-Improvement via Zeroth-Order Optimization', domain: 'AI Training' },
-  { num: '024', app: 'Pending', date: 'In preparation', title: 'Cross-Domain Small Object Detection with Reparameterizable Sub-2M Backbone', domain: 'Computer Vision' },
-  { num: '025', app: 'Pending', date: 'In preparation', title: 'Autonomous Agent Manufacturing via Meta-Agent Pipeline', domain: 'AI Infrastructure' },
-  { num: '026', app: 'Pending', date: 'In preparation', title: 'Predictive Loss Surface Topology Analysis with Fresh-Optimizer Cyclic Training', domain: 'Computer Vision' },
-  { num: '027', app: 'Pending', date: 'In preparation', title: 'Adaptive Inference Parameter Regulation via Multi-Signal PID Control', domain: 'AI Infrastructure' },
+  { num: '024', app: '64/020,346', date: 'Mar 26, 2026', title: 'HawkStack Cross-Domain Tiny Neural Detection Framework', domain: 'Computer Vision' },
+  { num: '025', app: '64/020,358', date: 'Mar 26, 2026', title: 'Agent Factory: Autonomous Meta-Agent Manufacturing with Closed-Loop DPO', domain: 'Agents' },
+  { num: '026', app: '64/020,371', date: 'Mar 26, 2026', title: 'Loss Surface Topology Model for Neural Architecture Design', domain: 'Theory' },
+  { num: '027', app: '64/020,389', date: 'Mar 26, 2026', title: 'PID Homeostasis Controller for Language Model Inference Quality', domain: 'AI Infrastructure' },
 ];
 
 const domainColors: Record<string, string> = {
@@ -48,6 +48,8 @@ const domainColors: Record<string, string> = {
   'Arabic NLP': '#10b981',
   'CBRN': '#f97316',
   'Mesh/P2P': '#3b82f6',
+  'Agents': '#ec4899',
+  'Theory': '#14b8a6',
 };
 ---
 
@@ -131,8 +133,8 @@ const domainColors: Record<string, string> = {
 
       <div class="grid grid-cols-3 gap-6 mt-12 reveal reveal-delay-3">
         {[
-          { value: '23', label: 'Filed methods you can license' },
-          { value: '8', label: 'Problem areas we solve' },
+          { value: '27', label: 'Filed methods you can license' },
+          { value: '10', label: 'Patent families' },
           { value: '5', label: 'Papers with reproducible math' },
         ].map((m) => (
           <div class="text-center">

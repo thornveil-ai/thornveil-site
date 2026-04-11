@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="How It Works | Thornveil"
-  description="How RigRun, Mycelium, and the Agent Factory deliver sovereign AI — unlimited inference on your hardware, self-healing distributed mesh, and custom agents built in days."
+  description="How RigRun, Pyros, Mycelium, and the Agent Factory deliver sovereign AI — unlimited inference on your hardware, a standalone safety perimeter for any LLM, self-healing distributed mesh, and custom agents built in days."
 >
   <!-- HERO -->
   <section class="section-padding pt-32 md:pt-40">
@@ -12,7 +12,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">How it works</p>
       <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">What you get under the hood</h1>
       <p class="text-base mt-4 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Three systems that turn a single GPU (or a room full of laptops) into a private AI stack your team controls end-to-end. No cloud, no per-token billing, no data leaving your building.
+        Four systems that turn a single GPU (or a room full of laptops) into a private AI stack your team controls end-to-end. No cloud, no per-token billing, no data leaving your building.
       </p>
     </div>
   </section>
@@ -39,7 +39,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
           <div class="mt-8 space-y-3 reveal reveal-delay-2">
             {[
-              { label: 'Fit more context into the same GPU', detail: "TurboQuant compresses KV cache 5.2x with 99.92% quality retention, so you get longer conversations and larger codebases in memory without buying a second GPU." },
+              { label: 'Fit more context into the same GPU', detail: "TurboQuant compresses the KV cache 5.2× (paper: ICLR 2026) so you get longer conversations and larger codebases in memory without buying a second GPU. Combined with Rolling Memory v4, effective context becomes unlimited." },
               { label: 'Model learns your workflow overnight', detail: 'ZO2 training pipeline improves the model from your real usage while inference keeps serving. Wake up to a model that knows your codebase better than yesterday. Zero downtime.' },
               { label: 'Safety stack you can defend in an audit', detail: 'Five layers — action gating, learned classifier, trajectory anomaly detection, declarative policy DSL, and classification spillage detection — stop prompt-injection and data exfiltration before they reach the model.' },
               { label: 'Fast by default, deep when it matters', detail: 'Easy questions run on a 35B model at 184 tok/s. Hard questions escalate to the 122B reviewer automatically. Your users get answers fast; you only pay the big-model cost when it counts.' },
@@ -81,8 +81,81 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- MYCELIUM -->
+  <!-- PYROS -->
   <section class="section-padding">
+    <div class="container-max mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+        <div class="lg:col-span-3">
+          <div class="flex items-center gap-3 mb-6 reveal">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-border);">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
+            </div>
+            <div>
+              <h2 class="text-fluid-xl font-semibold tracking-tight">Pyros</h2>
+              <span class="text-xs" style="color: var(--color-text-tertiary);">A safety perimeter for any LLM</span>
+            </div>
+          </div>
+
+          <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+            <p>A 17,000-line pure-Go engine that wraps any large language model in a 7-pillar safety pipeline. Most LLM safety stacks are Python wrappers around a moderation API call. Pyros is a separate process that implements the actual algorithms from the literature — SmoothLLM, isotonic calibration, EvoPrompt, negative-selection AIS, PID homeostasis — instead of forwarding the question to a hosted classifier.</p>
+            <p>Pyros doesn't require RigRun. Drop it in front of OpenAI, Anthropic, vLLM, llama.cpp, Ollama, or anything else that speaks the OpenAI-compatible chat completions format.</p>
+          </div>
+
+          <div class="mt-8 space-y-3 reveal reveal-delay-2">
+            {[
+              { label: 'Real prompt-injection blocking, not vibes', detail: 'Multi-signal injection scanner blocks at confidence ≥ 0.7 before the request reaches the model. SmoothLLM perturbation + supermajority vote layered on top. Negative-selection AIS detectors learn what your traffic normally looks like and flag what does not.' },
+              { label: 'Hallucination probe with measured weights', detail: '6 weighted features: 4-gram repetition (0.25), entity consistency (0.20), numeric density (0.10), hedge density (-0.15), entropy variance (0.25), confidence gap (0.20). Negative hedge weight is intentional — hedging is a signal of calibration, not failure.' },
+              { label: 'Pure Go, ships as one binary', detail: 'Reimplements PAVA isotonic regression, UCB1 contextual bandit, cosine vector store, discrete-event simulator, MDL compressor, and EvoPrompt crossover from primary sources. No Python runtime, no CGO, no transitive C library surface. Drops onto an air-gapped system without an installer.' },
+              { label: 'Hardened in production', detail: 'Constant-time bearer auth (subtle.ConstantTimeCompare), admission semaphore, in-flight WaitGroup tracked, async PostWorker drained before persistence, HMAC-chained audit log, Prometheus metrics. Fuzz tests across the safety surface, race tests across all 28 packages.' },
+            ].map((item) => (
+              <div class="rounded-lg p-4" style="border: 1px solid var(--color-border-subtle);">
+                <div class="text-sm font-semibold mb-1">{item.label}</div>
+                <div class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">{item.detail}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 reveal reveal-delay-2">
+          <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <h3 class="text-xs font-semibold tracking-wider uppercase mb-5" style="color: var(--color-text-tertiary);">The 7 Pillars</h3>
+            <div class="space-y-3">
+              {[
+                { num: 'I', name: 'Oracle', role: 'Predictive intel' },
+                { num: 'II', name: 'Tribunal', role: 'Adversarial verification' },
+                { num: 'III', name: 'Fortress', role: 'Pre-inference defense' },
+                { num: 'IV', name: 'MindEye', role: 'Metacognition' },
+                { num: 'V', name: 'Forge', role: 'Self-improvement' },
+                { num: 'VI', name: 'Crucible', role: 'Operational safety' },
+                { num: 'VII', name: 'Singularity', role: 'Homeostatic regulation' },
+              ].map((p) => (
+                <div class="flex items-baseline gap-3 text-xs">
+                  <span class="font-mono font-bold w-4" style="color: var(--color-accent);">{p.num}</span>
+                  <span class="font-semibold">{p.name}</span>
+                  <span class="font-mono flex-1 text-right" style="color: var(--color-text-tertiary);">{p.role}</span>
+                </div>
+              ))}
+            </div>
+            <div class="mt-5 pt-4" style="border-top: 1px solid var(--color-border-subtle);">
+              <div class="grid grid-cols-2 gap-3 text-center">
+                <div>
+                  <div class="font-mono text-base font-bold" style="color: var(--color-accent);">17K</div>
+                  <div class="font-mono text-[9px] tracking-wider uppercase mt-1" style="color: var(--color-text-tertiary);">LOC pure Go</div>
+                </div>
+                <div>
+                  <div class="font-mono text-base font-bold" style="color: var(--color-accent);">0</div>
+                  <div class="font-mono text-[9px] tracking-wider uppercase mt-1" style="color: var(--color-text-tertiary);">Python deps</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MYCELIUM -->
+  <section class="section-padding" style="background: var(--color-surface-secondary);">
     <div class="container-max mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
         <div class="lg:col-span-2 reveal reveal-delay-1 order-2 lg:order-1">
@@ -124,7 +197,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
           <div class="mt-8 space-y-3 reveal reveal-delay-2">
             {[
-              { label: 'Works over the WiFi you already have', detail: 'Inference distributes across devices with sub-millisecond hidden-state transfers by only moving the 3% of experts that matter per token. No need to upgrade your network or buy specialized interconnects.' },
+              { label: 'Works over the WiFi you already have', detail: 'Inference distributes across devices by routing only the small subset of MoE experts each token actually needs. No InfiniBand, no specialized interconnects, no datacenter-grade switches required.' },
               { label: 'Trust nodes you do not own', detail: 'Every node proves it actually ran the work — through behavioral spot checks, signed execution traces, and reputation scoring. A compromised or lazy node gets caught and kicked out. No trusted hardware chips required.' },
               { label: 'One consistent voice across devices', detail: 'A query that lands on a phone and one that lands on your server return answers in the same style and format. Your users never know (or care) which device answered.' },
               { label: 'Classification stays put', detail: 'UNCLASSIFIED routes anywhere. CUI stays on your mesh. SECRET never leaves the device it originated on. Enforced at the routing layer — not as an afterthought.' },
