@@ -1,0 +1,407 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const tiers = [
+  {
+    name: 'DroneBane Watch',
+    role: 'Detect',
+    audience: 'Force protection, base security, critical infrastructure',
+    description: 'A passive airspace awareness app that turns the phone in every operator\'s pocket into a Remote ID receiver. BLE + WiFi scan, multi-sensor fusion, zone management, FAA-format incident reporting. Built for the security director, the watch officer, and the FOB perimeter team.',
+    stack: 'Flutter (iOS / Android / Web / Desktop), Supabase backend, BLE Remote ID, MQTT sensor fusion',
+    metric: '46K LOC',
+    metricLabel: 'Dart, 227 tests passing',
+    status: 'Production',
+    statusColor: '#10b981',
+  },
+  {
+    name: 'DroneBane Pro',
+    role: 'Engage',
+    audience: 'Critical infrastructure, base defense, force protection',
+    description: 'Everything in Watch plus full MAVLink C2, sensor fusion hub, autonomous patrol, and fleet management. Connects any ArduPilot/PX4 flight controller via USB OTG to a compact radio modem. Drop-in interface for any RF/radar/acoustic/EO-IR sensor that speaks REST or MQTT. The bridge between detection and kinetic response.',
+    stack: 'Flutter + Riverpod, MAVLink, USB OTG serial, RTSP video, Supabase realtime',
+    metric: '$499',
+    metricLabel: '/month + hardware kit',
+    status: 'Roadmap',
+    statusColor: '#f59e0b',
+  },
+  {
+    name: 'DroneBane Mobile',
+    role: 'Authorize',
+    audience: 'DoD / IC / coalition counter-UAS units',
+    description: 'Mission-critical C2 for kinetic counter-UAS interceptors, fully integrated as a native ATAK plugin. Full F2T2EA kill chain with 16-point safety interlocks, multi-level authorization, on-device DRL guidance, and audit-grade engagement logging. Anduril Lattice integration prepped for COP interoperability. Built to DoD Directive 3000.09 alignment.',
+    stack: 'Native Java, ATAK SDK 4.6, MAVLink, ONNX Runtime (DRL), SQLCipher, FIPS 140-2',
+    metric: '83K LOC',
+    metricLabel: 'Java, 150 classes',
+    status: 'MS5 of 10 — flight-tested',
+    statusColor: '#C9A84E',
+  },
+];
+
+const interlocks = [
+  { category: 'Weapon System', items: ['WEAPON_ARMED', 'VEHICLE_ARMED', 'IN_FLIGHT'] },
+  { category: 'Target Validation', items: ['TARGET_LOCK', 'TARGET_HOSTILE', 'RANGE'] },
+  { category: 'Operator Authorization', items: ['AUTHORIZATION', 'NO_FRIENDLIES'] },
+  { category: 'System State', items: ['AMMO', 'LINK', 'WATCHDOG', 'BATTERY', 'GPS', 'STABILIZED'] },
+  { category: 'Geofence / Safety', items: ['GEOFENCE', 'ALTITUDE'] },
+];
+
+const killChain = [
+  { num: 'I', name: 'STANDBY', detail: 'System idle, no active engagement', auth: 'Observer' },
+  { num: 'II', name: 'DETECT', detail: 'Target detected by sensors', auth: 'Pilot' },
+  { num: 'III', name: 'TRACK', detail: 'Target being actively tracked', auth: 'Pilot' },
+  { num: 'IV', name: 'IDENTIFY', detail: 'Target classification in progress', auth: 'Pilot' },
+  { num: 'V', name: 'AUTHORIZE', detail: 'Awaiting human engagement authorization', auth: 'Weapons' },
+  { num: 'VI', name: 'ENGAGE', detail: 'Active weapon engagement', auth: 'Weapons' },
+  { num: 'VII', name: 'ASSESS', detail: 'Battle Damage Assessment', auth: 'Pilot' },
+];
+
+const failsafes = [
+  { type: 'WATCHDOG_TRIP', priority: 'P1', action: 'DISARM + RTL', reason: 'Software hang detected — main loop stopped feeding watchdog' },
+  { type: 'EMERGENCY_KILL', priority: 'P0', action: 'Motor cutoff', reason: 'Operator override — last-resort prevention of greater harm' },
+  { type: 'LINK_LOSS', priority: 'P2', action: 'RTL + Land', reason: 'Telemetry lost for >10s — recovery on reconnect' },
+  { type: 'GEOFENCE_BREACH', priority: 'P3', action: 'RTL', reason: 'Aircraft exited operational area' },
+  { type: 'LOW_BATTERY', priority: 'P4', action: 'RTL + Land', reason: 'Power below safe-return threshold (15%)' },
+  { type: 'GPS_LOSS', priority: 'P5', action: 'Hold + Descend', reason: 'GPS fix lost — controlled descent until reacquired' },
+];
+
+const compliance = [
+  { area: 'Cryptography', detail: 'FIPS 140-2 validated via Bouncy Castle BC-FJA (CMVP certificate #3514)' },
+  { area: 'Engagement DB', detail: 'SQLCipher AES-256 encrypted engagement chain-of-custody database' },
+  { area: 'TAK Auth', detail: 'Mutual TLS, certificate pinning, hardware-backed Android KeyStore enrollment' },
+  { area: 'Audit', detail: 'JSON-Lines audit log with command tracking, operator ID, ack status, BDA outcome' },
+  { area: 'Authorization', detail: '4-tier RBAC: Observer / Pilot / Weapons / Commander' },
+  { area: 'Doctrine', detail: 'DoD Directive 3000.09 alignment (autonomy in weapon systems)' },
+];
+---
+
+<BaseLayout
+  title="DroneBane | Thornveil"
+  description="DroneBane is a three-tier counter-UAS product family: Watch (passive detection), Pro (commercial C2), and Mobile (defense-grade ATAK plugin with kinetic engagement)."
+>
+  <!-- HERO -->
+  <section class="section-padding pt-32 md:pt-40">
+    <div class="container-max mx-auto">
+      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Counter-UAS</p>
+      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">DroneBane</h1>
+      <p class="text-base mt-6 max-w-3xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+        A three-tier counter-UAS product family covering the full kill chain — detection, engagement, and authorized kinetic response. Built around a single insight: most facilities can't afford a $100,000 sensor array, and most warfighters can't carry one. The phone in your pocket is the first sensor; the same architecture scales to a 16-point interlock weapons release running in ATAK.
+      </p>
+
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl reveal reveal-delay-3">
+        {[
+          { value: '8', label: 'USPTO provisionals' },
+          { value: '129K', label: 'Lines (Java + Dart)' },
+          { value: '273', label: 'Total classes/files' },
+          { value: 'IL5', label: 'Compliance baseline' },
+        ].map((m) => (
+          <div class="rounded-lg p-3 text-center" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <div class="font-mono text-base font-bold" style="color: var(--color-accent);">{m.value}</div>
+            <div class="font-mono text-[9px] tracking-wider uppercase mt-1" style="color: var(--color-text-tertiary);">{m.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE TIERS -->
+  <section class="section-padding pt-12" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto">
+      <div class="mb-12">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Product family</p>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Three tiers, one architecture</h2>
+        <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          Each tier shares core sensor abstractions, telemetry models, and the same backend. The difference between Watch and Mobile is not what they detect — it's what they're authorized to do about it.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        {tiers.map((t, i) => (
+          <div class={`reveal reveal-delay-${Math.min(i + 1, 4)} card-gradient-border p-7`} data-tilt>
+            <div class="relative z-10">
+              <div class="flex items-start justify-between gap-4 mb-4 flex-wrap">
+                <div>
+                  <div class="flex items-baseline gap-3 flex-wrap">
+                    <h3 class="text-lg font-semibold tracking-tight">{t.name}</h3>
+                    <span class="font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-full" style="background: var(--color-accent-muted); color: var(--color-accent);">
+                      {t.role}
+                    </span>
+                    <span class="font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-full" style={`background: ${t.statusColor}1a; color: ${t.statusColor}; border: 1px solid ${t.statusColor}33;`}>
+                      {t.status}
+                    </span>
+                  </div>
+                  <p class="text-xs mt-2" style="color: var(--color-text-tertiary);">{t.audience}</p>
+                </div>
+                <div class="text-right flex-shrink-0">
+                  <div class="font-mono text-base font-bold" style="color: var(--color-accent);">{t.metric}</div>
+                  <div class="font-mono text-[9px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">{t.metricLabel}</div>
+                </div>
+              </div>
+              <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-secondary);">{t.description}</p>
+              <div class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">
+                <span style="color: var(--color-accent);">Stack</span> &nbsp; {t.stack}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- KILL CHAIN -->
+  <section class="section-padding">
+    <div class="container-max mx-auto">
+      <div class="mb-10">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Kill chain</p>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">F2T2EA — Find, Fix, Track, Target, Engage, Assess</h2>
+        <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          DroneBane Mobile implements the full military kill chain as a phase-gated state machine. Phases progress only forward (or abort to STANDBY). AUTHORIZE and ENGAGE require explicit Weapons-level human authorization — they cannot proceed automatically under any condition.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 reveal reveal-delay-2">
+        {killChain.map((phase) => (
+          <div class="rounded-xl p-5" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <div class="flex items-baseline justify-between gap-3 mb-1 flex-wrap">
+              <div class="flex items-baseline gap-3">
+                <span class="font-mono text-sm font-bold" style="color: var(--color-accent);">{phase.num}</span>
+                <span class="text-sm font-semibold">{phase.name}</span>
+              </div>
+              <span class="font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-full" style="background: var(--color-accent-muted); color: var(--color-accent);">
+                {phase.auth}
+              </span>
+            </div>
+            <p class="text-xs leading-relaxed mt-2" style="color: var(--color-text-tertiary);">{phase.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 16-POINT INTERLOCK -->
+  <section class="section-padding" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto">
+      <div class="mb-10">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Defense in depth</p>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">16-point safety interlock system</h2>
+        <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          All sixteen interlocks must pass before weapon release is authorized. They cover the weapon system, target validation, operator authorization, vehicle state, and the operational envelope. Production code refuses to instantiate the interlock checker with checks disabled — the only way to bypass an interlock is in unit tests, gated by a separate constructor.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        {interlocks.map((cat) => (
+          <div class="rounded-xl p-5" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <div class="text-xs font-semibold tracking-wider uppercase mb-3" style="color: var(--color-accent);">{cat.category}</div>
+            <ul class="space-y-1.5">
+              {cat.items.map((item) => (
+                <li class="flex items-center gap-2 text-xs" style="color: var(--color-text-secondary);">
+                  <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background: var(--color-accent);"></span>
+                  <span class="font-mono">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-xs leading-relaxed mt-6 max-w-3xl" style="color: var(--color-text-tertiary);">
+        Engagement envelope: 2m AGL minimum altitude (must be airborne), 5–120m AGL engagement window, 5–500m effective weapons range, &gt;15% battery, 3D GPS fix with ≥4 satellites, &lt;15°/s angular rate, &gt;20% link quality, watchdog fed within 5s.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAILSAFE -->
+  <section class="section-padding">
+    <div class="container-max mx-auto">
+      <div class="mb-10">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Failsafe</p>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Priority-coordinated failsafes</h2>
+        <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          Six failsafe types under one coordinator. Higher-priority failsafes preempt lower-priority ones — there's never a race condition where two failsafes both try to execute. Critical failsafes retry up to three times. Every trigger and action is audit-logged for after-action review.
+        </p>
+      </div>
+
+      <div class="rounded-xl overflow-hidden reveal reveal-delay-2" style="border: 1px solid var(--color-border);">
+        {failsafes.map((f, i) => (
+          <div class="grid grid-cols-12 items-center gap-3 px-5 py-3" style={`background: var(--color-surface-elevated); ${i < failsafes.length - 1 ? 'border-bottom: 1px solid var(--color-border-subtle);' : ''}`}>
+            <code class="col-span-12 sm:col-span-1 font-mono text-xs font-bold text-center" style="color: var(--color-accent);">{f.priority}</code>
+            <div class="col-span-6 sm:col-span-3 text-sm font-semibold font-mono">{f.type}</div>
+            <div class="col-span-6 sm:col-span-3 text-xs font-mono" style="color: var(--color-accent);">{f.action}</div>
+            <div class="col-span-12 sm:col-span-5 text-xs" style="color: var(--color-text-tertiary);">{f.reason}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTONOMOUS GUIDANCE -->
+  <section class="section-padding" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+        <div class="lg:col-span-2">
+          <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Autonomy</p>
+          <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 mb-5 reveal reveal-delay-1">On-device DRL intercept guidance</h2>
+          <div class="space-y-3 text-sm leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+            <p>
+              A trained deep reinforcement learning policy runs on-device on a companion computer (Raspberry Pi 5 or Jetson Orin Nano) at 3 Hz via ONNX Runtime. The 34-dimensional observation vector includes zero-effort-miss, time-to-go, closing velocity, off-boresight angle, and predicted kill probability.
+            </p>
+            <p>
+              A three-stage fallback chain ensures graceful degradation: DRL policy → classical proportional navigation → return-to-launch / hover. Human override is always available via the RC transmitter. Multi-target priority queuing supports P1/P2/P3 prioritization with a strict single-engagement safety constraint.
+            </p>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <h3 class="text-xs font-semibold tracking-wider uppercase mb-5" style="color: var(--color-text-tertiary);">Guidance pipeline</h3>
+            <div class="space-y-4">
+              {[
+                { stage: '1', name: 'Observation', detail: '34-dim vector: ZEM, time-to-go, closing velocity, off-boresight angle, kill probability' },
+                { stage: '2', name: 'DRL Policy', detail: 'Trained policy via ONNX Runtime, 3 Hz on Pi 5 / Orin Nano' },
+                { stage: '3', name: 'PN Fallback', detail: 'Classical proportional navigation if DRL inference fails' },
+                { stage: '4', name: 'RTL / Hover', detail: 'Final fallback if both DRL and PN unavailable' },
+                { stage: '5', name: 'Human Override', detail: 'RC transmitter override always available, regardless of stage' },
+              ].map((s) => (
+                <div class="flex items-start gap-4">
+                  <span class="font-mono text-sm font-bold flex-shrink-0 w-4" style="color: var(--color-accent);">{s.stage}</span>
+                  <div class="flex-1 min-w-0">
+                    <div class="text-sm font-semibold">{s.name}</div>
+                    <div class="text-xs mt-0.5" style="color: var(--color-text-tertiary);">{s.detail}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATTICE READINESS -->
+  <section class="section-padding">
+    <div class="container-max mx-auto max-w-4xl">
+      <div class="rounded-xl p-7 reveal" style="background: var(--color-surface-elevated); border: 1px solid var(--color-accent);">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-accent);">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+          </div>
+          <div>
+            <p class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent);">Interoperability</p>
+            <h2 class="text-fluid-xl font-semibold tracking-tight">Anduril Lattice integration prepped</h2>
+          </div>
+        </div>
+        <p class="text-sm leading-relaxed mb-3" style="color: var(--color-text-secondary);">
+          DroneBane Mobile ships with a complete Anduril Lattice client integration: entity publisher, entity stream subscriber, task agent listener, and tracker — verified live against the Anduril sandbox environment. Drone detections publish as Lattice Track entities, interceptor telemetry as Asset entities, geofences as Geo entities, and kill-chain transitions as task agent events. The DUSTY SHIELD scenario simulator runs a complete C-UAS engagement (FOB exclusion zone → hostile detection → IFF identification → engagement authorization → BDA → RTL) entirely through Lattice's COP.
+        </p>
+        <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+          Whatever common operating picture a unit is running — TAK, Lattice, both — DroneBane appears as a friendly track and accepts task agents from the same screen the operator already uses for everything else. Zero context switching between situational awareness and weapons control.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-1.5">
+          <span class="tag">Lattice Entities</span>
+          <span class="tag">Task Agents</span>
+          <span class="tag">Sandbox Verified</span>
+          <span class="tag">TAK + Lattice</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPLIANCE & SECURITY -->
+  <section class="section-padding pt-0">
+    <div class="container-max mx-auto">
+      <div class="mb-10">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Compliance</p>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Engineered for IL5 deployment</h2>
+        <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          DroneBane Mobile is a weapons-control system, and it's built like one. FIPS-validated cryptography, certificate-pinned mutual TLS, encrypted engagement chain-of-custody, multi-tier RBAC, and complete audit trails. Aligned with DoD Directive 3000.09 from the first commit.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        {compliance.map((c) => (
+          <div class="rounded-lg p-4" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <div class="text-xs font-semibold tracking-wider uppercase mb-2" style="color: var(--color-accent);">{c.area}</div>
+            <p class="text-xs leading-relaxed" style="color: var(--color-text-secondary);">{c.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DEVELOPMENT STATUS -->
+  <section class="section-padding" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto max-w-4xl">
+      <div class="mb-10">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Development status</p>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Milestone 5 of 10 — flight-tested</h2>
+        <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          DroneBane Mobile is operational today. Bench power-on through first hover is complete. Every C2 command — ARM, DISARM, six flight modes, takeoff, land, RTL, guided waypoints, manual control at 20 Hz — has been verified on live hardware with command acknowledgment confirmed across all modes. 53 of 55 SITL test cases pass.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        {[
+          { ms: 'MS0–MS5', status: 'Complete', detail: 'Bench power-on, initial firmware, manual flight, MAVLink integration, ATAK plugin install, first hover', color: '#10b981' },
+          { ms: 'MS6', status: 'Next', detail: 'Companion computer integration — Pi 5 MAVLink routing, sensor fusion finalization', color: '#f59e0b' },
+          { ms: 'MS7', status: 'Planned', detail: 'Multi-radio hardware abstraction (RFD900x, mLRS, SiK), full C2 delivery', color: '#6b7280' },
+          { ms: 'MS8', status: 'Planned', detail: 'Intercept geometry — bearing-to-target, pursuit guidance, lead computation', color: '#6b7280' },
+          { ms: 'MS9', status: 'Planned', detail: 'Autonomous intercept with TX override, full DRL autonomy stack air-validated', color: '#6b7280' },
+          { ms: 'MS10', status: 'Operational prototype', detail: 'Multi-drone fleet operations validation, environmental testing, ATO documentation', color: '#6b7280' },
+        ].map((m) => (
+          <div class="flex items-start gap-4 rounded-xl p-5" style={`background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid ${m.color};`}>
+            <span class="font-mono text-sm font-bold flex-shrink-0 w-16" style="color: var(--color-accent);">{m.ms}</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-baseline justify-between gap-3 flex-wrap">
+                <h3 class="text-sm font-semibold">{m.detail}</h3>
+                <span class="font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-full flex-shrink-0" style={`background: ${m.color}1a; color: ${m.color}; border: 1px solid ${m.color}33;`}>
+                  {m.status}
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding relative overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="opacity: 0.07; background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);"></div>
+    <div class="relative container-max mx-auto max-w-2xl text-center">
+      <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">Want to put DroneBane on your perimeter?</h2>
+      <p class="mt-4 text-sm max-w-md mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+        Watch is available for direct sales. Pro and Mobile are licensed by application — defense / IC / coalition only for the Mobile tier.
+      </p>
+      <div class="mt-8 reveal reveal-delay-2">
+        <a href="mailto:jesse@thornveil.ai?subject=DroneBane — Inquiry" class="btn-primary">
+          jesse@thornveil.ai
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
+        </a>
+      </div>
+      <div class="mt-12 font-mono flex flex-wrap justify-center gap-x-3 gap-y-1 text-[10px] tracking-[0.15em] uppercase reveal reveal-delay-3" style="color: var(--color-text-tertiary);">
+        <span>THRN-001 / 006 / 007 / 008 / 009 / 011 / 014 / 017</span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import Lenis from 'lenis';
+  const lenis = new Lenis({ duration: 1.2, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  document.querySelectorAll<HTMLElement>('[data-tilt]').forEach((card) => {
+    const MAX_DEG = 3;
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const r = card.getBoundingClientRect();
+      card.style.transform = `perspective(800px) rotateX(${(0.5 - (e.clientY - r.top) / r.height) * MAX_DEG}deg) rotateY(${((e.clientX - r.left) / r.width - 0.5) * MAX_DEG}deg)`;
+      card.style.transition = 'transform 0.1s ease-out';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg)';
+      card.style.transition = 'transform 0.4s ease-out';
+    });
+  });
+</script>

@@ -4,13 +4,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const programs = [
   {
     name: 'DroneBane',
-    subtitle: 'Counter-UAS Interceptor Platform',
-    description: 'Armed intercept platform for small UAS threats. Acoustic target localization using RPM-indexed self-noise cancellation, multi-agent deep RL engagement guidance, direct MAVLink C2 from mobile tactical platforms via ATAK plugin, IFF re-verification at the instant of discharge, and a 16-point interlock chain that can revoke engagement authorization from multiple independent conditions simultaneously. Companion DroneBane Watch app provides multi-sensor BLE/RF detection.',
+    subtitle: 'Three-Tier Counter-UAS Product Family',
+    description: 'A three-tier counter-UAS family covering the full kill chain. DroneBane Watch is a passive Remote-ID + sensor-fusion app for force protection and base security. DroneBane Pro adds MAVLink C2, fleet management, and autonomous patrol for force protection and FOB defense. DroneBane Mobile is the defense-grade ATAK plugin: 16-point safety interlocks, F2T2EA kill chain, on-device DRL guidance, FIPS 140-2 cryptography, Anduril Lattice integration prepped. See the full deep-dive on the dedicated DroneBane page.',
     patents: 8,
     patentNums: '001, 006, 007, 008, 009, 011, 014, 017',
-    trl: 'TRL 4',
-    tags: ['Autonomous Intercept', 'TAK-Native', 'MAVLink C2', 'Deep RL', 'Acoustic', '16-Point Interlock'],
-    href: 'https://jeranaias.github.io/dronebane/',
+    trl: 'MS5 of 10',
+    tags: ['Autonomous Intercept', 'TAK-Native', 'Lattice-Ready', 'MAVLink C2', 'Deep RL', '16-Point Interlock'],
+    href: '/dronebane',
     featured: true,
   },
   {
@@ -201,6 +201,62 @@ const complianceControls = [
     </div>
   </section>
 
+  <!-- DRONEBANE CARVE-OUT -->
+  <section class="section-padding pt-12">
+    <div class="container-max mx-auto">
+      <div class="mb-10">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Featured program</p>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">DroneBane — three tiers, one kill chain</h2>
+        <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          A counter-UAS product family covering the entire engagement workflow: a passive Remote-ID app on the operator's phone (Watch), a commercial sensor-fusion + MAVLink C2 platform for force protection (Pro), and a defense-grade ATAK plugin with 16-point safety interlocks and on-device DRL guidance (Mobile). 8 USPTO provisionals across the family. Anduril Lattice integration prepped.
+        </p>
+      </div>
+
+      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-accent); box-shadow: 0 0 30px rgba(201, 168, 78, 0.08);">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          {[
+            { name: 'Watch', role: 'Detect', detail: 'Passive Remote-ID, multi-sensor fusion, FAA reporting', color: '#10b981' },
+            { name: 'Pro', role: 'Engage', detail: 'MAVLink C2, fleet management, autonomous patrol', color: '#f59e0b' },
+            { name: 'Mobile', role: 'Authorize', detail: 'ATAK plugin, 16-point interlocks, F2T2EA, DRL guidance', color: '#C9A84E' },
+          ].map((tier) => (
+            <div class="rounded-lg p-4" style="background: var(--color-surface); border: 1px solid var(--color-border-subtle);">
+              <div class="flex items-baseline justify-between mb-2">
+                <h3 class="text-sm font-semibold">DroneBane {tier.name}</h3>
+                <span class="font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full" style={`background: ${tier.color}1a; color: ${tier.color}; border: 1px solid ${tier.color}33;`}>
+                  {tier.role}
+                </span>
+              </div>
+              <p class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">{tier.detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+          {[
+            { value: '16', label: 'Safety interlocks' },
+            { value: 'F2T2EA', label: '7-phase kill chain' },
+            { value: 'FIPS', label: '140-2 #3514' },
+            { value: 'Lattice', label: 'Integration prepped' },
+          ].map((m) => (
+            <div class="rounded-lg p-3 text-center" style="background: var(--color-surface); border: 1px solid var(--color-border-subtle);">
+              <div class="font-mono text-base font-bold" style="color: var(--color-accent);">{m.value}</div>
+              <div class="font-mono text-[9px] tracking-wider uppercase mt-1" style="color: var(--color-text-tertiary);">{m.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div class="flex items-center justify-between flex-wrap gap-3">
+          <div class="text-xs" style="color: var(--color-text-tertiary);">
+            <span style="color: var(--color-accent);">USPTO provisionals</span> &nbsp; THRN-001, 006, 007, 008, 009, 011, 014, 017
+          </div>
+          <a href="/dronebane" class="btn-outline text-xs uppercase">
+            Full DroneBane brief &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section-padding pt-12" style="background: var(--color-surface-secondary);">
     <div class="container-max mx-auto">
       <div class="mb-10">
@@ -213,7 +269,12 @@ const complianceControls = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         {programs.map((p, i) => {
           const Tag = p.href ? 'a' : 'div';
-          const linkProps = p.href ? { href: p.href, target: '_blank', rel: 'noopener noreferrer' } : {};
+          const isInternal = p.href && p.href.startsWith('/');
+          const linkProps = p.href
+            ? (isInternal
+                ? { href: p.href }
+                : { href: p.href, target: '_blank', rel: 'noopener noreferrer' })
+            : {};
           return (
             <Tag
               {...linkProps}
@@ -227,7 +288,7 @@ const complianceControls = [
                   {p.href && (
                     <span class="inline-flex items-center gap-1 font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full" style="background: var(--color-accent-muted); color: var(--color-accent);">
                       <svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
-                      Demo
+                      {isInternal ? 'Details' : 'Demo'}
                     </span>
                   )}
                 </div>
