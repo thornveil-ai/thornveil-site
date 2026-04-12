@@ -95,11 +95,72 @@ const pyrosResearch = [
   { paper: 'PID with anti-windup', authors: 'Aström & Hägglund (2006)', use: 'Singularity homeostasis' },
   { paper: 'Minimum Description Length', authors: 'Rissanen (1978)', use: 'Forge prompt compression' },
 ];
+
+const myceliumInnovations = [
+  {
+    name: 'Distributed MoE Expert Routing',
+    file: 'mesh/expert_proxy.go',
+    description: 'The mesh expert system tracks which peers host which model experts via the gossip protocol. When a query arrives, the expert registry locates the best peer for each required expert computation by load and latency. An expert proxy dispatches computation requests with predictive prefetching — firing async requests during the attention computation window to hide network latency.',
+  },
+  {
+    name: 'Cross-Model Style Consistency',
+    file: 'mesh/style.go',
+    description: 'Different nodes may run different model sizes (0.6B to 122B parameters). The style normalizer applies post-generation processing to ensure consistent tone, formatting, and verbosity regardless of which node generated the response. Hedging removal, preamble stripping, code-block normalization, verbosity control. Seamless escalation uses entropy monitoring to detect when a small model is uncertain and transparently hand off mid-generation to a larger peer.',
+  },
+  {
+    name: 'Proof-of-Inference (PoI)',
+    file: 'mesh/poi.go',
+    description: 'Three-layer cryptographic verification ensuring mesh nodes perform honest computation. Behavioral fingerprinting catches model substitution. Merkle execution traces catch computation shortcuts. Economic reputation with 1% spot-check rate makes persistent dishonesty unprofitable. Combined verdict: 0.3·fingerprint + 0.3·trace + 0.4·reputation.',
+  },
+];
+
+const myceliumStack = [
+  { layer: '8', name: 'Application', detail: 'OpenAI-compatible API, chat, files' },
+  { layer: '7', name: 'Routing & Verification', detail: 'Cascade router, PoI, reputation' },
+  { layer: '6', name: 'Style Consistency', detail: 'Post-generation normalization' },
+  { layer: '5', name: 'Expert Orchestrator', detail: 'Registry, proxy, prefetching' },
+  { layer: '4', name: 'Transport', detail: 'HTTP/SSE forwarding, NAT traversal' },
+  { layer: '3', name: 'Network Topology', detail: 'Kademlia DHT, gossip, mDNS' },
+  { layer: '2', name: 'Backend Abstraction', detail: 'Ollama, llama.cpp, SGLang' },
+  { layer: '1', name: 'Hardware Detection', detail: 'GPU/CPU/NPU discovery & tiering' },
+];
+
+const myceliumTiers = [
+  { tier: 'Micro', hardware: 'Raspberry Pi, Mobile', capacity: '0.6B – 3B', role: 'Edge routing, simple queries', color: '#3b82f6' },
+  { tier: 'Edge', hardware: 'Laptop (8GB), Jetson', capacity: '3B – 8B', role: 'Token gen, classification', color: '#10b981' },
+  { tier: 'Standard', hardware: 'Desktop GPU (RTX 3060+)', capacity: '8B – 14B', role: 'General inference', color: '#f59e0b' },
+  { tier: 'Power', hardware: 'Workstation (24GB+ VRAM)', capacity: '14B – 70B', role: 'Complex reasoning, expert hosting', color: '#f97316' },
+  { tier: 'Fortress', hardware: 'Multi-GPU server', capacity: '70B+', role: 'Heavy inference, training, aggregation', color: '#ef4444' },
+];
+
+const myceliumProtocols = [
+  {
+    name: 'Discovery (mDNS + DHT + STUN)',
+    detail: 'LAN: mDNS advertisement under _mycelium._tcp.local. with capability metadata. DHT: Kademlia 160-bit node IDs, k=20 buckets. WAN: UPnP port mapping + STUN (RFC 5389) for NAT traversal. Manual peer registration available for cross-subnet connectivity.',
+  },
+  {
+    name: 'Adapter Gossip Protocol (AGP)',
+    detail: 'Nodes share locally-trained LoRA/QLoRA adapters via epidemic gossip. Announcements propagate with fanout=3 every 2 minutes. Adapters carry loss metrics, dataset size, and weight hashes. Receiving nodes evaluate against local test sets. BitTorrent-style chunked transfer (64MB chunks, SHA-256 verified).',
+  },
+  {
+    name: 'Model Distribution Protocol (MDP)',
+    detail: 'Full model files distributed across the mesh. Chunked transfer with parallel downloads (4 concurrent, 64MB per chunk), SHA-256 per-chunk and full-file verification, resume support for interrupted transfers.',
+  },
+];
+
+const myceliumPhases = [
+  { phase: '1', name: 'Core Protocol', status: 'Complete', detail: 'mDNS discovery, DHT, peer registry, health checking' },
+  { phase: '2', name: 'Query Routing', status: 'Complete', detail: '7-stage cascade, SSE forwarding, load balancing, gossip' },
+  { phase: '3', name: 'Distributed Inference', status: 'Complete', detail: 'Expert registry, computation proxy, prefetching, PoI' },
+  { phase: '4', name: 'Consistency', status: 'Complete', detail: 'Style normalization, seamless escalation, adapter sharing' },
+  { phase: '5', name: 'WAN Scaling', status: 'Complete', detail: 'NAT traversal (UPnP + STUN), DHT-based WAN discovery' },
+  { phase: '6', name: 'Production Hardening', status: 'In Progress', detail: 'End-to-end integration tests, multi-node stress testing' },
+];
 ---
 
 <BaseLayout
   title="Products | Thornveil"
-  description="Four product lines: RigRun local AI infrastructure, domain expert AI agents, HawkStack custom ML model training, and Pyros LLM safety engine. Built for defense, enterprise, and edge."
+  description="Five product lines: RigRun local AI infrastructure, Pyros LLM safety engine, Mycelium distributed AI mesh, HawkStack custom ML model training, and domain expert AI agents. Built for defense, enterprise, and edge."
 >
   <!-- HERO -->
   <section class="section-padding pt-32 md:pt-40">
@@ -108,10 +169,10 @@ const pyrosResearch = [
         Products
       </p>
       <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
-        Four ways to put AI to work
+        Five ways to put AI to work
       </h1>
       <p class="text-base mt-4 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Local AI infrastructure, production-ready agents, custom ML models trained on your data, and a standalone safety engine for any LLM. Everything runs on your hardware. Nothing touches the cloud.
+        Local AI infrastructure, production-ready agents, custom ML models trained on your data, a standalone safety engine for any LLM, and a P2P mesh that scales across whatever devices you already have. Everything runs on your hardware. Nothing touches the cloud.
       </p>
     </div>
   </section>
@@ -131,6 +192,9 @@ const pyrosResearch = [
         </button>
         <button class="tab-btn" data-tab="pyros">
           Pyros Safety Engine
+        </button>
+        <button class="tab-btn" data-tab="mycelium">
+          Mycelium Mesh
         </button>
       </div>
     </div>
@@ -830,6 +894,222 @@ const pyrosResearch = [
         </div>
         <div class="mt-8 font-mono text-[10px] tracking-[0.15em] uppercase" style="color: var(--color-text-tertiary);">
           github.com/jeranaias/pyros &nbsp;&middot;&nbsp; v0.1.0
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- TAB 5: MYCELIUM MESH -->
+  <!-- ============================================================ -->
+  <div id="tab-mycelium" class="tab-content">
+
+    <!-- HERO -->
+    <section class="section-padding pt-12">
+      <div class="container-max mx-auto">
+        <div class="text-center mb-10">
+          <h2 class="text-fluid-2xl font-semibold tracking-tight">Mycelium Mesh</h2>
+          <p class="text-sm mt-3 max-w-3xl mx-auto" style="color: var(--color-text-secondary);">
+            A peer-to-peer mesh network that turns heterogeneous devices — phones, laptops, workstations, servers — into nodes in a distributed AI inference system. Built for defense, enterprise, and edge environments where centralized cloud AI is not viable. No center, no config, no exfiltration, no connectivity requirement, no capability floor.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-3 justify-center mb-10">
+          {[
+            { label: '65K LOC', sub: 'Go server' },
+            { label: '8 layers', sub: 'P2P stack' },
+            { label: '5 phases', sub: 'complete' },
+            { label: '40 claims', sub: 'THRN-022' },
+            { label: 'Phase 6', sub: 'in progress' },
+          ].map((b) => (
+            <div class="rounded-lg px-4 py-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+              <div class="font-mono text-xs font-bold" style="color: var(--color-accent);">{b.label}</div>
+              <div class="font-mono text-[9px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">{b.sub}</div>
+            </div>
+          ))}
+        </div>
+
+        <div class="max-w-3xl mx-auto rounded-xl p-7 mb-12" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <p class="text-[11px] font-semibold tracking-[0.3em] uppercase mb-3" style="color: var(--color-accent);">Why this exists</p>
+          <p class="text-sm leading-relaxed mb-3" style="color: var(--color-text-secondary);">
+            Most distributed inference systems assume a datacenter — InfiniBand, RDMA, dedicated edge servers, or trusted hardware enclaves. Mycelium assumes none of that. It's built for the WiFi you already have, the laptops your team already owns, and nodes you don't fully trust. Designed for DoD contested communications, disaster response, privacy-sensitive environments, and developing regions where the centralized cloud is unreliable, expensive, or hostile.
+          </p>
+          <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+            Three core innovations are backed by USPTO provisional THRN-022 (40 claims): distributed expert routing with predictive prefetching, post-generation style normalization for cross-model consistency, and a 3-layer proof-of-inference protocol that catches lazy or compromised nodes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INNOVATIONS -->
+    <section class="section-padding pt-0" style="background: var(--color-surface-secondary);">
+      <div class="container-max mx-auto">
+        <div class="text-center mb-10">
+          <h3 class="text-fluid-xl font-semibold tracking-tight">Three core innovations</h3>
+          <p class="text-sm mt-3 max-w-2xl mx-auto" style="color: var(--color-text-secondary);">
+            Each is implemented in source. Each has a USPTO provisional claim attached. Each one solves a problem that has stopped prior distributed-MoE work from running on consumer hardware.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {myceliumInnovations.map((inv, i) => (
+            <div class={`reveal reveal-delay-${Math.min(i + 1, 4)} card-gradient-border p-6`} data-tilt>
+              <div class="relative z-10">
+                <div class="flex items-baseline justify-between gap-3 mb-3 flex-wrap">
+                  <h4 class="text-base font-semibold tracking-tight">{inv.name}</h4>
+                </div>
+                <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-secondary);">{inv.description}</p>
+                <code class="font-mono text-[10px] tracking-wider" style="color: var(--color-accent);">{inv.file}</code>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 8-LAYER STACK -->
+    <section class="section-padding">
+      <div class="container-max mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12 items-start">
+          <div class="lg:col-span-2">
+            <p class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent);">Architecture</p>
+            <h3 class="text-fluid-xl font-semibold tracking-tight mt-3 mb-5">An 8-layer P2P stack</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-secondary);">
+              Each layer is a standalone Go package. The full stack runs as a single self-contained inference server on every node. Hardware detection at the bottom assigns roles automatically; the application layer at the top exposes a drop-in OpenAI-compatible API.
+            </p>
+            <p class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">
+              The mesh layer alone is 19 Go files / 11K LOC covering DHT, gossip, expert proxy, NAT traversal, load balancing, proof-of-inference, and style normalization. Phase 1 reuses 32 packages extracted from RigRun (auth, router, backend, security, training, memory, RAG).
+            </p>
+          </div>
+          <div class="lg:col-span-3">
+            <div class="rounded-xl p-5" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+              <div class="space-y-2">
+                {myceliumStack.map((layer) => (
+                  <div class="flex items-center gap-4 px-4 py-3 rounded-lg" style="background: var(--color-surface); border: 1px solid var(--color-border-subtle);">
+                    <span class="font-mono text-base font-bold w-6 text-center flex-shrink-0" style="color: var(--color-accent);">{layer.layer}</span>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-semibold">{layer.name}</div>
+                      <div class="text-xs" style="color: var(--color-text-tertiary);">{layer.detail}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HARDWARE TIERS -->
+    <section class="section-padding pt-0" style="background: var(--color-surface-secondary);">
+      <div class="container-max mx-auto">
+        <div class="mb-10">
+          <h3 class="text-fluid-xl font-semibold tracking-tight">Hardware tiers</h3>
+          <p class="text-sm mt-3 max-w-2xl" style="color: var(--color-text-secondary);">
+            Mycelium auto-detects hardware capability and assigns each node a role. A phone running a 1B model is just as much a mesh participant as a multi-GPU fortress server — they just route different workloads.
+          </p>
+        </div>
+
+        <div class="rounded-xl overflow-hidden" style="border: 1px solid var(--color-border);">
+          {myceliumTiers.map((t, i) => (
+            <div class="grid grid-cols-12 items-center gap-3 px-5 py-3" style={`background: var(--color-surface-elevated); ${i < myceliumTiers.length - 1 ? 'border-bottom: 1px solid var(--color-border-subtle);' : ''}`}>
+              <div class="col-span-12 sm:col-span-2 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full flex-shrink-0" style={`background: ${t.color};`}></span>
+                <span class="text-sm font-semibold">{t.tier}</span>
+              </div>
+              <div class="col-span-12 sm:col-span-3 text-xs" style="color: var(--color-text-secondary);">{t.hardware}</div>
+              <div class="col-span-6 sm:col-span-2 font-mono text-xs" style={`color: ${t.color};`}>{t.capacity}</div>
+              <div class="col-span-6 sm:col-span-5 text-xs" style="color: var(--color-text-tertiary);">{t.role}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROTOCOLS -->
+    <section class="section-padding">
+      <div class="container-max mx-auto">
+        <div class="mb-10">
+          <h3 class="text-fluid-xl font-semibold tracking-tight">Discovery + propagation protocols</h3>
+          <p class="text-sm mt-3 max-w-2xl" style="color: var(--color-text-secondary);">
+            How nodes find each other, share trained adapters, and distribute model files across the mesh.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {myceliumProtocols.map((p) => (
+            <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+              <h4 class="text-sm font-semibold tracking-tight mb-3">{p.name}</h4>
+              <p class="text-xs leading-relaxed" style="color: var(--color-text-secondary);">{p.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PHASE STATUS -->
+    <section class="section-padding pt-0" style="background: var(--color-surface-secondary);">
+      <div class="container-max mx-auto">
+        <div class="mb-10">
+          <h3 class="text-fluid-xl font-semibold tracking-tight">Project status</h3>
+          <p class="text-sm mt-3 max-w-2xl" style="color: var(--color-text-secondary);">
+            Five of six phases complete. Phase 6 (production hardening) is in progress — end-to-end integration tests across multi-node deployments.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          {myceliumPhases.map((p) => {
+            const isComplete = p.status === 'Complete';
+            return (
+              <div class="flex items-start gap-4 rounded-xl p-5" style={`background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid ${isComplete ? '#10b981' : '#f59e0b'};`}>
+                <span class="font-mono text-base font-bold flex-shrink-0" style="color: var(--color-accent);">{p.phase}</span>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-baseline justify-between gap-3 flex-wrap">
+                    <h4 class="text-sm font-semibold">{p.name}</h4>
+                    <span class="font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-full" style={`background: ${isComplete ? 'rgba(16, 185, 129, 0.1)' : 'rgba(245, 158, 11, 0.1)'}; color: ${isComplete ? '#10b981' : '#f59e0b'}; border: 1px solid ${isComplete ? 'rgba(16, 185, 129, 0.2)' : 'rgba(245, 158, 11, 0.2)'};`}>
+                      {p.status}
+                    </span>
+                  </div>
+                  <div class="text-xs mt-1" style="color: var(--color-text-tertiary);">{p.detail}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- SECURITY + CTA -->
+    <section class="section-padding">
+      <div class="container-max mx-auto max-w-4xl">
+        <div class="rounded-xl p-7 mb-8" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <p class="text-[11px] font-semibold tracking-[0.3em] uppercase mb-3" style="color: var(--color-accent);">Security baseline</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs" style="color: var(--color-text-secondary);">
+            <div><span class="font-mono" style="color: var(--color-text-tertiary);">Auth</span> &nbsp; JWT, OAuth/OIDC, API keys, MFA (TOTP)</div>
+            <div><span class="font-mono" style="color: var(--color-text-tertiary);">Authz</span> &nbsp; Classification-based (UNCLASS → TS)</div>
+            <div><span class="font-mono" style="color: var(--color-text-tertiary);">Audit</span> &nbsp; HMAC-chained tamper-evident log</div>
+            <div><span class="font-mono" style="color: var(--color-text-tertiary);">Crypto</span> &nbsp; TLS 1.3 in transit, AES-256-GCM at rest</div>
+            <div><span class="font-mono" style="color: var(--color-text-tertiary);">Compliance</span> &nbsp; NIST 800-53 Rev 5 controls</div>
+            <div><span class="font-mono" style="color: var(--color-text-tertiary);">Verification</span> &nbsp; Cryptographic proof-of-inference</div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <h3 class="text-fluid-xl font-semibold tracking-tight">Want to deploy a mesh?</h3>
+          <p class="mt-4 text-sm max-w-md mx-auto leading-relaxed" style="color: var(--color-text-secondary);">
+            Mycelium licensing is available for defense, enterprise, and research deployments. Tell us what you're trying to put on the mesh and we'll scope it.
+          </p>
+          <div class="mt-8">
+            <a href="mailto:jesse@thornveil.ai?subject=Mycelium — Licensing Inquiry" class="btn-primary">
+              Request Mycelium Licensing
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+          <div class="mt-8 font-mono text-[10px] tracking-[0.15em] uppercase" style="color: var(--color-text-tertiary);">
+            github.com/jeranaias/mycelium &nbsp;&middot;&nbsp; private &nbsp;&middot;&nbsp; THRN-022
+          </div>
         </div>
       </div>
     </section>
