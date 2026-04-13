@@ -5,7 +5,7 @@ const programs = [
   {
     name: 'DroneBane',
     subtitle: 'Three-Tier Counter-UAS Product Family',
-    description: 'A three-tier counter-UAS family covering the full kill chain. DroneBane Watch is a passive Remote-ID + sensor-fusion app for force protection and base security. DroneBane Pro adds MAVLink C2, fleet management, and autonomous patrol (roadmap) for force protection and FOB defense. DroneBane Mobile is the defense-grade ATAK plugin: 16-point safety interlocks, F2T2EA kill chain, on-device DRL guidance, FIPS 140-2 cryptography, Anduril Lattice integration prepped. See the full deep-dive on the dedicated DroneBane page.',
+    description: 'A three-tier counter-UAS family covering the full kill chain. DroneBane Watch is a passive Remote-ID + sensor-fusion app for force protection and base security. DroneBane Pro adds MAVLink C2, fleet management, and autonomous patrol (roadmap) for force protection and FOB defense. DroneBane Mobile is the ATAK plugin designed for defense use: 16-point safety interlocks, F2T2EA kill chain, on-device DRL guidance, FIPS 140-2 cryptography, Anduril Lattice integration prepped. See the full deep-dive on the dedicated DroneBane page.',
     patents: 8,
     patentNums: '001, 006, 007, 008, 009, 011, 014, 017',
     trl: 'TRL 3',
@@ -46,7 +46,7 @@ const programs = [
   {
     name: 'Mycelium',
     subtitle: 'Distributed AI Mesh',
-    description: 'Distributed AI mesh that turns commodity devices into a self-healing inference cluster over consumer WiFi. Three-layer proof-of-inference protocol — behavioral fingerprinting, Merkle execution traces, asymmetric reputation — verifies untrusted nodes without trusted hardware. Classification-aware routing keeps UNCLASSIFIED traffic anywhere, CUI on the mesh, SECRET on the originating device. Built for DoD contested comms, disaster response, and GPS-denied environments. 40-claim provisional.',
+    description: 'Distributed AI mesh that turns commodity devices into a self-healing inference cluster over consumer WiFi. Three-layer proof-of-inference protocol — behavioral fingerprinting, Merkle execution traces, asymmetric reputation — is designed to verify untrusted nodes without trusted hardware. Classification-aware routing keeps UNCLASSIFIED traffic anywhere, CUI on the mesh, SECRET on the originating device. Built for DoD contested comms, disaster response, and GPS-denied environments. 40-claim provisional.',
     patents: 1,
     patentNums: '022',
     trl: 'TRL 3',
@@ -56,7 +56,7 @@ const programs = [
   {
     name: 'Meridian',
     subtitle: 'Open-Source Rust Autopilot',
-    description: 'Flight controller autopilot written from scratch in Rust. 47 crates covering attitude control, navigation, sensor fusion, and mission planning. Open source. Distilled from ArduPilot with full parity verified through systematic functional testing.',
+    description: 'Flight controller autopilot written from scratch in Rust. 47 crates covering attitude control, navigation, sensor fusion, and mission planning. Open source. Distilled from ArduPilot with functional parity targeted through systematic functional testing.',
     patents: 0,
     patentNums: '',
     trl: 'TRL 3',
@@ -77,7 +77,7 @@ const programs = [
   {
     name: 'Agent Factory',
     subtitle: 'Autonomous Meta-Agent Manufacturing',
-    description: '14-step pipeline that designs, adversarially hardens, and deploys domain-expert AI agents from plain-English specifications. Requirements decomposition, multi-pass prompt synthesis with independent critique, automatic tool selection from a typed registry, knowledge base assembly, adversarial stress testing across 5 probe types, and a human approval quality gate. Six production agents currently deployed including the SBIR Proposal Writer used for federal grant work.',
+    description: '14-step pipeline that designs, adversarially hardens, and deploys domain-expert AI agents from plain-English specifications. Requirements decomposition, multi-pass prompt synthesis with independent critique, automatic tool selection from a typed registry, knowledge base assembly, adversarial stress testing across 5 probe types, and a human approval quality gate. Six agents currently in use including the SBIR Proposal Writer used for federal grant work.',
     patents: 1,
     patentNums: '025',
     trl: 'TRL 3',
@@ -142,10 +142,10 @@ const complianceControls = [
   { area: 'Audit', detail: 'HMAC-chained tamper-evident JSONL audit log; server refuses to start without the audit key (AU-9)' },
   { area: 'PKI / CAC', detail: 'Trusted CA chain, CRL checking, cert pinning, EDIPI extraction — implemented in source, not yet validated for deployment (IA-2(12), SC-17)' },
   { area: 'FIPS', detail: 'FIPS 140-3 build mode with runtime self-test via CMVP-validated module (product-level validation not yet initiated) (SC-13)' },
-  { area: 'Classification', detail: 'Five levels (UNCLASSIFIED → TS) plus CUI designations (NOFORN, IMCON, PROPIN, ORCON); production constructor refuses to disable (AC-4)' },
+  { area: 'Classification', detail: 'Five levels (UNCLASSIFIED → TS) plus CUI designations (NOFORN, IMCON, PROPIN, ORCON); constructor refuses by design to disable (AC-4)' },
   { area: 'Spillage detection', detail: 'Unicode normalization, lookalike-character detection, entropy-based secret detection (>4.5 bits), fuzzy redaction (IR-9)' },
   { area: 'Secure delete', detail: 'DoD 5220.22-M three-pass overwrite (0x00 / 0xFF / random) on sensitive files (MP-6)' },
-  { area: 'MFA', detail: 'Default-on for IL5; bcrypt cost 12; 12-character minimum password; rate limiter 5 attempts / 5 min (IA-2(1))' },
+  { area: 'MFA', detail: 'Default-on; bcrypt cost 12; 12-character minimum password; rate limiter 5 attempts / 5 min (IA-2(1))' },
   { area: 'Sandbox network', detail: 'Code-interpreter sandbox network policy by classification: UNCLASSIFIED → bridge, CUI → none, SECRET / TS → denied; fail-closed on unknown (SC-7, AC-4)' },
   { area: 'Test surface', detail: '3,363 test functions, 18 fuzz tests in the security package alone, classification-routing fuzz harness gated against bypass' },
 ];
@@ -208,7 +208,7 @@ const complianceControls = [
         <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Featured program</p>
         <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">DroneBane — three tiers, one kill chain</h2>
         <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          A counter-UAS product family covering the entire engagement workflow: a passive Remote-ID app on the operator's phone (Watch), a commercial sensor-fusion + MAVLink C2 platform for force protection (Pro), and a defense-grade ATAK plugin with 16-point safety interlocks and on-device DRL guidance (Mobile). 8 USPTO provisionals across the family. Anduril Lattice integration prepped.
+          A counter-UAS product family covering the entire engagement workflow: a passive Remote-ID app on the operator's phone (Watch), a commercial sensor-fusion + MAVLink C2 platform for force protection (Pro), and a ATAK plugin designed for defense use with 16-point safety interlocks and on-device DRL guidance (Mobile). 8 USPTO provisionals across the family. Anduril Lattice integration prepped.
         </p>
       </div>
 

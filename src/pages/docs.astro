@@ -32,7 +32,7 @@ const rollingMemoryEndpoints = [
 ];
 
 const configSections = [
-  { key: '[routing]', fields: 'default_mode, max_tier, paranoid_mode, offline_mode', description: 'Controls how requests are routed between local models and optional cloud fallback. Set offline_mode = true to guarantee zero external traffic. paranoid_mode enables full request/response auditing.' },
+  { key: '[routing]', fields: 'default_mode, max_tier, paranoid_mode, offline_mode', description: 'Controls how requests are routed between local models and optional cloud fallback. Set offline_mode = true to enforce zero external traffic. paranoid_mode enables full request/response auditing.' },
   { key: '[local]', fields: 'ollama_url, ollama_model', description: 'Points to your local inference backend. Supports Ollama, llama.cpp (OpenAI-compatible server), and vLLM. The model name here is what the router resolves when a request arrives.' },
   { key: '[cloud]', fields: 'openrouter_key, default_model', description: 'Optional cloud fallback for when local inference is unavailable or the request exceeds local model capability. Disabled by default. Only activates if explicitly configured and offline_mode is false.' },
   { key: '[security]', fields: 'classification, audit_enabled, session_timeout, mfa', description: 'Set the baseline classification level (UNCLASSIFIED, CUI, SECRET). When audit_enabled is true, every request and response is logged to an append-only audit trail. MFA gates the desktop app and API key management.' },
@@ -465,7 +465,7 @@ const agentConcepts = [
 
       <div class="mt-10 text-center reveal reveal-delay-4">
         <a href="/products" class="btn-outline text-xs uppercase">
-          See production agents &rarr;
+          See deployed agents &rarr;
         </a>
       </div>
     </div>
@@ -515,7 +515,7 @@ const agentConcepts = [
             </span>
             <h3 class="text-base font-semibold tracking-tight mb-3">Enterprise</h3>
             <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
-              Dedicated technical support. On-premise installation assistance. Custom SLA available. Multi-node and classified environment expertise.
+              Dedicated technical support. On-premise installation assistance. Custom SLA available. Multi-node and classified environment design experience.
             </p>
           </div>
         </div>

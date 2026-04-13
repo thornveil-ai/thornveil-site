@@ -107,7 +107,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               { label: 'Real prompt-injection blocking, not vibes', detail: 'Multi-signal injection scanner blocks at confidence ≥ 0.7 before the request reaches the model. SmoothLLM perturbation + supermajority vote layered on top. Negative-selection AIS detectors learn what your traffic normally looks like and flag what does not.' },
               { label: 'Hallucination probe with measured weights', detail: '6 weighted features: 4-gram repetition (0.25), entity consistency (0.20), numeric density (0.10), hedge density (-0.15), entropy variance (0.25), confidence gap (0.20). Negative hedge weight is intentional — hedging is a signal of calibration, not failure.' },
               { label: 'Pure Go, ships as one binary', detail: 'Reimplements PAVA isotonic regression, UCB1 contextual bandit, cosine vector store, discrete-event simulator, MDL compressor, and EvoPrompt crossover from primary sources. No Python runtime, no CGO, no transitive C library surface. Drops onto an air-gapped system without an installer.' },
-              { label: 'Hardened in production', detail: 'Constant-time bearer auth (subtle.ConstantTimeCompare), admission semaphore, in-flight WaitGroup tracked, async PostWorker drained before persistence, HMAC-chained audit log, Prometheus metrics. Fuzz tests across the safety surface, race tests across all 28 packages.' },
+              { label: 'Hardened and fuzz-tested', detail: 'Constant-time bearer auth (subtle.ConstantTimeCompare), admission semaphore, in-flight WaitGroup tracked, async PostWorker drained before persistence, HMAC-chained audit log, Prometheus metrics. Fuzz tests across the safety surface, race tests across all 28 packages.' },
             ].map((item) => (
               <div class="rounded-lg p-4" style="border: 1px solid var(--color-border-subtle);">
                 <div class="text-sm font-semibold mb-1">{item.label}</div>
@@ -228,7 +228,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
 
       <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        <p>Tell us what you need your AI to do, in plain English. You get back a production-ready agent — with the right tools, the right knowledge base, the right guardrails, and an evaluation rubric your team can audit. Every agent goes through adversarial stress tests and a human approval gate before it ever touches your users.</p>
+        <p>Tell us what you need your AI to do, in plain English. You get back a tested agent — with the right tools, the right knowledge base, the right guardrails, and an evaluation rubric your team can audit. Every agent goes through adversarial stress tests and a human approval gate before it ever touches your users.</p>
         <p>The result: a bespoke AI specialist tuned to your workflow, delivered in days instead of months of prompt engineering. And every agent keeps getting better from real usage.</p>
       </div>
 

@@ -28,7 +28,7 @@ const tiers = [
     name: 'DroneBane Mobile',
     role: 'Authorize',
     audience: 'DoD / IC / coalition counter-UAS units',
-    description: 'Mission-critical C2 for kinetic counter-UAS interceptors, fully integrated as a native ATAK plugin. Full F2T2EA kill chain with 16-point safety interlocks, multi-level authorization, on-device DRL guidance, and audit-grade engagement logging. Anduril Lattice integration prepped for COP interoperability. Built to DoD Directive 3000.09 alignment.',
+    description: 'C2 designed for kinetic counter-UAS interceptors, fully integrated as a native ATAK plugin. Full F2T2EA kill chain with 16-point safety interlocks, multi-level authorization, on-device DRL guidance, and audit-grade engagement logging. Anduril Lattice integration prepped for COP interoperability. Design aligned with DoD Directive 3000.09.',
     stack: 'Native Java, ATAK SDK 4.6, MAVLink, ONNX Runtime (DRL), SQLCipher, FIPS 140-2',
     metric: '83K LOC',
     metricLabel: 'Java, 150 classes',
@@ -76,7 +76,7 @@ const compliance = [
 
 <BaseLayout
   title="DroneBane | Thornveil"
-  description="DroneBane is a three-tier counter-UAS product family: Watch (passive detection), Pro (commercial C2), and Mobile (defense-grade ATAK plugin with kinetic engagement)."
+  description="DroneBane is a three-tier counter-UAS product family: Watch (passive detection), Pro (commercial C2), and Mobile (ATAK plugin designed for defense use with kinetic engagement)."
 >
   <!-- HERO -->
   <section class="section-padding pt-32 md:pt-40">
@@ -92,7 +92,7 @@ const compliance = [
           { value: '8', label: 'USPTO provisionals' },
           { value: '129K', label: 'Lines (Java + Dart)' },
           { value: '273', label: 'Total classes/files' },
-          { value: 'DoD 3000.09', label: 'Compliance aligned' },
+          { value: 'DoD 3000.09', label: 'Design alignment' },
         ].map((m) => (
           <div class="rounded-lg p-3 text-center" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
             <div class="font-mono text-base font-bold" style="color: var(--color-accent);">{m.value}</div>
@@ -184,7 +184,7 @@ const compliance = [
         <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Defense in depth</p>
         <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">16-point safety interlock system</h2>
         <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          All sixteen interlocks must pass before weapon release is authorized. They cover the weapon system, target validation, operator authorization, vehicle state, and the operational envelope. Production code refuses to instantiate the interlock checker with checks disabled — the only way to bypass an interlock is in unit tests, gated by a separate constructor.
+          All sixteen interlocks must pass before weapon release is authorized. They cover the weapon system, target validation, operator authorization, vehicle state, and the operational envelope. Source code refuses to instantiate the interlock checker with checks disabled — the only way to bypass an interlock is in unit tests, gated by a separate constructor.
         </p>
       </div>
 
@@ -246,7 +246,7 @@ const compliance = [
               A trained deep reinforcement learning policy runs on-device on a companion computer (Raspberry Pi 5 or Jetson Orin Nano) at 3 Hz via ONNX Runtime. The 34-dimensional observation vector includes zero-effort-miss, time-to-go, closing velocity, off-boresight angle, and predicted kill probability.
             </p>
             <p>
-              A three-stage fallback chain ensures graceful degradation: DRL policy → classical proportional navigation → return-to-launch / hover. Human override is always available via the RC transmitter. Multi-target priority queuing supports P1/P2/P3 prioritization with a strict single-engagement safety constraint.
+              A three-stage fallback chain ensures graceful degradation: DRL policy → classical proportional navigation → return-to-launch / hover. Human override is available at all stages via the RC transmitter. Multi-target priority queuing supports P1/P2/P3 prioritization with a strict single-engagement safety constraint.
             </p>
           </div>
         </div>
@@ -259,7 +259,7 @@ const compliance = [
                 { stage: '2', name: 'DRL Policy', detail: 'Trained policy via ONNX Runtime, 3 Hz on Pi 5 / Orin Nano' },
                 { stage: '3', name: 'PN Fallback', detail: 'Classical proportional navigation if DRL inference fails' },
                 { stage: '4', name: 'RTL / Hover', detail: 'Final fallback if both DRL and PN unavailable' },
-                { stage: '5', name: 'Human Override', detail: 'RC transmitter override always available, regardless of stage' },
+                { stage: '5', name: 'Human Override', detail: 'RC transmitter override available at all stages, regardless of stage' },
               ].map((s) => (
                 <div class="flex items-start gap-4">
                   <span class="font-mono text-sm font-bold flex-shrink-0 w-4" style="color: var(--color-accent);">{s.stage}</span>
@@ -334,7 +334,7 @@ const compliance = [
         <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Development status</p>
         <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">TRL 3</h2>
         <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          DroneBane Mobile is operational today. Bench power-on through first hover is complete. Every C2 command — ARM, DISARM, six flight modes, takeoff, land, RTL, guided waypoints, manual control at 20 Hz — has been verified on live hardware with command acknowledgment confirmed across all modes. 53 of 55 SITL test cases pass.
+          DroneBane Mobile is in active development and lab testing. Bench power-on through first hover is complete. Every C2 command — ARM, DISARM, six flight modes, takeoff, land, RTL, guided waypoints, manual control at 20 Hz — has been verified on live hardware with command acknowledgment confirmed across all modes. 53 of 55 SITL test cases pass.
         </p>
       </div>
 
