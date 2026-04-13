@@ -32,7 +32,7 @@ const tiers = [
     stack: 'Native Java, ATAK SDK 4.6, MAVLink, ONNX Runtime (DRL), SQLCipher, FIPS 140-2',
     metric: '83K LOC',
     metricLabel: 'Java, 150 classes',
-    status: 'TRL 4 — lab-validated, first hover achieved',
+    status: 'TRL 3',
     statusColor: '#C9A84E',
   },
 ];
@@ -310,9 +310,9 @@ const compliance = [
     <div class="container-max mx-auto">
       <div class="mb-10">
         <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Compliance</p>
-        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Engineered to DoD Directive 3000.09</h2>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Security engineering targets</h2>
         <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          DroneBane Mobile is a weapons-control system, and it's built like one. FIPS-validated cryptography, certificate-pinned mutual TLS, encrypted engagement chain-of-custody, multi-tier RBAC, and complete audit trails. Aligned with DoD Directive 3000.09 from the first commit.
+          The features below are implemented in source but no formal security assessment, third-party audit, or accreditation has been completed. FIPS-validated cryptographic module (not product-level validation), certificate-pinned mutual TLS, encrypted engagement chain-of-custody, multi-tier RBAC, and audit trails. Design aligned with DoD Directive 3000.09.
         </p>
       </div>
 
@@ -332,7 +332,7 @@ const compliance = [
     <div class="container-max mx-auto max-w-4xl">
       <div class="mb-10">
         <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Development status</p>
-        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">TRL 4 — lab-validated, first hover achieved</h2>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">TRL 3</h2>
         <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
           DroneBane Mobile is operational today. Bench power-on through first hover is complete. Every C2 command — ARM, DISARM, six flight modes, takeoff, land, RTL, guided waypoints, manual control at 20 Hz — has been verified on live hardware with command acknowledgment confirmed across all modes. 53 of 55 SITL test cases pass.
         </p>
