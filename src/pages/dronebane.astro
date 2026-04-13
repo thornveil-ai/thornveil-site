@@ -32,7 +32,7 @@ const tiers = [
     stack: 'Native Java, ATAK SDK 4.6, MAVLink, ONNX Runtime (DRL), SQLCipher, FIPS 140-2',
     metric: '83K LOC',
     metricLabel: 'Java, 150 classes',
-    status: 'MS5 of 10 — flight-tested',
+    status: 'TRL 4 — lab-validated, first hover achieved',
     statusColor: '#C9A84E',
   },
 ];
@@ -65,7 +65,7 @@ const failsafes = [
 ];
 
 const compliance = [
-  { area: 'Cryptography', detail: 'FIPS 140-2 validated via Bouncy Castle BC-FJA (CMVP certificate #3514)' },
+  { area: 'Cryptography', detail: 'FIPS 140-2 validated cryptographic module (Bouncy Castle BC-FJA, CMVP #3514) — product-level FIPS validation not yet initiated' },
   { area: 'Engagement DB', detail: 'SQLCipher AES-256 encrypted engagement chain-of-custody database' },
   { area: 'TAK Auth', detail: 'Mutual TLS, certificate pinning, hardware-backed Android KeyStore enrollment' },
   { area: 'Audit', detail: 'JSON-Lines audit log with command tracking, operator ID, ack status, BDA outcome' },
@@ -92,7 +92,7 @@ const compliance = [
           { value: '8', label: 'USPTO provisionals' },
           { value: '129K', label: 'Lines (Java + Dart)' },
           { value: '273', label: 'Total classes/files' },
-          { value: 'IL5', label: 'Compliance baseline' },
+          { value: 'DoD 3000.09', label: 'Compliance aligned' },
         ].map((m) => (
           <div class="rounded-lg p-3 text-center" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
             <div class="font-mono text-base font-bold" style="color: var(--color-accent);">{m.value}</div>
@@ -310,7 +310,7 @@ const compliance = [
     <div class="container-max mx-auto">
       <div class="mb-10">
         <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Compliance</p>
-        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Engineered for IL5 deployment</h2>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Engineered to DoD Directive 3000.09</h2>
         <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
           DroneBane Mobile is a weapons-control system, and it's built like one. FIPS-validated cryptography, certificate-pinned mutual TLS, encrypted engagement chain-of-custody, multi-tier RBAC, and complete audit trails. Aligned with DoD Directive 3000.09 from the first commit.
         </p>
@@ -332,7 +332,7 @@ const compliance = [
     <div class="container-max mx-auto max-w-4xl">
       <div class="mb-10">
         <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Development status</p>
-        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Milestone 5 of 10 — flight-tested</h2>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">TRL 4 — lab-validated, first hover achieved</h2>
         <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
           DroneBane Mobile is operational today. Bench power-on through first hover is complete. Every C2 command — ARM, DISARM, six flight modes, takeoff, land, RTL, guided waypoints, manual control at 20 Hz — has been verified on live hardware with command acknowledgment confirmed across all modes. 53 of 55 SITL test cases pass.
         </p>
@@ -369,7 +369,7 @@ const compliance = [
     <div class="relative container-max mx-auto max-w-2xl text-center">
       <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">Want to put DroneBane on your perimeter?</h2>
       <p class="mt-4 text-sm max-w-md mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        Watch is available for direct sales. Pro and Mobile are licensed by application — defense / IC / coalition only for the Mobile tier.
+        Watch is available upon request. Pro and Mobile are licensed by application — defense / IC / coalition only for the Mobile tier.
       </p>
       <div class="mt-8 reveal reveal-delay-2">
         <a href="mailto:jesse@thornveil.ai?subject=DroneBane — Inquiry" class="btn-primary">

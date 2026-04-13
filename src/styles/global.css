@@ -63,11 +63,11 @@
     /* scroll-behavior handled by Lenis */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scrollbar-width: none;
+    /* scrollbar-width: auto; */
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 
-  html::-webkit-scrollbar { display: none; }
+  /* html::-webkit-scrollbar - default browser scrollbar */
 
   body {
     background-color: var(--color-surface);

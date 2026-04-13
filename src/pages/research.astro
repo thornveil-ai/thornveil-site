@@ -54,15 +54,15 @@ const domainColors: Record<string, string> = {
 ---
 
 <BaseLayout
-  title="Evidence | Thornveil"
-  description="Every claim we make about RigRun, Pyros, and Mycelium is backed by working code, measured benchmarks, and published research. Here's the evidence."
+  title="Research | Thornveil"
+  description="Every claim Thornveil makes about RigRun, Pyros, and Mycelium is backed by working code, measured benchmarks, and published research. Here's the evidence."
 >
   <section class="section-padding pt-32 md:pt-40">
     <div class="container-max mx-auto">
       <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Evidence</p>
-      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">How we prove it works</h1>
+      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">How Thornveil proves it works</h1>
       <p class="text-base mt-4 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Every claim we make about RigRun, Pyros, and Mycelium is backed by working code, measured benchmarks, and published research. Here's the evidence.
+        Every claim Thornveil makes about RigRun, Pyros, and Mycelium is backed by working code, measured benchmarks, and published research. Here's the evidence.
       </p>
     </div>
   </section>
@@ -70,9 +70,9 @@ const domainColors: Record<string, string> = {
   <!-- PAPERS -->
   <section class="section-padding pt-12" style="background: var(--color-surface-secondary);">
     <div class="container-max mx-auto">
-      <h2 class="text-fluid-xl font-semibold tracking-tight mb-2 reveal">Published research</h2>
+      <h2 class="text-fluid-xl font-semibold tracking-tight mb-2 reveal">Research papers</h2>
       <p class="text-sm mb-8 max-w-2xl reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        Peer-reviewable papers documenting the algorithms that make the product work. If a vendor can't show the math, you're buying marketing.
+        Peer-reviewable papers documenting the algorithms behind Thornveil's products.
       </p>
       <div class="space-y-3">
         {papers.map((p, i) => (
@@ -103,7 +103,7 @@ const domainColors: Record<string, string> = {
         <div>
           <h2 class="text-fluid-xl font-semibold tracking-tight reveal">Protected IP you license, not rebuild</h2>
           <p class="text-sm mt-2 max-w-2xl reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-            When you buy Thornveil, you get the benefit of filed, defensible methods — not a wrapper around someone else's API. Full U.S. provisional applications, assigned to Thornveil LLC, available for license.
+            When you buy Thornveil, you get the benefit of patent-pending methods — not a wrapper around someone else's API. Full U.S. provisional applications, assigned to Thornveil LLC, available for license. All 27 provisionals must be converted to non-provisional within 12 months of filing.
           </p>
         </div>
         <div class="flex flex-wrap gap-2 reveal reveal-delay-2">
@@ -133,9 +133,9 @@ const domainColors: Record<string, string> = {
 
       <div class="grid grid-cols-3 gap-6 mt-12 reveal reveal-delay-3">
         {[
-          { value: '27', label: 'Filed methods you can license' },
+          { value: '27', label: 'Patent-pending methods' },
           { value: '10', label: 'Patent families' },
-          { value: '5', label: 'Papers with reproducible math' },
+          { value: '5', label: 'Research papers' },
         ].map((m) => (
           <div class="text-center">
             <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">{m.value}</div>

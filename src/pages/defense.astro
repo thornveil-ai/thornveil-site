@@ -5,31 +5,31 @@ const programs = [
   {
     name: 'DroneBane',
     subtitle: 'Three-Tier Counter-UAS Product Family',
-    description: 'A three-tier counter-UAS family covering the full kill chain. DroneBane Watch is a passive Remote-ID + sensor-fusion app for force protection and base security. DroneBane Pro adds MAVLink C2, fleet management, and autonomous patrol for force protection and FOB defense. DroneBane Mobile is the defense-grade ATAK plugin: 16-point safety interlocks, F2T2EA kill chain, on-device DRL guidance, FIPS 140-2 cryptography, Anduril Lattice integration prepped. See the full deep-dive on the dedicated DroneBane page.',
+    description: 'A three-tier counter-UAS family covering the full kill chain. DroneBane Watch is a passive Remote-ID + sensor-fusion app for force protection and base security. DroneBane Pro adds MAVLink C2, fleet management, and autonomous patrol (roadmap) for force protection and FOB defense. DroneBane Mobile is the defense-grade ATAK plugin: 16-point safety interlocks, F2T2EA kill chain, on-device DRL guidance, FIPS 140-2 cryptography, Anduril Lattice integration prepped. See the full deep-dive on the dedicated DroneBane page.',
     patents: 8,
     patentNums: '001, 006, 007, 008, 009, 011, 014, 017',
-    trl: 'MS5 of 10',
+    trl: 'TRL 4 (Lab-Validated)',
     tags: ['Autonomous Intercept', 'TAK-Native', 'Lattice-Ready', 'MAVLink C2', 'Deep RL', '16-Point Interlock'],
     href: '/dronebane',
     featured: true,
   },
   {
     name: 'RigRun',
-    subtitle: 'Sovereign AI Inference Stack — IL5 / NIST 800-53 Engineered',
-    description: 'Local-first AI infrastructure built to military-grade compliance. Classification-gated routing across UNCLASSIFIED → TS with anti-bypass spillage detection, FIPS 140-3 cryptographic controls with runtime self-test, CAC/PIV client authentication with EDIPI extraction, HMAC-chained tamper-evident audit logging that refuses to start without its key, DoD 5220.22-M three-pass secure delete, and a hand-built Docker sandbox with classification-aware network policy. 51,000 lines of security code alone, 3,363 test functions, 18 fuzz tests in the security package.',
+    subtitle: 'Local-First AI Inference Stack — IL5 / NIST 800-53 Engineered',
+    description: 'Local-first AI infrastructure built to military-grade compliance. Classification-gated routing across UNCLASSIFIED → TS with anti-bypass spillage detection, FIPS 140-3 cryptographic controls with runtime self-test, CAC/PIV client authentication with EDIPI extraction, HMAC-chained tamper-evident audit logging that refuses to start without its key, DoD 5220.22-M three-pass secure delete, and a purpose-built Docker sandbox with classification-aware network policy. 51,000 lines of security code alone, 3,363 test functions, 18 fuzz tests in the security package.',
     patents: 8,
     patentNums: '002, 004, 005, 010, 019, 020, 021, 023',
-    trl: 'TRL 4 (Production)',
+    trl: 'TRL 7 (Operational)',
     tags: ['NIST 800-53', 'IL5', 'FIPS 140-3', 'CAC/PKI', 'Classification Routing', 'Sandbox'],
     featured: true,
   },
   {
     name: 'HawkStack',
     subtitle: 'Sub-2M-Parameter Detection Across 6 Domains',
-    description: 'Topology-driven model architecture that predicts the performance ceiling of a dataset before training, then builds models under 2M parameters that beat 30–60M-parameter SOTA competitors. Validated across thermal drone detection (ThermalHawk, 82.95% mAP, 1.77MB INT8), IRST / missile warning (SentryHawk, 86.7% IoU), sonar target detection (DepthHawk, 88.0% mAP), ECG arrhythmia classification (CardioHawk), PCB defect inspection (ForgeHawk, 97.6% mAP), and wildlife camera trap ID (WildHawk). One architecture, six domains, edge-deployable on $5 microcontrollers.',
+    description: 'Topology-driven model architecture that predicts the performance ceiling of a dataset before training, then builds models under 2M parameters that beat 30–60M-parameter SOTA competitors. Validated across thermal drone detection (ThermalHawk, 82.95% mAP, 1.77MB INT8), IRST / missile warning (SentryHawk, 92.29% IoU), sonar target detection (DepthHawk, 88.0% mAP), ECG arrhythmia classification (CardioHawk), PCB defect inspection (ForgeHawk, 97.6% mAP), and wildlife camera trap ID (WildHawk). One architecture, six domains, edge-deployable on microcontrollers and SBCs (Jetson, Kria, COTS-ruggedized).',
     patents: 2,
     patentNums: '024, 026',
-    trl: 'TRL 4',
+    trl: 'TRL 5 (Validated)',
     tags: ['Computer Vision', 'Thermal IR', 'Sonar', 'Edge Inference', 'Multi-Domain'],
     featured: true,
   },
@@ -39,7 +39,7 @@ const programs = [
     description: 'Standalone 17,000-line Go safety engine that wraps any LLM in a 7-pillar pipeline. Selective-buffer streaming safety proxy intercepts only tool-use blocks for evaluation — zero added latency on text streaming. PID homeostasis controller degrades gracefully under resource contention instead of failing. Drops in front of RigRun, OpenAI, Anthropic, vLLM, llama.cpp, or Ollama. No Python, no CGO, ships as one binary.',
     patents: 2,
     patentNums: '018, 027',
-    trl: 'TRL 4 (Production)',
+    trl: 'TRL 7 (Operational)',
     tags: ['LLM Safety', 'Pure Go', 'Streaming Proxy', 'PID Homeostasis', 'Provider-Agnostic'],
     featured: false,
   },
@@ -56,10 +56,10 @@ const programs = [
   {
     name: 'Meridian',
     subtitle: 'Open-Source Rust Autopilot',
-    description: 'Flight controller autopilot written from scratch in Rust. 47 crates covering attitude control, navigation, sensor fusion, and mission planning. Open source. Distilled from ArduPilot with full parity verified by an independent 20-expert review panel.',
+    description: 'Flight controller autopilot written from scratch in Rust. 47 crates covering attitude control, navigation, sensor fusion, and mission planning. Open source. Distilled from ArduPilot with full parity verified through systematic functional testing.',
     patents: 0,
     patentNums: '',
-    trl: 'TRL 4 (Validated)',
+    trl: 'TRL 5 (Validated)',
     tags: ['Autopilot', 'Rust', 'Sensor Fusion', 'Flight Control', 'Open Source'],
     featured: false,
   },
@@ -69,7 +69,7 @@ const programs = [
     description: 'Real-time contamination zone estimation from heterogeneous CBRN sensor networks. Spatial grid-accelerated fusion with per-sensor anomaly detection. ISA 2.0 canonical data model with embedded IDLH tables and CAIRN-extended Cursor-on-Target XML namespace.',
     patents: 2,
     patentNums: '015, 016',
-    trl: 'Phase I Proposal',
+    trl: 'TRL 3 (Proof of Concept)',
     tags: ['Sensor Fusion', 'Chemical Defense', 'TAK Integration', 'ISA 2.0'],
     href: 'https://jeranaias.github.io/CAIRN/',
     featured: false,
@@ -80,7 +80,7 @@ const programs = [
     description: '14-step pipeline that designs, adversarially hardens, and deploys domain-expert AI agents from plain-English specifications. Requirements decomposition, multi-pass prompt synthesis with independent critique, automatic tool selection from a typed registry, knowledge base assembly, adversarial stress testing across 5 probe types, and a human approval quality gate. Six production agents currently deployed including the SBIR Proposal Writer used for federal grant work.',
     patents: 1,
     patentNums: '025',
-    trl: 'TRL 4 (Production)',
+    trl: 'TRL 7 (Operational)',
     tags: ['Agent Manufacturing', 'Adversarial Hardening', 'DPO Pipeline', 'Tool Composition'],
     featured: false,
   },
@@ -101,7 +101,7 @@ const programs = [
     description: 'Post-processing system for Arabic text diacritization. Contrastive dual-head neural corrector with adaptive multi-zone confidence thresholding. Hierarchical triple-key error-report disambiguation. 0.68% diacritization error rate, 6.7MB model, 62× smaller than SOTA at comparable accuracy.',
     patents: 2,
     patentNums: '012, 013',
-    trl: 'Complete',
+    trl: 'TRL 6 (Demonstrated)',
     tags: ['Diacritization', 'Neural Correction', 'Arabic', 'Low-Resource', '0.68% DER'],
     featured: false,
   },
@@ -111,7 +111,7 @@ const programs = [
     description: 'Differentiable Contrast Limited Adaptive Histogram Equalization with backpropagation-optimized parameters. End-to-end trainable image enhancement module that plugs into any detection pipeline (including HawkStack) for degraded visual environments.',
     patents: 1,
     patentNums: '003',
-    trl: 'Research',
+    trl: 'TRL 3 (Proof of Concept)',
     tags: ['Image Enhancement', 'Differentiable', 'End-to-End'],
     featured: false,
   },
@@ -121,7 +121,7 @@ const programs = [
     description: 'Multi-modal counter-UAS situational awareness platform combining EO/IR/RF/acoustic sensor inputs through Dempster-Shafer evidence fusion. 8-layer detection-classification-tracking-prediction-engagement stack designed to integrate DroneBane, ThermalHawk, and Mycelium into a unified C-UAS picture.',
     patents: 0,
     patentNums: '',
-    trl: 'Design',
+    trl: 'TRL 2 (Concept)',
     tags: ['C-UAS', 'Sensor Fusion', 'Dempster-Shafer', 'Multi-Modal'],
     featured: false,
   },
@@ -141,7 +141,7 @@ const programs = [
 const complianceControls = [
   { area: 'Audit', detail: 'HMAC-chained tamper-evident JSONL audit log; server refuses to start without the audit key (AU-9)' },
   { area: 'PKI / CAC', detail: 'Trusted CA chain, CRL checking, cert pinning, EDIPI extraction from DoD CAC certificates (IA-2(12), SC-17)' },
-  { area: 'FIPS', detail: 'FIPS 140-3 build flag with runtime self-test on AES-256-GCM; refuses to boot if self-test fails (SC-13)' },
+  { area: 'FIPS', detail: 'FIPS 140-3 build mode with runtime self-test via CMVP-validated module (product-level validation not yet initiated) (SC-13)' },
   { area: 'Classification', detail: 'Five levels (UNCLASSIFIED → TS) plus CUI designations (NOFORN, IMCON, PROPIN, ORCON); production constructor refuses to disable (AC-4)' },
   { area: 'Spillage detection', detail: 'Unicode normalization, lookalike-character detection, entropy-based secret detection (>4.5 bits), fuzzy redaction (IR-9)' },
   { area: 'Secure delete', detail: 'DoD 5220.22-M three-pass overwrite (0x00 / 0xFF / random) on sensitive files (MP-6)' },
@@ -153,14 +153,14 @@ const complianceControls = [
 
 <BaseLayout
   title="Defense | Thornveil"
-  description="Sovereign AI infrastructure (RigRun), pure-Go LLM safety engine (Pyros), distributed AI mesh (Mycelium), counter-UAS interceptors, sub-2M-parameter detection, CBRN sensor fusion, acoustic comms, Arabic NLP. 27 provisional patent applications across 10 patent families."
+  description="Local-first AI infrastructure (RigRun), pure-Go LLM safety engine (Pyros), distributed AI mesh (Mycelium), counter-UAS interceptors, sub-2M-parameter detection, CBRN sensor fusion, acoustic comms, Arabic NLP. 27 provisional patent applications across 10 patent families."
 >
   <section class="section-padding pt-32 md:pt-40">
     <div class="container-max mx-auto">
       <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Defense</p>
       <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Defense technology</h1>
       <p class="text-base mt-4 max-w-3xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Sovereign AI infrastructure engineered to IL5 / NIST 800-53. A standalone pure-Go safety engine for any LLM. A distributed AI mesh for contested environments. Counter-UAS interceptors with autonomous engagement guidance. Sub-2M-parameter detection across six domains. Open-source Rust autopilot. CBRN sensor fusion. Arabic NLP. <strong style="color: var(--color-text-primary);">27 USPTO provisional patent applications across 10 patent families</strong> — all filed March 2026, sole inventor, sole assignee, micro entity, no government funding.
+        Local-first AI infrastructure engineered to IL5 / NIST 800-53. A standalone pure-Go safety engine for any LLM. A distributed AI mesh for contested environments. Counter-UAS interceptors with autonomous engagement guidance. Sub-2M-parameter detection across six domains. Open-source Rust autopilot. CBRN sensor fusion. Arabic NLP. <strong style="color: var(--color-text-primary);">27 USPTO provisional patent applications across 10 patent families</strong> — all filed March 2026, sole inventor, sole assignee, no government funding.
       </p>
 
       <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl reveal reveal-delay-3">
@@ -216,7 +216,7 @@ const complianceControls = [
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           {[
             { name: 'Watch', role: 'Detect', detail: 'Passive Remote-ID, multi-sensor fusion, FAA reporting', color: '#10b981' },
-            { name: 'Pro', role: 'Engage', detail: 'MAVLink C2, fleet management, autonomous patrol', color: '#f59e0b' },
+            { name: 'Pro', role: 'Engage (Roadmap)', detail: 'MAVLink C2, fleet management, autonomous patrol', color: '#f59e0b' },
             { name: 'Mobile', role: 'Authorize', detail: 'ATAK plugin, 16-point interlocks, F2T2EA, DRL guidance', color: '#C9A84E' },
           ].map((tier) => (
             <div class="rounded-lg p-4" style="background: var(--color-surface); border: 1px solid var(--color-border-subtle);">
@@ -235,7 +235,7 @@ const complianceControls = [
           {[
             { value: '16', label: 'Safety interlocks' },
             { value: 'F2T2EA', label: '7-phase kill chain' },
-            { value: 'FIPS', label: '140-2 #3514' },
+            { value: 'FIPS Module', label: 'CMVP #3514' },
             { value: 'Lattice', label: 'Integration prepped' },
           ].map((m) => (
             <div class="rounded-lg p-3 text-center" style="background: var(--color-surface); border: 1px solid var(--color-border-subtle);">

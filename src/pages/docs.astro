@@ -36,7 +36,7 @@ const configSections = [
   { key: '[local]', fields: 'ollama_url, ollama_model', description: 'Points to your local inference backend. Supports Ollama, llama.cpp (OpenAI-compatible server), and vLLM. The model name here is what the router resolves when a request arrives.' },
   { key: '[cloud]', fields: 'openrouter_key, default_model', description: 'Optional cloud fallback for when local inference is unavailable or the request exceeds local model capability. Disabled by default. Only activates if explicitly configured and offline_mode is false.' },
   { key: '[security]', fields: 'classification, audit_enabled, session_timeout, mfa', description: 'Set the baseline classification level (UNCLASSIFIED, CUI, SECRET). When audit_enabled is true, every request and response is logged to an append-only audit trail. MFA gates the desktop app and API key management.' },
-  { key: '[training]', fields: 'enabled, schedule, methods, scoring', description: 'Controls the self-improving overnight pipeline. Schedule accepts cron syntax. 11 training methods supported (DPO, SimPO, ORPO, KTO, CPO, GRPO, IPO, SPPO, RPO, AERO, iterative DPO-VP) plus ZO2 Ultimate (zeroth-order optimization with 12 advanced techniques: sparse MeZO, HiZOO Hessian, curriculum, cosine epsilon annealing, cross-night EMA, etc.). Pairs are dual-sourced from rolling-memory and legacy sessions, scored by a Skywork reward model + a sandboxed CodeRL+ execution scorer + the 122B itself as judge.' },
+  { key: '[training]', fields: 'enabled, schedule, methods, scoring', description: 'Controls the self-improving overnight pipeline. Schedule accepts cron syntax. 11 training methods supported (DPO, SimPO, ORPO, KTO, CPO, GRPO, IPO, SPPO, RPO, AERO, iterative DPO-VP) plus ZO2 Ultimate (zeroth-order optimization with 12 advanced techniques: sparse MeZO, HiZOO Hessian, curriculum, cosine epsilon annealing, cross-night EMA, etc.). Pairs are dual-sourced from rolling-memory and legacy sessions, scored by a Skywork reward model (runs locally, no external service dependency) + a sandboxed CodeRL+ execution scorer + the 122B itself as judge.' },
 ];
 
 const pyrosPillars = [
@@ -106,7 +106,7 @@ const agentConcepts = [
             <div class="space-y-3 text-sm leading-relaxed" style="color: var(--color-text-secondary);">
               <div>
                 <span class="text-xs font-semibold tracking-wider uppercase block mb-1" style="color: var(--color-text-tertiary);">Minimum (small models)</span>
-                <p>NVIDIA GPU with 24GB+ VRAM, 64GB system RAM, Ubuntu 22.04+ or Windows 11.</p>
+                <p>NVIDIA GPU with 24GB+ VRAM, 64GB system RAM, Ubuntu 22.04+, RHEL 8+ / Rocky Linux 8+, or Windows 11.</p>
               </div>
               <div>
                 <span class="text-xs font-semibold tracking-wider uppercase block mb-1" style="color: var(--color-text-tertiary);">Recommended (122B model + KV compression)</span>
@@ -114,7 +114,6 @@ const agentConcepts = [
               </div>
               <div class="flex flex-wrap gap-1.5 pt-1">
                 <span class="tag">vLLM</span>
-                <span class="tag">SGLang</span>
                 <span class="tag">llama.cpp</span>
                 <span class="tag">Ollama</span>
               </div>
@@ -129,7 +128,7 @@ const agentConcepts = [
               <h3 class="text-base font-semibold tracking-tight">Installation</h3>
             </div>
             <div class="space-y-3 text-sm leading-relaxed" style="color: var(--color-text-secondary);">
-              <p>Single static binary. Download, configure <code class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: var(--color-surface-secondary); color: var(--color-accent);">config.toml</code>, run. No Docker required, no build step.</p>
+              <p>Single static binary. Download, configure <code class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: var(--color-surface-secondary); color: var(--color-accent);">config.toml</code>, run. No Docker required for base deployment. Docker is used optionally for the code-interpreter sandbox.</p>
               <p>Companion apps available: <a href="/products" style="color: var(--color-accent); text-decoration: underline;">RigRun Desktop</a> (Electron, pre-release) and RigRun Mobile (Flutter, not yet released).</p>
               <div class="rounded-lg p-3 mt-2" style="background: var(--color-surface-secondary); border: 1px solid var(--color-border-subtle);">
                 <code class="font-mono text-xs block" style="color: var(--color-text-secondary);">
@@ -423,7 +422,7 @@ const agentConcepts = [
           <div class="font-mono text-[10px] tracking-[0.15em] uppercase mt-2" style="color: var(--color-text-tertiary);">RigRun middleware</div>
         </div>
         <div class="text-center md:border-l" style="border-color: var(--color-border-subtle);">
-          <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">100%</div>
+          <div class="stat-number text-fluid-xl" style="color: var(--color-accent);">≥99%</div>
           <div class="font-mono text-[10px] tracking-[0.15em] uppercase mt-2" style="color: var(--color-text-tertiary);">Adversarial block</div>
         </div>
         <div class="text-center md:border-l" style="border-color: var(--color-border-subtle);">

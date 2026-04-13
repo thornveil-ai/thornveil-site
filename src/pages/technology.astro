@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="How It Works | Thornveil"
-  description="How RigRun, Pyros, Mycelium, and the Agent Factory deliver sovereign AI — unlimited inference on your hardware, a standalone safety perimeter for any LLM, self-healing distributed mesh, and custom agents built in days."
+  description="How RigRun, Pyros, Mycelium, and the Agent Factory deliver local-first AI — unlimited inference on your hardware, a standalone safety perimeter for any LLM, self-healing distributed mesh, and custom agents built in days."
 >
   <!-- HERO -->
   <section class="section-padding pt-32 md:pt-40">
@@ -39,10 +39,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
           <div class="mt-8 space-y-3 reveal reveal-delay-2">
             {[
-              { label: 'Fit more context into the same GPU', detail: "TurboQuant compresses the KV cache 5.2× (paper: ICLR 2026) so you get longer conversations and larger codebases in memory without buying a second GPU. Combined with Rolling Memory v4, effective context becomes unlimited." },
+              { label: 'Fit more context into the same GPU', detail: "TurboQuant compresses the KV cache 5.2× (paper submitted, under review) so you get longer conversations and larger codebases in memory without buying a second GPU. Combined with Rolling Memory v4, effective context becomes unlimited." },
               { label: 'Model learns your workflow overnight', detail: 'ZO2 training pipeline improves the model from your real usage while inference keeps serving. Wake up to a model that knows your codebase better than yesterday. Zero downtime.' },
               { label: 'Safety stack you can defend in an audit', detail: 'Five layers — action gating, learned classifier, trajectory anomaly detection, declarative policy DSL, and classification spillage detection — stop prompt-injection and data exfiltration before they reach the model.' },
-              { label: 'Fast by default, deep when it matters', detail: 'Easy questions run on a 35B model at 184 tok/s. Hard questions escalate to the 122B reviewer automatically. Your users get answers fast; you only pay the big-model cost when it counts.' },
+              { label: 'Fast by default, deep when it matters', detail: 'Cascade routes between the 122B MoE fast-path (17B active parameters at 184 tok/s) and full expert activation (105 tok/s). Single model, dual speed. Your users get answers fast; full expert depth engages only when it matters.' },
             ].map((item) => (
               <div class="rounded-lg p-4" style="border: 1px solid var(--color-border-subtle);">
                 <div class="text-sm font-semibold mb-1">{item.label}</div>
@@ -68,6 +68,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 { label: 'Hardware', value: 'RTX PRO 6000 Blackwell' },
                 { label: 'Per-token fee', value: '$0 — ever' },
                 { label: 'Data egress', value: 'None (fully on-prem)' },
+{ label: 'Architecture', value: 'Model-agnostic. Any GGUF, GPTQ, or AWQ model is hot-swappable.' },
               ].map((s) => (
                 <div class="flex justify-between items-baseline">
                   <span class="text-xs" style="color: var(--color-text-tertiary);">{s.label}</span>
@@ -352,7 +353,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
             <div class="mt-6 rounded-lg p-4" style="border: 1px solid var(--color-border-subtle); background: var(--color-surface-elevated);">
               <p class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">
-                We are transparent about what we have and what we're working toward. No certification is claimed until formally granted.
+                Thornveil is transparent about what is implemented and what is in progress. No certification is claimed until formally granted.
               </p>
             </div>
           </div>
