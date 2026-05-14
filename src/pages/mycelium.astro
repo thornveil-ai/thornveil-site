@@ -1,0 +1,317 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const features = [
+  {
+    title: 'Substitute-on-failure dispatch',
+    body: 'When a worker on the mesh dies mid-token, the coordinator substitutes a zero vector for that worker\'s experts and the model keeps producing. Quality degrades proportionally to loss instead of catastrophically. USPTO provisional THRN-2026-022.',
+    tag: 'Patent-pending',
+  },
+  {
+    title: 'OpenAI-compatible',
+    body: 'Drop-in /v1/chat/completions with SSE streaming. Validated against the EXO Labs OSS client ecosystem and any standard chat client. Plug rigrun-desktop, OpenAI SDK, LangChain, or your own integration in without code changes.',
+    tag: 'Wire-compatible',
+  },
+  {
+    title: 'Cosign-signed releases',
+    body: 'Every binary on the GitHub release page is signed via Sigstore keyless OIDC. Reproducible builds. SBOMs included. RPM, DEB, Windows .exe, macOS .dmg. No vendor lock-in, no supply-chain handwave.',
+    tag: 'Auditable',
+  },
+];
+
+const tiers = [
+  { tier: 'Micro', hardware: 'Raspberry Pi, mobile', capacity: '0.6B – 3B', role: 'Edge routing, simple queries', color: '#3b82f6' },
+  { tier: 'Edge', hardware: 'Laptop (8GB), Jetson', capacity: '3B – 8B', role: 'Token gen, classification', color: '#10b981' },
+  { tier: 'Standard', hardware: 'Desktop GPU (RTX 3060+)', capacity: '8B – 14B', role: 'General inference', color: '#f59e0b' },
+  { tier: 'Power', hardware: 'Workstation (24GB+ VRAM)', capacity: '14B – 70B', role: 'Complex reasoning, expert hosting', color: '#f97316' },
+  { tier: 'Fortress', hardware: 'Multi-GPU server', capacity: '70B+', role: 'Heavy inference, training, aggregation', color: '#ef4444' },
+];
+
+const honestStatus = [
+  { label: 'v1.0.0 tagged', state: 'today', detail: 'Cosign-signed binaries on GitHub. SBOMs. Reproducible build.' },
+  { label: 'Operator UI + ops dashboard', state: 'today', detail: 'Brand-coherent web UIs. 5-minute evaluator stack via Docker.' },
+  { label: 'Substitute-on-failure dispatch', state: 'today', detail: 'Reduction-to-practice recorded 2026-05-08 with HMAC-chained evidence. Replayable.' },
+  { label: 'NIST 800-53 controls mapping', state: 'today', detail: 'Author\'s interpretation. Pending 3PAO review.' },
+  { label: 'Physical Toughbook validation', state: 'roadmap', detail: 'Demonstrated on RTX PRO 6000 with 6 simulated processes; physical bench scheduled when partner hardware lands.' },
+  { label: 'NIST FIPS 140-3 certification', state: 'roadmap', detail: 'FIPS-cipher-list build option exists; module validation not yet pursued.' },
+];
+
+const r2iBullets = [
+  'Exposed APIs — OpenAI-compatible /v1/chat/completions, /healthz, /mesh/status, /audit/verify, /v1/models',
+  'Published documentation — OpenAPI 3.1.0, operator runbook, threat model, NIST 800-53 mapping, STIG-lite',
+  'Vendor-neutral — any OpenAI-compatible client connects without code changes',
+  'Modular Open Systems Architecture — coordinator + workers cleanly separated; pluggable fallback model',
+  'Cryptographically auditable — every chat HMAC-chained into a tamper-evident ledger',
+  'No vendor lock-in — cosign-signed binaries (Linux + Windows + macOS, RPM + DEB + .exe + .dmg)',
+];
+---
+
+<BaseLayout
+  title="Mycelium | Distributed AI Mesh | Thornveil"
+  description="Mycelium is a distributed mixture-of-experts inference engine. Six workers pooling compute for one Gemma-4-26B chat. When half the mesh dies, substitute-on-failure dispatch keeps producing tokens. USPTO provisional THRN-2026-022."
+>
+  <!-- HERO -->
+  <section class="section-padding pt-32 md:pt-40">
+    <div class="container-max mx-auto">
+      <div class="flex items-center gap-3 mb-3 reveal flex-wrap">
+        <span class="font-mono text-[10px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full"
+              style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-accent);">
+          R2I-aligned
+        </span>
+        <span class="font-mono text-[10px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full"
+              style="background: var(--color-surface-elevated); color: var(--color-text-secondary); border: 1px solid var(--color-border);">
+          v1.0.0 · cosign-signed
+        </span>
+        <span class="font-mono text-[10px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full"
+              style="background: var(--color-surface-elevated); color: var(--color-text-secondary); border: 1px solid var(--color-border);">
+          THRN-2026-022
+        </span>
+      </div>
+
+      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">
+        Mycelium
+      </p>
+      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
+        Distributed AI mesh that keeps thinking when the mesh dies.
+      </h1>
+      <p class="text-base mt-4 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+        Six workers pooling compute for one Gemma-4-26B chat. When three of them go dark, the patent-pending substitute-on-failure dispatch keeps producing tokens — quality degrades proportionally to loss instead of catastrophically. Built for tactical edge teams, contested airspace, DDIL Toughbook deployments, and any environment where centralized cloud AI is not viable.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3 reveal reveal-delay-3">
+        <a href="https://github.com/jeranaias/mycelium/releases/latest"
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-all"
+           style="background: var(--color-accent); color: #0B0F1A;">
+          v1.0.0 release →
+        </a>
+        <a href="https://github.com/jeranaias/mycelium#mycelium-evaluator-quickstart"
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-all"
+           style="background: var(--color-surface-elevated); color: var(--color-text-primary); border: 1px solid var(--color-border);">
+          5-min evaluator (Docker) →
+        </a>
+        <a href="mailto:jesse@thornveil.ai?subject=Mycelium%20live%20demo"
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-all"
+           style="background: var(--color-surface-elevated); color: var(--color-text-primary); border: 1px solid var(--color-border);">
+          Request a live demo →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE PILLARS -->
+  <section class="section-padding pt-12" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-fluid-xl font-semibold tracking-tight reveal">Three things that aren't optional</h2>
+        <p class="text-sm mt-3 max-w-2xl mx-auto reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+          Most distributed-inference projects pick one. Mycelium ships all three.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {features.map((f, i) => (
+          <div class={`reveal reveal-delay-${Math.min(i + 1, 4)} rounded-xl p-7`}
+               style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <span class="inline-block font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full mb-4"
+                  style="background: var(--color-accent-muted); color: var(--color-accent);">
+              {f.tag}
+            </span>
+            <h3 class="text-base font-semibold tracking-tight mb-3">{f.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+              {f.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PATENT -->
+  <section class="section-padding">
+    <div class="container-max mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14 items-start">
+        <div class="lg:col-span-2">
+          <p class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent);">
+            The patent
+          </p>
+          <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 mb-5">
+            What survives when half the mesh dies
+          </h2>
+          <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-secondary);">
+            Distributed inference frameworks don't document what happens when an inference worker becomes unreachable mid-token. Most options are catastrophic: hang, error, drop the request. Mycelium's coordinator substitutes a zero vector for the unreachable worker's experts and the dense MLP path keeps producing tokens. Output coherence degrades proportionally to loss.
+          </p>
+          <p class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">
+            Recorded reduction-to-practice 2026-05-08 with HMAC-chained tamper-evident evidence. Not in any chaos-engineering catalog. Not in MITRE's experiment-process methodology. Not in NIST SP 800-204.
+          </p>
+        </div>
+
+        <div class="lg:col-span-3">
+          <div class="rounded-xl p-7" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">
+              USPTO provisional
+            </div>
+            <h3 class="text-lg font-semibold tracking-tight mb-3">THRN-2026-022</h3>
+            <p class="text-xs italic mb-4" style="color: var(--color-text-tertiary);">
+              Distributed Adaptive AI Mesh Network with Predictive Expert Prefetching, Cross-Model Style Normalization, and Behavioral Proof-of-Inference Verification
+            </p>
+            <ul class="space-y-2.5 text-sm" style="color: var(--color-text-secondary);">
+              <li class="flex gap-3"><span style="color: var(--color-accent);">›</span> Substitute-on-failure dispatch on the per-token MoE expert dimension</li>
+              <li class="flex gap-3"><span style="color: var(--color-accent);">›</span> HMAC-chained tamper-evident audit ledger over canonical-JSON</li>
+              <li class="flex gap-3"><span style="color: var(--color-accent);">›</span> Behavioral fingerprinting + Merkle execution traces + economic reputation</li>
+              <li class="flex gap-3"><span style="color: var(--color-accent);">›</span> Non-provisional filing window through 2027-04</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- R2I ALIGNMENT -->
+  <section class="section-padding pt-0" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto">
+      <div class="text-center mb-8">
+        <span class="inline-block font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4"
+              style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-accent);">
+          Right to Integrate
+        </span>
+        <h2 class="text-fluid-xl font-semibold tracking-tight reveal">R2I-compliant by design</h2>
+        <p class="text-sm mt-3 max-w-2xl mx-auto reveal reveal-delay-1 italic" style="color: var(--color-text-secondary);">
+          "If you do not expose your interfaces and your documentation, you will not be able to join the ecosystem."
+        </p>
+        <p class="text-xs mt-1 reveal reveal-delay-1" style="color: var(--color-text-tertiary);">
+          — Secretary of the Army Dan Driscoll, R2I hackathon announcement, 2026-05-05
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto rounded-xl p-7"
+           style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+        <ul class="space-y-3 text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+          {r2iBullets.map((b) => (
+            <li class="flex gap-3"><span style="color: var(--color-accent);">✓</span> <span>{b}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HARDWARE TIERS -->
+  <section class="section-padding">
+    <div class="container-max mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-fluid-xl font-semibold tracking-tight reveal">Auto-tiered to whatever you've got</h2>
+        <p class="text-sm mt-3 max-w-2xl mx-auto reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+          Mycelium detects local hardware on first run and assigns a tier. The mesh aggregates tier capability live; available models grow as peers join.
+        </p>
+      </div>
+
+      <div class="rounded-xl overflow-hidden" style="border: 1px solid var(--color-border);">
+        <table class="w-full text-sm">
+          <thead style="background: var(--color-surface-elevated);">
+            <tr>
+              <th class="text-left px-4 py-3 font-semibold text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">Tier</th>
+              <th class="text-left px-4 py-3 font-semibold text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">Hardware</th>
+              <th class="text-left px-4 py-3 font-semibold text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">Capacity</th>
+              <th class="text-left px-4 py-3 font-semibold text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tiers.map((t) => (
+              <tr style="border-top: 1px solid var(--color-border-subtle);">
+                <td class="px-4 py-3">
+                  <span class="font-mono font-bold" style={`color: ${t.color};`}>{t.tier}</span>
+                </td>
+                <td class="px-4 py-3" style="color: var(--color-text-secondary);">{t.hardware}</td>
+                <td class="px-4 py-3 font-mono text-xs" style="color: var(--color-text-tertiary);">{t.capacity}</td>
+                <td class="px-4 py-3" style="color: var(--color-text-secondary);">{t.role}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5-MIN INSTALL -->
+  <section class="section-padding pt-0" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+        <div>
+          <p class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent);">
+            Try it in 5 minutes
+          </p>
+          <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 mb-5">
+            Operator UX on any laptop. No GPU.
+          </h2>
+          <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-secondary);">
+            The evaluator stack is a brand-coherent replica of the operator chat + ops dashboard with synthetic-but-interactive worker state. Kill workers from the dashboard and watch the headline rewrite itself. ~50 MB image. Zero GPU. Zero model checkpoint.
+          </p>
+          <p class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">
+            For the production stack — six GPU workers running real Gemma-4-26B-A4B FP8 with substitute-on-failure dispatch — see <a href="https://github.com/jeranaias/mycelium#install" style="color: var(--color-accent);">docs/INSTALL.md</a>.
+          </p>
+        </div>
+
+        <div class="rounded-xl p-6 font-mono text-xs leading-relaxed"
+             style="background: #0B0F1A; color: #E8E8EE; border: 1px solid var(--color-border);">
+          <div style="color: #6B7280;">$ git clone https://github.com/jeranaias/mycelium.git</div>
+          <div style="color: #6B7280;">$ cd mycelium</div>
+          <div style="color: #C9A84E;">$ docker compose -f docker-compose.evaluator.yaml up</div>
+          <div class="mt-4" style="color: #6B7280;"># Then open</div>
+          <div style="color: #E8E8EE;">→ http://localhost:8094/          <span style="color: #6B7280;"># operator chat</span></div>
+          <div style="color: #E8E8EE;">→ http://localhost:8094/dashboard <span style="color: #6B7280;"># ops dashboard</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONEST STATUS -->
+  <section class="section-padding">
+    <div class="container-max mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-fluid-xl font-semibold tracking-tight reveal">Today vs. roadmap</h2>
+        <p class="text-sm mt-3 max-w-2xl mx-auto reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+          A pitch lives or dies on candor. Here's what's shipped and what's still ahead.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {honestStatus.map((s, i) => (
+          <div class={`reveal reveal-delay-${Math.min(i + 1, 4)} rounded-xl p-5`}
+               style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <div class="flex items-start justify-between gap-3 mb-2 flex-wrap">
+              <h3 class="text-sm font-semibold tracking-tight">{s.label}</h3>
+              <span class="font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full shrink-0"
+                    style={s.state === 'today'
+                      ? 'background: var(--color-accent-muted); color: var(--color-accent);'
+                      : 'background: rgba(155,165,180,.12); color: var(--color-text-tertiary); border: 1px solid var(--color-border);'}>
+                {s.state}
+              </span>
+            </div>
+            <p class="text-xs leading-relaxed" style="color: var(--color-text-secondary);">{s.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto text-center">
+      <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">Build the AI tier of your stack on Mycelium.</h2>
+      <p class="text-base mt-4 max-w-2xl mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+        Standards seat. Patent assignment. Live demo. Whatever shape the conversation needs to take, the door is open.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3 justify-center reveal reveal-delay-2">
+        <a href="mailto:jesse@thornveil.ai?subject=Mycelium"
+           class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all"
+           style="background: var(--color-accent); color: #0B0F1A;">
+          jesse@thornveil.ai
+        </a>
+        <a href="/contact"
+           class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all"
+           style="background: var(--color-surface-elevated); color: var(--color-text-primary); border: 1px solid var(--color-border);">
+          Contact form →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
