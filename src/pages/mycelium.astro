@@ -3,19 +3,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const features = [
   {
-    title: 'Substitute-on-failure dispatch',
-    body: 'When a worker on the mesh dies mid-token, the coordinator substitutes a zero vector for that worker\'s experts and the model keeps producing. Quality degrades proportionally to loss instead of catastrophically. USPTO provisional THRN-2026-022.',
+    title: 'Knock out half. It still works.',
+    body: 'When half the computers running it get unplugged, jammed, shot, or stolen — the conversation keeps going. No restart, no error message, no "try again later." The first AI ever built to survive that.',
     tag: 'Patent-pending',
   },
   {
-    title: 'OpenAI-compatible',
-    body: 'Drop-in /v1/chat/completions with SSE streaming. Validated against the EXO Labs OSS client ecosystem and any standard chat client. Plug rigrun-desktop, OpenAI SDK, LangChain, or your own integration in without code changes.',
-    tag: 'Wire-compatible',
+    title: 'Feels like every other AI tool.',
+    body: 'If you\'ve used ChatGPT, you already know how to use this. Same chat box, same buttons, same flow. The complicated part — the team of computers behind it — is invisible to whoever\'s actually typing.',
+    tag: 'Familiar',
   },
   {
-    title: 'Cosign-signed releases',
-    body: 'Every binary on the GitHub release page is signed via Sigstore keyless OIDC. Reproducible builds. SBOMs included. RPM, DEB, Windows .exe, macOS .dmg. No vendor lock-in, no supply-chain handwave.',
-    tag: 'Auditable',
+    title: 'Tamper-proof from the factory.',
+    body: 'Every copy of Mycelium comes with a cryptographic seal — like a hologram on a passport. If anyone changes a single byte after we ship it, the seal breaks and you know. Your auditor sleeps better.',
+    tag: 'Sealed',
   },
 ];
 
@@ -72,28 +72,49 @@ const r2iBullets = [
         Mycelium
       </p>
       <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
-        Distributed AI mesh that keeps thinking when the mesh dies.
+        AI that keeps thinking<br/>
+        when half the team goes dark.
       </h1>
-      <p class="text-base mt-4 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Six workers pooling compute for one Gemma-4-26B chat. When three of them go dark, the patent-pending substitute-on-failure dispatch keeps producing tokens — quality degrades proportionally to loss instead of catastrophically. Built for tactical edge teams, contested airspace, DDIL Toughbook deployments, and any environment where centralized cloud AI is not viable.
+      <p class="text-base mt-5 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+        Picture six computers working together on one conversation — like teammates sharing the load. Now picture three of them getting unplugged, jammed, or destroyed mid-sentence. <strong style="color: var(--color-text-primary);">With Mycelium, the conversation just keeps going.</strong> No pause. No restart. No "something went wrong." That's the breakthrough — and you can watch it happen in three seconds, just below.
       </p>
 
       <div class="mt-8 flex flex-wrap gap-3 reveal reveal-delay-3">
-        <a href="https://github.com/jeranaias/mycelium/releases/latest"
+        <a href="#patent-in-action"
            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-all"
            style="background: var(--color-accent); color: #0B0F1A;">
-          v1.0.0 release →
+          Show me →
         </a>
         <a href="https://github.com/jeranaias/mycelium#mycelium-evaluator-quickstart"
            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-all"
            style="background: var(--color-surface-elevated); color: var(--color-text-primary); border: 1px solid var(--color-border);">
-          5-min evaluator (Docker) →
+          Try it on your laptop →
         </a>
         <a href="mailto:jesse@thornveil.ai?subject=Mycelium%20live%20demo"
            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-all"
            style="background: var(--color-surface-elevated); color: var(--color-text-primary); border: 1px solid var(--color-border);">
-          Request a live demo →
+          Book a live demo →
         </a>
+      </div>
+
+      <!-- HERO PRODUCT SHOT -->
+      <div class="mt-16 reveal reveal-delay-3" style="position: relative;">
+        <!-- glow backdrop -->
+        <div aria-hidden="true" style="position:absolute; inset:-10% -5%; background: radial-gradient(ellipse at center, rgba(201,168,78,0.18), transparent 70%); filter: blur(40px); z-index:0;"></div>
+        <div style="position: relative; z-index: 1; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6), 0 0 60px -10px rgba(201,168,78,0.12);">
+          <!-- fake browser chrome -->
+          <div style="display:flex; align-items:center; gap:6px; padding:10px 14px; background: #0F1626; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <span style="width:11px;height:11px;border-radius:50%;background:#FF5F57;"></span>
+            <span style="width:11px;height:11px;border-radius:50%;background:#FEBC2E;"></span>
+            <span style="width:11px;height:11px;border-radius:50%;background:#28C840;"></span>
+            <span style="margin-left:14px; font-family: 'JetBrains Mono Variable', monospace; font-size:11px; color: #6B7280;">localhost:8094/dashboard</span>
+            <span style="margin-left:auto; font-family: 'JetBrains Mono Variable', monospace; font-size:10px; color: var(--color-accent); letter-spacing:0.12em;">LIVE</span>
+          </div>
+          <img src="/mycelium/dashboard-baseline.png" alt="Mycelium ops dashboard — six worker tiles pooling compute for one Gemma-4-26B chat" style="display:block; width:100%; height:auto;" />
+        </div>
+        <p class="text-xs mt-4 text-center" style="color: var(--color-text-tertiary);">
+          Six workers running. One shared brain. <a href="#patent-in-action" style="color: var(--color-accent);">Watch what happens when three of them die →</a>
+        </p>
       </div>
     </div>
   </section>
@@ -102,9 +123,9 @@ const r2iBullets = [
   <section class="section-padding pt-12" style="background: var(--color-surface-secondary);">
     <div class="container-max mx-auto">
       <div class="text-center mb-10">
-        <h2 class="text-fluid-xl font-semibold tracking-tight reveal">Three things that aren't optional</h2>
+        <h2 class="text-fluid-xl font-semibold tracking-tight reveal">Three things that make it different.</h2>
         <p class="text-sm mt-3 max-w-2xl mx-auto reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-          Most distributed-inference projects pick one. Mycelium ships all three.
+          Every other AI tool picks one of these. Mycelium does all three at once.
         </p>
       </div>
 
@@ -162,6 +183,66 @@ const r2iBullets = [
             </ul>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATENT IN ACTION (before / after) -->
+  <section id="patent-in-action" class="section-padding pt-0" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto">
+      <div class="text-center mb-10">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">
+          The "wait, what?" moment
+        </p>
+        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
+          Same screen. Three seconds apart.
+        </h2>
+        <p class="text-base mt-4 max-w-2xl mx-auto leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+          On the <strong style="color: var(--color-text-primary);">left:</strong> six computers, all green, all working together on one answer. On the <strong style="color: var(--color-text-primary);">right:</strong> three of them are dead — and the answer is <em>still coming through</em>. Nobody hit a button. Nothing was rerouted. The system simply kept going. <strong style="color: var(--color-text-primary);">That has never been done before.</strong>
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 reveal reveal-delay-2">
+        <!-- Before -->
+        <figure style="margin:0;">
+          <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 20px 50px -15px rgba(0,0,0,0.5);">
+            <div style="display:flex; align-items:center; gap:6px; padding:9px 12px; background: #0F1626; border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <span style="width:10px;height:10px;border-radius:50%;background:#28C840;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;background:#28C840;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;background:#28C840;"></span>
+              <span style="margin-left:10px; font-family: 'JetBrains Mono Variable', monospace; font-size:10px; color: #6B7280;">t = 0s &nbsp;|&nbsp; alive: 6/6</span>
+            </div>
+            <img src="/mycelium/dashboard-baseline.png" alt="Mycelium dashboard baseline: six workers green, headline reads 'Six teammates running one shared brain'" style="display:block; width:100%; height:auto;" />
+          </div>
+          <figcaption class="text-sm mt-3 text-center" style="color: var(--color-text-secondary);">
+            <span class="font-mono uppercase tracking-wider" style="color: var(--color-accent);">Before</span> · All six computers working together.
+          </figcaption>
+        </figure>
+
+        <!-- After -->
+        <figure style="margin:0;">
+          <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(220,80,60,0.25); box-shadow: 0 20px 50px -15px rgba(0,0,0,0.5), 0 0 40px -20px rgba(220,80,60,0.4);">
+            <div style="display:flex; align-items:center; gap:6px; padding:9px 12px; background: #0F1626; border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <span style="width:10px;height:10px;border-radius:50%;background:#DC503C;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;background:#DC503C;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;background:#DC503C;"></span>
+              <span style="margin-left:10px; font-family: 'JetBrains Mono Variable', monospace; font-size:10px; color: #6B7280;">t = 3s &nbsp;|&nbsp; alive: 3/6</span>
+            </div>
+            <img src="/mycelium/dashboard-half-down.png" alt="Mycelium dashboard with three workers dead and substituted with zero vector, headline rewrites to '3 dark — the team is still thinking'" style="display:block; width:100%; height:auto;" />
+          </div>
+          <figcaption class="text-sm mt-3 text-center" style="color: var(--color-text-secondary);">
+            <span class="font-mono uppercase tracking-wider" style="color: #F2A07F;">After</span> · Three are dead. The answer is still coming through.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="mt-10 text-center reveal reveal-delay-3 max-w-2xl mx-auto">
+        <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+          The user typing the question never noticed anything happened.
+        </p>
+        <p class="text-[11px] font-mono uppercase tracking-[0.2em] mt-4" style="color: var(--color-text-tertiary);">
+          Filmed live · 2026-05-08 · Patent pending · USPTO THRN-2026-022
+        </p>
       </div>
     </div>
   </section>
@@ -258,6 +339,23 @@ const r2iBullets = [
           <div class="mt-4" style="color: #6B7280;"># Then open</div>
           <div style="color: #E8E8EE;">→ http://localhost:8094/          <span style="color: #6B7280;"># operator chat</span></div>
           <div style="color: #E8E8EE;">→ http://localhost:8094/dashboard <span style="color: #6B7280;"># ops dashboard</span></div>
+        </div>
+      </div>
+
+      <!-- What you actually get -->
+      <div class="mt-14 reveal reveal-delay-2">
+        <p class="text-xs font-mono uppercase tracking-[0.2em] text-center mb-5" style="color: var(--color-text-tertiary);">
+          What lands in your browser, 90 seconds after pulling the image
+        </p>
+        <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 25px 60px -20px rgba(0,0,0,0.55);">
+          <div style="display:flex; align-items:center; gap:6px; padding:10px 14px; background: #0F1626; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <span style="width:11px;height:11px;border-radius:50%;background:#FF5F57;"></span>
+            <span style="width:11px;height:11px;border-radius:50%;background:#FEBC2E;"></span>
+            <span style="width:11px;height:11px;border-radius:50%;background:#28C840;"></span>
+            <span style="margin-left:14px; font-family: 'JetBrains Mono Variable', monospace; font-size:11px; color: #6B7280;">localhost:8094</span>
+            <span style="margin-left:auto; font-family: 'JetBrains Mono Variable', monospace; font-size:10px; color: var(--color-accent); letter-spacing:0.12em;">READY · MESH</span>
+          </div>
+          <img src="/mycelium/operator-chat.png" alt="Mycelium operator UI showing a streamed chat response with action chips (Send to TAK, Save Note)" style="display:block; width:100%; height:auto;" />
         </div>
       </div>
     </div>
