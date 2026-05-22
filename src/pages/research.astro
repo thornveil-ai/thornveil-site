@@ -9,60 +9,31 @@ const papers = [
   { title: 'RigRun: Complete Local AI Infrastructure on a Single GPU', category: 'cs.AI', pages: 5, file: 'paper5-system' },
 ];
 
-const patents = [
-  { num: '001', app: '64/004,046', date: 'Mar 12, 2026', title: 'Acoustic Direction-of-Arrival Estimation Using RPM-Indexed Self-Noise Cancellation on an Airborne Interceptor UAV', domain: 'Counter-UAS' },
-  { num: '002', app: '64/004,056', date: 'Mar 12, 2026', title: 'Classification-Gated Routing System for Language Model Inference with Downgrade Prevention', domain: 'AI Safety' },
-  { num: '003', app: '64/004,109', date: 'Mar 12, 2026', title: 'Learned Differentiable CLAHE Module for End-to-End Neural Network Image Enhancement', domain: 'Computer Vision' },
-  { num: '004', app: '64/004,170', date: 'Mar 12, 2026', title: 'Anti-Bypass Spillage Detection for Secure AI Inference Pipelines', domain: 'AI Safety' },
-  { num: '005', app: '64/004,181', date: 'Mar 12, 2026', title: 'Hybrid Native-Synthetic Reasoning with Classification-Gated Thinking Depth Control', domain: 'AI Infrastructure' },
-  { num: '006', app: '64/004,206', date: 'Mar 12, 2026', title: 'Multi-Agent Deep RL for Autonomous Counter-UAS Intercept Guidance', domain: 'Counter-UAS' },
-  { num: '007', app: '64/004,226', date: 'Mar 13, 2026', title: 'IFF Re-verification at Instant of Discharge with Pursue-Without-Engagement Fallback', domain: 'Counter-UAS' },
-  { num: '008', app: '64/006,415', date: 'Mar 15, 2026', title: 'Multi-Condition Continuous Engagement Authorization Revocation for Autonomous Interceptors', domain: 'Counter-UAS' },
-  { num: '009', app: '64/006,416', date: 'Mar 15, 2026', title: 'Heterogeneous ISA Platform for Safety-Critical Engagement Authorization', domain: 'Counter-UAS' },
-  { num: '010', app: '64/006,408', date: 'Mar 15, 2026', title: 'Multi-Signal Adaptive Confidence Scoring with Confabulation Detection', domain: 'AI Safety' },
-  { num: '011', app: '64/006,412', date: 'Mar 15, 2026', title: 'Deep RL for Fixed-Wing UAV Forward-Firing Gun Engagement of sUAS Targets', domain: 'Counter-UAS' },
-  { num: '012', app: '64/006,433', date: 'Mar 15, 2026', title: 'Hierarchical Triple-Key Error-Report Disambiguation in Arabic Diacritization', domain: 'Arabic NLP' },
-  { num: '013', app: '64/006,451', date: 'Mar 15, 2026', title: 'Contrastive Dual-Head Neural Corrector for Arabic Diacritization', domain: 'Arabic NLP' },
-  { num: '014', app: '64/006,440', date: 'Mar 15, 2026', title: 'Communication-Optimized Blade Geometry for Acoustic Data Transmission', domain: 'Counter-UAS' },
-  { num: '015', app: '64/006,438', date: 'Mar 15, 2026', title: 'Spatial Grid-Accelerated Contamination Zone Fusion for CBRN Sensor Networks', domain: 'CBRN' },
-  { num: '016', app: '64/006,430', date: 'Mar 15, 2026', title: 'ISA 2.0 Canonical Data Model with CAIRN-Extended CoT for CBRN Networks', domain: 'CBRN' },
-  { num: '017', app: '64/006,442', date: 'Mar 15, 2026', title: 'Tactical Mobile C2 for Armed Counter-UAS Interceptors via MAVLink', domain: 'Counter-UAS' },
-  { num: '018', app: '64/017,293', date: 'Mar 25, 2026', title: 'Selective-Buffer Streaming Safety Proxy for LLM Tool Calls', domain: 'AI Safety' },
-  { num: '019', app: '64/017,303', date: 'Mar 26, 2026', title: 'Closed-Loop Self-Improvement for Local Language Models', domain: 'AI Training' },
-  { num: '020', app: '64/017,322', date: 'Mar 26, 2026', title: 'Multi-Stage Cascade Routing with Entropy-Based Escalation', domain: 'AI Infrastructure' },
-  { num: '021', app: '64/017,334', date: 'Mar 26, 2026', title: 'Classification-Isolated Memory with Hardware-Backed Encryption', domain: 'AI Safety' },
-  { num: '022', app: '64/017,344', date: 'Mar 26, 2026', title: 'Distributed Adaptive AI Mesh with Predictive Expert Prefetching and PoI', domain: 'Mesh/P2P' },
-  { num: '023', app: '64/020,331', date: 'Mar 28, 2026', title: 'Zero-Downtime Self-Improvement via Zeroth-Order Optimization', domain: 'AI Training' },
-  { num: '024', app: '64/020,346', date: 'Mar 26, 2026', title: 'HawkStack Cross-Domain Tiny Neural Detection Framework', domain: 'Computer Vision' },
-  { num: '025', app: '64/020,358', date: 'Mar 26, 2026', title: 'Agent Factory: Autonomous Meta-Agent Manufacturing with Closed-Loop DPO', domain: 'Agents' },
-  { num: '026', app: '64/020,371', date: 'Mar 26, 2026', title: 'Loss Surface Topology Model for Neural Architecture Design', domain: 'Theory' },
-  { num: '027', app: '64/020,389', date: 'Mar 26, 2026', title: 'PID Homeostasis Controller for Language Model Inference Quality', domain: 'AI Infrastructure' },
+// Trade-secret-grade IP subsystems across the 10-system portfolio.
+// No patent numbers, no application IDs — just named, defensible subsystems.
+const ipSubsystems = [
+  { system: 'Mycelium', subsystem: 'Substitute-on-failure MoE expert dispatch', evidence: 'Day-27 RTP with HMAC-chained audit log, 2026-05-08' },
+  { system: 'Auspex', subsystem: 'Scope-as-code engagement compilation + 13-check Signet gate', evidence: 'Autonomous AD takeover validation with auditable replay package, 2026-05-16' },
+  { system: 'RigRun', subsystem: 'Compile-time classification-gated routing with cross-domain guard', evidence: 'Type-system enforced; 44 NIST 800-53 controls implemented' },
+  { system: 'RigRun', subsystem: '8-signal confidence pipeline with adversarial self-audit', evidence: '~4,220 LOC across 8 signals; cross-app parity in Go/Dart/TS' },
+  { system: 'Signet', subsystem: 'HMAC-chained tamper-evident audit ledger with RFC 3161 anchoring', evidence: '2,400 LOC across chain.py + verifier.py + compactor.py; 7-state break taxonomy' },
+  { system: 'HawkStack', subsystem: 'Compute-aware neural topology recipe (3-parameter)', evidence: '15 verified zoo checkpoints, R²=0.9895 power-law scaling fit on NUDT-SIRST' },
+  { system: 'Pyros', subsystem: '24-layer adaptive control loop (PID + Holt + UCB1 + ε-greedy)', evidence: 'Race-clean CI across Linux/macOS/Windows; PAVA calibration validated vs sklearn' },
+  { system: 'Meridian', subsystem: 'Phase 10 trade-secret primitives — attest, secdef, beacon, vehicle-id, log', evidence: '~5,500 LOC across 5 crates; not shipped in ArduPilot or PX4' },
+  { system: 'Navigator', subsystem: '14-step Agent Factory with Opus calibration + 5-probe adversarial hardening', evidence: '9 production agents (OPORD, SBIR, security audit, etc.) generated by the pipeline' },
 ];
-
-const domainColors: Record<string, string> = {
-  'Counter-UAS': 'var(--color-accent)',
-  'AI Safety': '#ef4444',
-  'AI Infrastructure': '#8b5cf6',
-  'AI Training': '#06b6d4',
-  'Computer Vision': '#f59e0b',
-  'Arabic NLP': '#10b981',
-  'CBRN': '#f97316',
-  'Mesh/P2P': '#3b82f6',
-  'Agents': '#ec4899',
-  'Theory': '#14b8a6',
-};
 ---
 
 <BaseLayout
   title="Research | Thornveil"
-  description="Every claim Thornveil makes about RigRun, Pyros, and Mycelium is backed by working code, measured benchmarks, and published research. Here's the evidence."
+  description="Five research papers documenting algorithms behind Thornveil's 10-system portfolio. Trade-secret-grade subsystems with cryptographic reduction-to-practice evidence."
 >
   <section class="section-padding pt-32 md:pt-40">
     <div class="container-max mx-auto">
       <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Evidence</p>
       <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">How Thornveil proves it works</h1>
       <p class="text-base mt-4 max-w-2xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Every claim Thornveil makes about RigRun, Pyros, and Mycelium is backed by working code, measured benchmarks, and published research. Here's the evidence.
+        Every claim Thornveil makes is backed by working code, measured benchmarks, and where appropriate, cryptographically auditable reduction-to-practice. Five papers below. Public companion repositories on <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">github.com/thornveil-ai</a> for the rest.
       </p>
     </div>
   </section>
@@ -72,7 +43,7 @@ const domainColors: Record<string, string> = {
     <div class="container-max mx-auto">
       <h2 class="text-fluid-xl font-semibold tracking-tight mb-2 reveal">Research papers</h2>
       <p class="text-sm mb-8 max-w-2xl reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        Peer-reviewable papers documenting the algorithms behind Thornveil's products.
+        Peer-reviewable papers documenting the algorithms behind Thornveil's systems. HawkStack topology paper preparing arXiv submission; remaining four are technical reports.
       </p>
       <div class="space-y-3">
         {papers.map((p, i) => (
@@ -91,9 +62,6 @@ const domainColors: Record<string, string> = {
                   <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
                   PDF
                 </a>
-                <span class="font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-full" style="background: var(--color-surface); color: var(--color-text-tertiary); border: 1px solid var(--color-border-subtle);">
-                  Submitted April 2026
-                </span>
               </div>
             </div>
           </div>
@@ -102,45 +70,32 @@ const domainColors: Record<string, string> = {
     </div>
   </section>
 
-  <!-- PATENTS -->
+  <!-- TRADE-SECRET-GRADE IP -->
   <section class="section-padding">
     <div class="container-max mx-auto">
-      <div class="flex items-end justify-between mb-8 flex-wrap gap-4">
-        <div>
-          <h2 class="text-fluid-xl font-semibold tracking-tight reveal">Protected IP you license, not rebuild</h2>
-          <p class="text-sm mt-2 max-w-2xl reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-            When you buy Thornveil, you get the benefit of patent-pending methods — not a wrapper around someone else's API. Full U.S. provisional applications, assigned to Thornveil LLC, available for license. All 27 provisionals must be converted to non-provisional within 12 months of filing.
-          </p>
-        </div>
-        <div class="flex flex-wrap gap-2 reveal reveal-delay-2">
-          {Object.entries(domainColors).map(([domain, color]) => (
-            <span class="flex items-center gap-1.5 text-[10px]" style="color: var(--color-text-tertiary);">
-              <span class="w-2 h-2 rounded-full" style={`background: ${color};`}></span>
-              {domain}
-            </span>
-          ))}
-        </div>
-      </div>
+      <h2 class="text-fluid-xl font-semibold tracking-tight reveal">Trade-secret-grade IP across the portfolio</h2>
+      <p class="text-sm mt-3 mb-8 max-w-2xl reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+        Each Thornveil system carries one or more proprietary subsystems where the engineering work materially differentiates it from open-source alternatives. Listed below: the named subsystem, what makes it defensible, and the cryptographic or empirical evidence that backs the claim.
+      </p>
 
-      <div class="rounded-xl overflow-hidden reveal reveal-delay-2" style="border: 1px solid var(--color-border);">
-        {patents.map((p, i) => (
-          <div
-            class="flex items-center gap-4 px-5 py-3 text-xs transition-colors hover:bg-[var(--color-accent-muted)]"
-            style={`border-bottom: 1px solid var(--color-border-subtle); ${i === patents.length - 1 ? 'border-bottom: none;' : ''}`}
-          >
-            <span class="font-mono font-bold w-8 shrink-0" style="color: var(--color-accent);">{p.num}</span>
-            <span class="w-2 h-2 rounded-full shrink-0" style={`background: ${domainColors[p.domain] || 'var(--color-text-tertiary)'};`}></span>
-            <span class="flex-1 min-w-0 truncate">{p.title}</span>
-            <span class="font-mono shrink-0 hidden sm:block" style="color: var(--color-text-tertiary);">{p.app}</span>
-            <span class="shrink-0 hidden md:block" style="color: var(--color-text-tertiary);">{p.date}</span>
+      <div class="space-y-3 reveal reveal-delay-2">
+        {ipSubsystems.map((s) => (
+          <div class="rounded-xl p-5" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <div class="flex items-start gap-4 flex-wrap">
+              <span class="font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-full shrink-0" style="background: var(--color-accent-muted); color: var(--color-accent);">{s.system}</span>
+              <div class="flex-1 min-w-0">
+                <h3 class="text-sm font-semibold tracking-tight">{s.subsystem}</h3>
+                <p class="text-xs mt-1.5" style="color: var(--color-text-tertiary);">{s.evidence}</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>
 
       <div class="grid grid-cols-3 gap-6 mt-12 reveal reveal-delay-3">
         {[
-          { value: '27', label: 'Patent-pending methods' },
-          { value: '10', label: 'Patent families' },
+          { value: '10', label: 'Production systems' },
+          { value: '9', label: 'Trade-secret subsystems documented' },
           { value: '5', label: 'Research papers' },
         ].map((m) => (
           <div class="text-center">
