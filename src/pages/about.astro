@@ -2,16 +2,17 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const stats = [
-  { value: '8+', label: 'Years SIGINT' },
-  { value: '6', label: 'Countries deployed' },
-  { value: '1,400+', label: 'National-level reports' },
-  { value: '27', label: 'Provisional patents' },
+  { value: '10', label: 'Production-grade systems' },
+  { value: '1.3M', label: 'LOC since January 2026' },
+  { value: '5', label: 'Months solo, active-duty' },
+  { value: 'Dec 10', label: 'DD-214 / Contracts open 2026' },
 ];
 
 const credentials = [
+  { label: 'Status', value: 'Active-duty USMC (DD-214: Dec 10, 2026)' },
   { label: 'Clearance', value: 'TS/SCI' },
   { label: 'Service', value: 'USMC, Staff Sergeant (8+ years)' },
-  { label: 'Discipline', value: 'Signals Intelligence' },
+  { label: 'Discipline', value: 'Signals Intelligence — 6 countries, 1,400+ national-level reports' },
   { label: 'Languages', value: 'Modern Standard Arabic + 3 dialects' },
   { label: 'Education', value: 'BA, Arabic — Defense Language Institute' },
   { label: 'Open Source', value: 'Marine Coders contributor' },
@@ -27,10 +28,10 @@ const credentials = [
     <div class="container-max mx-auto max-w-3xl">
       <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">About</p>
       <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
-        Thornveil is one engineer who refuses to wait.
+        Active-duty USMC. Solo founder. 10 systems shipped since January.
       </h1>
       <p class="text-base mt-6 leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        I'm Jesse Morgan. I founded Thornveil to build the AI infrastructure I wanted to use as an analyst — local, data-sovereign, accountable to the people running it. I served eight years as a Signals Intelligence Marine, deployed to six countries, and produced over 1,400 national-level intelligence reports. I learned firsthand how brittle the cloud-dependent toolchain is for the people doing the actual mission.
+        I'm Jesse Morgan. I founded Thornveil to build the AI infrastructure I wanted to use as an analyst — local, data-sovereign, accountable to the people running it. Eight years in as a Signals Intelligence Marine. Six countries. 1,400+ national-level intelligence reports. Learned firsthand how brittle the cloud-dependent toolchain is for the people doing the actual mission. I'm still active-duty today (DD-214: December 10, 2026) and direct federal contracts open then.
       </p>
     </div>
   </section>
@@ -40,13 +41,16 @@ const credentials = [
     <div class="container-max mx-auto max-w-3xl">
       <div class="space-y-5 text-sm leading-relaxed reveal" style="color: var(--color-text-secondary);">
         <p>
-          The shift from analyst to builder happened gradually, then all at once. I taught myself to code on overnight watches and ship codepaths in production. The patents started piling up. The agents started doing real work. By the time I left active service I had a portfolio of defense-relevant systems that nobody else was building — sub-2-million-parameter models that beat 60-million-parameter baselines on tested benchmarks, autonomous counter-UAS interceptors with acoustic detection, an Arabic NLP stack 62 times smaller than the state of the art.
+          The shift from analyst to builder happened gradually, then all at once. I taught myself to code on overnight watches, then on weekends, then between deployments. The systems started piling up — each one solving a real mission problem I'd run into firsthand. By January 2026 the work had compounded into something coherent: a portfolio of defense-relevant systems that nobody else was building. Sub-million-parameter perception models that match SOTA in their weight class across six unrelated domains. An IL5-pathway AI chat application with classification-gated routing enforced at the type-system level. A distributed AI mesh with substitute-on-failure inference, validated end-to-end with cryptographically chained audit logs. An autonomous AI red team gated by a capability-based safety pipeline. A memory-safe Rust autopilot with 98K lines of code and 47K lines of parity-audit notes.
         </p>
         <p>
-          Thornveil is the company that ships those systems. RigRun runs frontier models on hardware you control with no per-token fees and no cloud dependencies. Pyros is a pure-Go safety perimeter that wraps any LLM in a 7-pillar pipeline. HawkStack trains custom small models for any domain where edge inference matters. The Agent Factory builds tested domain experts in days. Mycelium turns whatever devices you already have into a self-healing AI mesh. Every system was first internally validated building Thornveil's own product portfolio — if it works for me, it works for you.
+          Thornveil is the company that ships those systems. <a href="/systems" style="color: var(--color-accent); text-decoration: underline;">Ten of them today</a>, all on <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">github.com/thornveil-ai</a> for review. Trade-secret-grade internals where they need to be. Public-companion repositories everywhere else for evaluators and partners to read. Production-grade test coverage, signed commits, NIST 800-53 traceability where it matters.
         </p>
         <p>
-          I'm still a one-person shop today. That means you talk directly to the engineer who built the thing. No account managers, no sales cycle, no quarter-end games. When you need a custom agent built, an audit run, or a model trained on your data, the work happens in days, not quarters.
+          Until December 10, 2026, I'm still a one-person shop on active duty. That's a regulatory constraint, not an execution constraint — the work keeps shipping. What it means for you: there's no commercial transaction we can close before separation, but every conversation that starts now compounds. Customers, partners, primes, federal program offices — review the work, get on a call, and we'll be in the right position when the calendar turns.
+        </p>
+        <p>
+          Co-founder applications are <a href="/cofounder" style="color: var(--color-accent); text-decoration: underline;">open now</a>. The seat is for a senior offensive cyber operator with a post-uniform defense-AI startup rotation. Federal Rolodex required. The technical wedge is already shipped — your work compounds onto a substrate that's already credible.
         </p>
         <p>
           When I'm not shipping, I contribute to <a href="https://github.com/marine-coders" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">Marine Coders</a> — a community of active-duty and veteran Marines learning to build software. The same instinct that drove me to write my first script on a SCIF workstation is the one driving Thornveil now: the people closest to the mission should own the tools.
@@ -95,7 +99,7 @@ const credentials = [
     <div class="relative container-max mx-auto max-w-2xl text-center">
       <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">Want to talk?</h2>
       <p class="mt-4 text-sm max-w-md mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        Direct line. No intake form. No SDR. Tell me what you're trying to build and I'll tell you what's possible.
+        Direct line to the founder. Federal inquiries welcome — direct contracts open December 10, 2026. Co-founder applications open now. Tell me what you're working on; the substrate is already there to compound onto.
       </p>
       <div class="mt-8 reveal reveal-delay-2">
         <a href="mailto:jesse@thornveil.ai" class="btn-primary">
