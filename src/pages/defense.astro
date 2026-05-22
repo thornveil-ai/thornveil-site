@@ -1,340 +1,175 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const programs = [
+// 10-system portfolio, restricted to systems with direct defense-procurement adjacency.
+// No patent enumerations. Program-of-record fits cited where real.
+const systems = [
   {
-    name: 'DroneBane',
-    subtitle: 'Three-Tier Counter-UAS Product Family',
-    description: 'A three-tier counter-UAS family covering the full kill chain. DroneBane Watch is a passive Remote-ID + sensor-fusion app for force protection and base security. DroneBane Pro adds MAVLink C2, fleet management, and autonomous patrol (roadmap) for force protection and FOB defense. DroneBane Mobile is the ATAK plugin designed for defense use: 16-point safety interlocks, F2T2EA kill chain, on-device DRL guidance, FIPS 140-2 cryptography, Anduril Lattice integration prepped. See the full deep-dive on the dedicated DroneBane page.',
-    patents: 8,
-    patentNums: '001, 006, 007, 008, 009, 011, 014, 017',
-    trl: 'TRL 3',
-    tags: ['Autonomous Intercept', 'TAK-Native', 'Lattice-Ready', 'MAVLink C2', 'Deep RL', '16-Point Interlock'],
-    href: '/dronebane',
-    featured: true,
+    name: 'Mycelium',
+    tagline: 'Distributed AI mesh. Substitute-on-failure inference.',
+    description: 'Six workers pool compute for one Gemma-4-26B chat. When workers drop, substitute-on-failure dispatch keeps generation continuing — validated end-to-end on 2026-05-08 with HMAC-chained tamper-evident audit log. Built for DDIL operational environments where any individual node may go dark and the workload must continue.',
+    programFit: 'SOCPAC R2I/MOSA · DDIL operations · IL5-pathway inference',
+    status: 'v1.0.0 — customer engagement in motion',
+    overview: 'https://github.com/thornveil-ai/mycelium-overview',
+    detail: '/mycelium',
+  },
+  {
+    name: 'Auspex',
+    tagline: 'AI red team gated by Signet. EAR ECCN 4D004.',
+    description: 'Scope-as-code engagement compilation. 13 standard authority checks at the Signet gate. HMAC-chained per-engagement audit log with RFC 3161 trusted-timestamp anchoring. Validated end-to-end on autonomous Active Directory takeover with auditable replay package (2026-05-16). Federal-gated.',
+    programFit: 'DoD AI Safety Institute · USCYBERCOM red team · Federal autonomous-cyber pilots',
+    status: 'v0.6.0-rc1 Federal Edition — preliminary ECCN classification',
+    overview: 'https://github.com/thornveil-ai/auspex-contact',
+    detail: null,
   },
   {
     name: 'RigRun',
-    subtitle: 'Local-First AI Inference Stack — Engineered Toward NIST 800-53',
-    description: 'Local-first AI infrastructure engineered toward NIST 800-53 and IL5 control objectives. Classification-gated routing across UNCLASSIFIED → TS with anti-bypass spillage detection, FIPS 140-3 build mode with runtime self-test, HMAC-chained tamper-evident audit logging, DoD 5220.22-M three-pass secure delete, and a purpose-built Docker sandbox with classification-aware network policy. CAC/PIV client authentication is implemented in source but not yet validated for deployment. No formal security assessment, audit, or accreditation has been completed. 51,000 lines of security code, 3,363 test functions, 18 fuzz tests.',
-    patents: 8,
-    patentNums: '002, 004, 005, 010, 019, 020, 021, 023',
-    trl: 'TRL 3',
-    tags: ['NIST 800-53', 'FIPS 140-3', 'Classification Routing', 'Sandbox'],
-    featured: true,
+    tagline: 'Professional AI chat. Classification-gated routing.',
+    description: 'Three apps (desktop, mobile, web) on one Go backend. 44 NIST 800-53 controls implemented as discrete code paths. Classification gate enforced at the type-system level — CUI+ queries hard-blocked from cloud routing as architectural narrowing, not runtime policy. 6,950+ tests across the three apps. IL5-pathway posture. ATO sponsor outreach active post-DD-214.',
+    programFit: 'IL5-pathway federal AI chat · FedRAMP-Mod path · NIST 800-53 / IR-9 spillage detection',
+    status: 'v0.9 — federal evaluation post-DD-214',
+    overview: 'https://github.com/thornveil-ai/rigrun-overview',
+    detail: null,
   },
   {
     name: 'HawkStack',
-    subtitle: 'Sub-2M-Parameter Detection Across 6 Domains',
-    description: 'Topology-driven model architecture that predicts the performance ceiling of a dataset before training, then builds models under 2M parameters that beat 30–60M-parameter SOTA competitors. Validated across thermal drone detection (ThermalHawk, 82.95% mAP, 1.77MB INT8), IRST / missile warning (SentryHawk, 92.29% IoU), sonar target detection (DepthHawk, 88.0% mAP), ECG arrhythmia classification (CardioHawk), PCB defect inspection (ForgeHawk, 97.6% mAP), and wildlife camera trap ID (WildHawk). One architecture, six domains, edge-deployable on microcontrollers and SBCs (Jetson, Kria, COTS-ruggedized).',
-    patents: 2,
-    patentNums: '024, 026',
-    trl: 'TRL 3',
-    tags: ['Computer Vision', 'Thermal IR', 'Sonar', 'Edge Inference', 'Multi-Domain'],
-    featured: true,
-  },
-  {
-    name: 'Pyros',
-    subtitle: 'Pure-Go LLM Safety Engine',
-    description: 'Standalone 17,000-line Go safety engine that wraps any LLM in a 7-pillar pipeline. Selective-buffer streaming safety proxy intercepts only tool-use blocks for evaluation — zero added latency on text streaming. PID homeostasis controller degrades gracefully under resource contention instead of failing. Drops in front of RigRun, OpenAI, Anthropic, vLLM, llama.cpp, or Ollama. No Python, no CGO, ships as one binary.',
-    patents: 2,
-    patentNums: '018, 027',
-    trl: 'TRL 3',
-    tags: ['LLM Safety', 'Pure Go', 'Streaming Proxy', 'PID Homeostasis', 'Provider-Agnostic'],
-    featured: false,
-  },
-  {
-    name: 'Mycelium',
-    subtitle: 'Distributed AI Mesh',
-    description: 'Distributed AI mesh that turns commodity devices into a self-healing inference cluster over consumer WiFi. Three-layer proof-of-inference protocol — behavioral fingerprinting, Merkle execution traces, asymmetric reputation — is designed to verify untrusted nodes without trusted hardware. Classification-aware routing keeps UNCLASSIFIED traffic anywhere, CUI on the mesh, SECRET on the originating device. Built for DoD contested comms, disaster response, and GPS-denied environments. 40-claim provisional.',
-    patents: 1,
-    patentNums: '022',
-    trl: 'TRL 3',
-    tags: ['Distributed AI', 'P2P Mesh', 'Proof-of-Inference', 'Classification Routing', 'GPS-Denied'],
-    featured: false,
+    tagline: 'Sub-million-parameter perception across 6 domains.',
+    description: 'Topology-driven recipe that turns (dataset, domain) into (architecture, training config) and produces models that match SOTA in their weight class. 15 verified zoo checkpoints across IRST (synthetic + real), sonar, PCB defect, histopathology, thermal drone, and ECG. 16-run power-law scaling fit on NUDT-SIRST (R²=0.9895). Topology paper preparing arXiv submission.',
+    programFit: 'Replicator · Roadrunner-M · Coyote Block 3 · Army LIDS / FS-LIDS · NAVSEA USV-counter-USV',
+    status: 'v0.3.0 — 15 zoo checkpoints, paper preparing arXiv',
+    overview: 'https://github.com/thornveil-ai/hawkstack-paper',
+    detail: null,
   },
   {
     name: 'Meridian',
-    subtitle: 'Open-Source Rust Autopilot',
-    description: 'Flight controller autopilot written from scratch in Rust. 47 crates covering attitude control, navigation, sensor fusion, and mission planning. Open source. Distilled from ArduPilot with functional parity targeted through systematic functional testing.',
-    patents: 0,
-    patentNums: '',
-    trl: 'TRL 3',
-    tags: ['Autopilot', 'Rust', 'Sensor Fusion', 'Flight Control', 'Open Source'],
-    featured: false,
-  },
-  {
-    name: 'CAIRN',
-    subtitle: 'CBRN Sensor Fusion',
-    description: 'Real-time contamination zone estimation from heterogeneous CBRN sensor networks. Spatial grid-accelerated fusion with per-sensor anomaly detection. ISA 2.0 canonical data model with embedded IDLH tables and CAIRN-extended Cursor-on-Target XML namespace.',
-    patents: 2,
-    patentNums: '015, 016',
-    trl: 'TRL 3',
-    tags: ['Sensor Fusion', 'Chemical Defense', 'TAK Integration', 'ISA 2.0'],
-    href: 'https://jeranaias.github.io/CAIRN/',
-    featured: false,
-  },
-  {
-    name: 'Agent Factory',
-    subtitle: 'Autonomous Meta-Agent Manufacturing',
-    description: '14-step pipeline that designs, adversarially hardens, and deploys domain-expert AI agents from plain-English specifications. Requirements decomposition, multi-pass prompt synthesis with independent critique, automatic tool selection from a typed registry, knowledge base assembly, adversarial stress testing across 5 probe types, and a human approval quality gate. Six agents currently in use including the SBIR Proposal Writer used for federal grant work.',
-    patents: 1,
-    patentNums: '025',
-    trl: 'TRL 3',
-    tags: ['Agent Manufacturing', 'Adversarial Hardening', 'DPO Pipeline', 'Tool Composition'],
-    featured: false,
-  },
-  {
-    name: 'Aurora',
-    subtitle: 'Acoustic Swarm Communications',
-    description: 'Covert data transmission via engineered rotor acoustics. GPS-denied cooperative positioning through propeller-modulated acoustic ranging. Sub-decimeter accuracy, zero RF emissions. Shares blade-geometry acoustic patent (014) with the DroneBane platform.',
-    patents: 1,
-    patentNums: '014',
-    trl: 'TRL 3',
-    tags: ['GPS-Denied', 'Acoustic Comms', 'RF-Silent', 'Swarm'],
-    href: 'https://jeranaias.github.io/aurora/',
-    featured: false,
-  },
-  {
-    name: 'Harakat',
-    subtitle: 'Arabic Diacritization',
-    description: 'Post-processing system for Arabic text diacritization. Contrastive dual-head neural corrector with adaptive multi-zone confidence thresholding. Hierarchical triple-key error-report disambiguation. 0.68% diacritization error rate, 6.7MB model, 62× smaller than SOTA at comparable accuracy.',
-    patents: 2,
-    patentNums: '012, 013',
-    trl: 'TRL 3',
-    tags: ['Diacritization', 'Neural Correction', 'Arabic', 'Low-Resource', '0.68% DER'],
-    featured: false,
-  },
-  {
-    name: 'Learned DCLAHE',
-    subtitle: 'Neural Image Enhancement',
-    description: 'Differentiable Contrast Limited Adaptive Histogram Equalization with backpropagation-optimized parameters. End-to-end trainable image enhancement module that plugs into any detection pipeline (including HawkStack) for degraded visual environments.',
-    patents: 1,
-    patentNums: '003',
-    trl: 'TRL 3',
-    tags: ['Image Enhancement', 'Differentiable', 'End-to-End'],
-    featured: false,
+    tagline: 'Memory-safe Rust flight-control firmware.',
+    description: 'From-scratch ArduPilot/PX4 alternative on STM32 H7 / F4 / F7. 98K Rust LOC across 60 lib crates + 3 binaries. Phase 10 trade-secret primitives — ed25519-signed airworthiness attestation, RC hijack / GPS spoof / mag jam adversarial-detection failsafes, Find My Drone beacon, self-learning vehicle dynamics ID, Black Box event taxonomy — that no other autopilot ships. 47K lines of parity-audit notes against 154 ArduPilot libraries. Hardware bring-up active on MatekH743 SLIM V4 and Cube Orange Plus.',
+    programFit: 'CISA memory-safe roadmap · DoD CIO memory-safe mandate · DARPA HACMS successor · SOCOM USV firmware · FAA certification path',
+    status: 'Hardware bring-up active; OSS predecessor public at thornveil-ai/meridian-core',
+    overview: 'https://github.com/thornveil-ai/meridian-core',
+    detail: null,
   },
   {
     name: 'Canopy',
-    subtitle: 'Multi-Modal C-UAS Situational Awareness',
-    description: 'Multi-modal counter-UAS situational awareness platform combining EO/IR/RF/acoustic sensor inputs through Dempster-Shafer evidence fusion. 8-layer detection-classification-tracking-prediction-engagement stack designed to integrate DroneBane, ThermalHawk, and Mycelium into a unified C-UAS picture.',
-    patents: 0,
-    patentNums: '',
-    trl: 'TRL 3',
-    tags: ['C-UAS', 'Sensor Fusion', 'Dempster-Shafer', 'Multi-Modal'],
-    featured: false,
+    tagline: 'Multi-modal counter-UAS situational awareness.',
+    description: 'RF + acoustic + thermal + Remote ID + ADS-B fusion. Real Kalman tracking + Dempster-Shafer evidence fusion + bearing-intersection geolocation (tested). Mesh networking + decision engine scaffolded; ML classifiers stubbed. Honest Phase 0 framing — designed to replace DragonOS/WarDragon with mesh-aware open architecture. Hardware tiers from $270 (Pi 5 + RTL-SDR) to $1,650 (KrakenSDR + UCA DF).',
+    programFit: 'DHS/CBP border CUAS · FAA Section 2209 · 14 CFR Part 89 Remote ID enforcement',
+    status: 'Phase 0 — architecture validated, integration pending',
+    overview: 'https://github.com/thornveil-ai/canopy-preview',
+    detail: null,
   },
   {
-    name: 'TRAVERSE',
-    subtitle: 'S&T Decision Support',
-    description: 'Technology reconnaissance and venture ecosystem research platform. Investment tracking, technology radar, MCDA scoring, SBIR pipeline analysis. 21 NIST controls implemented.',
-    patents: 0,
-    patentNums: '',
-    trl: 'TRL 3',
-    tags: ['Decision Support', 'SBIR Intel', 'SpaceWERX', 'MCDA'],
-    href: 'https://jeranaias.github.io/TRAVERSE/',
-    featured: false,
+    name: 'Signet',
+    tagline: 'Capability-based safety gate for LLM agents.',
+    description: '4-stage check pipeline (ADMISSION / INSPECTION / COMMITMENT / RECORD) with 11 production checks and HMAC-chained tamper-evident audit log. RFC 3161 anchor backend (FreeTSA / DigiCert). The Signet vocabulary that Auspex extends with engagement-specific checks. Apache-2.0 public OSS. Available on PyPI as `signet-sign`.',
+    programFit: 'NIST AI RMF · DoD AISI baseline · Federal LLM-agent safety reference',
+    status: 'v0.1.10.1 — public OSS on PyPI',
+    overview: 'https://github.com/thornveil-ai/signet',
+    detail: null,
   },
 ];
 
-const complianceControls = [
-  { area: 'Audit', detail: 'HMAC-chained tamper-evident JSONL audit log; server refuses to start without the audit key (AU-9)' },
-  { area: 'PKI / CAC', detail: 'Trusted CA chain, CRL checking, cert pinning, EDIPI extraction — implemented in source, not yet validated for deployment (IA-2(12), SC-17)' },
-  { area: 'FIPS', detail: 'FIPS 140-3 build mode with runtime self-test via CMVP-validated module (product-level validation not yet initiated) (SC-13)' },
-  { area: 'Classification', detail: 'Five levels (UNCLASSIFIED → TS) plus CUI designations (NOFORN, IMCON, PROPIN, ORCON); constructor refuses by design to disable (AC-4)' },
-  { area: 'Spillage detection', detail: 'Unicode normalization, lookalike-character detection, entropy-based secret detection (>4.5 bits), fuzzy redaction (IR-9)' },
-  { area: 'Secure delete', detail: 'DoD 5220.22-M three-pass overwrite (0x00 / 0xFF / random) on sensitive files (MP-6)' },
-  { area: 'MFA', detail: 'Default-on; bcrypt cost 12; 12-character minimum password; rate limiter 5 attempts / 5 min (IA-2(1))' },
-  { area: 'Sandbox network', detail: 'Code-interpreter sandbox network policy by classification: UNCLASSIFIED → bridge, CUI → none, SECRET / TS → denied; fail-closed on unknown (SC-7, AC-4)' },
-  { area: 'Test surface', detail: '3,363 test functions, 18 fuzz tests in the security package alone, classification-routing fuzz harness gated against bypass' },
+const procurementPosture = [
+  { label: 'Direct contract availability', value: 'December 10, 2026 (post-DD-214)' },
+  { label: 'CAGE / UEI / SAM.gov', value: 'Registration scheduled Q4 2026' },
+  { label: 'Set-aside', value: 'SDVOSB eligibility under review' },
+  { label: 'Data rights posture', value: 'Commercial item (FAR 12.212 / DFARS 252.227-7015)' },
+  { label: 'Planned vehicles', value: 'Direct contract · SBIR Phase I/II · OTA · CRADA · GSA/SEWP' },
+  { label: 'Founder availability', value: 'Active-duty USMC; conversations welcome now' },
 ];
 ---
 
 <BaseLayout
   title="Defense | Thornveil"
-  description="Local-first AI infrastructure (RigRun), pure-Go LLM safety engine (Pyros), distributed AI mesh (Mycelium), counter-UAS interceptors, sub-2M-parameter detection, CBRN sensor fusion, acoustic comms, Arabic NLP. 27 provisional patent applications across 10 patent families."
+  description="Thornveil's 10-system portfolio addresses concrete federal program-of-record adjacency: SOCPAC R2I, DoD AI Safety Institute, FedRAMP-Mod, Replicator, FS-LIDS, NAVSEA USV-counter-USV, DARPA HACMS successor, FAA Section 2209. Direct contracts open Dec 10, 2026."
 >
   <section class="section-padding pt-32 md:pt-40">
     <div class="container-max mx-auto">
       <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Defense</p>
-      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Defense technology</h1>
-      <p class="text-base mt-4 max-w-3xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Local-first AI infrastructure engineered toward NIST 800-53 and IL5 control objectives (no formal assessment completed). A standalone pure-Go safety engine for any LLM. A distributed AI mesh for contested environments. Counter-UAS interceptors with autonomous engagement guidance. Sub-2M-parameter detection across six domains. Open-source Rust autopilot. CBRN sensor fusion. Arabic NLP. <strong style="color: var(--color-text-primary);">27 USPTO provisional patent applications across 10 patent families</strong> — all filed March 2026, sole inventor, sole assignee, no government funding.
+      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
+        Built for the federal procurement that hasn't started yet.
+      </h1>
+      <p class="text-base mt-5 max-w-3xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+        Seven of Thornveil's ten systems are directly defense-procurement adjacent. Each is built ground-up to clear FedRAMP, IL5, or ECCN review on day one — not retrofitted after the customer asks. The founder is active-duty USMC until December 10, 2026; soft engagements and review-the-work conversations are welcome now.
       </p>
-
-      <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl reveal reveal-delay-3">
-        {[
-          { value: '27', label: 'USPTO provisionals' },
-          { value: '10', label: 'Patent families' },
-          { value: '13', label: 'Defense programs' },
-          { value: 'IL5', label: 'Design target' },
-        ].map((m) => (
-          <div class="rounded-lg p-3 text-center" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-            <div class="font-mono text-base font-bold" style="color: var(--color-accent);">{m.value}</div>
-            <div class="font-mono text-[9px] tracking-wider uppercase mt-1" style="color: var(--color-text-tertiary);">{m.label}</div>
-          </div>
-        ))}
-      </div>
     </div>
   </section>
 
-  <!-- COMPLIANCE -->
+  <!-- SYSTEMS -->
   <section class="section-padding pt-12">
     <div class="container-max mx-auto">
-      <div class="mb-10">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Compliance</p>
-        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Engineered toward NIST 800-53 / IL5 controls</h2>
-        <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          Every control below is implemented in source — but no formal security assessment, third-party audit, or accreditation has been completed. These are engineering design targets, not certified compliance claims.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 reveal reveal-delay-2">
-        {complianceControls.map((c) => (
-          <div class="rounded-lg p-4" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-            <div class="text-xs font-semibold tracking-wider uppercase mb-2" style="color: var(--color-accent);">{c.area}</div>
-            <p class="text-xs leading-relaxed" style="color: var(--color-text-secondary);">{c.detail}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- DRONEBANE CARVE-OUT -->
-  <section class="section-padding pt-12">
-    <div class="container-max mx-auto">
-      <div class="mb-10">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Featured program</p>
-        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">DroneBane — three tiers, one kill chain</h2>
-        <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          A counter-UAS product family covering the entire engagement workflow: a passive Remote-ID app on the operator's phone (Watch), a commercial sensor-fusion + MAVLink C2 platform for force protection (Pro), and a ATAK plugin designed for defense use with 16-point safety interlocks and on-device DRL guidance (Mobile). 8 USPTO provisionals across the family. Anduril Lattice integration prepped.
-        </p>
-      </div>
-
-      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-accent); box-shadow: 0 0 30px rgba(201, 168, 78, 0.08);">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-          {[
-            { name: 'Watch', role: 'Detect', detail: 'Passive Remote-ID, multi-sensor fusion, FAA reporting', color: '#10b981' },
-            { name: 'Pro', role: 'Engage (Roadmap)', detail: 'MAVLink C2, fleet management, autonomous patrol', color: '#f59e0b' },
-            { name: 'Mobile', role: 'Authorize', detail: 'ATAK plugin, 16-point interlocks, F2T2EA, DRL guidance', color: '#C9A84E' },
-          ].map((tier) => (
-            <div class="rounded-lg p-4" style="background: var(--color-surface); border: 1px solid var(--color-border-subtle);">
-              <div class="flex items-baseline justify-between mb-2">
-                <h3 class="text-sm font-semibold">DroneBane {tier.name}</h3>
-                <span class="font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full" style={`background: ${tier.color}1a; color: ${tier.color}; border: 1px solid ${tier.color}33;`}>
-                  {tier.role}
-                </span>
+      <div class="space-y-5">
+        {systems.map((s, i) => (
+          <div class={`reveal reveal-delay-${Math.min(i + 1, 4)} rounded-xl p-7`} style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <div class="flex items-start justify-between gap-4 flex-wrap mb-3">
+              <div class="flex-1 min-w-0">
+                <h3 class="text-lg font-semibold tracking-tight">{s.name}</h3>
+                <p class="text-xs mt-0.5" style="color: var(--color-text-tertiary);">{s.tagline}</p>
               </div>
-              <p class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">{tier.detail}</p>
+              <span class="font-mono text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full shrink-0" style="background: var(--color-accent-muted); color: var(--color-accent);">
+                {s.status}
+              </span>
+            </div>
+            <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-secondary);">
+              {s.description}
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-1">
+              <div class="md:col-span-2">
+                <div class="font-mono text-[10px] tracking-wider uppercase mb-1" style="color: var(--color-text-tertiary);">Program fit</div>
+                <div class="text-xs" style="color: var(--color-text-secondary);">{s.programFit}</div>
+              </div>
+              <div class="flex items-end gap-2 md:justify-end flex-wrap">
+                {s.detail && (
+                  <a href={s.detail} class="inline-flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full transition-colors hover:opacity-80" style="background: var(--color-accent); color: #0B0F1A;">
+                    Deep dive
+                  </a>
+                )}
+                <a href={s.overview} target="_blank" rel="noopener" class="inline-flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full transition-colors hover:opacity-80" style="background: var(--color-surface); color: var(--color-text-secondary); border: 1px solid var(--color-border);">
+                  Public companion ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCUREMENT POSTURE -->
+  <section class="section-padding pt-0">
+    <div class="container-max mx-auto">
+      <div class="mb-8">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Federal acquisition posture</p>
+        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">What's available, and when</h2>
+      </div>
+      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+        <div class="space-y-3">
+          {procurementPosture.map((p) => (
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 pb-3" style="border-bottom: 1px solid var(--color-border-subtle);">
+              <span class="text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">{p.label}</span>
+              <span class="text-sm font-medium" style="color: var(--color-text-secondary);">{p.value}</span>
             </div>
           ))}
         </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-          {[
-            { value: '16', label: 'Safety interlocks' },
-            { value: 'F2T2EA', label: '7-phase kill chain' },
-            { value: 'FIPS Module', label: 'CMVP #3514' },
-            { value: 'Lattice', label: 'Integration prepped' },
-          ].map((m) => (
-            <div class="rounded-lg p-3 text-center" style="background: var(--color-surface); border: 1px solid var(--color-border-subtle);">
-              <div class="font-mono text-base font-bold" style="color: var(--color-accent);">{m.value}</div>
-              <div class="font-mono text-[9px] tracking-wider uppercase mt-1" style="color: var(--color-text-tertiary);">{m.label}</div>
-            </div>
-          ))}
-        </div>
-
-        <div class="flex items-center justify-between flex-wrap gap-3">
-          <div class="text-xs" style="color: var(--color-text-tertiary);">
-            <span style="color: var(--color-accent);">USPTO provisionals</span> &nbsp; THRN-001, 006, 007, 008, 009, 011, 014, 017
-          </div>
-          <a href="/dronebane" class="btn-outline text-xs uppercase">
-            Full DroneBane brief &rarr;
-          </a>
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="section-padding pt-12" style="background: var(--color-surface-secondary);">
-    <div class="container-max mx-auto">
-      <div class="mb-10">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Programs</p>
-        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">All 13 active programs</h2>
-        <p class="text-sm mt-3 max-w-3xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          Each card lists the program's USPTO provisional docket numbers (THRN-001 through THRN-027), TRL, and live demo link where available. Patent counts are non-overlapping except where explicitly noted.
-        </p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {programs.map((p, i) => {
-          const Tag = p.href ? 'a' : 'div';
-          const isInternal = p.href && p.href.startsWith('/');
-          const linkProps = p.href
-            ? (isInternal
-                ? { href: p.href }
-                : { href: p.href, target: '_blank', rel: 'noopener noreferrer' })
-            : {};
-          return (
-            <Tag
-              {...linkProps}
-              class={`reveal reveal-delay-${Math.min(i + 1, 4)} card-gradient-border p-7 group ${p.featured ? 'md:col-span-2' : ''} ${p.href ? 'cursor-pointer' : ''}`}
-              data-tilt
-            >
-              <div class="relative z-10">
-                <div class="flex items-baseline gap-3 mb-1 flex-wrap">
-                  <h3 class="text-base font-semibold tracking-tight">{p.name}</h3>
-                  <span class="text-xs" style="color: var(--color-text-tertiary);">{p.subtitle}</span>
-                  {p.href && (
-                    <span class="inline-flex items-center gap-1 font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full" style="background: var(--color-accent-muted); color: var(--color-accent);">
-                      <svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
-                      {isInternal ? 'Details' : 'Demo'}
-                    </span>
-                  )}
-                </div>
-                <p class="text-sm leading-relaxed my-3" style="color: var(--color-text-secondary);">{p.description}</p>
-                <div class="flex items-center justify-between flex-wrap gap-3">
-                  <div class="flex flex-wrap gap-1.5">
-                    {p.tags.map((t: string) => (
-                      <span class="tag">{t}</span>
-                    ))}
-                  </div>
-                  <div class="flex items-center gap-4 text-right flex-wrap justify-end">
-                    {p.patents > 0 && (
-                      <span class="inline-flex flex-col items-end font-mono text-[9px] tracking-wider uppercase px-2 py-1 rounded" style="background: var(--patent-bg); color: var(--patent-text); border: 1px solid var(--patent-border);">
-                        <span>{p.patents} Patent{p.patents > 1 ? 's' : ''}</span>
-                        <span class="text-[8px] opacity-75 normal-case tracking-normal">THRN-{p.patentNums}</span>
-                      </span>
-                    )}
-                    <div>
-                      <span class="font-mono text-sm font-bold" style="color: var(--color-accent);">{p.trl}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Tag>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  <section class="section-padding">
-    <div class="container-max mx-auto max-w-3xl">
-      <h2 class="text-fluid-xl font-semibold tracking-tight mb-8 reveal">Deployed work</h2>
-      <div class="rounded-xl overflow-hidden reveal reveal-delay-1" style="border: 1px solid var(--color-border);">
-        {[
-          { label: 'Expert-Driven Development', detail: 'AI-assisted development training curriculum for Department of Defense personnel. Structured curricula, documentation templates, and modern dev practices.', href: 'https://jeranaias.github.io/ExpertDrivenDevelopment/' },
-        ].map((w) => (
-          <a href={w.href} target="_blank" rel="noopener noreferrer" class="work-row block cursor-pointer">
-            <div class="flex items-center gap-2">
-              <div class="text-sm font-semibold">{w.label}</div>
-              <svg class="w-3 h-3 flex-shrink-0" style="color: var(--color-accent);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
-            </div>
-            <div class="text-xs leading-relaxed mt-1" style="color: var(--color-text-tertiary);">{w.detail}</div>
-          </a>
-        ))}
+  <!-- CTA -->
+  <section class="section-padding relative overflow-hidden" style="background: var(--color-surface-secondary);">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="opacity: 0.07; background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);"></div>
+    <div class="relative container-max mx-auto max-w-2xl text-center">
+      <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">Federal program offices, primes, evaluators</h2>
+      <p class="mt-4 text-sm max-w-md mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+        Direct line. Conversations now compound into signed paper post-DD-214 (December 10, 2026). Review the public companions; the substrate is ready.
+      </p>
+      <div class="mt-8 reveal reveal-delay-2 flex flex-wrap gap-3 justify-center">
+        <a href="mailto:jesse@thornveil.ai?subject=Defense%20inquiry" class="btn-primary">
+          jesse@thornveil.ai
+        </a>
+        <a href="/cofounder" class="btn-outline">
+          Co-founder profile
+        </a>
       </div>
     </div>
   </section>
@@ -345,9 +180,4 @@ const complianceControls = [
   const lenis = new Lenis({ duration: 1.2, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
   function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
   requestAnimationFrame(raf);
-  document.querySelectorAll<HTMLElement>('[data-tilt]').forEach((card) => {
-    const MAX_DEG = 3;
-    card.addEventListener('mousemove', (e: MouseEvent) => { const r=card.getBoundingClientRect(); card.style.transform=`perspective(800px) rotateX(${(0.5-(e.clientY-r.top)/r.height)*MAX_DEG}deg) rotateY(${((e.clientX-r.left)/r.width-0.5)*MAX_DEG}deg)`; card.style.transition='transform 0.1s ease-out'; });
-    card.addEventListener('mouseleave', () => { card.style.transform='perspective(800px) rotateX(0deg) rotateY(0deg)'; card.style.transition='transform 0.4s ease-out'; });
-  });
 </script>
