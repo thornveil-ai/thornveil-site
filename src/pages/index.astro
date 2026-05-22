@@ -47,13 +47,15 @@ const metrics = [
   { value: 'Dec 10', label: 'Direct contracts open 2026' },
 ];
 
-const agents = [
-  { name: 'Code Reviewer', subtitle: 'Agent Persona: Security Engineer', domain: 'Security + Bugs', tools: 9, accent: '#ef4444' },
-  { name: 'Security Auditor', subtitle: 'Agent Persona: AppSec Engineer', domain: 'CWE/OWASP/CVSS', tools: 11, accent: '#f97316' },
-  { name: 'Doc Writer', subtitle: 'Agent Persona: Documentation', domain: 'Technical Docs', tools: 10, accent: '#3b82f6' },
-  { name: 'Sprint Planner', subtitle: 'Agent Persona: Engineering Manager', domain: 'Agile Planning', tools: 10, accent: '#8b5cf6' },
-  { name: 'SBIR Writer', subtitle: 'Agent Persona: Federal Grants', domain: 'DoD Proposals', tools: 7, accent: '#C9A84E' },
-  { name: 'OPORD Drafter', subtitle: 'Agent Persona: Operations Officer', domain: 'FM 6-0 / JP 5-0 / ADP 5-0', tools: 10, accent: '#10b981' },
+// The other 6 systems (beyond the 4-pillar hero) — shown as compact row so visitors
+// see the full 10-system portfolio without sub-products masquerading as separate items.
+const otherSystems = [
+  { name: 'Signet', tagline: 'Capability gates for LLM agents (public OSS)' },
+  { name: 'Alchemist', tagline: 'C-to-Rust translation, five correctness gates (public OSS)' },
+  { name: 'HawkStack', tagline: 'Sub-million-parameter perception, 6 domains' },
+  { name: 'Meridian', tagline: 'Memory-safe Rust flight-control firmware' },
+  { name: 'Canopy', tagline: 'Multi-modal counter-UAS situational awareness' },
+  { name: 'Navigator', tagline: 'Internal AI ops center, 9 production agents' },
 ];
 ---
 
@@ -175,20 +177,17 @@ const agents = [
     </div>
   </section>
 
-  <!-- AGENT CATALOG PREVIEW -->
+  <!-- THE OTHER 6 SYSTEMS -->
   <section class="px-6 md:px-12 lg:px-20 py-16 md:py-24" style="background: var(--color-surface-secondary);">
     <div class="container-max mx-auto">
       <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
         <div>
           <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">
-            Navigator
+            And six more
           </p>
           <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
-            Built by an Agent Factory
+            The rest of the ten.
           </h2>
-          <p class="text-sm mt-3 max-w-lg reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-            Navigator is Thornveil's internal ops center — 9 production domain-expert agents produced by a 14-step factory pipeline with Opus calibration and 5-probe adversarial hardening. Federal Agent Pack candidate for DoD/IC primes.
-          </p>
         </div>
         <a href="/systems" class="btn-outline text-xs uppercase reveal reveal-delay-2">
           See all 10 systems &rarr;
@@ -196,18 +195,12 @@ const agents = [
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {agents.map((a, i) => (
-          <div
-            class={`reveal reveal-delay-${Math.min(i + 1, 4)} rounded-xl p-5 transition-all duration-300 hover:scale-[1.02]`}
-            style={`background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid ${a.accent};`}
-          >
-            <div class="flex items-center justify-between mb-1">
-              <h3 class="text-sm font-semibold tracking-tight">{a.name}</h3>
-              <span class="font-mono text-[10px] tracking-wider" style="color: var(--color-accent);">{a.tools} tools</span>
-            </div>
-            <p class="text-[11px] mb-1" style="color: var(--color-text-tertiary);">{a.subtitle}</p>
-            <p class="text-[10px]" style="color: var(--color-text-tertiary); opacity: 0.7;">{a.domain}</p>
-          </div>
+        {otherSystems.map((s, i) => (
+          <a href="/systems" class={`reveal reveal-delay-${Math.min(i + 1, 4)} rounded-xl p-5 transition-all duration-300 hover:scale-[1.02] block`}
+             style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <h3 class="text-sm font-semibold tracking-tight mb-1">{s.name}</h3>
+            <p class="text-[11px]" style="color: var(--color-text-tertiary);">{s.tagline}</p>
+          </a>
         ))}
       </div>
     </div>
