@@ -5,7 +5,7 @@ const features = [
   {
     title: 'Knock out half. It still works.',
     body: 'When half the computers running it get unplugged, jammed, shot, or stolen — the conversation keeps going. No restart, no error message, no "try again later." The first AI ever built to survive that.',
-    tag: 'Patent-pending',
+    tag: 'RTP validated 2026-05-08',
   },
   {
     title: 'Feels like every other AI tool.',
@@ -48,7 +48,7 @@ const r2iBullets = [
 
 <BaseLayout
   title="Mycelium | Distributed AI Mesh | Thornveil"
-  description="Mycelium is a distributed mixture-of-experts inference engine. Six workers pooling compute for one Gemma-4-26B chat. When half the mesh dies, substitute-on-failure dispatch keeps producing tokens. USPTO provisional THRN-2026-022."
+  description="Mycelium is a distributed mixture-of-experts inference engine. Six workers pooling compute for one Gemma-4-26B chat. When half the mesh dies, substitute-on-failure dispatch keeps producing tokens. v1.0.0 cosign-signed."
 >
   <!-- HERO -->
   <section class="section-padding pt-32 md:pt-40">
@@ -64,7 +64,7 @@ const r2iBullets = [
         </span>
         <span class="font-mono text-[10px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full"
               style="background: var(--color-surface-elevated); color: var(--color-text-secondary); border: 1px solid var(--color-border);">
-          THRN-2026-022
+          Day-27 RTP validated
         </span>
       </div>
 
@@ -80,7 +80,7 @@ const r2iBullets = [
       </p>
 
       <div class="mt-8 flex flex-wrap gap-3 reveal reveal-delay-3">
-        <a href="#patent-in-action"
+        <a href="#mesh-in-action"
            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-all"
            style="background: var(--color-accent); color: #0B0F1A;">
           Show me →
@@ -113,7 +113,7 @@ const r2iBullets = [
           <img src="/mycelium/dashboard-baseline.png" alt="Mycelium ops dashboard — six worker tiles pooling compute for one Gemma-4-26B chat" style="display:block; width:100%; height:auto;" />
         </div>
         <p class="text-xs mt-4 text-center" style="color: var(--color-text-tertiary);">
-          Six workers running. One shared brain. <a href="#patent-in-action" style="color: var(--color-accent);">Watch what happens when three of them die →</a>
+          Six workers running. One shared brain. <a href="#mesh-in-action" style="color: var(--color-accent);">Watch what happens when three of them die →</a>
         </p>
       </div>
     </div>
@@ -147,13 +147,13 @@ const r2iBullets = [
     </div>
   </section>
 
-  <!-- THE PATENT -->
+  <!-- THE MECHANISM -->
   <section class="section-padding">
     <div class="container-max mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14 items-start">
         <div class="lg:col-span-2">
           <p class="text-[11px] font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent);">
-            The patent
+            The mechanism
           </p>
           <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 mb-5">
             What survives when half the mesh dies
@@ -162,24 +162,24 @@ const r2iBullets = [
             Distributed inference frameworks don't document what happens when an inference worker becomes unreachable mid-token. Most options are catastrophic: hang, error, drop the request. Mycelium's coordinator substitutes a zero vector for the unreachable worker's experts and the dense MLP path keeps producing tokens. Output coherence degrades proportionally to loss.
           </p>
           <p class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">
-            Recorded reduction-to-practice 2026-05-08 with HMAC-chained tamper-evident evidence. Not in any chaos-engineering catalog. Not in MITRE's experiment-process methodology. Not in NIST SP 800-204.
+            Day-27 reduction-to-practice recorded 2026-05-08 with HMAC-chained tamper-evident evidence. Not in any chaos-engineering catalog. Not in MITRE's experiment-process methodology. Not in NIST SP 800-204.
           </p>
         </div>
 
         <div class="lg:col-span-3">
           <div class="rounded-xl p-7" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
             <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">
-              USPTO provisional
+              Trade-secret-grade IP
             </div>
-            <h3 class="text-lg font-semibold tracking-tight mb-3">THRN-2026-022</h3>
+            <h3 class="text-lg font-semibold tracking-tight mb-3">Distributed Adaptive AI Mesh Network</h3>
             <p class="text-xs italic mb-4" style="color: var(--color-text-tertiary);">
-              Distributed Adaptive AI Mesh Network with Predictive Expert Prefetching, Cross-Model Style Normalization, and Behavioral Proof-of-Inference Verification
+              Predictive Expert Prefetching · Cross-Model Style Normalization · Behavioral Proof-of-Inference Verification
             </p>
             <ul class="space-y-2.5 text-sm" style="color: var(--color-text-secondary);">
               <li class="flex gap-3"><span style="color: var(--color-accent);">›</span> Substitute-on-failure dispatch on the per-token MoE expert dimension</li>
               <li class="flex gap-3"><span style="color: var(--color-accent);">›</span> HMAC-chained tamper-evident audit ledger over canonical-JSON</li>
               <li class="flex gap-3"><span style="color: var(--color-accent);">›</span> Behavioral fingerprinting + Merkle execution traces + economic reputation</li>
-              <li class="flex gap-3"><span style="color: var(--color-accent);">›</span> Non-provisional filing window through 2027-04</li>
+              <li class="flex gap-3"><span style="color: var(--color-accent);">›</span> Auditable replay package available under evaluation NDA</li>
             </ul>
           </div>
         </div>
@@ -187,8 +187,8 @@ const r2iBullets = [
     </div>
   </section>
 
-  <!-- PATENT IN ACTION (before / after) -->
-  <section id="patent-in-action" class="section-padding pt-0" style="background: var(--color-surface-secondary);">
+  <!-- MESH IN ACTION (before / after) -->
+  <section id="mesh-in-action" class="section-padding pt-0" style="background: var(--color-surface-secondary);">
     <div class="container-max mx-auto">
       <div class="text-center mb-10">
         <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">
@@ -241,7 +241,7 @@ const r2iBullets = [
           The user typing the question never noticed anything happened.
         </p>
         <p class="text-[11px] font-mono uppercase tracking-[0.2em] mt-4" style="color: var(--color-text-tertiary);">
-          Filmed live · 2026-05-08 · Patent pending · USPTO THRN-2026-022
+          Filmed live · 2026-05-08 · HMAC-chained audit log · Replay package available under evaluation NDA
         </p>
       </div>
     </div>
@@ -396,7 +396,7 @@ const r2iBullets = [
     <div class="container-max mx-auto text-center">
       <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">Build the AI tier of your stack on Mycelium.</h2>
       <p class="text-base mt-4 max-w-2xl mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        Standards seat. Patent assignment. Live demo. Whatever shape the conversation needs to take, the door is open.
+        Standards seat. Licensing terms. Live demo. Whatever shape the conversation needs to take, the door is open. Direct contracts open December 10, 2026.
       </p>
       <div class="mt-8 flex flex-wrap gap-3 justify-center reveal reveal-delay-2">
         <a href="mailto:jesse@thornveil.ai?subject=Mycelium"
