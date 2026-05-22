@@ -48,8 +48,23 @@ const notBullets = [
         The seat is for an operator.
       </h1>
       <p class="text-base mt-6 leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Thornveil has 10 production-grade systems shipped. It does not yet have a federal sales motion. That gap is the gating activity for the next 12 months — not engineering. We're looking for the senior offensive cyber operator who closes it.
+        Ten production-grade systems, 1.3M LOC, one filed provisional with cryptographically auditable reduction-to-practice — all shipped solo in five months while active-duty USMC. The technical substrate is done. The federal sales motion isn't. That gap is the gating activity for the next 12 months, and it's the seat we're hiring for.
       </p>
+
+      <div class="mt-8 grid grid-cols-3 gap-4 reveal reveal-delay-3">
+        <div class="rounded-lg p-4 text-center" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <div class="font-mono text-fluid-xl font-bold" style="color: var(--color-accent);">10</div>
+          <div class="font-mono text-[9px] tracking-wider uppercase mt-1" style="color: var(--color-text-tertiary);">Systems shipped</div>
+        </div>
+        <div class="rounded-lg p-4 text-center" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <div class="font-mono text-fluid-xl font-bold" style="color: var(--color-accent);">1</div>
+          <div class="font-mono text-[9px] tracking-wider uppercase mt-1" style="color: var(--color-text-tertiary);">Filed provisional, cryptographic RTP</div>
+        </div>
+        <div class="rounded-lg p-4 text-center" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <div class="font-mono text-fluid-xl font-bold" style="color: var(--color-accent);">0</div>
+          <div class="font-mono text-[9px] tracking-wider uppercase mt-1" style="color: var(--color-text-tertiary);">Signed federal pilots (yet)</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -61,8 +76,51 @@ const notBullets = [
           You've been on the buyer side of an AI-pentest pitch. You've sat in a program office and rejected one without governance. You know exactly why <em>"the model proposes, Signet authorizes, Auspex executes only what's allowed"</em> is the wedge that wins federal AI deployment in 2026-2027. You've done one rotation through a defense AI startup since separating, so you know the rhythms and the cap-table math.
         </p>
         <p>
-          The technical substrate is shipped: <a href="/systems" style="color: var(--color-accent); text-decoration: underline;">10 systems</a>, audit-grade, public companion repositories live for evaluators on <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">github.com/thornveil-ai</a>. Cryptographically auditable reduction-to-practice on the headline capabilities. ECCN-aware from day one. The work that doesn't yet exist is your work.
+          The work doesn't need your endorsement; it needs your verification. <a href="/systems" style="color: var(--color-accent); text-decoration: underline;">Read the 10 systems</a>. Pull a <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">public companion repo</a>. Sniff for the holes you've learned to look for. Then write back if you want the seat.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSTRATE -->
+  <section class="section-padding pt-12">
+    <div class="container-max mx-auto max-w-3xl">
+      <div class="mb-6">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Substrate</p>
+        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Verify before you commit time</h2>
+      </div>
+      <div class="space-y-3 reveal reveal-delay-2">
+        <a href="https://github.com/thornveil-ai/auspex-contact" target="_blank" rel="noopener" class="block rounded-xl p-5 transition-all hover:scale-[1.01]" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <div class="flex items-baseline justify-between gap-3 flex-wrap">
+            <h3 class="text-sm font-semibold tracking-tight">Auspex — autonomous AD takeover with auditable replay</h3>
+            <span class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-accent);">EAR ECCN 4D004</span>
+          </div>
+          <p class="text-xs mt-1.5" style="color: var(--color-text-tertiary);">Federal-gated. Single-page public contact. Replay package available under evaluation NDA. Source proves scope-as-code + 13-check Signet gate + HMAC-chained per-engagement audit.</p>
+        </a>
+
+        <a href="https://github.com/thornveil-ai/mycelium-overview" target="_blank" rel="noopener" class="block rounded-xl p-5 transition-all hover:scale-[1.01]" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <div class="flex items-baseline justify-between gap-3 flex-wrap">
+            <h3 class="text-sm font-semibold tracking-tight">Mycelium — substitute-on-failure mesh, customer-engagement in motion</h3>
+            <span class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-accent);">v1.0.0 · cosign-signed</span>
+          </div>
+          <p class="text-xs mt-1.5" style="color: var(--color-text-tertiary);">R2I-aligned MOSA surface, NIST 800-53 mapped, 50-endpoint OpenAPI 3.1 published. Day-27 reduction-to-practice with HMAC-chained tamper-evident audit log.</p>
+        </a>
+
+        <a href="https://github.com/thornveil-ai/rigrun-overview" target="_blank" rel="noopener" class="block rounded-xl p-5 transition-all hover:scale-[1.01]" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <div class="flex items-baseline justify-between gap-3 flex-wrap">
+            <h3 class="text-sm font-semibold tracking-tight">RigRun — IL5-pathway AI chat with type-system-enforced classification gate</h3>
+            <span class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-accent);">496K LOC · 6,950 tests</span>
+          </div>
+          <p class="text-xs mt-1.5" style="color: var(--color-text-tertiary);">Three apps (desktop, mobile, web) on one Go backend. 44 NIST 800-53 controls as discrete code paths. CUI+ hard-blocked from cloud routing at the compiler, not at runtime policy.</p>
+        </a>
+
+        <a href="https://github.com/thornveil-ai/signet" target="_blank" rel="noopener" class="block rounded-xl p-5 transition-all hover:scale-[1.01]" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <div class="flex items-baseline justify-between gap-3 flex-wrap">
+            <h3 class="text-sm font-semibold tracking-tight">Signet — Apache-2.0 capability-based safety gate</h3>
+            <span class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-accent);">PyPI public OSS</span>
+          </div>
+          <p class="text-xs mt-1.5" style="color: var(--color-text-tertiary);">The vocabulary Auspex extends. 4-stage check pipeline, 11 production checks, HMAC-chained audit log, RFC 3161 anchoring. Public bug-hunt log documenting every cycle.</p>
+        </a>
       </div>
     </div>
   </section>
@@ -109,10 +167,10 @@ const notBullets = [
         <div class="rounded-xl p-7 reveal" style="background: var(--color-surface-secondary); border: 1px solid var(--color-border);">
           <h3 class="text-base font-semibold tracking-tight mb-4">What you get</h3>
           <ul class="space-y-3 text-sm" style="color: var(--color-text-secondary);">
-            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>Co-founder equity, material. Specific terms in conversation once we trust each other.</span></li>
-            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>The technical wedge is already shipped — your work compounds onto a substrate that's already credible.</span></li>
-            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>A founder who ships. 1.3M LOC in 5 months while active-duty USMC. Engineering velocity will keep widening.</span></li>
-            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>First federal pilot conversion gets 2-3× the leverage of any other early contribution.</span></li>
+            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>True co-founder equity. Single-digit-percentage stake range for the right candidate, vested with pilot-conversion accelerators.</span></li>
+            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>The technical wedge is already shipped. Your federal-sales work compounds onto a substrate that's already credible — you skip the 18 months of MVP-to-demo every other defense-AI startup is still grinding through.</span></li>
+            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>A founder who ships. 1.3M LOC across 10 systems in 5 months while active-duty USMC. Engineering velocity will keep widening.</span></li>
+            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>First federal pilot conversion gets 2-3× the leverage of any other early contribution. The portfolio is one signed pilot away from a $90-160M strategic-acquisition range, per independent due diligence.</span></li>
           </ul>
         </div>
         <div class="rounded-xl p-7 reveal reveal-delay-1" style="background: var(--color-surface-secondary); border: 1px solid var(--color-border);">
@@ -121,6 +179,7 @@ const notBullets = [
             {notBullets.map((n) => (
               <li class="flex gap-3"><span style="color: var(--color-text-tertiary);">·</span><span>{n}</span></li>
             ))}
+            <li class="flex gap-3"><span style="color: var(--color-text-tertiary);">·</span><span>Not a 30-person team in year one. 2-person company, IC engineering hires once pilots are signed.</span></li>
           </ul>
         </div>
       </div>
@@ -133,16 +192,19 @@ const notBullets = [
     <div class="relative container-max mx-auto max-w-2xl text-center">
       <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">Apply</h2>
       <p class="mt-4 text-sm max-w-lg mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        Send a paragraph to <a href="mailto:jesse@thornveil.ai?subject=Co-founder%20application" style="color: var(--color-accent); text-decoration: underline;">jesse@thornveil.ai</a>. Include three things:
+        Send a paragraph to <a href="mailto:jesse@thornveil.ai?subject=Co-founder%20application" style="color: var(--color-accent); text-decoration: underline;">jesse@thornveil.ai</a>. Three things:
       </p>
       <div class="mt-6 text-left max-w-lg mx-auto reveal reveal-delay-2">
         <ol class="space-y-3 text-sm" style="color: var(--color-text-secondary);">
           <li class="flex gap-3"><span class="font-mono text-xs" style="color: var(--color-accent);">1</span><span>The federal program(s) you've worked, on which side of the table.</span></li>
           <li class="flex gap-3"><span class="font-mono text-xs" style="color: var(--color-accent);">2</span><span>One customer relationship you'd convert in the first 90 days.</span></li>
-          <li class="flex gap-3"><span class="font-mono text-xs" style="color: var(--color-accent);">3</span><span>One Thornveil system you'd lead with into that customer.</span></li>
+          <li class="flex gap-3"><span class="font-mono text-xs" style="color: var(--color-accent);">3</span><span>One Thornveil system you'd lead with into that customer, and why.</span></li>
         </ol>
       </div>
-      <p class="mt-6 text-xs reveal reveal-delay-3" style="color: var(--color-text-tertiary);">
+      <p class="mt-6 text-sm max-w-lg mx-auto reveal reveal-delay-3" style="color: var(--color-text-secondary);">
+        Strong-fit responses get a reply within 48 hours. The window to be in position for the FY27 federal-pilot cycle is closing — we want the right operator landed and onboarded before Q1 2027.
+      </p>
+      <p class="mt-4 text-xs reveal reveal-delay-3" style="color: var(--color-text-tertiary);">
         Founder is active-duty USMC; direct contracts open December 10, 2026. Co-founder conversations open now.
       </p>
     </div>
