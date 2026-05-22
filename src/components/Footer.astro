@@ -2,13 +2,21 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="py-6 px-6" style="border-top: 1px solid var(--color-border-subtle);">
-  <div class="container-max mx-auto flex justify-between items-center">
-    <p class="font-mono text-[10px] tracking-wider" style="color: var(--color-text-tertiary);">
-      &copy; {currentYear} Thornveil LLC
-    </p>
-    <p class="font-mono text-[10px] tracking-wider" style="color: var(--color-text-tertiary);">
-      Tampa, FL &middot; NAICS 541511, 541512, 334511
-    </p>
+<footer class="py-8 px-6" style="border-top: 1px solid var(--color-border-subtle);">
+  <div class="container-max mx-auto">
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-4">
+      <a href="/docs" class="font-mono text-[10px] tracking-wider uppercase transition-colors hover:opacity-80" style="color: var(--color-text-tertiary);">Docs</a>
+      <a href="/privacy" class="font-mono text-[10px] tracking-wider uppercase transition-colors hover:opacity-80" style="color: var(--color-text-tertiary);">Privacy</a>
+      <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" class="font-mono text-[10px] tracking-wider uppercase transition-colors hover:opacity-80" style="color: var(--color-text-tertiary);">github.com/thornveil-ai</a>
+      <a href="mailto:jesse@thornveil.ai" class="font-mono text-[10px] tracking-wider uppercase transition-colors hover:opacity-80" style="color: var(--color-text-tertiary);">jesse@thornveil.ai</a>
+    </div>
+    <div class="flex flex-wrap justify-between items-center gap-y-2">
+      <p class="font-mono text-[10px] tracking-wider" style="color: var(--color-text-tertiary);">
+        &copy; {currentYear} Thornveil LLC
+      </p>
+      <p class="font-mono text-[10px] tracking-wider" style="color: var(--color-text-tertiary);">
+        Tampa, FL &middot; NAICS 541511, 541512, 334511
+      </p>
+    </div>
   </div>
 </footer>
