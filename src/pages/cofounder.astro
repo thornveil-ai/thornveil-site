@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const profileBullets = [
+  {
+    title: '8-15 years operational',
+    detail: 'MARFORCYBER, USCYBERCOM J3, NSA TAO, IC red team, FBI cyber, USAF 24th MOS, or peer. Senior NCO or O-3/O-4 equivalent.',
+  },
+  {
+    title: '2-5 years post-uniform',
+    detail: 'Founding employee or early hire (#5-50) at Horizon3, Pentera, Mandiant, Lacework, Bugcrowd, similar. Or fractional CRO at 2-3 defense AI startups. Or corp dev at a defense prime\'s AI division (Booz/SAIC/Leidos/GDIT).',
+  },
+  {
+    title: 'Won and lost in federal AI',
+    detail: 'At least one federal AI contract under FedRAMP/IL5/ECCN scrutiny — pitched and won OR pitched and lost. Know exactly why each outcome happened.',
+  },
+  {
+    title: 'Material Rolodex',
+    detail: '30-50 named program-office contacts at SOCOM, USCYBERCOM, DARPA I2O, AFRL, AvMC, NSA, CISA, or DoD AI Safety Institute. People who answer when you call.',
+  },
+];
+
+const roleBullets = [
+  'Run the federal sales motion. Convert 10 systems into 2-4 signed pilots over 12 months.',
+  'Build a customer-board of 5-8 program-office relationships that don\'t depend on the founder being in the room.',
+  'Navigate IL5 / FedRAMP-Mod / ECCN authorization cycles — you\'ve seen these movies before.',
+  'Set commercial vs federal portfolio strategy. Lead procurement-vehicle selection (SBIR Phase I/II/III, OTA, BAA, CSO, CRADA, IDIQ).',
+  'Recruit operator-credibility hires when they\'re needed.',
+];
+
+const notBullets = [
+  'We\'re not raising capital.',
+  'We\'re not building a 30-person team in year one.',
+  'We\'re not chasing commercial SaaS revenue.',
+  'We\'re not pitching investors before we have a signed customer.',
+];
+---
+
+<BaseLayout
+  title="Co-founder | Thornveil"
+  description="Thornveil is looking for a senior offensive cyber operator with post-uniform defense-AI startup experience to run the federal sales motion. Material equity. Pre-revenue. Technical substrate already shipped."
+>
+  <!-- HERO -->
+  <section class="section-padding pt-32 md:pt-40">
+    <div class="container-max mx-auto max-w-3xl">
+      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Co-founder</p>
+      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
+        The seat is for an operator.
+      </h1>
+      <p class="text-base mt-6 leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+        Thornveil has 10 production-grade systems shipped. It does not yet have a federal sales motion. That gap is the gating activity for the next 12 months — not engineering. We're looking for the senior offensive cyber operator who closes it.
+      </p>
+    </div>
+  </section>
+
+  <!-- THESIS -->
+  <section class="section-padding pt-12">
+    <div class="container-max mx-auto max-w-3xl">
+      <div class="space-y-4 text-sm leading-relaxed reveal" style="color: var(--color-text-secondary);">
+        <p>
+          You've been on the buyer side of an AI-pentest pitch. You've sat in a program office and rejected one without governance. You know exactly why <em>"the model proposes, Signet authorizes, Auspex executes only what's allowed"</em> is the wedge that wins federal AI deployment in 2026-2027. You've done one rotation through a defense AI startup since separating, so you know the rhythms and the cap-table math.
+        </p>
+        <p>
+          The technical substrate is shipped: <a href="/systems" style="color: var(--color-accent); text-decoration: underline;">10 systems</a>, audit-grade, public companion repositories live for evaluators on <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">github.com/thornveil-ai</a>. Cryptographically auditable reduction-to-practice on the headline capabilities. ECCN-aware from day one. The work that doesn't yet exist is your work.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section class="section-padding pt-12" style="background: var(--color-surface-secondary);">
+    <div class="container-max mx-auto max-w-3xl">
+      <div class="mb-10">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Profile</p>
+        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">What you'll have done before</h2>
+      </div>
+      <div class="space-y-4">
+        {profileBullets.map((b, i) => (
+          <div class={`reveal reveal-delay-${Math.min(i + 1, 4)} rounded-xl p-6`} style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <h3 class="text-sm font-semibold tracking-tight mb-2">{b.title}</h3>
+            <p class="text-sm" style="color: var(--color-text-secondary);">{b.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLE -->
+  <section class="section-padding">
+    <div class="container-max mx-auto max-w-3xl">
+      <div class="mb-10">
+        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Role</p>
+        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">What you'll do at Thornveil</h2>
+      </div>
+      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+        <ul class="space-y-3 text-sm" style="color: var(--color-text-secondary);">
+          {roleBullets.map((r) => (
+            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>{r}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET / WHAT WE'RE NOT -->
+  <section class="section-padding pt-0">
+    <div class="container-max mx-auto max-w-3xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="rounded-xl p-7 reveal" style="background: var(--color-surface-secondary); border: 1px solid var(--color-border);">
+          <h3 class="text-base font-semibold tracking-tight mb-4">What you get</h3>
+          <ul class="space-y-3 text-sm" style="color: var(--color-text-secondary);">
+            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>Co-founder equity, material. Specific terms in conversation once we trust each other.</span></li>
+            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>The technical wedge is already shipped — your work compounds onto a substrate that's already credible.</span></li>
+            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>A founder who ships. 1.3M LOC in 5 months while active-duty USMC. Engineering velocity will keep widening.</span></li>
+            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>First federal pilot conversion gets 2-3× the leverage of any other early contribution.</span></li>
+          </ul>
+        </div>
+        <div class="rounded-xl p-7 reveal reveal-delay-1" style="background: var(--color-surface-secondary); border: 1px solid var(--color-border);">
+          <h3 class="text-base font-semibold tracking-tight mb-4">What we are not</h3>
+          <ul class="space-y-3 text-sm" style="color: var(--color-text-secondary);">
+            {notBullets.map((n) => (
+              <li class="flex gap-3"><span style="color: var(--color-text-tertiary);">·</span><span>{n}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLY -->
+  <section class="section-padding relative overflow-hidden" style="background: var(--color-surface-secondary);">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="opacity: 0.07; background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);"></div>
+    <div class="relative container-max mx-auto max-w-2xl text-center">
+      <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">Apply</h2>
+      <p class="mt-4 text-sm max-w-lg mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
+        Send a paragraph to <a href="mailto:jesse@thornveil.ai?subject=Co-founder%20application" style="color: var(--color-accent); text-decoration: underline;">jesse@thornveil.ai</a>. Include three things:
+      </p>
+      <div class="mt-6 text-left max-w-lg mx-auto reveal reveal-delay-2">
+        <ol class="space-y-3 text-sm" style="color: var(--color-text-secondary);">
+          <li class="flex gap-3"><span class="font-mono text-xs" style="color: var(--color-accent);">1</span><span>The federal program(s) you've worked, on which side of the table.</span></li>
+          <li class="flex gap-3"><span class="font-mono text-xs" style="color: var(--color-accent);">2</span><span>One customer relationship you'd convert in the first 90 days.</span></li>
+          <li class="flex gap-3"><span class="font-mono text-xs" style="color: var(--color-accent);">3</span><span>One Thornveil system you'd lead with into that customer.</span></li>
+        </ol>
+      </div>
+      <p class="mt-6 text-xs reveal reveal-delay-3" style="color: var(--color-text-tertiary);">
+        Founder is active-duty USMC; direct contracts open December 10, 2026. Co-founder conversations open now.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import Lenis from 'lenis';
+  const lenis = new Lenis({ duration: 1.2, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+</script>
