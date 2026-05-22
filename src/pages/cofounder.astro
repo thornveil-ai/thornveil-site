@@ -34,30 +34,54 @@ const responsibilities = [
   description="Thornveil LLC is hiring a co-founder to run the federal sales motion for a 10-system defense-AI portfolio. Senior offensive cyber operator with post-uniform defense-AI startup experience. Tampa, FL / Remote. Material equity. Pre-revenue founder stage."
 >
   <!-- HERO / JOB HEADER -->
-  <section class="section-padding pt-32 md:pt-40">
-    <div class="container-max mx-auto max-w-3xl">
-      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Open Position · Co-founder</p>
-      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
+  <section class="relative section-padding pt-32 md:pt-40 overflow-hidden gradient-mesh">
+    <div class="absolute inset-0 pointer-events-none" style="opacity: 0.025; background-image: linear-gradient(var(--color-text-primary) 1px, transparent 1px), linear-gradient(90deg, var(--color-text-primary) 1px, transparent 1px); background-size: 80px 80px;"></div>
+    <div class="relative container-max mx-auto max-w-3xl">
+      <div class="flex items-center gap-2 mb-4 reveal flex-wrap">
+        <span class="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full" style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-accent);">
+          <span class="w-1.5 h-1.5 rounded-full" style="background: var(--color-accent); animation: pulse 2s infinite;"></span>
+          Open Position
+        </span>
+        <span class="font-mono text-[10px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full" style="background: var(--color-surface-elevated); color: var(--color-text-secondary); border: 1px solid var(--color-border);">
+          Posted 2026-05-21
+        </span>
+        <span class="font-mono text-[10px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full" style="background: var(--color-surface-elevated); color: var(--color-text-secondary); border: 1px solid var(--color-border);">
+          Single hire
+        </span>
+      </div>
+      <h1 class="text-fluid-3xl font-semibold tracking-tight reveal reveal-delay-1">
         Co-founder, Federal Sales
       </h1>
+      <p class="text-base md:text-lg mt-4 leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+        Lead federal sales for the IL5 sovereign AI stack. Material co-founder equity. Pre-revenue. Technical substrate already shipped.
+      </p>
 
-      <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 reveal reveal-delay-2">
-        <div>
-          <div class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">Company</div>
-          <div class="text-sm font-medium mt-1">Thornveil LLC</div>
+      <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 reveal reveal-delay-3">
+        <div class="rounded-lg p-4" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent);">
+          <div class="font-mono text-[9px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">Company</div>
+          <div class="text-sm font-semibold mt-1.5">Thornveil LLC</div>
         </div>
-        <div>
-          <div class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">Location</div>
-          <div class="text-sm font-medium mt-1">Tampa, FL / Remote</div>
+        <div class="rounded-lg p-4" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent);">
+          <div class="font-mono text-[9px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">Location</div>
+          <div class="text-sm font-semibold mt-1.5">Tampa, FL / Remote</div>
         </div>
-        <div>
-          <div class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">Stage</div>
-          <div class="text-sm font-medium mt-1">Pre-revenue, founder-led</div>
+        <div class="rounded-lg p-4" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent);">
+          <div class="font-mono text-[9px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">Stage</div>
+          <div class="text-sm font-semibold mt-1.5">Pre-revenue · founder-led</div>
         </div>
-        <div>
-          <div class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">Start</div>
-          <div class="text-sm font-medium mt-1">By Q1 2027</div>
+        <div class="rounded-lg p-4" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent);">
+          <div class="font-mono text-[9px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">Start</div>
+          <div class="text-sm font-semibold mt-1.5">By Q1 2027</div>
         </div>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-3 reveal reveal-delay-4">
+        <a href="#apply" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:scale-[1.02]" style="background: var(--color-accent); color: #0B0F1A;">
+          Apply →
+        </a>
+        <a href="#substrate" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all" style="background: var(--color-surface-elevated); color: var(--color-text-primary); border: 1px solid var(--color-border);">
+          Verify the substrate first
+        </a>
       </div>
     </div>
   </section>
@@ -83,9 +107,9 @@ const responsibilities = [
   </section>
 
   <!-- VERIFY THE SUBSTRATE -->
-  <section class="section-padding pt-12">
+  <section id="substrate" class="section-padding pt-12">
     <div class="container-max mx-auto max-w-3xl">
-      <div class="mb-6">
+      <div class="mb-8">
         <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Verify the substrate</p>
         <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Pull a repo. Sniff for holes.</h2>
         <p class="text-sm mt-3 max-w-2xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
@@ -93,7 +117,7 @@ const responsibilities = [
         </p>
       </div>
       <div class="space-y-3 reveal reveal-delay-3">
-        <a href="https://github.com/thornveil-ai/auspex-contact" target="_blank" rel="noopener" class="block rounded-xl p-5 transition-all hover:scale-[1.01]" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+        <a href="https://github.com/thornveil-ai/auspex-contact" target="_blank" rel="noopener" class="block rounded-xl p-5 transition-all hover:scale-[1.01] group" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent);">
           <div class="flex items-baseline justify-between gap-3 flex-wrap">
             <h3 class="text-sm font-semibold tracking-tight">Auspex — autonomous AD takeover with auditable replay</h3>
             <span class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-accent);">EAR ECCN 4D004</span>
@@ -138,12 +162,15 @@ const responsibilities = [
           You are the second co-founder. You own the federal sales motion end-to-end. Day-to-day responsibilities:
         </p>
       </div>
-      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-        <ul class="space-y-3 text-sm" style="color: var(--color-text-secondary);">
-          {responsibilities.map((r) => (
-            <li class="flex gap-3"><span style="color: var(--color-accent);">›</span><span>{r}</span></li>
-          ))}
-        </ul>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal reveal-delay-2">
+        {responsibilities.map((r, i) => (
+          <div class="rounded-xl p-5" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+            <div class="flex items-start gap-3">
+              <span class="font-mono text-lg font-bold shrink-0" style="color: var(--color-accent);">{String(i + 1).padStart(2, '0')}</span>
+              <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">{r}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -158,10 +185,15 @@ const responsibilities = [
           These are not aspirational. Candidates who do not meet every item below will not be considered.
         </p>
       </div>
-      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid #10b981;">
         <ul class="space-y-4 text-sm" style="color: var(--color-text-secondary);">
           {requiredQuals.map((q) => (
-            <li class="flex gap-3"><span style="color: var(--color-accent); font-weight: bold;">•</span><span>{q}</span></li>
+            <li class="flex gap-3">
+              <svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="#10b981" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{q}</span>
+            </li>
           ))}
         </ul>
       </div>
@@ -178,10 +210,15 @@ const responsibilities = [
           Useful but not required. We will weight candidates with three or more of the following.
         </p>
       </div>
-      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid var(--color-text-tertiary);">
         <ul class="space-y-3 text-sm" style="color: var(--color-text-secondary);">
           {preferredQuals.map((q) => (
-            <li class="flex gap-3"><span style="color: var(--color-text-tertiary);">·</span><span>{q}</span></li>
+            <li class="flex gap-3">
+              <svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color: var(--color-accent); opacity: 0.6;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              <span>{q}</span>
+            </li>
           ))}
         </ul>
       </div>
@@ -195,32 +232,30 @@ const responsibilities = [
         <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Compensation & Terms</p>
         <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">What the seat looks like</h2>
       </div>
-      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-        <div class="space-y-4">
-          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 pb-3" style="border-bottom: 1px solid var(--color-border-subtle);">
-            <span class="text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">Equity</span>
-            <span class="text-sm font-medium" style="color: var(--color-text-secondary);">Single-digit-percentage co-founder stake, vested 4 years with 1-year cliff. Pilot-conversion accelerators on top.</span>
-          </div>
-          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 pb-3" style="border-bottom: 1px solid var(--color-border-subtle);">
-            <span class="text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">Title</span>
-            <span class="text-sm font-medium" style="color: var(--color-text-secondary);">Co-founder. Functional title (President / COO / Chief Federal Officer) tailored to background.</span>
-          </div>
-          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 pb-3" style="border-bottom: 1px solid var(--color-border-subtle);">
-            <span class="text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">Cash compensation</span>
-            <span class="text-sm font-medium" style="color: var(--color-text-secondary);">Pre-pilot: $0 base, founder-stage. Step-up trigger tied to first signed federal pilot.</span>
-          </div>
-          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 pb-3" style="border-bottom: 1px solid var(--color-border-subtle);">
-            <span class="text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">Work model</span>
-            <span class="text-sm font-medium" style="color: var(--color-text-secondary);">Remote-primary. Regular travel to program offices (SOCOM/MacDill is local to HQ).</span>
-          </div>
-          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 pb-3" style="border-bottom: 1px solid var(--color-border-subtle);">
-            <span class="text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">Start date</span>
-            <span class="text-sm font-medium" style="color: var(--color-text-secondary);">In position by Q1 2027 to align with FY27 federal-pilot procurement cycle.</span>
-          </div>
-          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-            <span class="text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">Funding posture</span>
-            <span class="text-sm font-medium" style="color: var(--color-text-secondary);">Not raising. Path to revenue via federal pilots, not VC.</span>
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal reveal-delay-2">
+        <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent);">
+          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Equity</div>
+          <div class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">Single-digit-percentage co-founder stake, vested 4 years with 1-year cliff. Pilot-conversion accelerators on top.</div>
+        </div>
+        <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent);">
+          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Title</div>
+          <div class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">Co-founder. Functional title (President / COO / Chief Federal Officer) tailored to background.</div>
+        </div>
+        <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent);">
+          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Cash compensation</div>
+          <div class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">Pre-pilot: $0 base, founder-stage. Step-up trigger tied to first signed federal pilot.</div>
+        </div>
+        <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent);">
+          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Work model</div>
+          <div class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">Remote-primary. Regular travel to program offices (SOCOM/MacDill is local to HQ).</div>
+        </div>
+        <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent);">
+          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Start date</div>
+          <div class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">In position by Q1 2027 to align with FY27 federal-pilot procurement cycle.</div>
+        </div>
+        <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent);">
+          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Funding posture</div>
+          <div class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">Not raising. Path to revenue via federal pilots, not VC.</div>
         </div>
       </div>
     </div>
@@ -233,44 +268,82 @@ const responsibilities = [
         <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">About the founder</p>
         <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Who you would be co-founding with</h2>
       </div>
-      <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        <p>
-          <strong style="color: var(--color-text-primary);">Jesse Morgan, Staff Sergeant, USMC (Signals Intelligence).</strong> Eight years active duty. Six countries. 1,400+ national-level intelligence reports produced. BA in Arabic, Defense Language Institute. TS/SCI.
-        </p>
-        <p>
-          Built Thornveil's 10-system portfolio solo from January 2026 forward — 1.3M LOC across Go, Rust, Python, TypeScript, and Dart in five months while active-duty. Engineering velocity verifiable at <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">github.com/thornveil-ai</a>. DD-214: December 10, 2026.
-        </p>
-        <p>
-          You can read more on <a href="/about" style="color: var(--color-accent); text-decoration: underline;">/about</a>. Talk to anyone in the SIGINT community for a reference.
-        </p>
+      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+        <div class="flex items-start gap-5">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center shrink-0 font-mono text-base font-bold" style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-accent);">
+            JM
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="font-semibold text-base">Jesse Morgan</div>
+            <div class="text-xs mt-0.5 font-mono" style="color: var(--color-text-tertiary);">Staff Sergeant, USMC (Signals Intelligence) · TS/SCI</div>
+            <div class="space-y-3 text-sm leading-relaxed mt-4" style="color: var(--color-text-secondary);">
+              <p>
+                Eight years active duty. Six countries. 1,400+ national-level intelligence reports produced. BA in Arabic, Defense Language Institute.
+              </p>
+              <p>
+                Built Thornveil's 10-system portfolio solo from January 2026 forward — 1.3M LOC across Go, Rust, Python, TypeScript, and Dart in five months while active-duty. Engineering velocity verifiable at <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">github.com/thornveil-ai</a>. DD-214: December 10, 2026.
+              </p>
+              <p class="text-xs italic" style="color: var(--color-text-tertiary);">
+                More at <a href="/about" style="color: var(--color-accent); text-decoration: underline;">/about</a>. References available on request.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- APPLY -->
-  <section class="section-padding relative overflow-hidden" style="background: var(--color-surface-secondary);">
+  <section id="apply" class="section-padding relative overflow-hidden" style="background: var(--color-surface-secondary);">
     <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="opacity: 0.07; background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);"></div>
     <div class="relative container-max mx-auto max-w-3xl">
-      <div class="mb-8">
+      <div class="mb-8 text-center">
         <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">How to apply</p>
-        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Application process</h2>
+        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Send the email.</h2>
       </div>
-      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-        <p class="text-sm leading-relaxed mb-5" style="color: var(--color-text-secondary);">
-          Email <a href="mailto:jesse@thornveil.ai?subject=Co-founder%20application" style="color: var(--color-accent); text-decoration: underline;">jesse@thornveil.ai</a> with the subject line <code class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: var(--color-surface); color: var(--color-accent);">Co-founder application</code>. In the body, include the three items below in 1-2 paragraphs. No resume needed at first contact — we will request it if the initial response is a fit.
+
+      <!-- Big primary CTA -->
+      <div class="text-center mb-10 reveal reveal-delay-2">
+        <a href="mailto:jesse@thornveil.ai?subject=Co-founder%20application" class="inline-flex items-center gap-3 px-8 py-4 rounded-lg font-semibold text-base transition-all hover:scale-[1.03] shadow-lg" style="background: var(--color-accent); color: #0B0F1A;">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
+          jesse@thornveil.ai
+        </a>
+        <p class="text-xs mt-3 font-mono tracking-wider uppercase" style="color: var(--color-text-tertiary);">
+          Subject: Co-founder application
         </p>
-        <ol class="space-y-3 text-sm mb-5" style="color: var(--color-text-secondary);">
-          <li class="flex gap-3"><span class="font-mono text-xs font-bold" style="color: var(--color-accent);">1.</span><span>The federal programs you have worked, and on which side of the table.</span></li>
-          <li class="flex gap-3"><span class="font-mono text-xs font-bold" style="color: var(--color-accent);">2.</span><span>One customer relationship you would convert in the first 90 days, and which Thornveil system you would lead with.</span></li>
-          <li class="flex gap-3"><span class="font-mono text-xs font-bold" style="color: var(--color-accent);">3.</span><span>One thing in this job description that gave you pause, and how you would address it if hired.</span></li>
+      </div>
+
+      <div class="rounded-xl p-7 reveal reveal-delay-3" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+        <h3 class="text-sm font-semibold tracking-tight mb-4 uppercase font-mono" style="color: var(--color-text-tertiary); letter-spacing: 0.1em;">In the body, include:</h3>
+        <ol class="space-y-4 text-sm mb-6" style="color: var(--color-text-secondary);">
+          <li class="flex gap-4">
+            <span class="font-mono text-lg font-bold shrink-0" style="color: var(--color-accent);">01</span>
+            <span class="pt-0.5">The federal programs you have worked, and on which side of the table.</span>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-mono text-lg font-bold shrink-0" style="color: var(--color-accent);">02</span>
+            <span class="pt-0.5">One customer relationship you would convert in the first 90 days, and which Thornveil system you would lead with.</span>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-mono text-lg font-bold shrink-0" style="color: var(--color-accent);">03</span>
+            <span class="pt-0.5">One thing in this job description that gave you pause, and how you would address it if hired.</span>
+          </li>
         </ol>
-        <div class="pt-4" style="border-top: 1px solid var(--color-border-subtle);">
-          <p class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">
-            <strong style="color: var(--color-text-secondary);">Response timeline:</strong> Strong-fit applications get a reply within 48 hours. Initial conversation is a 30-min call. Process from first contact to handshake is targeted at 4-6 weeks, gated only by mutual due diligence.
-          </p>
-          <p class="text-xs leading-relaxed mt-2" style="color: var(--color-text-tertiary);">
-            <strong style="color: var(--color-text-secondary);">Equal opportunity:</strong> Thornveil LLC is an equal-opportunity employer. Selection is based on qualifications, fit, and ability to execute the role.
-          </p>
+        <p class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">
+          1-2 paragraphs is plenty. No resume needed at first contact; we will request it if the initial response is a fit.
+        </p>
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 reveal reveal-delay-4">
+        <div class="rounded-xl p-5" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Response timeline</div>
+          <p class="text-xs leading-relaxed" style="color: var(--color-text-secondary);">Strong-fit replies within 48 hours. Initial conversation is a 30-min call. Target first contact to handshake: 4-6 weeks.</p>
+        </div>
+        <div class="rounded-xl p-5" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
+          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Equal opportunity</div>
+          <p class="text-xs leading-relaxed" style="color: var(--color-text-secondary);">Thornveil LLC is an equal-opportunity employer. Selection is based on qualifications, fit, and ability to execute the role.</p>
         </div>
       </div>
     </div>
