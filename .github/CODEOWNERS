@@ -1,0 +1,17 @@
+# Default — admin reviews all changes (site is brand-load-bearing)
+* @jeranaias
+
+# Content pages — content team eventually; for now admin
+src/pages/         @jeranaias
+src/components/    @jeranaias
+src/layouts/       @jeranaias
+
+# Build / infra
+astro.config.mjs   @jeranaias
+package.json       @jeranaias
+netlify.toml       @jeranaias
+tailwind.config.js @jeranaias
+
+# Critical legal pages
+src/pages/privacy.astro    @jeranaias
+src/pages/contact.astro    @jeranaias
