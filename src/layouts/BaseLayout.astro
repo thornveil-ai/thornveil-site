@@ -77,6 +77,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         }
       })();
     </script>
+
+    <!-- Plausible Analytics (privacy-respecting, no cookies, GDPR-clean) -->
+    <script defer data-domain="thornveil.ai" src="https://plausible.io/js/script.js"></script>
   </head>
   <body class="min-h-screen flex flex-col">
     <!-- Film grain noise overlay -->
