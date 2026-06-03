@@ -1,0 +1,144 @@
+{
+  "_comment": "Single source of truth for every number on thornveil.ai. Never hardcode a stat in a page; import from here. Updated as systems ship.",
+  "company": {
+    "name": "Thornveil LLC",
+    "city": "Tampa, FL",
+    "naics": ["541511", "541512", "334511"],
+    "uei": "NCBZNKMJBP59",
+    "cage": "1T0K4",
+    "samStatus": "Active · All Awards",
+    "founder": "Active-duty USMC",
+    "buildStart": "January 2026",
+    "directContractsOpen": "December 10, 2026",
+    "directContractsOpenISO": "2026-12-10"
+  },
+  "portfolio": {
+    "totalSystems": 10,
+    "totalLOC": "1.3M",
+    "totalLOCExact": 1300000,
+    "monthsSolo": 5,
+    "publicCompanions": 8
+  },
+  "accessibility": {
+    "section508": "AA",
+    "lighthouseTarget": 95,
+    "reducedMotionHonored": true
+  },
+  "systems": {
+    "rigrun": {
+      "name": "RigRun",
+      "tagline": "IL5-pathway AI chat",
+      "loc": "496K",
+      "tests": 6950,
+      "nistControls": 44,
+      "version": "v1.0.0",
+      "status": "live",
+      "statusLabel": "production",
+      "repo": "github.com/thornveil-ai/rigrun-overview",
+      "summary": "Classification-gated multi-domain LLM router. Three apps on one Go backend. NIST 800-53 controls implemented as discrete code paths."
+    },
+    "pyros": {
+      "name": "Pyros",
+      "tagline": "Safety perimeter for any LLM",
+      "loc": "17K",
+      "tests": 0,
+      "version": "v0.2.1",
+      "status": "live",
+      "statusLabel": "race-clean",
+      "repo": "github.com/thornveil-ai/pyros-overview",
+      "summary": "Pure-Go safety engine that wraps any model in a 7-pillar pipeline. No Python, no CGO, one binary."
+    },
+    "mycelium": {
+      "name": "Mycelium",
+      "tagline": "Keeps thinking when the mesh dies",
+      "workers": 6,
+      "loc": "250K",
+      "openApiEndpoints": 50,
+      "nistControlsImplemented": 41,
+      "nistControlsInScope": 44,
+      "version": "v1.0.0",
+      "status": "live",
+      "statusLabel": "cosign-signed",
+      "rtpDate": "2026-05-08",
+      "repo": "github.com/thornveil-ai/mycelium-overview",
+      "summary": "Distributed mixture-of-experts inference. Substitute-on-failure dispatch keeps producing tokens when half the mesh goes dark."
+    },
+    "auspex": {
+      "name": "Auspex",
+      "tagline": "AI red team gated by Signet",
+      "version": "v0.5.3",
+      "eccn": "4D004",
+      "signetChecks": 13,
+      "status": "live",
+      "statusLabel": "AD takeover validated",
+      "repo": "github.com/thornveil-ai/auspex-contact",
+      "summary": "Autonomous offensive security with scope-as-code. End-to-end validated on adversarial Active Directory takeover with HMAC-chained replay."
+    },
+    "signet": {
+      "name": "Signet",
+      "tagline": "Capability gates for LLM agents",
+      "license": "Apache-2.0",
+      "version": "v0.1.10.1",
+      "status": "live",
+      "statusLabel": "public OSS",
+      "repo": "github.com/thornveil-ai/signet",
+      "summary": "The model proposes; Signet authorizes. Capability-based safety gates for agentic LLMs."
+    },
+    "alchemist": {
+      "name": "Alchemist",
+      "tagline": "C-to-Rust translation, five correctness gates",
+      "license": "Apache-2.0",
+      "status": "live",
+      "statusLabel": "public OSS",
+      "repo": "github.com/thornveil-ai/alchemist",
+      "summary": "Algorithm-aware C-to-Rust translation. One command, local LLM, five mandatory correctness gates."
+    },
+    "hawkstack": {
+      "name": "HawkStack",
+      "tagline": "Sub-million-parameter perception, 5 domains",
+      "params": "1.77M",
+      "domains": 5,
+      "status": "warn",
+      "statusLabel": "arXiv pending",
+      "repo": "github.com/thornveil-ai/hawkstack-paper",
+      "summary": "Compute-aware neural architecture topology theory + perception backbone family."
+    },
+    "meridian": {
+      "name": "Meridian",
+      "tagline": "Memory-safe Rust flight-control firmware",
+      "status": "live",
+      "statusLabel": "STM32 H7/F4/F7",
+      "repo": "github.com/thornveil-ai/meridian-core",
+      "summary": "Memory-safe Rust flight-control firmware. ArduPilot/PX4 alternative."
+    },
+    "canopy": {
+      "name": "Canopy",
+      "tagline": "Multi-modal counter-UAS situational awareness",
+      "modalities": 5,
+      "status": "warn",
+      "statusLabel": "Phase 0 preview",
+      "repo": "github.com/thornveil-ai/canopy-preview",
+      "summary": "RF + acoustic + thermal + RID + ADS-B sensor fusion."
+    },
+    "navigator": {
+      "name": "Navigator",
+      "tagline": "Internal AI ops center, 9 production agents",
+      "agents": 9,
+      "status": "live",
+      "statusLabel": "internal",
+      "summary": "Agent Factory + 9 production agents + adaptive subsystems."
+    }
+  },
+  "myceliumHero": [
+    { "value": "6",       "label": "workers" },
+    { "value": "250K",    "label": "LOC" },
+    { "value": "50",      "label": "OpenAPI endpoints" },
+    { "value": "41 / 44", "label": "NIST 800-53 controls" }
+  ],
+  "homepageMetrics": [
+    { "value": "10",      "label": "engineering systems shipped" },
+    { "value": "1.3M",    "label": "LOC since January 2026" },
+    { "value": "5",       "label": "months solo, active-duty" },
+    { "value": "Dec 10",  "label": "direct contracts open 2026" }
+  ]
+}

@@ -1,0 +1,111 @@
+---
+/**
+ * Navigator viz — 14-step factory pipeline.
+ *
+ * 14 small boxes left-to-right, each a step in the agent-production
+ * pipeline. A token traverses; on emerging, an "agent" sprite is
+ * emitted on the right and fades.
+ */
+const W = 500;
+const H = 220;
+const steps = [
+  'DECMP', 'PRMPT', 'TOOLS', 'CALIB', 'PROBE',
+  'HARDN', 'TESTS', 'GATE',  'WRAP',  'AUDIT',
+  'DPLOY', 'WATCH', 'EVAL',  'SHIP',
+];
+const stepW = 26;
+const stepGap = 4;
+const startX = 24;
+const stepY = 80;
+---
+
+<svg
+  viewBox={`0 0 ${W} ${H}`}
+  width="100%"
+  height="100%"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+  role="presentation"
+  style="display:block;"
+>
+  <style>
+    .nav-mono   { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+    .nav-tag    { font-size: 9px; letter-spacing: 0.15em; }
+    .nav-step   { font-size: 6.5px; letter-spacing: 0.04em; }
+    .nav-num    { font-size: 6.5px; letter-spacing: 0.05em; }
+    .nav-token {
+      animation: nav-token 8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+      fill: #B4D2DE;
+      filter: drop-shadow(0 0 6px rgba(180,210,222,0.7));
+    }
+    @keyframes nav-token {
+      0%   { transform: translateX(0); }
+      75%  { transform: translateX(420px); opacity: 1; }
+      80%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+    .nav-agent {
+      animation: nav-agent 8s ease-out infinite;
+      opacity: 0;
+    }
+    @keyframes nav-agent {
+      0%, 76%  { opacity: 0; transform: translate(0, 0); }
+      80%      { opacity: 1; transform: translate(0, 0); }
+      94%      { opacity: 1; transform: translate(14px, 0); }
+      100%     { opacity: 0; transform: translate(28px, 0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .nav-token, .nav-agent { animation: none; }
+    }
+  </style>
+
+  <!-- Header -->
+  <text x="24" y="32" class="nav-mono nav-tag" fill="var(--text-3)">
+    14-STEP AGENT FACTORY
+  </text>
+  <text x={W - 24} y="32" text-anchor="end"
+        class="nav-mono nav-tag" fill="var(--signal-text)">
+    9 AGENTS SHIPPED
+  </text>
+
+  <!-- Step boxes -->
+  {steps.map((s, i) => {
+    const x = startX + i * (stepW + stepGap);
+    return (
+      <g>
+        <rect x={x} y={stepY} width={stepW} height="22"
+              fill="rgba(74,110,125,0.10)" stroke="var(--signal-line)" stroke-width="0.6" rx="1" />
+        <text x={x + stepW / 2} y={stepY + 14} text-anchor="middle"
+              class="nav-mono nav-step" fill="var(--text-2)">
+          {s}
+        </text>
+        <text x={x + stepW / 2} y={stepY + 36} text-anchor="middle"
+              class="nav-mono nav-num" fill="var(--text-3)">
+          {String(i + 1).padStart(2, '0')}
+        </text>
+      </g>
+    );
+  })}
+
+  <!-- Caption between header and pipeline -->
+  <text x="24" y="58" class="nav-mono nav-tag" fill="var(--text-3)">
+    DECOMPOSE → CALIBRATE → HARDEN → SHIP
+  </text>
+
+  <!-- Token traversing -->
+  <circle class="nav-token" cx={startX + stepW / 2} cy={stepY + 11} r="3.5" />
+
+  <!-- Agent emerging on the right -->
+  <g class="nav-agent"
+     transform={`translate(${startX + steps.length * (stepW + stepGap) + 6}, ${stepY})`}>
+    <rect x="0" y="0" width="36" height="22" rx="2"
+          fill="rgba(143,179,196,0.25)" stroke="var(--signal-text)" stroke-width="1" />
+    <text x="18" y="14" text-anchor="middle"
+          class="nav-mono nav-step" font-size="7.5" fill="var(--text)">AGENT</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="24" y={H - 14} class="nav-mono nav-tag" fill="var(--text-3)">
+    80 MCP TOOLS · 9 DOMAINS · INTERNAL-ONLY
+  </text>
+</svg>

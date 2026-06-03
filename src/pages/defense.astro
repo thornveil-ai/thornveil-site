@@ -1,15 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import metrics from '../data/metrics.json';
+const m = metrics;
 
 // 10-system portfolio, restricted to systems with direct defense-procurement adjacency.
-// Program-of-record fits cited where real. Trade-secret framing only.
 const systems = [
   {
     name: 'Mycelium',
     tagline: 'Distributed AI mesh. Substitute-on-failure inference.',
     description: 'Six workers pool compute for one Gemma-4-26B chat. When workers drop, substitute-on-failure dispatch keeps generation continuing — validated end-to-end on 2026-05-08 with HMAC-chained tamper-evident audit log. Built for DDIL operational environments where any individual node may go dark and the workload must continue.',
     programFit: 'SOCPAC R2I/MOSA · DDIL operations · IL5-pathway inference',
-    status: 'v1.0.0 — customer engagement in motion',
+    status: 'live', statusLabel: 'v1.0.0 · evaluator outreach in motion',
     overview: 'https://github.com/thornveil-ai/mycelium-overview',
     detail: '/mycelium',
   },
@@ -17,35 +18,35 @@ const systems = [
     name: 'Auspex',
     tagline: 'AI red team gated by Signet. EAR ECCN 4D004.',
     description: 'Scope-as-code engagement compilation. 13 standard authority checks at the Signet gate. HMAC-chained per-engagement audit log with RFC 3161 trusted-timestamp anchoring. Validated end-to-end on autonomous Active Directory takeover with auditable replay package (2026-05-16). Federal-gated.',
-    programFit: 'DoD AI Safety Institute · USCYBERCOM red team · Federal autonomous-cyber pilots',
-    status: 'v0.6.0-rc1 Federal Edition — preliminary ECCN classification',
+    programFit: 'USAISI evaluator pipeline · USCYBERCOM red team · Federal autonomous-cyber pilots',
+    status: 'live', statusLabel: 'v0.5.3 federal edition',
     overview: 'https://github.com/thornveil-ai/auspex-contact',
     detail: null,
   },
   {
     name: 'RigRun',
     tagline: 'Professional AI chat. Classification-gated routing.',
-    description: 'Three apps (desktop, mobile, web) on one Go backend. 44 NIST 800-53 controls implemented as discrete code paths. Classification gate enforced at the type-system level — CUI+ queries hard-blocked from cloud routing as architectural narrowing, not runtime policy. 6,950+ tests across the three apps. IL5-pathway posture. ATO sponsor outreach active post-DD-214.',
+    description: 'Three apps (desktop, mobile, web) on one Go backend. 44 NIST 800-53 controls implemented as discrete code paths. Classification gate enforced at the type-system level — CUI+ queries hard-blocked from cloud routing as architectural narrowing, not runtime policy. 6,950 tests across the three apps. IL5-pathway posture. ATO sponsor outreach active post-DD-214.',
     programFit: 'IL5-pathway federal AI chat · FedRAMP-Mod path · NIST 800-53 / IR-9 spillage detection',
-    status: 'v0.9 — federal evaluation post-DD-214',
+    status: 'live', statusLabel: 'v0.9 · federal evaluation',
     overview: 'https://github.com/thornveil-ai/rigrun-overview',
     detail: null,
   },
   {
     name: 'HawkStack',
-    tagline: 'Sub-million-parameter perception across 6 domains.',
-    description: 'Topology-driven recipe that turns (dataset, domain) into (architecture, training config) and produces models that match SOTA in their weight class. 15 verified zoo checkpoints across IRST (synthetic + real), sonar, PCB defect, histopathology, thermal drone, and ECG. 16-run power-law scaling fit on NUDT-SIRST (R²=0.9895). Topology paper preparing arXiv submission.',
+    tagline: 'Sub-million-parameter perception across 5 domains.',
+    description: 'Topology-driven recipe that turns (dataset, domain) into (architecture, training config) and produces models that match SOTA in their weight class. 15 verified zoo checkpoints across IRST, sonar, PCB defect, histopathology, thermal drone, and ECG. 16-run power-law scaling fit on NUDT-SIRST (R²=0.9895). Topology paper preparing arXiv submission.',
     programFit: 'Replicator · Roadrunner-M · Coyote Block 3 · Army LIDS / FS-LIDS · NAVSEA USV-counter-USV',
-    status: 'v0.3.0 — 15 zoo checkpoints, paper preparing arXiv',
+    status: 'warn', statusLabel: 'v0.3.0 · arXiv preparing',
     overview: 'https://github.com/thornveil-ai/hawkstack-paper',
     detail: null,
   },
   {
     name: 'Meridian',
     tagline: 'Memory-safe Rust flight-control firmware.',
-    description: 'From-scratch ArduPilot/PX4 alternative on STM32 H7 / F4 / F7. 98K Rust LOC across 60 lib crates + 3 binaries. Phase 10 trade-secret primitives — ed25519-signed airworthiness attestation, RC hijack / GPS spoof / mag jam adversarial-detection failsafes, Find My Drone beacon, self-learning vehicle dynamics ID, Black Box event taxonomy — that no other autopilot ships. 47K lines of parity-audit notes against 154 ArduPilot libraries. Hardware bring-up active on MatekH743 SLIM V4 and Cube Orange Plus.',
+    description: 'From-scratch ArduPilot/PX4 alternative on STM32 H7 / F4 / F7. 98K Rust LOC across 60 lib crates + 3 binaries. Phase 10 trade-secret primitives — ed25519-signed airworthiness attestation, RC hijack / GPS spoof / mag jam adversarial-detection failsafes, Find My Drone beacon, self-learning vehicle dynamics ID, Black Box event taxonomy — that no other autopilot ships. ~29K lines of parity-audit notes against 154 ArduPilot libraries (47K total documentation). H7 firmware flying; F4/F7 board configs staged. Hardware bring-up active on MatekH743 SLIM V4 and Cube Orange Plus.',
     programFit: 'CISA memory-safe roadmap · DoD CIO memory-safe mandate · DARPA HACMS successor · SOCOM USV firmware · FAA certification path',
-    status: 'Hardware bring-up active; OSS predecessor public at thornveil-ai/meridian-core',
+    status: 'live', statusLabel: 'hardware bring-up active',
     overview: 'https://github.com/thornveil-ai/meridian-core',
     detail: null,
   },
@@ -54,7 +55,7 @@ const systems = [
     tagline: 'Multi-modal counter-UAS situational awareness.',
     description: 'RF + acoustic + thermal + Remote ID + ADS-B fusion. Real Kalman tracking + Dempster-Shafer evidence fusion + bearing-intersection geolocation (tested). Mesh networking + decision engine scaffolded; ML classifiers stubbed. Honest Phase 0 framing — designed to replace DragonOS/WarDragon with mesh-aware open architecture. Hardware tiers from $270 (Pi 5 + RTL-SDR) to $1,650 (KrakenSDR + UCA DF).',
     programFit: 'DHS/CBP border CUAS · FAA Section 2209 · 14 CFR Part 89 Remote ID enforcement',
-    status: 'Phase 0 — architecture validated, integration pending',
+    status: 'warn', statusLabel: 'Phase 0 · architecture validated',
     overview: 'https://github.com/thornveil-ai/canopy-preview',
     detail: null,
   },
@@ -63,121 +64,109 @@ const systems = [
     tagline: 'Capability-based safety gate for LLM agents.',
     description: '4-stage check pipeline (ADMISSION / INSPECTION / COMMITMENT / RECORD) with 11 production checks and HMAC-chained tamper-evident audit log. RFC 3161 anchor backend (FreeTSA / DigiCert). The Signet vocabulary that Auspex extends with engagement-specific checks. Apache-2.0 public OSS. Available on PyPI as `signet-sign`.',
     programFit: 'NIST AI RMF · DoD AISI baseline · Federal LLM-agent safety reference',
-    status: 'v0.1.10.1 — public OSS on PyPI',
+    status: 'live', statusLabel: 'v0.1.10.1 · Apache-2.0 OSS',
     overview: 'https://github.com/thornveil-ai/signet',
     detail: null,
   },
 ];
 
-const procurementPosture = [
-  { label: 'Direct contract availability', value: 'December 10, 2026 (post-DD-214)' },
-  { label: 'CAGE / UEI / SAM.gov', value: 'Registration scheduled Q4 2026' },
-  { label: 'Set-aside', value: 'SDVOSB eligibility under review' },
-  { label: 'Data rights posture', value: 'Commercial item (FAR 12.212 / DFARS 252.227-7015)' },
-  { label: 'Planned vehicles', value: 'Direct contract · SBIR Phase I/II · OTA · CRADA · GSA/SEWP' },
-  { label: 'Founder availability', value: 'Active-duty USMC; conversations welcome now' },
+const posture = [
+  { label: 'Engagement now',         value: 'Evaluation NDA · replay package · walkthrough' },
+  { label: 'Direct contracts',       value: `${m.company.directContractsOpen}` },
+  { label: 'Data rights posture',    value: 'Commercial item (FAR 12.212 / DFARS 252.227-7015)' },
+  { label: 'Planned vehicles',       value: 'Direct contract · SBIR Phase I/II · OTA · CRADA · GSA/SEWP' },
+  { label: 'Federal registration',   value: 'SAM.gov active (All Awards) · UEI NCBZNKMJBP59 · CAGE 1T0K4' },
+  { label: 'Founder posture',        value: 'Active-duty USMC · conversations compound to signed paper' },
 ];
 ---
 
 <BaseLayout
   title="Defense | Thornveil"
-  description="Thornveil's 10-system portfolio addresses concrete federal program-of-record adjacency: SOCPAC R2I, DoD AI Safety Institute, FedRAMP-Mod, Replicator, FS-LIDS, NAVSEA USV-counter-USV, DARPA HACMS successor, FAA Section 2209. Direct contracts open Dec 10, 2026."
+  description="Seven of Thornveil's ten systems address concrete federal program-of-record adjacency: SOCPAC R2I, USAISI, FedRAMP-Mod, Replicator, FS-LIDS, NAVSEA USV-counter-USV, DARPA HACMS-aligned memory safety, FAA Section 2209."
 >
-  <section class="section-padding pt-32 md:pt-40">
-    <div class="container-max mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Defense</p>
-      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
-        Built for the federal procurement that hasn't started yet.
+  <!-- HERO -->
+  <section class="tv-section pt-s-11">
+    <div class="tv-container">
+      <h1 class="tv-h1 mt-s-3 reveal reveal-delay-1" style="max-width: 22ch;">
+        Cleared for the next federal procurement window.
       </h1>
-      <p class="text-base mt-5 max-w-3xl leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Seven of Thornveil's ten systems are directly defense-procurement adjacent. Each is built ground-up to clear FedRAMP, IL5, or ECCN review on day one — not retrofitted after the customer asks. The founder is active-duty USMC until December 10, 2026; soft engagements and review-the-work conversations are welcome now.
+      <p class="text-step-1 text-text-2 mt-s-5 reveal reveal-delay-2" style="max-width: 64ch;">
+        Seven of Thornveil's ten systems are directly defense-procurement adjacent. Each is built ground-up
+        to clear FedRAMP, IL5, or ECCN review on day one — not retrofitted after the customer asks.
+        Evaluation engagements active now; direct contracts open {m.company.directContractsOpen}.
       </p>
     </div>
   </section>
 
-  <!-- SYSTEMS -->
-  <section class="section-padding pt-12">
-    <div class="container-max mx-auto">
-      <div class="space-y-5">
+  <!-- SYSTEMS LIST -->
+  <section class="tv-section pt-0">
+    <div class="tv-container">
+      <div class="space-y-s-5">
         {systems.map((s, i) => (
-          <div class={`reveal reveal-delay-${Math.min(i + 1, 4)} rounded-xl p-7`} style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-            <div class="flex items-start justify-between gap-4 flex-wrap mb-3">
+          <article class={`tv-tile reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+            <div class="flex items-start justify-between gap-s-4 flex-wrap mb-s-4">
               <div class="flex-1 min-w-0">
-                <h3 class="text-lg font-semibold tracking-tight">{s.name}</h3>
-                <p class="text-xs mt-0.5" style="color: var(--color-text-tertiary);">{s.tagline}</p>
+                <h3 class="text-step-2" style="font-variation-settings: 'wdth' 125;">{s.name}</h3>
+                <p class="font-mono text-step--1 tracking-[0.10em] uppercase text-text-3 mt-s-2">{s.tagline}</p>
               </div>
-              <span class="font-mono text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full shrink-0" style="background: var(--color-accent-muted); color: var(--color-accent);">
-                {s.status}
+              <span class={`tv-pill ${s.status === 'live' ? 'tv-pill--live' : 'tv-pill--warn'} shrink-0`}>
+                {s.statusLabel}
               </span>
             </div>
-            <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-secondary);">
-              {s.description}
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-1">
+            <p class="text-step-0 text-text-2 mb-s-5 max-w-prose">{s.description}</p>
+            <div class="border-t border-line pt-s-4 grid grid-cols-1 md:grid-cols-3 gap-s-4">
               <div class="md:col-span-2">
-                <div class="font-mono text-[10px] tracking-wider uppercase mb-1" style="color: var(--color-text-tertiary);">Program fit</div>
-                <div class="text-xs" style="color: var(--color-text-secondary);">{s.programFit}</div>
+                <p class="font-mono text-step--1 tracking-[0.10em] uppercase text-text-3 mb-s-2">Program fit</p>
+                <p class="text-step-0 text-text-2">{s.programFit}</p>
               </div>
-              <div class="flex items-end gap-2 md:justify-end flex-wrap">
-                {s.detail && (
-                  <a href={s.detail} class="inline-flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full transition-colors hover:opacity-80" style="background: var(--color-accent); color: #0B0F1A;">
-                    Deep dive
+              <div class="flex md:justify-end items-end gap-s-3 flex-wrap">
+                {s.detail ? (
+                  <a href={s.detail} class="tv-btn tv-btn--primary" style="padding: var(--s-2) var(--s-4);">Deep dive</a>
+                ) : null}
+                {s.overview ? (
+                  <a href={s.overview} target="_blank" rel="noopener" class="tv-btn tv-btn--secondary" style="padding: var(--s-2) var(--s-4);">
+                    Public companion ↗
                   </a>
-                )}
-                <a href={s.overview} target="_blank" rel="noopener" class="inline-flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full transition-colors hover:opacity-80" style="background: var(--color-surface); color: var(--color-text-secondary); border: 1px solid var(--color-border);">
-                  Public companion ↗
-                </a>
+                ) : null}
               </div>
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
   <!-- PROCUREMENT POSTURE -->
-  <section class="section-padding pt-0">
-    <div class="container-max mx-auto">
-      <div class="mb-8">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Federal acquisition posture</p>
-        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">What's available, and when</h2>
-      </div>
-      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-        <div class="space-y-3">
-          {procurementPosture.map((p) => (
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 pb-3" style="border-bottom: 1px solid var(--color-border-subtle);">
-              <span class="text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">{p.label}</span>
-              <span class="text-sm font-medium" style="color: var(--color-text-secondary);">{p.value}</span>
+  <section class="tv-section pt-0">
+    <div class="tv-container max-w-4xl">
+      <h2 class="tv-h2 mt-s-3 mb-s-6 reveal reveal-delay-1">What's available, and when.</h2>
+      <div class="tv-tile reveal reveal-delay-2">
+        <dl class="space-y-s-4">
+          {posture.map((p) => (
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-s-2 pb-s-3 border-b border-line last:border-0 last:pb-0">
+              <dt class="font-mono text-step--1 tracking-[0.12em] uppercase text-text-3">{p.label}</dt>
+              <dd class="text-step-0 text-text">{p.value}</dd>
             </div>
           ))}
-        </div>
+        </dl>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="section-padding relative overflow-hidden" style="background: var(--color-surface-secondary);">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="opacity: 0.07; background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);"></div>
-    <div class="relative container-max mx-auto max-w-2xl text-center">
-      <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">Federal program offices, primes, evaluators</h2>
-      <p class="mt-4 text-sm max-w-md mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        Direct line. Conversations now compound into signed paper post-DD-214 (December 10, 2026). Review the public companions; the substrate is ready.
+  <section class="tv-section pt-0">
+    <div class="tv-container max-w-2xl text-center">
+      <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Federal program offices, primes, evaluators.</h2>
+      <p class="text-step-0 text-text-2 mt-s-4 mx-auto reveal reveal-delay-2" style="max-width: 52ch;">
+        Conversations now compound into signed paper post-DD-214 ({m.company.directContractsOpen}).
+        Review the public companions; the substrate is ready.
       </p>
-      <div class="mt-8 reveal reveal-delay-2 flex flex-wrap gap-3 justify-center">
-        <a href="mailto:jesse@thornveil.ai?subject=Defense%20inquiry" class="btn-primary">
+      <div class="mt-s-7 flex flex-wrap gap-s-3 justify-center reveal reveal-delay-3">
+        <a href="mailto:jesse@thornveil.ai?subject=Defense%20inquiry" class="tv-btn tv-btn--primary">
           jesse@thornveil.ai
         </a>
-        <a href="/cofounder" class="btn-outline">
-          Co-founder profile
-        </a>
+        <a href="/cofounder" class="tv-btn tv-btn--secondary">Co-founder profile →</a>
       </div>
     </div>
   </section>
 </BaseLayout>
-
-<script>
-  import Lenis from 'lenis';
-  const lenis = new Lenis({ duration: 1.2, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
-</script>

@@ -1,0 +1,152 @@
+% Thornveil LLC — Federal Capabilities Statement (one page)
+% Compile: xelatex thornveil-capabilities.tex
+\documentclass[10pt,letterpaper]{article}
+
+% ---------- Fonts (IBM Plex via fontspec / XeLaTeX, explicit OTF files) ----------
+\usepackage{fontspec}
+\setmainfont{IBMPlexSans}[
+  Extension=.otf,
+  Path=C:/Users/jesse/AppData/Local/Programs/MiKTeX/fonts/opentype/ibm/plex/,
+  UprightFont=*-Text, BoldFont=*-SemiBold,
+  ItalicFont=*-TextItalic, BoldItalicFont=*-SemiBoldItalic,
+  Numbers={Lining,Tabular}]
+\newfontfamily\plexmono{IBMPlexMono}[
+  Extension=.otf,
+  Path=C:/Users/jesse/AppData/Local/Programs/MiKTeX/fonts/opentype/ibm/plex/,
+  UprightFont=*-Regular, BoldFont=*-SemiBold,
+  Numbers={Lining,Tabular}]
+\newfontfamily\plexlight{IBMPlexSans}[
+  Extension=.otf,
+  Path=C:/Users/jesse/AppData/Local/Programs/MiKTeX/fonts/opentype/ibm/plex/,
+  UprightFont=*-Light, BoldFont=*-Regular]
+
+% ---------- Geometry ----------
+\usepackage[paper=letterpaper,left=0.62in,right=0.62in,top=0.55in,bottom=0.5in]{geometry}
+\usepackage{setspace}\setstretch{1.06}
+\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}
+\frenchspacing\raggedbottom
+\usepackage[protrusion=true,tracking=true,final]{microtype}
+\widowpenalty=10000\clubpenalty=10000
+
+% ---------- Color ----------
+\usepackage[svgnames,table]{xcolor}
+\definecolor{navy}{HTML}{132A4C}      % brand Deep Navy
+\definecolor{teal}{HTML}{4A6E7D}      % brand Steel Teal
+\definecolor{tealdk}{HTML}{3A5A68}
+\definecolor{ink}{HTML}{1A2530}
+\definecolor{mute}{HTML}{5A6873}
+\definecolor{rule}{HTML}{D4DBE0}
+\definecolor{tealtint}{HTML}{EEF3F5}
+\definecolor{navytint}{HTML}{E7EBF1}
+\AtBeginDocument{\color{ink}}
+
+% ---------- Tables / boxes / lists ----------
+\usepackage{booktabs,array,tabularx}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=1.05em}
+\setlist[itemize,1]{label={\color{teal}\footnotesize\textbullet}}
+\usepackage{multicol}
+\usepackage{fontawesome5}
+
+\usepackage[hidelinks]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=teal,urlcolor=teal}
+\pagestyle{empty}
+
+% ---------- Helper macros ----------
+\newcommand{\sectionhead}[1]{%
+  \vspace{6pt}{\plexmono\footnotesize\bfseries\color{navy}\MakeUppercase{#1}}%
+  \vspace{1pt}\par{\color{teal}\hrule height 1.1pt}\vspace{4pt}}
+\newcommand{\sys}[2]{\textbf{\color{navy}#1} \,\textemdash\, #2\par\vspace{1.5pt}}
+\newcommand{\mono}[1]{{\plexmono #1}}
+
+\begin{document}
+
+% =================== HEADER BAND ===================
+\begin{tcolorbox}[enhanced,sharp corners,boxrule=0pt,frame hidden,
+  colback=navy,left=14pt,right=14pt,top=11pt,bottom=11pt,before skip=0pt,after skip=8pt]
+\color{white}
+\begin{minipage}[c]{0.60\textwidth}
+  {\fontsize{25}{27}\selectfont\bfseries THORNVEIL\,\textcolor{teal!85!white}{LLC}}\\[3pt]
+  {\plexlight\fontsize{10.5}{12}\selectfont Sovereign AI infrastructure for federal missions.}\\[1pt]
+  {\plexmono\scriptsize\color{teal!70!white}IL5-READY \textbullet\ ECCN-AWARE \textbullet\ GOVERNANCE-FIRST}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.37\textwidth}\raggedleft
+  {\plexmono\scriptsize\color{white}%
+   jesse@thornveil.ai\\[2pt]
+   github.com/thornveil-ai\\[2pt]
+   Tampa, FL \textbullet\ NAICS 541511\\[2pt]
+   \color{teal!70!white}EVALUATION ENGAGEMENTS ACTIVE}
+\end{minipage}
+\end{tcolorbox}
+
+% one-line positioning
+{\color{mute}\small Ten engineering systems for sovereign federal AI — distributed inference, classification-gated chat,
+autonomous red team, capability gates, perception, and memory-safe firmware. Built ground-up to clear
+FedRAMP, IL5, and ECCN review on day one. Shipped solo while active-duty USMC.}\vspace{2pt}
+
+% =================== CORE COMPETENCIES ===================
+\sectionhead{Core competencies}
+{\small
+\begin{multicols}{2}
+\sys{Mycelium}{distributed substitute-on-failure inference; keeps generating when half the mesh dies. 250K Go, 50-endpoint OpenAPI, mTLS, HMAC-chained audit. \mono{v1.0.0} cosign-signed.}
+\sys{RigRun}{classification-gated AI chat; CUI+ hard-blocked from cloud at the type-system level. Three apps, one Go backend. 44 NIST 800-53 controls as code paths.}
+\sys{Auspex}{autonomous AI red team gated by Signet; scope-as-code, 13 authority checks, HMAC + RFC 3161 audit. \mbox{EAR ECCN 4D004.}}
+\sys{Signet}{capability-based safety gates for LLM agents; 4-stage / 11-check pipeline, RFC 3161 anchoring. Apache-2.0, on PyPI.}
+\sys{HawkStack}{sub-million-parameter perception; 15 verified checkpoints across 5 domains, power-law scaling fit \mbox{R\textsuperscript{2}=0.9895.}}
+\sys{Meridian}{memory-safe Rust flight-control firmware; 98K LOC / 60 crates, ed25519 airworthiness attestation, GPS-spoof / RC-hijack / mag-jam failsafes.}
+\sys{Canopy}{multi-modal counter-UAS; RF + acoustic + thermal + Remote ID + ADS-B fusion, Kalman + Dempster-Shafer + bearing geolocation.}
+\sys{Alchemist}{algorithm-aware C-to-Rust translation; five mandatory correctness gates, local-LLM only. Apache-2.0.}
+\sys{Pyros}{self-tuning inference engine; 24 adaptive subsystems (PID + Holt + UCB1 + $\varepsilon$-greedy), race-clean.}
+\sys{Navigator}{internal AI agent factory; 14-step pipeline, 9 production agents, 80 MCP-exposed tools.}
+\end{multicols}}
+
+% =================== TWO-COLUMN: DIFFERENTIATORS / PAST PERF ===================
+\vspace{1pt}
+\begin{minipage}[t]{0.485\textwidth}
+\sectionhead{Differentiators}
+{\small\begin{itemize}
+\item \textbf{Federal-fit by design} — built to clear FedRAMP, IL5, and ECCN review on day one, not retrofitted after the ask.
+\item \textbf{Cryptographically auditable} — every load-bearing system ships an HMAC-chained, RFC-3161-anchored, replayable audit a 3PAO can verify.
+\item \textbf{Sovereign / air-gap capable} — runs on customer hardware; no data leaves the building, no per-token cloud dependency.
+\item \textbf{Open-source verifiable} — public companion repos for evaluators; two Apache-2.0 releases on GitHub and PyPI.
+\end{itemize}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\sectionhead{Past performance}
+{\small\begin{itemize}
+\item \textbf{First autonomous AD takeover by an AI red team} — Domain Admin under strict autonomy in \mono{4m29s}; HMAC-chained audit, signed-verifier \mono{VALID} (2026-05-16).
+\item \textbf{Mycelium substitute-on-failure RTP} — reduction-to-practice with tamper-evident audit log; cosign-signed \mono{v1.0.0} (2026-05-08).
+\item \textbf{Signet} — Apache-2.0 production release on PyPI as \mono{signet-sign}; 11 production checks, RFC 3161 anchoring.
+\end{itemize}}
+\end{minipage}
+
+% =================== FOUNDER ===================
+\sectionhead{Founder}
+{\small \textbf{\color{navy}Jesse Morgan} — USMC Staff Sergeant, Signals Intelligence, TS/SCI. Eight years active duty,
+six countries deployed, national-level intelligence reporting under classified handling. BA Arabic, Defense Language
+Institute. Built all ten systems solo, January--May 2026.}
+
+% =================== COMPANY DATA TABLE ===================
+\sectionhead{Company data}
+{\small\plexmono\footnotesize
+\renewcommand{\arraystretch}{1.35}
+\arrayrulecolor{rule}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\color{navy}}l X >{\bfseries\color{navy}}l X@{}}
+\rowcolor{tealtint}
+Entity        & Thornveil LLC                         & UEI      & \color{tealdk}NCBZNKMJBP59 \\
+Location      & Tampa, Florida                        & CAGE     & \color{tealdk}1T0K4 \\
+\rowcolor{tealtint}
+SAM.gov       & Active \textbullet\ All Awards        & NAICS    & 541511, 541512, 334511 \\
+Business type & Small business \textbullet\ VOSB-eligible 12/2026 & Vehicles & Direct \textbullet\ SBIR I/II \textbullet\ OTA \textbullet\ CRADA \\
+\rowcolor{tealtint}
+Contracts     & Open 2026-12-10 \textbullet\ FAR 12.212 commercial item & Engage & Eval NDA \textbullet\ replay pkg \textbullet\ walkthrough \\
+\end{tabularx}}
+
+% =================== FOOTER ===================
+\vspace{5pt}{\color{rule}\hrule height 0.5pt}\vspace{3pt}
+{\plexmono\scriptsize\color{mute}%
+THORNVEIL LLC \textbullet\ CAPABILITIES STATEMENT \textbullet\ jesse@thornveil.ai \hfill
+Distribution unlimited \textbullet\ figures source-verified against the engineering repositories.}
+
+\end{document}

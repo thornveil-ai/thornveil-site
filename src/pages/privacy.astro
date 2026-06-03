@@ -3,37 +3,62 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Privacy Policy | Thornveil">
-  <section class="section-padding pt-32 md:pt-40">
-    <div class="container-max mx-auto max-w-3xl">
-      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Legal</p>
-      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Privacy Policy</h1>
-      <p class="text-xs mt-2 reveal reveal-delay-2" style="color: var(--color-text-tertiary);">Effective May 2026</p>
+  <section class="tv-section pt-s-11">
+    <div class="tv-container max-w-3xl">
+      <h1 class="tv-h1 mt-s-3 reveal reveal-delay-1">Privacy Policy</h1>
+      <p class="font-mono text-step--1 tracking-[0.10em] uppercase text-text-3 mt-s-3 reveal reveal-delay-2">
+        Effective May 2026
+      </p>
 
-      <div class="mt-10 space-y-8 text-sm leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
+      <div class="mt-s-7 space-y-s-7 text-step-0 text-text-2 reveal reveal-delay-2">
         <div>
-          <h2 class="text-base font-semibold mb-2" style="color: var(--color-text-primary);">Summary</h2>
-          <p>Thornveil LLC does not use cookies, does not run advertising, and does not sell or share visitor data. We use privacy-respecting analytics (Plausible) to count page views in aggregate. If you contact Thornveil via email, your message and contact information are retained only for the purpose of responding to your inquiry.</p>
+          <h2 class="text-step-1 text-text mb-s-3" style="font-variation-settings: 'wdth' 125;">Summary</h2>
+          <p>
+            Thornveil LLC does not use cookies, does not run advertising, and does not sell or share visitor data.
+            We use privacy-respecting analytics (Plausible) to count page views in aggregate. If you contact
+            Thornveil via email, your message and contact information are retained only for the purpose of
+            responding to your inquiry.
+          </p>
         </div>
 
         <div>
-          <h2 class="text-base font-semibold mb-2" style="color: var(--color-text-primary);">Analytics</h2>
-          <p>This site uses <a href="https://plausible.io" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">Plausible Analytics</a> — a lightweight, privacy-focused, cookie-free, GDPR-compliant alternative to Google Analytics. Plausible collects anonymized page-view counts, referrer information, and country-level location. No individual visitor is identified or tracked across sessions. No personal data is shared with third parties. Plausible is hosted in the EU.</p>
-          <p class="mt-3">This site is hosted on Netlify. Netlify may collect standard server-level access logs (IP address, user agent, timestamp) as part of normal web server operation.</p>
+          <h2 class="text-step-1 text-text mb-s-3" style="font-variation-settings: 'wdth' 125;">Analytics</h2>
+          <p>
+            This site uses
+            <a href="https://plausible.io" target="_blank" rel="noopener" class="text-signal-text underline underline-offset-4 decoration-1">Plausible Analytics</a>
+            — a lightweight, privacy-focused, cookie-free, GDPR-compliant alternative to Google Analytics.
+            Plausible collects anonymized page-view counts, referrer information, and country-level location.
+            No individual visitor is identified or tracked across sessions. No personal data is shared with
+            third parties. Plausible is hosted in the EU.
+          </p>
+          <p class="mt-s-3">
+            This site is hosted on Netlify. Netlify may collect standard server-level access logs
+            (IP address, user agent, timestamp) as part of normal web server operation.
+          </p>
         </div>
 
         <div>
-          <h2 class="text-base font-semibold mb-2" style="color: var(--color-text-primary);">Cookies</h2>
-          <p>This site uses localStorage to remember your theme preference (light/dark). No cookies are set.</p>
+          <h2 class="text-step-1 text-text mb-s-3" style="font-variation-settings: 'wdth' 125;">Cookies</h2>
+          <p>This site does not set cookies and does not use localStorage for tracking purposes.</p>
         </div>
 
         <div>
-          <h2 class="text-base font-semibold mb-2" style="color: var(--color-text-primary);">Product Data</h2>
-          <p>RigRun, Pyros, and Mycelium are local-first products. When deployed on your hardware, no telemetry, usage data, or inference content is sent to Thornveil or any third party. Your data stays on your infrastructure.</p>
+          <h2 class="text-step-1 text-text mb-s-3" style="font-variation-settings: 'wdth' 125;">Product data</h2>
+          <p>
+            RigRun, Pyros, and Mycelium are local-first products. When deployed on your hardware, no telemetry,
+            usage data, or inference content is sent to Thornveil or any third party. Your data stays on
+            your infrastructure.
+          </p>
         </div>
 
         <div>
-          <h2 class="text-base font-semibold mb-2" style="color: var(--color-text-primary);">Contact</h2>
-          <p>Questions about this policy: <a href="mailto:jesse@thornveil.ai" style="color: var(--color-accent); text-decoration: underline;">jesse@thornveil.ai</a></p>
+          <h2 class="text-step-1 text-text mb-s-3" style="font-variation-settings: 'wdth' 125;">Contact</h2>
+          <p>
+            Questions about this policy:
+            {' '}<a href="mailto:jesse@thornveil.ai" class="text-signal-text underline underline-offset-4 decoration-1">
+              jesse@thornveil.ai
+            </a>
+          </p>
         </div>
       </div>
     </div>

@@ -2,19 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Page Not Found | Thornveil">
-  <section class="section-padding pt-32 md:pt-40 min-h-[60vh] flex items-center">
-    <div class="container-max mx-auto text-center">
-      <h1 class="text-fluid-3xl font-semibold tracking-tight reveal">Page not found</h1>
-      <p class="text-base mt-4 reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        The page you requested does not exist.
+<BaseLayout title="Page not found | Thornveil">
+  <section class="tv-section pt-s-11 min-h-[70vh] flex items-center">
+    <div class="tv-container text-center">
+      <h1 class="tv-h1 mx-auto reveal" style="max-width: none;">Page not found.</h1>
+      <p class="text-step-1 text-text-2 mt-s-4 mx-auto reveal reveal-delay-2" style="max-width: 52ch;">
+        The path you requested is not declared in the Thornveil scope.
       </p>
-      <div class="mt-8 reveal reveal-delay-2">
-        <a href="/" class="btn-primary text-sm uppercase">
-          Back to Home
-          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-          </svg>
+      <div class="mt-s-7 reveal reveal-delay-3 flex flex-wrap gap-s-3 justify-center">
+        <a href="/" class="tv-btn tv-btn--primary">
+          Return to home
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="/systems" class="tv-btn tv-btn--secondary">
+          Browse the 10 systems
         </a>
       </div>
     </div>

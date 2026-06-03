@@ -1,0 +1,150 @@
+---
+/**
+ * ShippingLog — recent shipping cadence as a homepage section.
+ *
+ * Modal/Cursor pattern: surface what's actually being shipped. Federal
+ * evaluators read this as "this is a real engineering org" — far stronger
+ * than a static feature list.
+ *
+ * Pull from src/data/shipping-log.json so the founder can update one file
+ * after each ship and the homepage reflects it.
+ */
+import data from '../data/shipping-log.json';
+const entries = data.entries.slice(0, 6);   // show last 6
+---
+
+<section class="tv-section pt-0" style="background: var(--bg-raised); border-top: 1px solid var(--line);">
+  <div class="tv-container max-w-4xl">
+    <div class="mb-s-7 flex items-end justify-between flex-wrap gap-s-4">
+      <div>
+        <h2 class="tv-h2 reveal">Shipping log.</h2>
+        <p class="text-step-0 text-text-2 mt-s-3 reveal reveal-delay-1" style="max-width: 56ch;">
+          What's actually shipped, dated. The federal AI substrate is built in commits,
+          not in decks.
+        </p>
+      </div>
+      <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener"
+         class="tv-btn tv-btn--secondary reveal reveal-delay-2 plausible-event-name=Browse+GitHub">
+        GitHub org ↗
+      </a>
+    </div>
+
+    <ol class="shipping-log reveal reveal-delay-2" role="list">
+      {entries.map((e) => (
+        <li class="shipping-row">
+          <div class="shipping-date">
+            <span class="shipping-date-d">{e.date.slice(8, 10)}</span>
+            <span class="shipping-date-m">{e.date.slice(0, 7)}</span>
+          </div>
+          <div class="shipping-meta">
+            <span class="shipping-system">{e.system}</span>
+            <span class="shipping-sep" aria-hidden="true">·</span>
+            <span class="shipping-version">{e.version}</span>
+          </div>
+          <p class="shipping-headline">
+            {e.headline}
+            {e.href ? (
+              <>
+                {' '}
+                <a href={e.href} target="_blank" rel="noopener" class="shipping-link">verify ↗</a>
+              </>
+            ) : null}
+          </p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .shipping-log {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .shipping-row {
+    display: grid;
+    grid-template-columns: 80px 200px 1fr;
+    gap: var(--s-5);
+    align-items: baseline;
+    padding: var(--s-4) 0;
+    border-bottom: 1px solid var(--line);
+    transition: background var(--dur-fast) var(--ease-out);
+  }
+  .shipping-row:hover {
+    background: rgba(143, 179, 196, 0.04);
+  }
+  .shipping-date {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: var(--font-mono);
+    color: var(--text-3);
+    letter-spacing: 0.06em;
+  }
+  .shipping-date-d {
+    font-size: var(--step-1);
+    color: var(--signal-text);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .shipping-date-m {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .shipping-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-2);
+    flex-wrap: wrap;
+  }
+  .shipping-system {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .shipping-version {
+    color: var(--signal-text);
+  }
+  .shipping-sep {
+    color: var(--text-3);
+    opacity: 0.5;
+  }
+  .shipping-headline {
+    color: var(--text-2);
+    max-width: 64ch;
+    font-size: var(--step-0);
+    line-height: 1.55;
+  }
+  .shipping-link {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--signal-text);
+    margin-left: 6px;
+    white-space: nowrap;
+  }
+  .shipping-link:hover { color: var(--text); }
+
+  @media (max-width: 720px) {
+    .shipping-row {
+      grid-template-columns: 60px 1fr;
+      gap: var(--s-3);
+    }
+    .shipping-meta {
+      grid-column: 2;
+    }
+    .shipping-headline {
+      grid-column: 1 / -1;
+      margin-top: var(--s-2);
+    }
+  }
+</style>

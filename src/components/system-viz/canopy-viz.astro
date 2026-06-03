@@ -1,0 +1,107 @@
+---
+/**
+ * Canopy viz — multi-modal counter-UAS radar plan view.
+ *
+ * 5 concentric rings labeled by sensor modality. A sweeping radial line.
+ * On a slow loop a target appears at the convergence of three sensor
+ * confirmations.
+ */
+const W = 500;
+const H = 220;
+const cx = 250;
+const cy = 120;
+const rings = [
+  { r: 26, label: 'RF' },
+  { r: 42, label: 'ACOUSTIC' },
+  { r: 58, label: 'THERMAL' },
+  { r: 74, label: 'RID' },
+  { r: 90, label: 'ADS-B' },
+];
+---
+
+<svg
+  viewBox={`0 0 ${W} ${H}`}
+  width="100%"
+  height="100%"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+  role="presentation"
+  style="display:block;"
+>
+  <style>
+    .can-mono   { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+    .can-tag    { font-size: 9px; letter-spacing: 0.15em; }
+    .can-label  { font-size: 8px; letter-spacing: 0.12em; }
+
+    .can-sweep {
+      animation: can-sweep 8s linear infinite;
+      transform-origin: 250px 120px;
+      transform-box: view-box;
+    }
+    @keyframes can-sweep {
+      0%   { transform: rotate(-90deg); }
+      100% { transform: rotate(270deg); }
+    }
+
+    .can-target {
+      animation: can-target 8s ease-in-out infinite;
+      opacity: 0;
+    }
+    @keyframes can-target {
+      0%, 30%   { opacity: 0; }
+      35%, 60%  { opacity: 1; }
+      65%, 100% { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .can-sweep, .can-target { animation: none; opacity: 1; }
+    }
+  </style>
+
+  <!-- Header -->
+  <text x="24" y="32" class="can-mono can-tag" fill="var(--text-3)">
+    PLAN VIEW · 5 MODALITIES · KALMAN + DEMPSTER-SHAFER
+  </text>
+
+  <!-- Rings -->
+  {rings.map((r, i) => (
+    <circle cx={cx} cy={cy} r={r.r}
+            fill="none" stroke="var(--signal-line)" stroke-width="0.7"
+            opacity={0.4 + i * 0.07} />
+  ))}
+
+  <!-- Crosshair -->
+  <line x1={cx - 100} y1={cy} x2={cx + 100} y2={cy}
+        stroke="var(--line-strong)" stroke-width="0.5" />
+  <line x1={cx} y1={cy - 95} x2={cx} y2={cy + 70}
+        stroke="var(--line-strong)" stroke-width="0.5" />
+
+  <!-- Sweep -->
+  <g class="can-sweep">
+    <line x1={cx} y1={cy} x2={cx} y2={cy - 90}
+          stroke="var(--signal-text)" stroke-width="1.5" opacity="0.95"
+          stroke-linecap="round" />
+    <line x1={cx} y1={cy} x2={cx} y2={cy - 90}
+          stroke="var(--signal-text)" stroke-width="8" opacity="0.16"
+          stroke-linecap="round" />
+  </g>
+
+  <!-- Target -->
+  <g class="can-target"
+     transform={`translate(${cx + 74 * Math.cos((35 * Math.PI) / 180)}, ${cy + 74 * Math.sin((35 * Math.PI) / 180)})`}>
+    <circle r="5" fill="#E8B341"
+            style="filter: drop-shadow(0 0 8px rgba(232,179,65,0.9));" />
+    <circle r="11" fill="none" stroke="#E8B341" stroke-width="0.8" opacity="0.65" />
+  </g>
+
+  <!-- Ring labels on the right edge -->
+  {rings.map((r) => (
+    <text x={cx + r.r + 8} y={cy + 3} class="can-mono can-label" fill="var(--text-3)">
+      {r.label}
+    </text>
+  ))}
+
+  <!-- Footer -->
+  <text x="24" y={H - 14} class="can-mono can-tag" fill="var(--text-3)">
+    PHASE 0 · ARCHITECTURE VALIDATED · BEARING-INTERSECTION GEOLOC
+  </text>
+</svg>

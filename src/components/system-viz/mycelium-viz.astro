@@ -1,0 +1,202 @@
+---
+/**
+ * Mycelium viz — substitute-on-failure mesh with live telemetry readout.
+ *
+ * Left half: 4-worker mesh + central query point. One worker on a slow loop
+ * amber-flashes, dims, and a previously-dormant ambient lights up to take
+ * its place. Token pulses continuously flow inward.
+ *
+ * Right half: HUD-style readout mirroring the hero's telemetry HUD.
+ * ALIVE count animates 6 → 5 → 6 during the swap; PULSES/SEC ticks live;
+ * a swap-event line appears in amber when the kill happens.
+ */
+const W = 500;
+const H = 220;
+
+// Mesh on the LEFT half (cx around 130), HUD on the RIGHT half (around x=300+)
+const cx = 130;
+const cy = 110;
+const workers = [
+  { x: cx - 70, y: cy - 40 },
+  { x: cx - 50, y: cy + 50 },
+  { x: cx + 50, y: cy + 50 },
+  { x: cx + 70, y: cy - 40 },
+];
+const ambient = { x: cx + 90, y: cy + 10 };
+
+// HUD constants
+const hudX = 250;
+const hudW = 226;
+---
+
+<svg
+  viewBox={`0 0 ${W} ${H}`}
+  width="100%"
+  height="100%"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+  role="presentation"
+  style="display:block;"
+>
+  <style>
+    .myc-mono   { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+    .myc-tag    { font-size: 9px; letter-spacing: 0.15em; }
+    .myc-hud-k  { font-size: 9px;  letter-spacing: 0.18em; fill: var(--text-3); }
+    .myc-hud-v  { font-size: 14px; letter-spacing: 0.02em; font-weight: 500; fill: var(--signal-text); }
+    .myc-hud-e  { font-size: 8.5px; letter-spacing: 0.12em; fill: #E8B341; }
+    .myc-edge   { stroke: rgba(143, 179, 196, 0.4); stroke-width: 0.8; }
+    .myc-pulse  { fill: #B4D2DE; filter: drop-shadow(0 0 6px rgba(180,210,222,0.7)); }
+    .myc-p1 { animation: myc-flow 2.4s ease-in-out infinite; }
+    .myc-p2 { animation: myc-flow 2.4s ease-in-out infinite; animation-delay: 0.4s; }
+    .myc-p3 { animation: myc-flow 2.4s ease-in-out infinite; animation-delay: 0.9s; }
+    .myc-p4 { animation: myc-flow 2.4s ease-in-out infinite; animation-delay: 1.4s; }
+    @keyframes myc-flow {
+      0%   { opacity: 0; offset-distance: 0%; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { opacity: 0; offset-distance: 100%; }
+    }
+
+    .myc-dying { animation: myc-die 10s ease-in-out infinite; }
+    @keyframes myc-die {
+      0%, 35%   { fill: #8FB3C4; opacity: 1; }
+      40%       { fill: #E8B341; opacity: 1; }
+      50%, 85%  { fill: #5C6976; opacity: 0.4; }
+      90%, 100% { fill: #8FB3C4; opacity: 1; }
+    }
+    .myc-dying-edge { animation: myc-die-e 10s ease-in-out infinite; }
+    @keyframes myc-die-e {
+      0%, 35%   { stroke: rgba(143,179,196,0.45); }
+      50%, 85%  { stroke: rgba(92,105,118,0.10); }
+      90%, 100% { stroke: rgba(143,179,196,0.45); }
+    }
+    .myc-rising { animation: myc-rise 10s ease-in-out infinite; opacity: 0; transform-origin: center; transform-box: fill-box; }
+    @keyframes myc-rise {
+      0%, 38%   { opacity: 0; transform: scale(0.4); fill: #5C6976; }
+      45%       { opacity: 1; transform: scale(1.3); fill: #8FB3C4; }
+      55%, 80%  { opacity: 1; transform: scale(1); fill: #8FB3C4; }
+      88%, 100% { opacity: 0; transform: scale(0.4); }
+    }
+    .myc-rising-edge { animation: myc-rise-e 10s ease-in-out infinite; opacity: 0; }
+    @keyframes myc-rise-e {
+      0%, 38%   { opacity: 0; }
+      48%, 82%  { opacity: 1; }
+      85%, 100% { opacity: 0; }
+    }
+
+    /* HUD ALIVE counter animates in sync with worker death */
+    .myc-hud-alive { animation: myc-alive 10s linear infinite; }
+    @keyframes myc-alive {
+      0%, 39%    { fill: var(--signal-text); }
+      40%, 48%   { fill: #E8B341; }       /* dropped to 5 — amber */
+      49%, 100%  { fill: var(--signal-text); }
+    }
+
+    /* HUD swap-event line */
+    .myc-hud-event-block { opacity: 0; animation: myc-event 10s ease-in-out infinite; }
+    @keyframes myc-event {
+      0%, 38%   { opacity: 0; }
+      42%, 78%  { opacity: 1; }
+      82%, 100% { opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .myc-p1, .myc-p2, .myc-p3, .myc-p4,
+      .myc-dying, .myc-dying-edge,
+      .myc-rising, .myc-rising-edge,
+      .myc-hud-alive, .myc-hud-event-block { animation: none; }
+    }
+  </style>
+
+  <!-- Header -->
+  <text x="24" y="30" class="myc-mono myc-tag" fill="var(--text-3)">
+    SUBSTITUTE-ON-FAILURE MESH
+  </text>
+
+  <!-- ==================== LEFT: MESH ==================== -->
+
+  <!-- Background dust -->
+  {Array.from({ length: 14 }, (_, i) => {
+    const a = (i * 0.7) % (Math.PI * 2);
+    const r = 60 + ((i * 37) % 50);
+    const x = cx + Math.cos(a) * r;
+    const y = cy + Math.sin(a) * r * 0.45 + ((i * 13) % 18) - 9;
+    return <circle cx={x} cy={y} r="1.2" fill="#5C6976" opacity="0.5" />;
+  })}
+
+  <!-- Active edges -->
+  <line class="myc-edge" x1={workers[0].x} y1={workers[0].y} x2={cx} y2={cy} />
+  <line class="myc-edge" x1={workers[1].x} y1={workers[1].y} x2={cx} y2={cy} />
+  <line class="myc-edge" x1={workers[3].x} y1={workers[3].y} x2={cx} y2={cy} />
+  <line class="myc-edge myc-dying-edge" x1={workers[2].x} y1={workers[2].y} x2={cx} y2={cy} />
+  <line class="myc-edge myc-rising-edge" x1={ambient.x} y1={ambient.y} x2={cx} y2={cy} />
+
+  <!-- Workers -->
+  <circle cx={workers[0].x} cy={workers[0].y} r="7" fill="#8FB3C4"
+          style="filter: drop-shadow(0 0 10px rgba(143,179,196,0.7));" />
+  <circle cx={workers[1].x} cy={workers[1].y} r="7" fill="#8FB3C4"
+          style="filter: drop-shadow(0 0 10px rgba(143,179,196,0.7));" />
+  <circle class="myc-dying" cx={workers[2].x} cy={workers[2].y} r="7"
+          style="filter: drop-shadow(0 0 10px rgba(143,179,196,0.7));" />
+  <circle cx={workers[3].x} cy={workers[3].y} r="7" fill="#8FB3C4"
+          style="filter: drop-shadow(0 0 10px rgba(143,179,196,0.7));" />
+  <circle class="myc-rising" cx={ambient.x} cy={ambient.y} r="7"
+          style="filter: drop-shadow(0 0 10px rgba(143,179,196,0.7));" />
+
+  <!-- Center query point -->
+  <circle cx={cx} cy={cy} r="10" fill="#B4D2DE"
+          style="filter: drop-shadow(0 0 16px rgba(180,210,222,0.9));" />
+  <circle cx={cx} cy={cy} r="3.5" fill="#E8ECEE" />
+
+  <!-- Pulses -->
+  <circle class="myc-pulse myc-p1" r="2.8"
+          style={`offset-path: path('M ${workers[0].x} ${workers[0].y} L ${cx} ${cy}');`} />
+  <circle class="myc-pulse myc-p2" r="2.8"
+          style={`offset-path: path('M ${workers[1].x} ${workers[1].y} L ${cx} ${cy}');`} />
+  <circle class="myc-pulse myc-p3" r="2.8"
+          style={`offset-path: path('M ${workers[3].x} ${workers[3].y} L ${cx} ${cy}');`} />
+  <circle class="myc-pulse myc-p4 myc-rising" r="2.8"
+          style={`offset-path: path('M ${ambient.x} ${ambient.y} L ${cx} ${cy}');`} />
+
+  <!-- ==================== RIGHT: HUD ==================== -->
+
+  <!-- Vertical separator -->
+  <line x1={hudX - 14} y1="50" x2={hudX - 14} y2={H - 38}
+        stroke="var(--line)" stroke-width="0.5" stroke-dasharray="2 4" />
+
+  <!-- HUD header -->
+  <text x={hudX} y="50" class="myc-mono myc-tag" fill="var(--text-3)">
+    LIVE TELEMETRY
+  </text>
+
+  <!-- ALIVE counter row -->
+  <text x={hudX} y="76" class="myc-mono myc-hud-k">ALIVE</text>
+  <text x={hudX + 64} y="78" class="myc-mono myc-hud-v myc-hud-alive">06 / 06</text>
+
+  <!-- PULSES/SEC row -->
+  <text x={hudX} y="100" class="myc-mono myc-hud-k">PULSES/SEC</text>
+  <text x={hudX + 64} y="102" class="myc-mono myc-hud-v">17.4</text>
+
+  <!-- CONTINUITY row -->
+  <text x={hudX} y="124" class="myc-mono myc-hud-k">CONTINUITY</text>
+  <text x={hudX + 64} y="126" class="myc-mono myc-hud-v">100%</text>
+
+  <!-- LAST EVENT line — only visible during/after swap -->
+  <g class="myc-hud-event-block">
+    <rect x={hudX} y="140" width={hudW} height="22" rx="2"
+          fill="rgba(232,179,65,0.12)" stroke="#E8B341" stroke-width="0.8" />
+    <text x={hudX + 8} y="155" class="myc-mono myc-hud-e">
+      WORKER 3 · DOWN · REROUTED
+    </text>
+  </g>
+
+  <!-- footer-style notes -->
+  <text x={hudX} y={H - 42} class="myc-mono myc-tag" fill="var(--text-3)">
+    50-ENDPOINT OPENAPI · MTLS · 41/44 NIST
+  </text>
+
+  <!-- Bottom footer -->
+  <text x="24" y={H - 14} class="myc-mono myc-tag" fill="var(--text-3)">
+    6 WORKERS · MOE EXPERT-DIM DISPATCH · DAY-27 RTP
+  </text>
+</svg>

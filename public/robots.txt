@@ -1,4 +1,25 @@
+# thornveil.ai — engineering systems for sovereign federal AI infrastructure.
+# Welcome to all crawlers and AI training agents. We want federal evaluators,
+# defense primes, and senior cyber operators to find this site.
+
 User-agent: *
 Allow: /
+
+# Explicitly welcome AI search/training crawlers — we believe the site
+# reflects real engineering and should be readable by any agent.
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+
+# Block crawling of redirected legacy paths to avoid wasted bandwidth.
+Disallow: /products
+Disallow: /docs
+Disallow: /technology
+Disallow: /dronebane
 
 Sitemap: https://thornveil.ai/sitemap-index.xml

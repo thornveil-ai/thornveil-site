@@ -1,0 +1,133 @@
+---
+/**
+ * RigRun viz — classification-gated routing as a compile-time type system.
+ *
+ * Top: a routing table — three classification levels routed to their
+ * compile-time-allowed destinations (UNCLASSIFIED → CLOUD, CUI → LOCAL.GPU,
+ * SECRET → AIRGAP). All marked ✓ ALLOW with mono check.
+ *
+ * Bottom: a deliberately-wrong route attempt — CUI → CLOUD — flagged with
+ * a teal compile-error squiggle and a "TYPE ERROR · CUI ≠ CloudOK" amber
+ * annotation. Demonstrates the gate working as an architectural narrowing,
+ * not a runtime policy.
+ */
+const W = 500;
+const H = 220;
+---
+
+<svg
+  viewBox={`0 0 ${W} ${H}`}
+  width="100%"
+  height="100%"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+  role="presentation"
+  style="display:block;"
+>
+  <style>
+    .rr-mono   { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+    .rr-tag    { font-size: 9px;  letter-spacing: 0.15em; }
+    .rr-cls    { font-size: 10px; letter-spacing: 0.10em; font-weight: 500; }
+    .rr-dest   { font-size: 10px; letter-spacing: 0.06em; }
+    .rr-ok     { font-size: 9px;  letter-spacing: 0.15em; font-weight: 500; fill: #6E96A8; }
+    .rr-err    { font-size: 10px; letter-spacing: 0.10em; font-weight: 500; fill: #E8B341; }
+    .rr-arrow  { stroke: var(--signal-line); stroke-width: 1; }
+
+    /* Pulse along the GOOD routes, slow & rhythmic */
+    .rr-token-ok {
+      fill: #B4D2DE;
+      filter: drop-shadow(0 0 5px rgba(180,210,222,0.7));
+      animation: rr-pulse-ok 4s linear infinite;
+    }
+    .rr-token-ok-2 { animation-delay: 0.6s; }
+    .rr-token-ok-3 { animation-delay: 1.2s; }
+    @keyframes rr-pulse-ok {
+      0%   { opacity: 0; offset-distance: 0%; }
+      8%   { opacity: 1; }
+      88%  { opacity: 1; }
+      100% { opacity: 0; offset-distance: 100%; }
+    }
+
+    .rr-squiggle {
+      stroke: #E8B341;
+      stroke-width: 1.5;
+      fill: none;
+      stroke-dasharray: 3 2;
+      animation: rr-flow 1.8s linear infinite;
+    }
+    @keyframes rr-flow {
+      0%   { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -10; }
+    }
+
+    .rr-error-row { animation: rr-blink 3s ease-in-out infinite; }
+    @keyframes rr-blink {
+      0%, 60%   { opacity: 1; }
+      62%, 66%  { opacity: 0.4; }
+      68%, 100% { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .rr-token-ok, .rr-squiggle, .rr-error-row { animation: none; }
+    }
+  </style>
+
+  <!-- Header -->
+  <text x="24" y="30" class="rr-mono rr-tag" fill="var(--text-3)">
+    COMPILE-TIME ROUTING TABLE
+  </text>
+  <text x={W - 24} y="30" text-anchor="end"
+        class="rr-mono rr-tag" fill="var(--signal-text)">
+    44 NIST 800-53 CONTROLS
+  </text>
+
+  <!-- Three good routes -->
+  {[
+    { y: 56,  cls: 'UNCLASSIFIED', dest: 'CLOUD.OPENAI',       cls_x: 24,  dest_x: 198 },
+    { y: 80,  cls: 'CUI',          dest: 'LOCAL.GPU',          cls_x: 24,  dest_x: 198 },
+    { y: 104, cls: 'SECRET',       dest: 'AIRGAP.ENCRYPTED',   cls_x: 24,  dest_x: 198 },
+  ].map((r, i) => (
+    <g>
+      <text x={r.cls_x} y={r.y} class="rr-mono rr-cls" fill="#8FB3C4">{r.cls}</text>
+      <!-- Arrow -->
+      <line class="rr-arrow" x1={r.cls_x + 130} y1={r.y - 4} x2={r.dest_x - 6} y2={r.y - 4} />
+      <polygon
+        points={`${r.dest_x - 10},${r.y - 7} ${r.dest_x - 6},${r.y - 4} ${r.dest_x - 10},${r.y - 1}`}
+        fill="var(--signal-line)" />
+      <text x={r.dest_x} y={r.y} class="rr-mono rr-dest" fill="var(--text-2)">{r.dest}</text>
+      <text x={W - 24} y={r.y} text-anchor="end" class="rr-mono rr-ok">✓ ALLOW</text>
+
+      <!-- Pulse along the arrow -->
+      <circle class={`rr-token-ok rr-token-ok-${i + 1}`} r="2.4"
+              style={`offset-path: path('M ${r.cls_x + 130} ${r.y - 4} L ${r.dest_x - 6} ${r.y - 4}');`} />
+    </g>
+  ))}
+
+  <!-- Divider -->
+  <line x1="24" y1="124" x2={W - 24} y2="124"
+        stroke="var(--line)" stroke-width="0.5" stroke-dasharray="2 3" />
+
+  <!-- BAD route attempt -->
+  <text x="24" y="146" class="rr-mono rr-tag" fill="var(--text-3)">
+    ATTEMPTED ROUTE · COMPILER OUTPUT
+  </text>
+
+  <g class="rr-error-row" transform="translate(24, 170)">
+    <text class="rr-mono rr-cls" fill="#8FB3C4">CUI</text>
+    <line class="rr-arrow" x1="48" y1="-4" x2="168" y2="-4" stroke="#E8B341" />
+    <polygon points="164,-7 168,-4 164,-1" fill="#E8B341" />
+    <text x="174" y="0" class="rr-mono rr-dest" fill="var(--text-2)">CLOUD.OPENAI</text>
+    <!-- squiggle under CLOUD.OPENAI -->
+    <path class="rr-squiggle"
+          d="M 174,3 q 3,3 6,0 t 6,0 t 6,0 t 6,0 t 6,0 t 6,0 t 6,0 t 6,0 t 6,0" />
+    <!-- error annotation -->
+    <rect x="276" y="-13" width="180" height="20" rx="2"
+          fill="rgba(232,179,65,0.18)" stroke="#E8B341" stroke-width="1" />
+    <text x="366" y="0" text-anchor="middle"
+          class="rr-mono rr-err">TYPE ERROR · CUI ≠ CloudOK</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="24" y={H - 14} class="rr-mono rr-tag" fill="var(--text-3)">
+    ARCHITECTURAL NARROWING · NOT RUNTIME POLICY · 6,950 TESTS
+  </text>
+</svg>

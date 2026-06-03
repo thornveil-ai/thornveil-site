@@ -1,0 +1,104 @@
+---
+/**
+ * MomentumStrip — thin telemetry band above the nav.
+ *
+ * The high-converting-site pattern: Shield ($2B raise), Modal ($355M),
+ * Saronic ($392M Navy contract), Anduril ($20B Army). Each leads with a
+ * single momentum signal. Thornveil's analog: a countdown to the DD-214
+ * direct-contract window + the strongest current portfolio stats.
+ *
+ * Computed at build time so the countdown is always current at deploy.
+ */
+import metrics from '../data/metrics.json';
+const m = metrics;
+
+function daysUntil(iso) {
+  const d = (new Date(iso).getTime() - Date.now()) / 86400000;
+  return Math.max(0, Math.ceil(d));
+}
+const daysToContract = daysUntil(m.company.directContractsOpenISO);
+---
+
+<aside
+  class="momentum-strip"
+  role="region"
+  aria-label="Thornveil momentum bar"
+>
+  <div class="tv-container momentum-strip-inner">
+    <span class="momentum-cell momentum-cell--accent">
+      <span class="momentum-led" aria-hidden="true"></span>
+      <span>Evaluation engagements active · direct contracts {m.company.directContractsOpen}</span>
+    </span>
+    <span class="momentum-sep" aria-hidden="true">·</span>
+    <span class="momentum-cell">{m.portfolio.totalSystems} systems</span>
+    <span class="momentum-sep" aria-hidden="true">·</span>
+    <span class="momentum-cell">first autonomous AD takeover · 2026-05-16</span>
+    <span class="momentum-sep momentum-cell--hideable" aria-hidden="true">·</span>
+    <span class="momentum-cell momentum-cell--hideable">
+      Mycelium {m.systems.mycelium.version} · cosign-signed
+    </span>
+  </div>
+</aside>
+
+<style>
+  .momentum-strip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    background: rgba(5, 11, 24, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    pointer-events: none;
+  }
+  .momentum-strip-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px var(--gutter);
+    height: 28px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .momentum-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .momentum-cell--accent {
+    color: var(--signal-text);
+  }
+  .momentum-led {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--signal);
+    box-shadow: 0 0 8px rgba(143, 179, 196, 0.7);
+    animation: momentum-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes momentum-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.55; transform: scale(0.78); }
+  }
+  .momentum-sep {
+    color: var(--text-3);
+    opacity: 0.45;
+  }
+  @media (max-width: 880px) {
+    .momentum-cell--hideable { display: none; }
+  }
+  @media (max-width: 640px) {
+    .momentum-strip { font-size: 9px; }
+    .momentum-strip-inner { gap: 8px; height: 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .momentum-led { animation: none; }
+  }
+</style>

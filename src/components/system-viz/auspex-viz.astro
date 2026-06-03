@@ -1,0 +1,247 @@
+---
+/**
+ * Auspex viz — autonomous AD-takeover kill chain replayed.
+ *
+ * Shows the actual capability: a six-stage kill chain that walks RECON →
+ * ENUM → SPRAY → CRED → LATERAL → DOMAIN-ADMIN. For each stage a Signet
+ * gate decision (ALLOW/DENY) is rendered, and a tamper-evident audit hash
+ * is chained below as the stage completes. A traversal cursor walks the
+ * chain in ~10s; one mid-chain step shows a brief DENY → retry → ALLOW
+ * micro-cycle to demonstrate Signet gating an out-of-scope proposal.
+ *
+ * Frames the readout as a REPLAY of the 2026-05-16 validated engagement —
+ * honest about the source (the model isn't running continuously).
+ */
+const W = 500;
+const H = 220;
+
+// Kill-chain stages
+const stages = [
+  { code: 'RECON',   ts: 'T+00' },
+  { code: 'ENUM',    ts: 'T+12' },
+  { code: 'SPRAY',   ts: 'T+47' },
+  { code: 'CRED',    ts: 'T+2m' },
+  { code: 'LATERAL', ts: 'T+5m' },
+  { code: 'DA',      ts: 'T+12m' },
+];
+const startX = 40;
+const stageW = 64;
+const stageGap = 8;
+const stageY = 70;
+const chainY = 138;
+const tsY = 166;
+---
+
+<svg
+  viewBox={`0 0 ${W} ${H}`}
+  width="100%"
+  height="100%"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+  role="presentation"
+  style="display:block;"
+>
+  <style>
+    .au-mono   { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+    .au-tag    { font-size: 9px; letter-spacing: 0.15em; }
+    .au-stage  { font-size: 9.5px; letter-spacing: 0.08em; font-weight: 500; }
+    .au-hash   { font-size: 8.5px; letter-spacing: 0.04em; }
+    .au-ts     { font-size: 8px; letter-spacing: 0.18em; }
+    .au-gate   { font-size: 8px; letter-spacing: 0.18em; font-weight: 500; }
+    .au-da     { font-size: 10px; letter-spacing: 0.08em; font-weight: 500; }
+
+    /* Each stage box lights up when the cursor passes (sequential delays). */
+    .au-stage-box {
+      animation: au-stage-light 10s ease-in-out infinite;
+      stroke: var(--signal-line);
+      fill: rgba(74,110,125,0.10);
+    }
+    .au-stage-1 { animation-delay: 0s;   }
+    .au-stage-2 { animation-delay: 1.4s; }
+    .au-stage-3 { animation-delay: 2.8s; }
+    .au-stage-4 { animation-delay: 4.2s; }
+    .au-stage-5 { animation-delay: 5.6s; }
+    .au-stage-6 { animation-delay: 7.0s; }
+    @keyframes au-stage-light {
+      0%, 100%   { stroke: var(--signal-line); fill: rgba(74,110,125,0.10); }
+      8%         { stroke: var(--signal-text); fill: rgba(143,179,196,0.22); }
+      90%        { stroke: var(--signal-text); fill: rgba(143,179,196,0.18); }
+    }
+
+    /* Audit hashes appear as each stage completes */
+    .au-hash-elem {
+      opacity: 0;
+      animation: au-hash-appear 10s linear infinite;
+    }
+    .au-hash-1 { animation-delay: 0.3s; }
+    .au-hash-2 { animation-delay: 1.7s; }
+    .au-hash-3 { animation-delay: 3.1s; }
+    .au-hash-4 { animation-delay: 4.5s; }
+    .au-hash-5 { animation-delay: 5.9s; }
+    .au-hash-6 { animation-delay: 7.3s; }
+    @keyframes au-hash-appear {
+      0%, 8%   { opacity: 0; }
+      12%, 88% { opacity: 1; }
+      94%, 100% { opacity: 0; }
+    }
+
+    /* Traversal cursor walks through the chain */
+    .au-cursor {
+      animation: au-cursor-walk 10s linear infinite;
+      fill: #B4D2DE;
+      filter: drop-shadow(0 0 6px rgba(180,210,222,0.85));
+    }
+    @keyframes au-cursor-walk {
+      0%   { transform: translateX(0); }
+      82%  { transform: translateX(360px); }
+      90%  { transform: translateX(360px); opacity: 1; }
+      94%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* DENY → retry micro-cycle on the LATERAL stage (5th) */
+    .au-deny-flash {
+      opacity: 0;
+      animation: au-deny 10s ease-in-out infinite;
+    }
+    @keyframes au-deny {
+      0%, 53%   { opacity: 0; }
+      55%, 60%  { opacity: 1; }
+      62%, 100% { opacity: 0; }
+    }
+    .au-allow-recover {
+      opacity: 0;
+      animation: au-allow 10s ease-in-out infinite;
+    }
+    @keyframes au-allow {
+      0%, 62%   { opacity: 0; }
+      64%, 78%  { opacity: 1; }
+      80%, 100% { opacity: 0; }
+    }
+
+    /* Final "DOMAIN ADMIN" celebration glow */
+    .au-da-glow {
+      opacity: 0;
+      animation: au-da-celebrate 10s ease-in-out infinite;
+    }
+    @keyframes au-da-celebrate {
+      0%, 82%   { opacity: 0; }
+      85%, 95%  { opacity: 1; }
+      97%, 100% { opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .au-stage-box, .au-hash-elem, .au-cursor, .au-deny-flash, .au-allow-recover, .au-da-glow {
+        animation: none;
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <!-- Header -->
+  <text x="24" y="30" class="au-mono au-tag" fill="var(--text-3)">
+    REPLAY · AD-TAKEOVER · 2026-05-16
+  </text>
+  <text x={W - 24} y="30" text-anchor="end"
+        class="au-mono au-tag" fill="var(--signal-text)">
+    13/13 SIGNET CHECKS
+  </text>
+
+  <!-- Sub-header label for the kill-chain row -->
+  <text x="24" y="50" class="au-mono au-tag" fill="var(--text-3)">
+    KILL CHAIN
+  </text>
+
+  <!-- Kill chain — 6 stages -->
+  {stages.map((s, i) => {
+    const x = startX + i * (stageW + stageGap);
+    return (
+      <g>
+        <rect class={`au-stage-box au-stage-${i + 1}`}
+              x={x} y={stageY} width={stageW} height="22" rx="2"
+              stroke-width="1" />
+        <text x={x + stageW / 2} y={stageY + 14} text-anchor="middle"
+              class="au-mono au-stage" fill="var(--text)">
+          {s.code}
+        </text>
+      </g>
+    );
+  })}
+
+  <!-- Arrows between stages -->
+  {Array.from({ length: stages.length - 1 }, (_, i) => {
+    const x1 = startX + i * (stageW + stageGap) + stageW + 1;
+    const x2 = startX + (i + 1) * (stageW + stageGap) - 1;
+    return (
+      <g>
+        <line x1={x1} y1={stageY + 11} x2={x2} y2={stageY + 11}
+              stroke="var(--signal-line)" stroke-width="0.8" />
+        <polygon
+          points={`${x2 - 3},${stageY + 9} ${x2},${stageY + 11} ${x2 - 3},${stageY + 13}`}
+          fill="var(--signal-line)" />
+      </g>
+    );
+  })}
+
+  <!-- DENY annotation on the LATERAL stage (i=4) -->
+  <g class="au-deny-flash" transform={`translate(${startX + 4 * (stageW + stageGap)}, ${stageY - 18})`}>
+    <rect x="0" y="0" width={stageW} height="14" rx="2"
+          fill="rgba(232,179,65,0.18)" stroke="#E8B341" stroke-width="0.8" />
+    <text x={stageW / 2} y="10" text-anchor="middle"
+          class="au-mono au-gate" fill="#E8B341">
+      DENY
+    </text>
+  </g>
+  <g class="au-allow-recover" transform={`translate(${startX + 4 * (stageW + stageGap)}, ${stageY - 18})`}>
+    <rect x="0" y="0" width={stageW} height="14" rx="2"
+          fill="rgba(143,179,196,0.20)" stroke="var(--signal-text)" stroke-width="0.8" />
+    <text x={stageW / 2} y="10" text-anchor="middle"
+          class="au-mono au-gate" fill="var(--signal-text)">
+      RETRY · ALLOW
+    </text>
+  </g>
+
+  <!-- Audit hashes that appear as cursor passes each stage -->
+  <text x="24" y="124" class="au-mono au-tag" fill="var(--text-3)">
+    AUDIT CHAIN
+  </text>
+
+  {stages.map((s, i) => {
+    const x = startX + i * (stageW + stageGap);
+    // generate deterministic-ish hash labels
+    const hashes = ['0x4f3c…a2e1','0x9b22…0e74','0x71ea…8c1f','0xc308…b7d9','0x2da4…f053','0x8e15…22ab'];
+    return (
+      <g class={`au-hash-elem au-hash-${i + 1}`}>
+        <rect x={x} y={chainY - 10} width={stageW} height="14" rx="2"
+              fill="rgba(143,179,196,0.08)" stroke="var(--signal-line)" stroke-width="0.6" />
+        <text x={x + stageW / 2} y={chainY} text-anchor="middle"
+              class="au-mono au-hash" fill="var(--signal-text)">
+          {hashes[i]}
+        </text>
+        <text x={x + stageW / 2} y={tsY} text-anchor="middle"
+              class="au-mono au-ts" fill="var(--text-3)">
+          {s.ts}
+        </text>
+      </g>
+    );
+  })}
+
+  <!-- chain-connecting bracket line under audit row -->
+  <line x1={startX} y1={chainY + 8} x2={startX + 5 * (stageW + stageGap) + stageW} y2={chainY + 8}
+        stroke="var(--signal-line)" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.6" />
+
+  <!-- Traversal cursor walking through the kill chain -->
+  <circle class="au-cursor" cx={startX + stageW / 2} cy={stageY + 11} r="3" />
+
+  <!-- DOMAIN ADMIN celebration ring on the last stage -->
+  <g class="au-da-glow"
+     transform={`translate(${startX + 5 * (stageW + stageGap) + stageW / 2}, ${stageY + 11})`}>
+    <circle r="22" fill="none" stroke="#B4D2DE" stroke-width="1.2" opacity="0.85" />
+    <circle r="18" fill="rgba(180,210,222,0.18)" />
+  </g>
+
+  <!-- Footer -->
+  <text x="24" y={H - 14} class="au-mono au-tag" fill="var(--text-3)">
+    SCOPE-AS-CODE · HMAC + RFC 3161 · EAR ECCN 4D004 · FEDERAL-ONLY
+  </text>
+</svg>

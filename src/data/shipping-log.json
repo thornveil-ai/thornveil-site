@@ -1,0 +1,40 @@
+{
+  "_comment": "Shipping cadence — recent product ship events (NOT site updates). Each entry links to the source-of-truth (release tag, PR, or org page). Edit this file when you ship; the homepage auto-picks up the change.",
+  "entries": [
+    {
+      "date": "2026-05-17",
+      "system": "Auspex",
+      "version": "v0.5.3",
+      "headline": "Recon-coverage forcing function shipped. N=6 validation: 6/6 first-plan host coverage.",
+      "href": "https://github.com/thornveil-ai/auspex-contact"
+    },
+    {
+      "date": "2026-05-16",
+      "system": "Auspex",
+      "version": "v0.4.29",
+      "headline": "First autonomous Active Directory takeover (20 tool calls, 4m29s). Domain Admin under strict autonomy.",
+      "href": "https://github.com/thornveil-ai/auspex-contact"
+    },
+    {
+      "date": "2026-05-14",
+      "system": "Mycelium",
+      "version": "v1.0.0",
+      "headline": "Substitute-on-failure dispatch tagged + cosign-signed across Linux/Windows/macOS.",
+      "href": "https://github.com/thornveil-ai/mycelium-overview"
+    },
+    {
+      "date": "2026-05-08",
+      "system": "Mycelium",
+      "version": "Day-27 RTP",
+      "headline": "Reduction-to-practice recorded with HMAC-chained tamper-evident audit log.",
+      "href": "https://github.com/thornveil-ai/mycelium-overview"
+    },
+    {
+      "date": "2026-04-20",
+      "system": "Signet",
+      "version": "v0.1.10.1",
+      "headline": "Apache-2.0 release on PyPI as signet-sign. 11 production checks, RFC 3161 anchoring.",
+      "href": "https://github.com/thornveil-ai/signet"
+    }
+  ]
+}

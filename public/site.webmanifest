@@ -1,0 +1,14 @@
+{
+  "name": "Thornveil",
+  "short_name": "Thornveil",
+  "description": "Sovereign AI infrastructure. Built at the edge.",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "theme_color": "#050708",
+  "background_color": "#02040A",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}

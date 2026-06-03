@@ -1,161 +1,138 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import MyceliumHero from '../components/MyceliumHero.jsx';
+import MeshFallback from '../components/MeshFallback.astro';
+import SystemsConstellation from '../components/SystemsConstellation.astro';
+import AudienceIntake from '../components/AudienceIntake.astro';
+import FounderCard from '../components/FounderCard.astro';
+import ShippingLog from '../components/ShippingLog.astro';
+import metrics from '../data/metrics.json';
+
+const m = metrics;
+const heroStats = m.myceliumHero;
+const pageStats = m.homepageMetrics;
 
 const pillars = [
-  {
-    name: 'RigRun',
-    subtitle: 'IL5-pathway AI chat',
-    description: 'Three apps (desktop, mobile, web) on one Go backend. 44 NIST 800-53 controls implemented as discrete code paths. Classification gate enforced at the type-system level — CUI+ queries hard-blocked from cloud routing as architectural narrowing, not policy.',
-    metric: '496K',
-    metricLabel: 'LOC, 6,950 tests',
-    href: '/systems',
-    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>`,
-  },
-  {
-    name: 'Pyros',
-    subtitle: 'Safety perimeter for any LLM',
-    description: 'A 17K-line pure-Go engine that wraps any model in a 7-pillar safety pipeline. Drop it in front of RigRun, OpenAI, Anthropic, or anything else. No Python, no CGO, one binary, race-clean.',
-    metric: '17K',
-    metricLabel: 'LOC, race-clean',
-    href: '/systems',
-    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>`,
-  },
-  {
-    name: 'Mycelium',
-    subtitle: 'Keeps thinking when the mesh dies',
-    description: 'Distributed mixture-of-experts inference. Six workers pool compute for one chat; when half go dark, substitute-on-failure dispatch keeps producing tokens. Day-27 cryptographic reduction-to-practice. R2I-aligned, cosign-signed v1.0.0.',
-    metric: 'v1.0.0',
-    metricLabel: 'cosign-signed',
-    href: '/mycelium',
-    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>`,
-  },
-  {
-    name: 'Auspex',
-    subtitle: 'AI red team gated by Signet',
-    description: 'Autonomous offensive security with scope-as-code. Validated end-to-end on adversarial Active Directory takeover with HMAC-chained auditable replay. Federal-gated. EAR ECCN 4D004.',
-    metric: 'AD',
-    metricLabel: 'takeover validated',
-    href: '/systems',
-    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H20.4m-4.98 0l5.1 5.1m0 0l-5.1 5.1m5.1-5.1H3.6" /></svg>`,
-  },
+  m.systems.rigrun,
+  m.systems.pyros,
+  m.systems.mycelium,
+  m.systems.auspex,
+];
+const others = [
+  m.systems.signet,
+  m.systems.alchemist,
+  m.systems.hawkstack,
+  m.systems.meridian,
+  m.systems.canopy,
+  m.systems.navigator,
 ];
 
-const metrics = [
-  { value: '10', label: 'Production-grade systems' },
-  { value: '1.3M', label: 'LOC since January 2026' },
-  { value: '5', label: 'Months solo, active-duty' },
-  { value: 'Dec 10', label: 'Direct contracts open 2026' },
-];
-
-// The other 6 systems (beyond the 4-pillar hero) — shown as compact row so visitors
-// see the full 10-system portfolio without sub-products masquerading as separate items.
-const otherSystems = [
-  { name: 'Signet', tagline: 'Capability gates for LLM agents (public OSS)' },
-  { name: 'Alchemist', tagline: 'C-to-Rust translation, five correctness gates (public OSS)' },
-  { name: 'HawkStack', tagline: 'Sub-million-parameter perception, 6 domains' },
-  { name: 'Meridian', tagline: 'Memory-safe Rust flight-control firmware' },
-  { name: 'Canopy', tagline: 'Multi-modal counter-UAS situational awareness' },
-  { name: 'Navigator', tagline: 'Internal AI ops center, 9 production agents' },
-];
+// Reduction-to-practice — a fixed historical date, not a moving counter.
+// Day-27 of the engagement is when RTP was recorded.
+const myceliumRtpDate = m.systems.mycelium.rtpDate;
 ---
 
 <BaseLayout
-  title="Thornveil | Local AI Infrastructure"
-  description="Run AI on your own hardware. RigRun local inference, Pyros LLM safety engine, Mycelium distributed mesh, and custom AI agents. Zero per-token fees, no data leaving your building. Built for defense and enterprise."
+  title="Thornveil | Sovereign AI infrastructure"
+  description="Ten engineering systems for sovereign federal AI infrastructure. IL5-ready, ECCN-aware, governance-first. Built solo while active-duty USMC. Direct contracts open December 10, 2026."
 >
-  <!-- HERO -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh">
+  <!-- ============================== HERO ============================== -->
+  <section
+    class="relative w-full overflow-hidden"
+    style="background: var(--bg-inset); min-height: 100vh;"
+  >
+    <!-- WebGL mesh (R3F island, hydrates on idle since hero is above-the-fold). -->
+    <MyceliumHero client:idle />
+
+    <!-- Static SVG fallback for no-JS contexts. The island layer paints over it. -->
+    <noscript>
+      <MeshFallback />
+    </noscript>
+
+    <!-- Text-legibility mask. Darkens the left third where text sits, fades
+         to transparent on the right where the mesh shines. Keeps the wow
+         visible AND keeps the lead paragraph readable. -->
     <div
-      class="absolute inset-0"
-      style="opacity: 0.025; background-image: linear-gradient(var(--color-text-primary) 1px, transparent 1px), linear-gradient(90deg, var(--color-text-primary) 1px, transparent 1px); background-size: 80px 80px;"
+      aria-hidden="true"
+      style="position: absolute; inset: 0; pointer-events: none;
+             background: linear-gradient(to right,
+               rgba(5,11,24,0.78) 0%,
+               rgba(5,11,24,0.55) 22%,
+               rgba(5,11,24,0.15) 48%,
+               rgba(5,11,24,0) 70%);"
     ></div>
 
-    <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
-      <div class="mx-auto mb-10 w-72 h-48 md:w-[28rem] md:h-64 relative animate-fade-in">
-        <img src="/logo-stacked-white.png" alt="Thornveil" class="logo-dark absolute inset-0 w-full h-full object-contain" style="transition: opacity 0.5s;" />
-        <img src="/logo-stacked.png" alt="Thornveil" class="logo-light absolute inset-0 w-full h-full object-contain" style="opacity: 0; transition: opacity 0.5s;" />
-      </div>
+    <!-- Foreground content. Fixed at 100vh; the WebGL mesh sits behind,
+         the H1 + lead + CTAs are the only foreground elements. -->
+    <div class="relative tv-container pt-s-11 pb-s-9 flex flex-col justify-center" style="height: 100vh; min-height: 640px;">
+      <h1 class="tv-h1 line-reveal" style="max-width: 18ch;">
+        <span>Sovereign AI</span>
+        <span>you can run in a SCIF.</span>
+      </h1>
 
-      <h2 class="text-fluid-2xl max-w-2xl mx-auto leading-tight font-semibold tracking-tight">
-        Ten systems.<br/>One sovereign AI stack.
-      </h2>
-
-      <p class="mt-5 text-sm md:text-base max-w-xl mx-auto leading-relaxed" style="color: var(--color-text-secondary);">
-        Built solo while active-duty USMC. Federal IL5-ready, ECCN-aware, governance-first. Direct contracts open December 10, 2026. Review the work.
+      <p class="tv-lead mt-s-5 reveal reveal-delay-2">
+        Ten federally-fit systems shipped solo while active-duty USMC.
+        The mesh on this page is one of them — Mycelium, surviving when half its workers die.
       </p>
 
-      <div class="mt-6 font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase" style="color: var(--color-text-tertiary);">
-        <span>Active-duty USMC founder</span>
-        <span class="mx-2 md:mx-3 opacity-40">///</span>
-        <span>1.3M LOC across 10 systems</span>
-        <span class="mx-2 md:mx-3 opacity-40">///</span>
-        <span>Built since January 2026</span>
-      </div>
-
-      <div class="mt-10 flex gap-4 justify-center flex-wrap">
-        <a href="/systems" class="btn-primary text-xs uppercase">
-          Browse Systems
-          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-          </svg>
+      <!-- CTA row — primary anchors down to audience intake (highest-leverage conversion path) -->
+      <div class="mt-s-7 flex flex-wrap gap-s-3 reveal reveal-delay-3">
+        <a href="#pick-your-track" class="tv-btn tv-btn--primary plausible-event-name=Hero+Pick+Track">
+          Pick your track
+          <span aria-hidden="true">↓</span>
         </a>
-        <a href="/cofounder" class="btn-outline text-xs uppercase">
-          Apply to Co-found
+        <a href="/mycelium" class="tv-btn tv-btn--secondary plausible-event-name=Hero+Mycelium+Deep+Dive">
+          Mycelium deep dive ↗
         </a>
       </div>
     </div>
 
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-pulse-subtle">
-      <svg class="w-5 h-5" style="color: var(--color-text-tertiary);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-      </svg>
-    </div>
+    <!-- bottom hairline — marks the seam between hero and platform section -->
+    <div class="absolute bottom-0 left-0 right-0 border-t border-line" aria-hidden="true"></div>
   </section>
 
-  <!-- FOUR PILLARS -->
-  <section class="section-padding" style="background: var(--color-surface-secondary);">
-    <div class="container-max mx-auto">
-      <div class="mb-14">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">
-          Platform
-        </p>
-        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
-          Four flagship systems. Six more on the org.
-        </h2>
+  <!-- ============================== AUDIENCE INTAKE (highest conversion lever) ============================== -->
+  <div id="pick-your-track"></div>
+  <AudienceIntake />
+
+  <!-- ============================== PLATFORM (4 pillars) ============================== -->
+  <section class="tv-section" style="background: var(--bg);">
+    <div class="tv-container">
+      <div class="mb-s-8">
+        <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Four flagship systems. Six more on the org.</h2>
+        <div class="tv-rule" role="separator"></div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-s-5">
         {pillars.map((p, i) => (
           <a
-            href={p.href}
-            class={`reveal reveal-delay-${Math.min(i + 1, 4)} card-gradient-border p-7 group cursor-pointer`}
-            data-tilt
+            href={p.name === 'Mycelium' ? '/mycelium' : `/systems#${p.name.toLowerCase()}`}
+            class={`tv-tile reveal reveal-delay-${Math.min(i + 1, 4)}`}
           >
-            <div class="relative z-10">
-              <div class="flex items-center gap-3 mb-4">
-                <div
-                  class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-300"
-                  style="background: var(--color-accent-muted); color: var(--color-accent-hover); border: 1px solid var(--color-border);"
-                >
-                  <Fragment set:html={p.icon} />
-                </div>
-                <div>
-                  <h3 class="text-base font-semibold tracking-tight">{p.name}</h3>
-                  <span class="text-[11px]" style="color: var(--color-text-tertiary);">{p.subtitle}</span>
-                </div>
-              </div>
-              {p.metric && (
-                <div class="my-4 flex items-baseline gap-2">
-                  <span class="font-mono text-fluid-xl font-bold" style="color: var(--color-accent);">{p.metric}</span>
-                  <span class="font-mono text-[11px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">{p.metricLabel}</span>
-                </div>
-              )}
-              <p class="text-sm leading-relaxed mb-4" style="color: var(--color-text-secondary);">
-                {p.description}
-              </p>
-              <span class="text-[11px] font-medium tracking-wider uppercase" style="color: var(--color-accent);">
-                Learn more &rarr;
+            <!-- top row: status pill + LOC mono -->
+            <div class="flex items-start justify-between gap-s-3 mb-s-5">
+              <span class={`tv-pill ${p.status === 'live' ? 'tv-pill--live' : 'tv-pill--warn'}`}>
+                {p.statusLabel}
               </span>
+              {p.loc ? (
+                <span class="font-mono tabular text-text-3 text-step--1 uppercase tracking-[0.10em]">
+                  {p.loc} LOC
+                </span>
+              ) : null}
+            </div>
+
+            <h3 class="text-step-2 mb-s-3" style="font-variation-settings: 'wdth' 125;">{p.name}</h3>
+            <p class="text-step-0 text-text-2 max-w-prose mb-s-5">{p.summary}</p>
+
+            <div class="border-t border-line pt-s-4 flex flex-wrap items-center gap-x-s-4 gap-y-s-1 font-mono tabular text-step--1 text-text-3 uppercase tracking-[0.10em]">
+              <span>{p.version || p.statusLabel}</span>
+              {p.repo ? (
+                <>
+                  <span aria-hidden="true">·</span>
+                  <span>{p.repo.replace('github.com/thornveil-ai/','')}</span>
+                </>
+              ) : null}
+              <span aria-hidden="true" class="ml-auto text-signal-text">→</span>
             </div>
           </a>
         ))}
@@ -163,99 +140,72 @@ const otherSystems = [
     </div>
   </section>
 
-  <!-- METRICS BAR -->
-  <section class="py-16 md:py-24 overflow-hidden">
-    <div class="container-max mx-auto">
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 md:gap-0">
-        {metrics.map((m, i) => (
-          <div class={`text-center reveal reveal-delay-${Math.min(i + 1, 4)} ${i > 0 ? 'md:border-l' : ''}`} style={i > 0 ? 'border-color: var(--color-border-subtle);' : ''}>
-            <div class="stat-number text-fluid-2xl" style="color: var(--color-accent);">{m.value}</div>
-            <div class="font-mono text-[10px] tracking-[0.15em] uppercase mt-2" style="color: var(--color-text-tertiary);">{m.label}</div>
-          </div>
-        ))}
+  <!-- ============================== FOUNDER CARD ============================== -->
+  <FounderCard />
+
+  <!-- ============================== 10-SYSTEMS CONSTELLATION ============================== -->
+  <section class="tv-section pt-0" style="background: var(--bg);">
+    <div class="tv-container">
+      <div class="mb-s-7">
+        <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Ten systems. One integrated graph.</h2>
+        <p class="tv-lead mt-s-4 reveal reveal-delay-2" style="max-width: 64ch;">
+          Each system is shipped on its own, but they're designed to compose.
+          Hover any node to see what it depends on, and what depends on it.
+        </p>
+      </div>
+      <div class="reveal reveal-delay-3">
+        <SystemsConstellation />
+      </div>
+
+      <div class="mt-s-7 flex justify-center reveal reveal-delay-4">
+        <a href="/systems" class="tv-btn tv-btn--secondary">
+          Open all 10 system specs →
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- THE OTHER 6 SYSTEMS -->
-  <section class="px-6 md:px-12 lg:px-20 py-16 md:py-24" style="background: var(--color-surface-secondary);">
-    <div class="container-max mx-auto">
-      <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
-        <div>
-          <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">
-            And six more
-          </p>
-          <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
-            The rest of the ten.
-          </h2>
-        </div>
-        <a href="/systems" class="btn-outline text-xs uppercase reveal reveal-delay-2">
-          See all 10 systems &rarr;
-        </a>
-      </div>
+  <!-- ============================== SHIPPING LOG ============================== -->
+  <ShippingLog />
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {otherSystems.map((s, i) => (
-          <a href="/systems" class={`reveal reveal-delay-${Math.min(i + 1, 4)} rounded-xl p-5 transition-all duration-300 hover:scale-[1.02] block`}
-             style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-            <h3 class="text-sm font-semibold tracking-tight mb-1">{s.name}</h3>
-            <p class="text-[11px]" style="color: var(--color-text-tertiary);">{s.tagline}</p>
+  <!-- ============================== POSTURE ============================== -->
+  <section class="tv-section" style="background: var(--bg-raised); border-top: 1px solid var(--line);">
+    <div class="tv-container max-w-3xl">
+      <h2 class="tv-h2 mt-s-3 mb-s-5 reveal reveal-delay-1">A patient build, in the open.</h2>
+      <div class="space-y-s-4 text-step-0 text-text-2 reveal reveal-delay-2">
+        <p>
+          Thornveil is {m.portfolio.totalSystems} engineering systems for sovereign federal AI
+          infrastructure — safety gate, AI red team, IL5-pathway chat, sub-million-parameter perception,
+          distributed mesh, autopilot firmware, and the internal agent factory that ships them.
+          Built ground-up to clear FedRAMP, IL5, and ECCN review on day one — not retrofitted.
+        </p>
+        <p>
+          The founder is active-duty USMC. Direct federal contracts open
+          {' '}{m.company.directContractsOpen}. Co-founder applications open now:
+          {' '}<a href="/cofounder" class="text-signal-text underline underline-offset-4 decoration-1">
+            senior offensive cyber operator
           </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- POSTURE -->
-  <section class="px-6 md:px-12 lg:px-20 py-16 md:py-24">
-    <div class="container-max mx-auto max-w-3xl text-center">
-      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">
-        What Thornveil is
-      </p>
-      <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 mb-6 reveal reveal-delay-1">
-        A patient build, in the open.
-      </h2>
-      <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        <p>
-          Thornveil is 10 production-grade systems for sovereign federal AI infrastructure — safety gate, AI red team, IL5-ready chat, sub-million-parameter perception, distributed mesh, autopilot firmware, and the internal agent factory that ships them. Built ground-up to clear FedRAMP, IL5, and ECCN review on day one — not retrofitted.
-        </p>
-        <p>
-          The founder is active-duty USMC. Direct federal contracts open December 10, 2026. Co-founder applications open now: <a href="/cofounder" style="color: var(--color-accent); text-decoration: underline;">senior offensive cyber operator</a> with post-uniform defense-AI startup rotation.
+          {' '}with post-uniform defense-AI startup rotation.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section-padding relative overflow-hidden" style="background: var(--color-surface-secondary);">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="opacity: 0.07; background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);"></div>
-
-    <div class="relative container-max mx-auto max-w-2xl text-center">
-      <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">
-        Want to review the work, or co-found?
-      </h2>
-      <p class="mt-4 text-sm max-w-md mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        Inquiries welcome. Co-founder applications welcome. Direct contracts open post-separation (December 10, 2026).
+  <!-- ============================== CTA ============================== -->
+  <section class="tv-section" style="background: var(--bg);">
+    <div class="tv-container max-w-2xl text-center">
+      <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Want to review, or co-found?</h2>
+      <p class="text-step-0 text-text-2 mt-s-4 reveal reveal-delay-2" style="margin-inline: auto; max-width: 52ch;">
+        Inquiries welcome. Co-founder applications welcome. Direct contracts open post-separation
+        ({m.company.directContractsOpen}).
       </p>
-
-      <div class="mt-8 reveal reveal-delay-2 flex gap-4 justify-center flex-wrap">
-        <a href="mailto:jesse@thornveil.ai" class="btn-primary">
+      <div class="mt-s-7 flex gap-s-3 justify-center flex-wrap reveal reveal-delay-3">
+        <a href="mailto:jesse@thornveil.ai" class="tv-btn tv-btn--primary">
           jesse@thornveil.ai
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-          </svg>
         </a>
-        <a href="/cofounder" class="btn-outline">
-          Co-founder profile
+        <a href="/cofounder" class="tv-btn tv-btn--secondary">
+          Co-founder profile →
         </a>
-      </div>
-
-      <div class="mt-12 font-mono flex flex-wrap justify-center gap-x-3 gap-y-1 text-[10px] tracking-[0.15em] uppercase reveal reveal-delay-3" style="color: var(--color-text-tertiary);">
-        <span>Thornveil LLC</span>
-        <span class="opacity-40">&middot;</span>
-        <span>Tampa, FL</span>
-        <span class="opacity-40">&middot;</span>
-        <span>NAICS 541511, 541512</span>
       </div>
     </div>
   </section>
@@ -264,37 +214,49 @@ const otherSystems = [
 <script>
   import Lenis from 'lenis';
 
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  });
-
-  function raf(time: number) {
-    lenis.raf(time);
+  // Skip Lenis for reduced-motion users
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    const lenis = new Lenis({
+      duration: 1.0,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
     requestAnimationFrame(raf);
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector((anchor as HTMLAnchorElement).getAttribute('href')!);
+        if (target) lenis.scrollTo(target as HTMLElement);
+      });
+    });
   }
-  requestAnimationFrame(raf);
 
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector((anchor as HTMLAnchorElement).getAttribute('href')!);
-      if (target) lenis.scrollTo(target as HTMLElement);
-    });
-  });
-
-  document.querySelectorAll<HTMLElement>('[data-tilt]').forEach((card) => {
-    const MAX_DEG = 4;
-    card.addEventListener('mousemove', (e: MouseEvent) => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = (e.clientY - rect.top) / rect.height;
-      card.style.transform = `perspective(800px) rotateX(${(0.5 - y) * MAX_DEG}deg) rotateY(${(x - 0.5) * MAX_DEG}deg)`;
-      card.style.transition = 'transform 0.1s ease-out';
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg)';
-      card.style.transition = 'transform 0.4s ease-out';
-    });
+  // Count-up — runs once, on load, for mono stat numbers
+  function easeOutCubic(t: number) { return 1 - Math.pow(1 - t, 3); }
+  function isAnimatable(s: string) {
+    return /^\d+(\.\d+)?[KMB]?$/.test(s);
+  }
+  document.querySelectorAll<HTMLElement>('[data-countup]').forEach((el) => {
+    const target = el.dataset.countup ?? '';
+    if (!isAnimatable(target)) return;
+    const suffix = (target.match(/[KMB]$/) ?? [''])[0];
+    const final  = parseFloat(target.replace(/[KMB]$/, ''));
+    if (Number.isNaN(final)) return;
+    const start = performance.now();
+    const dur   = 720;
+    const tick  = (t: number) => {
+      const e = Math.min(1, (t - start) / dur);
+      const v = final * easeOutCubic(e);
+      const shown = (Number.isInteger(final) ? Math.round(v) : v.toFixed(1));
+      el.textContent = `${shown}${suffix}`;
+      if (e < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(tick);
   });
 </script>

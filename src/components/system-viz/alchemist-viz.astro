@@ -1,0 +1,91 @@
+---
+/**
+ * Alchemist viz — C → Rust translation with 5 correctness gates.
+ *
+ * Two stacked code rows, each labeled with the language. The C row shows
+ * a raw pointer dereference highlighted amber; the Rust row shows the
+ * safe-equivalent highlighted teal. Below: 5 correctness-gate checkmarks
+ * lighting up in sequence.
+ */
+const W = 500;
+const H = 220;
+const gates = ['COMPILE', 'ANTI-STUB', 'NO-UNSAFE', 'CARGO', 'DIFF'];
+const gateX0 = 30;
+const gateGap = (W - 60) / (gates.length - 1);
+---
+
+<svg
+  viewBox={`0 0 ${W} ${H}`}
+  width="100%"
+  height="100%"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+  role="presentation"
+  style="display:block;"
+>
+  <style>
+    .alch-mono   { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+    .alch-code   { font-size: 13px; letter-spacing: 0.02em; }
+    .alch-tag    { font-size: 9px; letter-spacing: 0.18em; }
+    .alch-check  { font-size: 15px; }
+    .alch-id     { fill: #E8ECEE; }
+    .alch-kw     { fill: #8FB3C4; }
+    .alch-unsafe { fill: #E8B341; font-weight: 500; }
+    .alch-safe   { fill: #6E96A8; font-weight: 500; }
+    .alch-punct  { fill: #7E8B96; }
+
+    .alch-gate {
+      animation: alch-light 5s linear infinite;
+      opacity: 0.22;
+    }
+    .alch-gate:nth-child(1) { animation-delay: 0s; }
+    .alch-gate:nth-child(2) { animation-delay: 1s; }
+    .alch-gate:nth-child(3) { animation-delay: 2s; }
+    .alch-gate:nth-child(4) { animation-delay: 3s; }
+    .alch-gate:nth-child(5) { animation-delay: 4s; }
+    @keyframes alch-light {
+      0%, 100% { opacity: 0.22; }
+      18%      { opacity: 1; }
+      82%      { opacity: 0.88; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .alch-gate { animation: none; opacity: 1; }
+    }
+  </style>
+
+  <!-- C row -->
+  <text x="30" y="30" class="alch-mono alch-tag" fill="var(--text-3)">C · RAW POINTER</text>
+  <g transform="translate(30, 56)">
+    <text class="alch-mono alch-code">
+      <tspan class="alch-kw">int</tspan><tspan class="alch-punct"> val </tspan><tspan class="alch-punct">= </tspan><tspan class="alch-unsafe">*ptr</tspan><tspan class="alch-punct">;</tspan>
+    </text>
+  </g>
+
+  <!-- Divider arrow -->
+  <line x1="30" y1="78" x2={W - 30} y2="78" stroke="var(--line)" stroke-width="0.5" />
+  <text x={W - 30} y="95" text-anchor="end"
+        class="alch-mono alch-tag" fill="var(--signal-text)">
+    TRANSLATE ↓
+  </text>
+
+  <!-- Rust row -->
+  <text x="30" y="116" class="alch-mono alch-tag" fill="var(--text-3)">RUST · SAFE ACCESS</text>
+  <g transform="translate(30, 142)">
+    <text class="alch-mono alch-code">
+      <tspan class="alch-kw">let</tspan><tspan class="alch-punct"> val </tspan><tspan class="alch-punct">= </tspan><tspan class="alch-safe">ptr.as_ref()</tspan><tspan class="alch-punct">.</tspan><tspan class="alch-safe">copied()</tspan><tspan class="alch-punct">.</tspan><tspan class="alch-safe">unwrap_or(0)</tspan><tspan class="alch-punct">;</tspan>
+    </text>
+  </g>
+
+  <!-- 5 gate checkmarks -->
+  <g>
+    {gates.map((g, i) => {
+      const x = gateX0 + i * gateGap;
+      return (
+        <g class="alch-gate" transform={`translate(${x}, ${H - 20})`}>
+          <text class="alch-mono alch-check" fill="var(--signal-text)">✓</text>
+          <text x="16" y="-1" class="alch-mono alch-tag" fill="var(--text-3)">{g}</text>
+        </g>
+      );
+    })}
+  </g>
+</svg>

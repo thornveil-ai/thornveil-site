@@ -1,0 +1,29 @@
+{
+  "_comment": "10-systems constellation — positions in 1200×520 viewBox + dependency edges. Used by SystemsConstellation.astro.",
+  "nodes": [
+    { "id": "signet",    "name": "Signet",    "tagline": "Capability gates · Apache-2.0 OSS",        "x": 200,  "y": 280, "stat": "v0.1.10.1" },
+    { "id": "auspex",    "name": "Auspex",    "tagline": "AI red team · EAR ECCN 4D004",             "x": 360,  "y": 130, "stat": "v0.5.3" },
+    { "id": "rigrun",    "name": "RigRun",    "tagline": "IL5-pathway AI chat · 44 NIST controls",   "x": 520,  "y": 260, "stat": "v0.9 · 496K LOC" },
+    { "id": "mycelium",  "name": "Mycelium",  "tagline": "Substitute-on-failure mesh",               "x": 680,  "y": 360, "stat": "v1.0.0" },
+    { "id": "pyros",     "name": "Pyros",     "tagline": "Adaptive inference engine · 24 layers",    "x": 360,  "y": 410, "stat": "v0.2.1" },
+    { "id": "hawkstack", "name": "HawkStack", "tagline": "Sub-million-param perception · 5 domains", "x": 820,  "y": 230, "stat": "v0.3.0 · 1.77M params" },
+    { "id": "meridian",  "name": "Meridian",  "tagline": "Memory-safe Rust autopilot · STM32",       "x": 980,  "y": 360, "stat": "98K LOC · 60 crates" },
+    { "id": "canopy",    "name": "Canopy",    "tagline": "Counter-UAS · 5 modalities fused",         "x": 1020, "y": 130, "stat": "Phase 0" },
+    { "id": "navigator", "name": "Navigator", "tagline": "Internal AI ops · 14-step factory",        "x": 200,  "y": 430, "stat": "9 agents · internal" },
+    { "id": "alchemist", "name": "Alchemist", "tagline": "C→Rust translation · 5 gates",             "x": 160,  "y": 130, "stat": "Apache-2.0 OSS" }
+  ],
+  "edges": [
+    { "from": "signet",    "to": "auspex",   "label": "extends" },
+    { "from": "signet",    "to": "rigrun",   "label": "gates" },
+    { "from": "signet",    "to": "mycelium", "label": "gates" },
+    { "from": "pyros",     "to": "rigrun",   "label": "inference" },
+    { "from": "pyros",     "to": "mycelium", "label": "inference" },
+    { "from": "mycelium",  "to": "rigrun",   "label": "tier" },
+    { "from": "hawkstack", "to": "meridian", "label": "backbone" },
+    { "from": "hawkstack", "to": "canopy",   "label": "backbone" },
+    { "from": "navigator", "to": "signet",   "label": "builds" },
+    { "from": "navigator", "to": "auspex",   "label": "builds" },
+    { "from": "navigator", "to": "rigrun",   "label": "builds" },
+    { "from": "navigator", "to": "mycelium", "label": "builds" }
+  ]
+}

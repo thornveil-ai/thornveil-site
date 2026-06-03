@@ -1,0 +1,109 @@
+---
+/**
+ * AudienceIntake — the single highest-leverage conversion component.
+ *
+ * Replaces the generic "Browse Systems / Apply to Co-found" CTA pair with
+ * four self-identified tracks. Modeled on Shield AI's 4-card demo modal —
+ * the pattern that converts highest across verified high-traffic sites
+ * (Cursor, Modal, Mercor, Shield).
+ *
+ * Each card routes to a tailored mailto with subject + body template that
+ * gives the founder a structured first reply path.
+ */
+import metrics from '../data/metrics.json';
+const m = metrics;
+
+const tracks = [
+  {
+    id: 'federal',
+    title: 'Federal program office',
+    sub: 'Evaluator track',
+    body: 'You get: a 30-min system walkthrough of your choice (Mycelium / RigRun / Auspex / HawkStack), access to the public companion repo, and a signed evaluation NDA when scope requires.',
+    cta: 'Schedule a federal eval call',
+    subject: 'Federal evaluation inquiry',
+    template: `I'm with [agency/command/program].
+Role: [role / title]
+Interested in: [Mycelium / RigRun / Auspex / HawkStack / other]
+Use-case sketch: [1-2 sentences]
+Best contact + time window: [.gov or .mil email]`,
+  },
+  {
+    id: 'prime',
+    title: 'Defense prime / SI',
+    sub: 'Integration track',
+    body: 'You get: a capability brief tailored to your program of record, an IP-license framework or subcontract sketch, and a teaming sketch on request.',
+    cta: 'Schedule a prime walkthrough',
+    subject: 'Prime / SI integration inquiry',
+    template: `Company: [name]
+My role: [BD / CapDev / SE]
+Target program: [if any]
+Specific Thornveil system(s) of interest: [list]
+Timeline: [exploratory / Q3 / Q4 / FY27]`,
+  },
+  {
+    id: 'cofounder',
+    title: 'Senior cyber operator',
+    sub: 'Co-founder track · single seat',
+    body: 'You get: the co-founder profile and qualifications, the substrate verification path, and an unfiltered conversation about the federal-sales gap.',
+    cta: 'Open the co-founder profile',
+    href: '/cofounder',
+  },
+];
+
+function mailtoHref(t) {
+  if (t.href) return t.href;
+  const body = encodeURIComponent(`Hi Jesse,\n\n${t.template}\n\n— [name]`);
+  return `mailto:jesse@thornveil.ai?subject=${encodeURIComponent(t.subject)}&body=${body}`;
+}
+---
+
+<section class="tv-section pt-s-9" style="background: var(--bg-raised); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="tv-container">
+    <div class="mb-s-8 text-center max-w-3xl mx-auto">
+      <h2 class="tv-h2 reveal">Pick your track.</h2>
+      <p class="text-step-1 text-text-2 mt-s-4 reveal reveal-delay-1" style="max-width: 56ch; margin-inline: auto;">
+        Direct contracts open {m.company.directContractsOpen}. Conversations now compound.
+        Choose the track that fits and we'll route you cleanly from there.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-s-5">
+      {tracks.map((t, i) => (
+        <a
+          href={mailtoHref(t)}
+          target={t.href ? '_self' : '_self'}
+          class={`tv-tile audience-card reveal reveal-delay-${Math.min(i + 1, 4)} flex flex-col plausible-event-name=Audience+${t.id}`}
+          data-track={t.id}
+        >
+          <p class="font-mono text-step--1 tracking-[0.18em] uppercase text-signal-text mb-s-3">
+            {String(i + 1).padStart(2, '0')} · {t.id.toUpperCase()}
+          </p>
+          <h3 class="text-step-2 mb-s-2" style="font-variation-settings: 'wdth' 125;">{t.title}</h3>
+          <p class="font-mono text-step--1 tracking-[0.10em] uppercase text-text-3 mb-s-4">{t.sub}</p>
+          <p class="text-step-0 text-text-2 mb-s-5 flex-1">{t.body}</p>
+          <div class="audience-cta mt-auto flex items-center gap-s-3">
+            <span class="font-mono text-step--1 tracking-[0.15em] uppercase text-text">{t.cta}</span>
+            <span class="audience-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .audience-card {
+    transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+  }
+  .audience-card:hover {
+    border-color: var(--signal-line);
+    background: var(--bg-inset);
+  }
+  .audience-arrow {
+    color: var(--signal-text);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .audience-card:hover .audience-arrow {
+    transform: translateX(4px);
+  }
+</style>

@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import metrics from '../data/metrics.json';
+const m = metrics;
 
 const requiredQuals = [
   'Roughly 8+ years operational experience at one of: MARFORCYBER, USCYBERCOM (J3), NSA TAO, IC red team, FBI Cyber Division, USAF 24th MOS, or peer organization. Senior NCO or O-grade typical; exceptional shorter-tenured candidates considered.',
   'Active TS/SCI clearance, or recent eligibility within the last 24 months. SCI-eligible at minimum.',
   'Post-uniform experience at a defense-AI startup (founding employee or early hire), fractional CRO/CSO across multiple defense AI startups, or corporate development at a defense prime\'s AI division (Booz Allen, SAIC, Leidos, GDIT, MITRE). Equivalent experience considered.',
   'At least one closed federal AI contract (won or lost) under FedRAMP, IL5, or ECCN scrutiny. You can articulate exactly why the outcome happened and what you would do differently.',
-  'Material federal Rolodex: program-office contacts who will answer when you call, distributed across some combination of SOCOM, USCYBERCOM, DARPA (I2O preferred), AFRL, AvMC, NSA, CISA, or the DoD AI Safety Institute.',
+  'Material federal Rolodex: program-office contacts who will answer when you call, distributed across some combination of SOCOM, USCYBERCOM, DARPA (I2O preferred), AFRL, AvMC, NSA, CISA, or USAISI.',
   'Proven ability to translate technical capability into procurement-language wins. Comfortable with SBIR, OTA, BAA, CSO, CRADA, IDIQ.',
 ];
 
@@ -14,7 +16,7 @@ const preferredQuals = [
   'Direct experience as buyer or seller in AI red team programs (relevant to Auspex).',
   'Familiarity with R2I / MOSA compliance frameworks.',
   'Prior pre-seed or seed-stage co-founder experience.',
-  'Working knowledge of one or more program offices: Replicator, FS-LIDS, NAVSEA USV-counter-USV, SOCPAC R2I, or DoD AISI evaluator pipeline.',
+  'Working knowledge of one or more program offices: Replicator, FS-LIDS, NAVSEA USV-counter-USV, SOCPAC R2I, or USAISI evaluator pipeline.',
   'Operator-side credibility in adversarial AI safety (red team, threat hunt, capability evaluation).',
   'Federal acquisition certification (FAC-C, DAWIA Level II+) is a plus, not required.',
 ];
@@ -27,332 +29,217 @@ const responsibilities = [
   'Lead procurement-vehicle selection per opportunity (SBIR Phase I/II/III, OTA, BAA, CSO, CRADA, IDIQ).',
   'Recruit operator-credibility hires when they are needed. Likely first hire: Director of Federal Sales or COO at the 18-month mark.',
 ];
+
+const substrate = [
+  { name: 'Auspex',   blurb: 'Federal-gated. Single-page public contact. Replay package available under evaluation NDA. Scope-as-code + 13-check Signet gate + HMAC-chained per-engagement audit.',                                                                                                                                                                                                                                pill: 'EAR ECCN 4D004', href: 'https://github.com/thornveil-ai/auspex-contact' },
+  { name: 'Mycelium', blurb: 'R2I-aligned MOSA surface. NIST 800-53 mapped. 50-endpoint OpenAPI 3.1 published. Day-27 cryptographic reduction-to-practice with HMAC-chained tamper-evident audit log.',                                                                                                                                                                                                                          pill: 'v1.0.0 · cosign-signed', href: 'https://github.com/thornveil-ai/mycelium-overview' },
+  { name: 'RigRun',   blurb: 'Three apps (desktop, mobile, web) on one Go backend. 44 NIST 800-53 controls implemented as discrete code paths. CUI+ hard-blocked from cloud routing at the compiler, not at runtime policy.',                                                                                                                                                                                                    pill: '496K LOC · 6,950 tests', href: 'https://github.com/thornveil-ai/rigrun-overview' },
+  { name: 'Signet',   blurb: 'The vocabulary Auspex extends. 4-stage check pipeline. 11 production checks. HMAC-chained audit log. RFC 3161 trusted-timestamp anchoring. Public bug-hunt log documenting every cycle.',                                                                                                                                                                                                          pill: 'PyPI public OSS', href: 'https://github.com/thornveil-ai/signet' },
+];
+
+const terms = [
+  { label: 'Equity',            value: 'Single-digit-percentage co-founder stake, vested 4 years with 1-year cliff. Pilot-conversion accelerators on top.' },
+  { label: 'Title',             value: 'Co-founder. Functional title (President / COO / Chief Federal Officer) tailored to background.' },
+  { label: 'Cash compensation', value: 'Pre-pilot: $0 base, founder-stage. Step-up trigger tied to first signed federal pilot.' },
+  { label: 'Work model',        value: 'Remote-primary. Regular travel to program offices (SOCOM / MacDill is local to HQ).' },
+  { label: 'Start date',        value: 'In position by Q1 2027 to align with FY27 federal-pilot procurement cycle.' },
+  { label: 'Funding posture',   value: 'Not raising. Path to revenue via federal pilots, not VC.' },
+];
+
+const meta = [
+  { label: 'Company',  value: m.company.name },
+  { label: 'Location', value: 'Tampa, FL / Remote' },
+  { label: 'Stage',    value: 'Pre-revenue · founder-led' },
+  { label: 'Start',    value: 'By Q1 2027' },
+];
 ---
 
 <BaseLayout
   title="Co-founder, Federal Sales | Thornveil"
-  description="Thornveil LLC is hiring a co-founder to run the federal sales motion for a 10-system defense-AI portfolio. Senior offensive cyber operator with post-uniform defense-AI startup experience. Tampa, FL / Remote. Material equity. Pre-revenue founder stage."
+  description="Thornveil LLC is hiring a co-founder to run the federal sales motion for a 10-system defense-AI portfolio. Senior offensive cyber operator with post-uniform defense-AI startup experience."
 >
   <!-- HERO / JOB HEADER -->
-  <section class="relative section-padding pt-32 md:pt-40 overflow-hidden gradient-mesh">
-    <div class="absolute inset-0 pointer-events-none" style="opacity: 0.025; background-image: linear-gradient(var(--color-text-primary) 1px, transparent 1px), linear-gradient(90deg, var(--color-text-primary) 1px, transparent 1px); background-size: 80px 80px;"></div>
-    <div class="relative container-max mx-auto max-w-3xl">
-      <div class="flex items-center gap-2 mb-4 reveal flex-wrap">
-        <span class="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full" style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-accent);">
-          <span class="w-1.5 h-1.5 rounded-full" style="background: var(--color-accent); animation: pulse 2s infinite;"></span>
-          Open Position
+  <section class="tv-section pt-s-11">
+    <div class="tv-container max-w-4xl">
+      <div class="flex items-center gap-s-3 mb-s-5 flex-wrap reveal">
+        <span class="tv-pill tv-pill--live">
+          <span class="inline-block w-1.5 h-1.5 rounded-full" style="background: var(--signal); box-shadow: 0 0 8px var(--signal);"></span>
+          Open
         </span>
-        <span class="font-mono text-[10px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full" style="background: var(--color-surface-elevated); color: var(--color-text-secondary); border: 1px solid var(--color-border);">
-          Posted 2026-05-21
-        </span>
-        <span class="font-mono text-[10px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full" style="background: var(--color-surface-elevated); color: var(--color-text-secondary); border: 1px solid var(--color-border);">
-          Single hire
-        </span>
+        <span class="tv-pill tv-pill--ghost">Single seat</span>
+        <span class="tv-pill tv-pill--ghost">Federal sales lead</span>
       </div>
-      <h1 class="text-fluid-3xl font-semibold tracking-tight reveal reveal-delay-1">
-        Co-founder, Federal Sales
-      </h1>
-      <p class="text-base md:text-lg mt-4 leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        Lead federal sales for the IL5 sovereign AI stack. Material co-founder equity. Pre-revenue. Technical substrate already shipped.
+
+      <h1 class="tv-h1 reveal reveal-delay-1" style="max-width: 22ch;">Co-founder, federal sales.</h1>
+      <p class="text-step-1 text-text-2 mt-s-5 reveal reveal-delay-2" style="max-width: 64ch;">
+        Lead federal sales for the IL5 sovereign AI stack. Material co-founder equity. Pre-revenue.
+        Technical substrate already shipped.
       </p>
 
-      <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 reveal reveal-delay-3">
-        <div class="rounded-lg p-4" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent);">
-          <div class="font-mono text-[9px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">Company</div>
-          <div class="text-sm font-semibold mt-1.5">Thornveil LLC</div>
-        </div>
-        <div class="rounded-lg p-4" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent);">
-          <div class="font-mono text-[9px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">Location</div>
-          <div class="text-sm font-semibold mt-1.5">Tampa, FL / Remote</div>
-        </div>
-        <div class="rounded-lg p-4" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent);">
-          <div class="font-mono text-[9px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">Stage</div>
-          <div class="text-sm font-semibold mt-1.5">Pre-revenue · founder-led</div>
-        </div>
-        <div class="rounded-lg p-4" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent);">
-          <div class="font-mono text-[9px] tracking-wider uppercase" style="color: var(--color-text-tertiary);">Start</div>
-          <div class="text-sm font-semibold mt-1.5">By Q1 2027</div>
-        </div>
+      <div class="mt-s-9 grid grid-cols-2 md:grid-cols-4 gap-s-3 reveal reveal-delay-3">
+        {meta.map((p) => (
+          <div class="tv-tile" style="padding: var(--s-4);">
+            <div class="font-mono text-step--1 tracking-[0.12em] uppercase text-text-3">{p.label}</div>
+            <div class="text-step-0 text-text mt-s-2">{p.value}</div>
+          </div>
+        ))}
       </div>
 
-      <div class="mt-10 flex flex-wrap gap-3 reveal reveal-delay-4">
-        <a href="#apply" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:scale-[1.02]" style="background: var(--color-accent); color: #0B0F1A;">
-          Apply →
-        </a>
-        <a href="#substrate" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all" style="background: var(--color-surface-elevated); color: var(--color-text-primary); border: 1px solid var(--color-border);">
-          Verify the substrate first
-        </a>
+      <div class="mt-s-7 flex flex-wrap gap-s-3 reveal reveal-delay-4">
+        <a href="#apply" class="tv-btn tv-btn--primary">Apply →</a>
+        <a href="#substrate" class="tv-btn tv-btn--secondary">Verify the substrate first</a>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT THORNVEIL -->
-  <section class="section-padding pt-12">
-    <div class="container-max mx-auto max-w-3xl">
-      <div class="mb-6">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">About Thornveil</p>
-      </div>
-      <div class="space-y-4 text-sm leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        <p>
-          Thornveil LLC is a defense-AI infrastructure company building a federal IL5 sovereign AI stack: <strong style="color: var(--color-text-primary);">Mycelium</strong> (distributed inference mesh, v1.0.0 cosign-signed), <strong style="color: var(--color-text-primary);">RigRun</strong> (classification-gated AI chat, IL5-pathway, 496K LOC across desktop/mobile/web on one Go backend), and <strong style="color: var(--color-text-primary);">Auspex</strong> (AI red team gated by Signet, EAR ECCN 4D004, validated end-to-end on autonomous Active Directory takeover with auditable replay). Together these three systems form a narratively-coherent IL5-pathway AI stack that a federal program office can procure as one integrated capability in FY27.
-        </p>
-        <p>
-          Behind the trio sit seven more production-grade systems (Signet, Alchemist, Pyros, HawkStack, Meridian, Canopy, Navigator) covering capability-based safety gates, memory-safe Rust autopilot firmware, sub-million-parameter perception across 6 domains, multi-modal counter-UAS, and internal AI ops. All 10 systems are visible at <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">github.com/thornveil-ai</a> with public companion repositories for evaluator review.
-        </p>
-        <p>
-          Founder Jesse Morgan (Staff Sergeant, USMC SIGINT) shipped all 10 systems solo over five months while active-duty. DD-214: December 10, 2026 — direct federal contracts open then. <strong style="color: var(--color-text-primary);">The technical substrate is shipped. The federal sales motion is not.</strong> That gap is the co-founder seat.
-        </p>
-      </div>
+  <!-- ONE-LINE WEDGE -->
+  <section class="tv-section pt-0">
+    <div class="tv-container max-w-3xl">
+      <p class="text-step-1 text-text-2 reveal reveal-delay-1">
+        Ten engineering systems shipped solo. Federal sales motion: not yet.
+        {' '}<strong class="text-text">That gap is the co-founder seat.</strong>
+      </p>
     </div>
   </section>
 
   <!-- VERIFY THE SUBSTRATE -->
-  <section id="substrate" class="section-padding pt-12">
-    <div class="container-max mx-auto max-w-3xl">
-      <div class="mb-8">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Verify the substrate</p>
-        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Pull a repo. Read the source.</h2>
-        <p class="text-sm mt-3 max-w-2xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          Verify the work before deciding to take the seat. The public companion repositories are organized for evaluator review.
-        </p>
-      </div>
-      <div class="space-y-3 reveal reveal-delay-3">
-        <a href="https://github.com/thornveil-ai/auspex-contact" target="_blank" rel="noopener" class="block rounded-xl p-5 transition-all hover:scale-[1.01] group" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent);">
-          <div class="flex items-baseline justify-between gap-3 flex-wrap">
-            <h3 class="text-sm font-semibold tracking-tight">Auspex — autonomous AD takeover with auditable replay</h3>
-            <span class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-accent);">EAR ECCN 4D004</span>
-          </div>
-          <p class="text-xs mt-1.5" style="color: var(--color-text-tertiary);">Federal-gated. Single-page public contact. Replay package available under evaluation NDA. Scope-as-code + 13-check Signet gate + HMAC-chained per-engagement audit.</p>
-        </a>
-
-        <a href="https://github.com/thornveil-ai/mycelium-overview" target="_blank" rel="noopener" class="block rounded-xl p-5 transition-all hover:scale-[1.01]" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-          <div class="flex items-baseline justify-between gap-3 flex-wrap">
-            <h3 class="text-sm font-semibold tracking-tight">Mycelium — substitute-on-failure mesh, customer engagement active</h3>
-            <span class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-accent);">v1.0.0 · cosign-signed</span>
-          </div>
-          <p class="text-xs mt-1.5" style="color: var(--color-text-tertiary);">R2I-aligned MOSA surface. NIST 800-53 mapped. 50-endpoint OpenAPI 3.1 published. Day-27 cryptographic reduction-to-practice with HMAC-chained tamper-evident audit log.</p>
-        </a>
-
-        <a href="https://github.com/thornveil-ai/rigrun-overview" target="_blank" rel="noopener" class="block rounded-xl p-5 transition-all hover:scale-[1.01]" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-          <div class="flex items-baseline justify-between gap-3 flex-wrap">
-            <h3 class="text-sm font-semibold tracking-tight">RigRun — IL5-pathway AI chat, type-system-enforced classification gate</h3>
-            <span class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-accent);">496K LOC · 6,950 tests</span>
-          </div>
-          <p class="text-xs mt-1.5" style="color: var(--color-text-tertiary);">Three apps (desktop, mobile, web) on one Go backend. 44 NIST 800-53 controls implemented as discrete code paths. CUI+ hard-blocked from cloud routing at the compiler, not at runtime policy.</p>
-        </a>
-
-        <a href="https://github.com/thornveil-ai/signet" target="_blank" rel="noopener" class="block rounded-xl p-5 transition-all hover:scale-[1.01]" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-          <div class="flex items-baseline justify-between gap-3 flex-wrap">
-            <h3 class="text-sm font-semibold tracking-tight">Signet — Apache-2.0 capability-based safety gate</h3>
-            <span class="font-mono text-[10px] tracking-wider uppercase" style="color: var(--color-accent);">PyPI public OSS</span>
-          </div>
-          <p class="text-xs mt-1.5" style="color: var(--color-text-tertiary);">The vocabulary Auspex extends. 4-stage check pipeline. 11 production checks. HMAC-chained audit log. RFC 3161 trusted-timestamp anchoring. Public bug-hunt log documenting every cycle.</p>
-        </a>
+  <section id="substrate" class="tv-section pt-0">
+    <div class="tv-container max-w-4xl">
+      <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Pull a repo. Read the source.</h2>
+      <p class="text-step-0 text-text-2 mt-s-4 mb-s-6 reveal reveal-delay-2" style="max-width: 64ch;">
+        Verify the work before deciding to take the seat. The public companion repositories are organized
+        for evaluator review.
+      </p>
+      <div class="space-y-s-3 reveal reveal-delay-3">
+        {substrate.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener" class="tv-tile flex items-start gap-s-4 flex-wrap">
+            <div class="flex-1 min-w-0">
+              <h3 class="text-step-1 text-text" style="font-variation-settings: 'wdth' 125;">{s.name}</h3>
+              <p class="text-step-0 text-text-2 mt-s-2 max-w-prose">{s.blurb}</p>
+            </div>
+            <span class="tv-pill tv-pill--live shrink-0">{s.pill}</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- RESPONSIBILITIES -->
-  <section class="section-padding pt-12" style="background: var(--color-surface-secondary);">
-    <div class="container-max mx-auto max-w-3xl">
-      <div class="mb-8">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">The Role</p>
-        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Responsibilities</h2>
-        <p class="text-sm mt-3 max-w-2xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          You are the second co-founder. You own the federal sales motion end-to-end. Day-to-day responsibilities:
-        </p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal reveal-delay-2">
+  <section class="tv-section pt-0" style="background: var(--bg-raised); border-top: 1px solid var(--line);">
+    <div class="tv-container max-w-4xl">
+      <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Responsibilities</h2>
+      <p class="text-step-0 text-text-2 mt-s-4 mb-s-6 reveal reveal-delay-2" style="max-width: 64ch;">
+        You are the second co-founder. You own the federal sales motion end-to-end.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-s-4 reveal reveal-delay-2">
         {responsibilities.map((r, i) => (
-          <div class="rounded-xl p-5" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-            <div class="flex items-start gap-3">
-              <span class="font-mono text-lg font-bold shrink-0" style="color: var(--color-accent);">{String(i + 1).padStart(2, '0')}</span>
-              <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">{r}</p>
-            </div>
+          <div class="tv-tile flex items-start gap-s-4">
+            <span class="font-mono tabular text-step-2 text-signal-text shrink-0 leading-none">{String(i + 1).padStart(2, '0')}</span>
+            <p class="text-step-0 text-text-2">{r}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- REQUIRED QUALIFICATIONS -->
-  <section class="section-padding">
-    <div class="container-max mx-auto max-w-3xl">
-      <div class="mb-8">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Required</p>
-        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Required qualifications</h2>
-        <p class="text-sm mt-3 max-w-2xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          These are hard requirements, not preferences. If you are within striking distance of most of them, apply — exceptions are made for exceptional candidates who bring something material we did not anticipate.
-        </p>
-      </div>
-      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid #10b981;">
-        <ul class="space-y-4 text-sm" style="color: var(--color-text-secondary);">
-          {requiredQuals.map((q) => (
-            <li class="flex gap-3">
-              <svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="#10b981" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>{q}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- PREFERRED QUALIFICATIONS -->
-  <section class="section-padding pt-0">
-    <div class="container-max mx-auto max-w-3xl">
-      <div class="mb-8">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Preferred</p>
-        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Preferred qualifications</h2>
-        <p class="text-sm mt-3 max-w-2xl reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-          Useful but not required. Candidates with multiple of these get priority.
-        </p>
-      </div>
-      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-left: 3px solid var(--color-text-tertiary);">
-        <ul class="space-y-3 text-sm" style="color: var(--color-text-secondary);">
-          {preferredQuals.map((q) => (
-            <li class="flex gap-3">
-              <svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color: var(--color-accent); opacity: 0.6;">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              <span>{q}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMPENSATION & TERMS -->
-  <section class="section-padding pt-0" style="background: var(--color-surface-secondary);">
-    <div class="container-max mx-auto max-w-3xl pt-16">
-      <div class="mb-8">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Compensation & Terms</p>
-        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">What the seat looks like</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal reveal-delay-2">
-        <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent);">
-          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Equity</div>
-          <div class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">Single-digit-percentage co-founder stake, vested 4 years with 1-year cliff. Pilot-conversion accelerators on top.</div>
+  <!-- QUALIFICATIONS — required + preferred merged into a single section -->
+  <section class="tv-section pt-0">
+    <div class="tv-container max-w-4xl">
+      <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Who fits.</h2>
+      <p class="text-step-0 text-text-2 mt-s-4 mb-s-6 reveal reveal-delay-2" style="max-width: 64ch;">
+        Required are hard. Preferred are advantages. If you're within striking distance of most of the
+        required list, write anyway — exceptions are made for material edges we didn't anticipate.
+      </p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-s-5">
+        <div class="tv-tile reveal reveal-delay-2" style="border-left: 2px solid var(--signal);">
+          <p class="font-mono text-step--1 tracking-[0.18em] uppercase text-signal-text mb-s-4">Required</p>
+          <ul class="space-y-s-4 text-step-0 text-text-2">
+            {requiredQuals.map((q) => (
+              <li class="flex gap-s-3">
+                <span class="font-mono text-signal-text shrink-0" aria-hidden="true">✓</span>
+                <span>{q}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent);">
-          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Title</div>
-          <div class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">Co-founder. Functional title (President / COO / Chief Federal Officer) tailored to background.</div>
-        </div>
-        <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent);">
-          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Cash compensation</div>
-          <div class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">Pre-pilot: $0 base, founder-stage. Step-up trigger tied to first signed federal pilot.</div>
-        </div>
-        <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent);">
-          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Work model</div>
-          <div class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">Remote-primary. Regular travel to program offices (SOCOM/MacDill is local to HQ).</div>
-        </div>
-        <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent);">
-          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Start date</div>
-          <div class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">In position by Q1 2027 to align with FY27 federal-pilot procurement cycle.</div>
-        </div>
-        <div class="rounded-xl p-6" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent);">
-          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Funding posture</div>
-          <div class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">Not raising. Path to revenue via federal pilots, not VC.</div>
+        <div class="tv-tile reveal reveal-delay-3">
+          <p class="font-mono text-step--1 tracking-[0.18em] uppercase text-text-3 mb-s-4">Preferred</p>
+          <ul class="space-y-s-3 text-step-0 text-text-2">
+            {preferredQuals.map((q) => (
+              <li class="flex gap-s-3">
+                <span class="font-mono text-text-3 shrink-0" aria-hidden="true">+</span>
+                <span>{q}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT THE FOUNDER -->
-  <section class="section-padding">
-    <div class="container-max mx-auto max-w-3xl">
-      <div class="mb-6">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">About the founder</p>
-        <h2 class="text-fluid-xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Who you would be co-founding with</h2>
-      </div>
-      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-        <div class="flex items-start gap-5">
-          <div class="w-14 h-14 rounded-full flex items-center justify-center shrink-0 font-mono text-base font-bold" style="background: var(--color-accent-muted); color: var(--color-accent); border: 1px solid var(--color-accent);">
-            JM
+  <!-- TERMS -->
+  <section class="tv-section pt-0" style="background: var(--bg-raised); border-top: 1px solid var(--line);">
+    <div class="tv-container max-w-4xl">
+      <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">What the seat looks like</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-s-4 mt-s-6 reveal reveal-delay-2">
+        {terms.map((t) => (
+          <div class="tv-tile" style="border-top: 2px solid var(--signal);">
+            <p class="font-mono text-step--1 tracking-[0.12em] uppercase text-signal-text mb-s-2">{t.label}</p>
+            <p class="text-step-0 text-text-2">{t.value}</p>
           </div>
-          <div class="flex-1 min-w-0">
-            <div class="font-semibold text-base">Jesse Morgan</div>
-            <div class="text-xs mt-0.5 font-mono" style="color: var(--color-text-tertiary);">Staff Sergeant, USMC (Signals Intelligence) · TS/SCI</div>
-            <div class="space-y-3 text-sm leading-relaxed mt-4" style="color: var(--color-text-secondary);">
-              <p>
-                Eight years active duty. Six countries. 1,400+ national-level intelligence reports produced. BA in Arabic, Defense Language Institute.
-              </p>
-              <p>
-                Built Thornveil's 10-system portfolio solo from January 2026 forward — 1.3M LOC across Go, Rust, Python, TypeScript, and Dart in five months while active-duty. Engineering velocity verifiable at <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">github.com/thornveil-ai</a>. DD-214: December 10, 2026.
-              </p>
-              <p class="text-xs italic" style="color: var(--color-text-tertiary);">
-                More at <a href="/about" style="color: var(--color-accent); text-decoration: underline;">/about</a>. References available on request.
-              </p>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
+
+  <!-- (Founder bio lives on the homepage FounderCard + /about page; not repeated here.) -->
 
   <!-- APPLY -->
-  <section id="apply" class="section-padding relative overflow-hidden" style="background: var(--color-surface-secondary);">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="opacity: 0.07; background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);"></div>
-    <div class="relative container-max mx-auto max-w-3xl">
-      <div class="mb-8 text-center">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">How to apply</p>
-        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Send the email.</h2>
+  <section id="apply" class="tv-section pt-0" style="background: var(--bg-inset); border-top: 1px solid var(--line);">
+    <div class="tv-container max-w-3xl">
+      <div class="text-center">
+        <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Send the email.</h2>
       </div>
 
-      <!-- Big primary CTA -->
-      <div class="text-center mb-10 reveal reveal-delay-2">
-        <a href="mailto:jesse@thornveil.ai?subject=Co-founder%20application" class="inline-flex items-center gap-3 px-8 py-4 rounded-lg font-semibold text-base transition-all hover:scale-[1.03] shadow-lg" style="background: var(--color-accent); color: #0B0F1A;">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-          </svg>
+      <div class="text-center mt-s-6 reveal reveal-delay-2">
+        <a href="mailto:jesse@thornveil.ai?subject=Co-founder%20application" class="tv-btn tv-btn--primary text-step-0" style="padding: var(--s-4) var(--s-7);">
           jesse@thornveil.ai
         </a>
-        <p class="text-xs mt-3 font-mono tracking-wider uppercase" style="color: var(--color-text-tertiary);">
+        <p class="font-mono text-step--1 tracking-[0.12em] uppercase text-text-3 mt-s-3">
           Subject: Co-founder application
         </p>
       </div>
 
-      <div class="rounded-xl p-7 reveal reveal-delay-3" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-        <h3 class="text-sm font-semibold tracking-tight mb-4 uppercase font-mono" style="color: var(--color-text-tertiary); letter-spacing: 0.1em;">In the body, include:</h3>
-        <ol class="space-y-4 text-sm mb-6" style="color: var(--color-text-secondary);">
-          <li class="flex gap-4">
-            <span class="font-mono text-lg font-bold shrink-0" style="color: var(--color-accent);">01</span>
-            <span class="pt-0.5">The federal programs you have worked, and on which side of the table.</span>
+      <div class="tv-tile mt-s-9 reveal reveal-delay-3">
+        <ol class="space-y-s-5 text-step-0 text-text-2">
+          <li class="flex gap-s-4">
+            <span class="font-mono tabular text-step-2 text-signal-text shrink-0 leading-none">01</span>
+            <span class="pt-s-1">The federal programs you have worked, and on which side of the table.</span>
           </li>
-          <li class="flex gap-4">
-            <span class="font-mono text-lg font-bold shrink-0" style="color: var(--color-accent);">02</span>
-            <span class="pt-0.5">One customer relationship you would convert in the first 90 days, and which Thornveil system you would lead with.</span>
+          <li class="flex gap-s-4">
+            <span class="font-mono tabular text-step-2 text-signal-text shrink-0 leading-none">02</span>
+            <span class="pt-s-1">One customer relationship you would convert in the first 90 days, and which Thornveil system you would lead with.</span>
           </li>
-          <li class="flex gap-4">
-            <span class="font-mono text-lg font-bold shrink-0" style="color: var(--color-accent);">03</span>
-            <span class="pt-0.5">One thing in this job description that gave you pause, and how you would address it if hired.</span>
+          <li class="flex gap-s-4">
+            <span class="font-mono tabular text-step-2 text-signal-text shrink-0 leading-none">03</span>
+            <span class="pt-s-1">One thing in this job description that gave you pause, and how you would address it if hired.</span>
           </li>
         </ol>
-        <p class="text-xs leading-relaxed" style="color: var(--color-text-tertiary);">
-          1-2 paragraphs is plenty. No resume needed at first contact; we will request it if the initial response is a fit.
+        <p class="font-mono text-step--1 tracking-[0.10em] uppercase text-text-3 mt-s-5">
+          1–2 paragraphs is plenty. No resume needed at first contact.
         </p>
       </div>
 
-      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 reveal reveal-delay-4">
-        <div class="rounded-xl p-5" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Response timeline</div>
-          <p class="text-xs leading-relaxed" style="color: var(--color-text-secondary);">Responses within 48 hours. Initial conversation is a 30-min call. Target first contact to handshake: 4-6 weeks.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-s-4 mt-s-5 reveal reveal-delay-4">
+        <div class="tv-tile">
+          <p class="font-mono text-step--1 tracking-[0.12em] uppercase text-signal-text mb-s-2">Response timeline</p>
+          <p class="text-step-0 text-text-2">Responses within 48 hours. Initial conversation is a 30-min call. Target first contact to handshake: 4–6 weeks.</p>
         </div>
-        <div class="rounded-xl p-5" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-          <div class="font-mono text-[10px] tracking-wider uppercase mb-2" style="color: var(--color-accent);">Equal opportunity</div>
-          <p class="text-xs leading-relaxed" style="color: var(--color-text-secondary);">Thornveil LLC is an equal-opportunity employer. Selection is based on qualifications, fit, and ability to execute the role.</p>
+        <div class="tv-tile">
+          <p class="font-mono text-step--1 tracking-[0.12em] uppercase text-signal-text mb-s-2">Equal opportunity</p>
+          <p class="text-step-0 text-text-2">Thornveil LLC is an equal-opportunity employer. Selection is based on qualifications, fit, and ability to execute the role.</p>
         </div>
       </div>
     </div>
   </section>
 </BaseLayout>
-
-<script>
-  import Lenis from 'lenis';
-  const lenis = new Lenis({ duration: 1.2, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
-</script>

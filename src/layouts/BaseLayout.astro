@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from 'astro:transitions';
+import MomentumStrip from '../components/MomentumStrip.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -11,8 +13,8 @@ interface Props {
 }
 
 const {
-  title = 'Thornveil | Local AI Infrastructure',
-  description = 'Run AI on your own hardware. RigRun local inference, Pyros LLM safety engine, Mycelium distributed mesh, and custom AI agents. Zero per-token fees, no data leaving your building. Built for defense and enterprise.',
+  title = 'Thornveil | Sovereign AI infrastructure',
+  description = 'Ten engineering systems for sovereign federal AI infrastructure. IL5-ready, ECCN-aware, governance-first. Built solo while active-duty USMC. Direct contracts open December 10, 2026.',
   ogImage = '/og-image.jpg',
 } = Astro.props;
 
@@ -25,12 +27,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#060A12" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <!-- Favicons + PWA manifest. Single PNG asset rescaled by the browser; explicit sizes for older Safari. -->
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
+    <link rel="mask-icon" href="/favicon.png" color="#132a4c" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -45,65 +55,61 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
 
-    <!-- Self-hosted fonts -->
-    <link rel="preload" href="/fonts/inter-variable-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/jetbrains-mono-variable-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Fonts: Archivo (variable, wdth+wght axes for Expanded headlines) + IBM Plex Mono.
+         Ital axis dropped — no italics in use. Cuts payload. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    />
 
-    <style is:inline>
-      @font-face {
-        font-family: 'InterVariable';
-        font-style: normal;
-        font-weight: 100 900;
-        font-display: swap;
-        src: url('/fonts/inter-variable-latin.woff2') format('woff2');
-      }
-      @font-face {
-        font-family: 'JetBrains Mono Variable';
-        font-style: normal;
-        font-weight: 100 800;
-        font-display: swap;
-        src: url('/fonts/jetbrains-mono-variable-latin.woff2') format('woff2');
-      }
-    </style>
-
-    <!-- Theme FOUC prevention -->
-    <script is:inline>
-      (function() {
-        var stored = localStorage.getItem('theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var useDark = stored === 'dark' || (stored !== 'light' && prefersDark);
-        if (!useDark) {
-          document.documentElement.classList.add('light');
-        }
-      })();
-    </script>
+    <!-- Astro 5 view transitions: cohesive single-document navigation, no SPA cost. -->
+    <ClientRouter />
 
     <!-- Plausible Analytics (privacy-respecting, no cookies, GDPR-clean) -->
     <script defer data-domain="thornveil.ai" src="https://plausible.io/js/script.js"></script>
   </head>
-  <body class="min-h-screen flex flex-col">
-    <!-- Film grain noise overlay -->
+  <body class="min-h-screen flex flex-col antialiased">
+    <!-- Subtle film-grain noise overlay — instrument-grade texture, ~3% opacity -->
     <div class="noise-overlay" aria-hidden="true">
-      <svg><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" /></filter><rect width="100%" height="100%" filter="url(#noiseFilter)" /></svg>
+      <svg width="100%" height="100%">
+        <filter id="noiseFilter">
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
+          <feColorMatrix values="0 0 0 0 0.91  0 0 0 0 0.92  0 0 0 0 0.93  0 0 0 0.5 0" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+      </svg>
     </div>
 
+    <MomentumStrip />
     <Nav />
     <main class="flex-1">
       <slot />
     </main>
     <Footer />
 
-    <!-- Scroll reveal observer (Firefox fallback) -->
     <script>
-      // Remove no-transitions class after first paint
-      requestAnimationFrame(() => {
+      // View transitions: the script runs on initial document load *and* on every
+      // astro:page-load event, so reveal handlers are wired up after each nav.
+      function bindRevealObserver() {
+        // Allow CSS transitions only after first paint to avoid initial-load flashes.
         requestAnimationFrame(() => {
-          document.documentElement.classList.remove('no-transitions');
+          requestAnimationFrame(() => {
+            document.documentElement.classList.remove('no-transitions');
+          });
         });
-      });
 
-      // Only use IntersectionObserver if CSS scroll-driven animations unsupported
-      if (!CSS.supports('animation-timeline: view()')) {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) {
+          document.querySelectorAll('.reveal, .line-reveal').forEach((el) => el.classList.add('visible'));
+          return;
+        }
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -115,8 +121,81 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           },
           { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
         );
-        document.querySelectorAll('.reveal, .text-reveal').forEach((el) => observer.observe(el));
+        document.querySelectorAll('.reveal:not(.visible), .line-reveal:not(.visible)').forEach((el) => observer.observe(el));
       }
+
+      bindRevealObserver();
+      document.addEventListener('astro:page-load', bindRevealObserver);
+
+      // Magnetic buttons — signature interaction.
+      // When the cursor approaches a .tv-btn within MAG_RADIUS, the button
+      // translates a few pixels toward the cursor. Sub-perceptual polish
+      // that Stripe/Linear/Vercel get right. Disabled on reduced-motion + touch.
+      const MAG_RADIUS = 90;
+      const MAG_PULL = 8;
+
+      let magneticBound = false;
+      function bindMagneticButtons() {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const coarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+        if (reduce || coarse) return;
+        if (magneticBound) return;
+        magneticBound = true;
+
+        const buttons = new Set();
+        function refreshButtons() {
+          buttons.clear();
+          document.querySelectorAll('.tv-btn').forEach((b) => buttons.add(b));
+        }
+        refreshButtons();
+        document.addEventListener('astro:page-load', refreshButtons);
+
+        let raf = 0;
+        let mouseX = -9999, mouseY = -9999;
+        window.addEventListener('pointermove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          if (!raf) raf = requestAnimationFrame(tick);
+        }, { passive: true });
+
+        function tick() {
+          raf = 0;
+          buttons.forEach((btn) => {
+            const r = btn.getBoundingClientRect();
+            const cx = r.left + r.width / 2;
+            const cy = r.top + r.height / 2;
+            const dx = mouseX - cx;
+            const dy = mouseY - cy;
+            const dist = Math.hypot(dx, dy);
+            if (dist < MAG_RADIUS) {
+              const pull = (1 - dist / MAG_RADIUS) * MAG_PULL;
+              const tx = (dx / dist) * pull;
+              const ty = (dy / dist) * pull;
+              btn.style.transform = `translate(${tx.toFixed(2)}px, ${ty.toFixed(2)}px)`;
+              btn.style.transition = 'transform 0ms';
+            } else if (btn.style.transform) {
+              btn.style.transform = '';
+              btn.style.transition = 'transform 320ms cubic-bezier(0.16, 1, 0.30, 1)';
+            }
+          });
+        }
+      }
+
+      bindMagneticButtons();
     </script>
+
+    <style is:global>
+      .noise-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        pointer-events: none;
+        opacity: 0.025;
+        mix-blend-mode: overlay;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .noise-overlay { opacity: 0.015; }
+      }
+    </style>
   </body>
 </html>

@@ -1,0 +1,94 @@
+---
+/**
+ * MeshFallback — static SVG snapshot of the Mycelium mesh.
+ *
+ * Used as:
+ *  - reduced-motion fallback (renders identically to JS-mesh idle frame)
+ *  - SSR placeholder while the WebGL island hydrates
+ *  - no-WebGL safety net
+ *
+ * Composition: one bright center, 6 lit workers in a loose ring, dim ambient
+ * cloud, hairline edges to center, faint vignette. All vector, ~3 KB inline,
+ * aria-hidden / decorative.
+ */
+
+// Deterministic positions — same seed pattern as MyceliumHero, projected to 2D.
+const W = 1200;
+const H = 720;
+const CX = W / 2;
+const CY = H / 2;
+
+// 6 workers — loose ring, slight jitter (seeded to look balanced)
+const workers = [
+  { x: CX - 360, y: CY - 60 },
+  { x: CX - 240, y: CY + 180 },
+  { x: CX + 70,  y: CY + 230 },
+  { x: CX + 360, y: CY - 30 },
+  { x: CX + 220, y: CY - 220 },
+  { x: CX - 90,  y: CY - 240 },
+];
+
+// 36 ambient — deterministic pseudo-random
+const ambients = Array.from({ length: 36 }, (_, i) => {
+  // simple hash-ish positioning
+  const a = (i * 0.7) % (Math.PI * 2);
+  const r = 280 + ((i * 53) % 280);
+  return {
+    x: CX + Math.cos(a) * r,
+    y: CY + Math.sin(a) * r * 0.55 + ((i * 17) % 90) - 45,
+    o: 0.18 + ((i * 11) % 14) / 100,
+  };
+});
+---
+
+<svg
+  viewBox={`0 0 ${W} ${H}`}
+  width="100%"
+  height="100%"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+  role="presentation"
+  style="position:absolute; inset:0; pointer-events:none; display:block;"
+>
+  <defs>
+    <radialGradient id="tv-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#B4D2DE" stop-opacity="0.95" />
+      <stop offset="40%"  stop-color="#8FB3C4" stop-opacity="0.30" />
+      <stop offset="100%" stop-color="#8FB3C4" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="tv-glow-dim" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#5C6976" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#5C6976" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="tv-vignette" cx="50%" cy="50%" r="65%">
+      <stop offset="40%"  stop-color="#050B18" stop-opacity="0" />
+      <stop offset="100%" stop-color="#050B18" stop-opacity="0.85" />
+    </radialGradient>
+  </defs>
+
+  <rect width={W} height={H} fill="#050B18" />
+
+  <!-- dim ambient cloud -->
+  {ambients.map((p) => (
+    <circle cx={p.x} cy={p.y} r="14" fill="url(#tv-glow-dim)" opacity={p.o.toFixed(2)} />
+  ))}
+
+  <!-- edges worker → center -->
+  <g stroke="#8FB3C4" stroke-opacity="0.32" stroke-width="1">
+    {workers.map((w) => (
+      <line x1={w.x} y1={w.y} x2={CX} y2={CY} />
+    ))}
+  </g>
+
+  <!-- workers -->
+  {workers.map((w) => (
+    <circle cx={w.x} cy={w.y} r="38" fill="url(#tv-glow)" />
+  ))}
+
+  <!-- center query point -->
+  <circle cx={CX} cy={CY} r="56" fill="url(#tv-glow)" opacity="1" />
+  <circle cx={CX} cy={CY} r="4"  fill="#B4D2DE" />
+
+  <!-- vignette -->
+  <rect width={W} height={H} fill="url(#tv-vignette)" />
+</svg>

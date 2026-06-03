@@ -1,0 +1,110 @@
+---
+/**
+ * HawkStack viz — perception backbone schematic + parameter counter +
+ * power-law scaling fit.
+ *
+ * Left: pulsing parameter counter + tiny backbone schematic.
+ * Right: scatter plot of 16 NUDT-SIRST scaling runs with the power-law fit line.
+ */
+const W = 500;
+const H = 220;
+const convX = [70, 102, 134, 166, 198, 230];
+const scatterX0 = 290;
+const scatterY0 = 50;
+const scatterW = 190;
+const scatterH = 110;
+
+// Deterministic 16-point power-law scatter
+const points = Array.from({ length: 16 }, (_, i) => {
+  const t = i / 15;
+  const y = Math.pow(t, 0.85) * 0.92 + (((i * 31) % 7) / 100 - 0.04);
+  return { x: scatterX0 + t * scatterW, y: scatterY0 + scatterH - y * scatterH };
+});
+---
+
+<svg
+  viewBox={`0 0 ${W} ${H}`}
+  width="100%"
+  height="100%"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+  role="presentation"
+  style="display:block;"
+>
+  <style>
+    .hawk-mono     { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+    .hawk-stat     { font-size: 22px; letter-spacing: 0.02em; font-weight: 500; }
+    .hawk-tag      { font-size: 9px; letter-spacing: 0.15em; }
+    .hawk-counter  { animation: hawk-pulse 1.8s ease-in-out infinite; }
+    @keyframes hawk-pulse {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.6; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hawk-counter { animation: none; }
+    }
+  </style>
+
+  <!-- Header -->
+  <text x="24" y="32" class="hawk-mono hawk-tag" fill="var(--text-3)">
+    SUB-MILLION-PARAM PERCEPTION · 5 DOMAINS
+  </text>
+
+  <!-- Parameter counter -->
+  <text x="24" y="74" class="hawk-mono hawk-counter hawk-stat" fill="var(--signal-text)">
+    1,765,139
+  </text>
+  <text x="24" y="92" class="hawk-mono hawk-tag" fill="var(--text-3)">
+    params · 15 zoo checkpoints
+  </text>
+
+  <!-- Backbone schematic -->
+  <rect x="40" y="120" width="28" height="28"
+        fill="rgba(74,110,125,0.10)" stroke="var(--signal-line)" stroke-width="1" rx="2" />
+  <text x="54" y="138" text-anchor="middle"
+        class="hawk-mono hawk-tag" fill="var(--text-3)">IN</text>
+
+  {convX.map((x) => (
+    <rect x={x} y="124" width="24" height="20"
+          fill="rgba(143,179,196,0.16)"
+          stroke="var(--signal-line)" stroke-width="1" rx="1" />
+  ))}
+
+  <rect x={convX[5] + 30} y="120" width="22" height="28"
+        fill="rgba(180,210,222,0.18)" stroke="var(--signal-line)" stroke-width="1" rx="2" />
+  <text x={convX[5] + 41} y="138" text-anchor="middle"
+        class="hawk-mono hawk-tag" fill="var(--text-3)">HD</text>
+
+  <!-- Power-law scatter -->
+  <text x={scatterX0} y={scatterY0 - 10}
+        class="hawk-mono hawk-tag" fill="var(--text-3)">
+    NUDT-SIRST · 16-RUN
+  </text>
+
+  <!-- Axes -->
+  <line x1={scatterX0} y1={scatterY0 + scatterH} x2={scatterX0 + scatterW} y2={scatterY0 + scatterH}
+        stroke="var(--text-3)" stroke-width="0.5" />
+  <line x1={scatterX0} y1={scatterY0} x2={scatterX0} y2={scatterY0 + scatterH}
+        stroke="var(--text-3)" stroke-width="0.5" />
+
+  <!-- Fit line -->
+  <line x1={scatterX0} y1={scatterY0 + scatterH}
+        x2={scatterX0 + scatterW} y2={scatterY0 + scatterH - 0.92 * scatterH}
+        stroke="var(--signal-text)" stroke-width="1.2" opacity="0.85" />
+
+  <!-- Points -->
+  {points.map((p) => (
+    <circle cx={p.x} cy={p.y} r="2.5" fill="var(--signal-text)" opacity="0.85" />
+  ))}
+
+  <!-- R² label -->
+  <text x={scatterX0 + scatterW} y={scatterY0 + scatterH + 16} text-anchor="end"
+        class="hawk-mono hawk-tag" fill="var(--signal-text)">
+    R² = 0.9895
+  </text>
+
+  <!-- Footer -->
+  <text x="24" y={H - 14} class="hawk-mono hawk-tag" fill="var(--text-3)">
+    IRST · SONAR · PCB · HISTOPATH · THERMAL-DRONE
+  </text>
+</svg>

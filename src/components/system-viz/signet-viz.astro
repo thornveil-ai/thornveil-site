@@ -1,0 +1,109 @@
+---
+/**
+ * Signet viz — 4-stage gate pipeline.
+ *
+ * Visual: 4 vertical "gates" labeled ADMISSION / INSPECTION / COMMITMENT /
+ * RECORD. A token particle traverses the pipeline. Every ~7s one cycle is
+ * blocked at INSPECTION with a brief "DENY" overlay, then the pipeline
+ * resumes.
+ */
+const W = 600;
+const H = 180;
+const gates = ['ADMISSION', 'INSPECTION', 'COMMITMENT', 'RECORD'];
+const gateXs = [80, 220, 360, 520];
+const trackY = 96;
+---
+
+<svg
+  viewBox={`0 0 ${W} ${H}`}
+  width="100%"
+  height="100%"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+  role="presentation"
+  class="signet-viz"
+  style="display:block;"
+>
+  <!-- Section label -->
+  <text x="40" y="32"
+        font-family="IBM Plex Mono, ui-monospace, monospace"
+        font-size="10" letter-spacing="0.18em" fill="var(--text-3)">
+    4-STAGE GATE PIPELINE
+  </text>
+
+  <!-- Track baseline -->
+  <line x1="40" y1={trackY} x2={W - 40} y2={trackY}
+        stroke="var(--line-strong)" stroke-width="1" stroke-dasharray="2 5" />
+
+  <!-- Gates -->
+  {gateXs.map((x, i) => (
+    <g>
+      <line x1={x} y1={trackY - 32} x2={x} y2={trackY + 32}
+            stroke="var(--signal-line)" stroke-width="1.5" />
+      <!-- Gate cap -->
+      <line x1={x - 6} y1={trackY - 32} x2={x + 6} y2={trackY - 32}
+            stroke="var(--signal-line)" stroke-width="1.5" />
+      <line x1={x - 6} y1={trackY + 32} x2={x + 6} y2={trackY + 32}
+            stroke="var(--signal-line)" stroke-width="1.5" />
+      <text x={x} y={trackY + 56} text-anchor="middle"
+            font-family="IBM Plex Mono, ui-monospace, monospace"
+            font-size="10" fill="var(--text-3)" letter-spacing="0.15em">
+        {String(i + 1).padStart(2, '0')} · {gates[i]}
+      </text>
+    </g>
+  ))}
+
+  <!-- DENY overlay at INSPECTION gate (only during keyframe) -->
+  <g class="signet-deny">
+    <rect x={gateXs[1] - 50} y={trackY - 64} width="100" height="24"
+          fill="rgba(232, 179, 65, 0.18)" stroke="var(--warn)" stroke-width="1" rx="2" />
+    <text x={gateXs[1]} y={trackY - 48} text-anchor="middle"
+          font-family="IBM Plex Mono, ui-monospace, monospace"
+          font-size="10" font-weight="500" fill="var(--warn)"
+          letter-spacing="0.15em">DENY · NIST-7</text>
+    <!-- pointer down to gate -->
+    <line x1={gateXs[1]} y1={trackY - 40} x2={gateXs[1]} y2={trackY - 32}
+          stroke="var(--warn)" stroke-width="1" />
+  </g>
+
+  <!-- Token particle -->
+  <circle class="signet-token" cx="40" cy={trackY} r="6" fill="var(--signal-text)" />
+
+  <!-- Footer -->
+  <text x="40" y={H - 12}
+        font-family="IBM Plex Mono, ui-monospace, monospace"
+        font-size="9" letter-spacing="0.18em" fill="var(--text-3)">
+    11 PRODUCTION CHECKS · HMAC-CHAINED · RFC 3161 ANCHORED
+  </text>
+</svg>
+
+<style>
+  .signet-token {
+    animation: signet-traverse 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    filter: drop-shadow(0 0 8px rgba(143, 179, 196, 0.7));
+  }
+  @keyframes signet-traverse {
+    0%   { transform: translateX(0); }
+    52%  { transform: translateX(180px); }   /* arrives at INSPECTION (x=220-40) */
+    55%  { transform: translateX(180px); }
+    72%  { transform: translateX(180px); }
+    75%  { transform: translateX(180px); }
+    100% { transform: translateX(480px); }
+  }
+  .signet-deny {
+    opacity: 0;
+    animation: signet-deny 7s ease-out infinite;
+  }
+  @keyframes signet-deny {
+    0%, 52%   { opacity: 0; }
+    55%       { opacity: 1; }
+    72%       { opacity: 1; }
+    75%       { opacity: 0; }
+    100%      { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .signet-token { animation: none; transform: translateX(300px); }
+    .signet-deny  { animation: none; opacity: 0; }
+  }
+</style>

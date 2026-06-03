@@ -5,70 +5,68 @@ export default {
   theme: {
     extend: {
       colors: {
-        surface: {
-          DEFAULT: 'var(--color-surface)',
-          secondary: 'var(--color-surface-secondary)',
-          elevated: 'var(--color-surface-elevated)',
+        bg: {
+          DEFAULT: 'var(--bg)',
+          raised: 'var(--bg-raised)',
+          inset: 'var(--bg-inset)',
         },
-        txt: {
-          primary: 'var(--color-text-primary)',
-          secondary: 'var(--color-text-secondary)',
-          tertiary: 'var(--color-text-tertiary)',
+        text: {
+          DEFAULT: 'var(--text)',
+          2: 'var(--text-2)',
+          3: 'var(--text-3)',
         },
-        border: {
-          DEFAULT: 'var(--color-border)',
-          subtle: 'var(--color-border-subtle)',
+        line: {
+          DEFAULT: 'var(--line)',
+          strong: 'var(--line-strong)',
         },
-        accent: {
-          DEFAULT: 'var(--color-accent)',
-          hover: 'var(--color-accent-hover)',
-          muted: 'var(--color-accent-muted)',
+        signal: {
+          DEFAULT: 'var(--signal)',
+          text: 'var(--signal-text)',
+          dim: 'var(--signal-dim)',
+          line: 'var(--signal-line)',
         },
-        navy: { DEFAULT: '#132a4c', light: '#1a3a66', dark: '#0d1f38' },
-        gold: { DEFAULT: '#C9A84E', light: '#D4B865', dark: '#8B6914' },
+        warn: 'var(--warn)',
+        live: 'var(--live)',
       },
       fontFamily: {
-        sans: ['InterVariable', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono Variable', 'JetBrains Mono', 'Consolas', 'monospace'],
+        display: ['Archivo', 'system-ui', 'sans-serif'],
+        body: ['Archivo', 'system-ui', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        'fluid-xs': 'clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)',
-        'fluid-sm': 'clamp(0.875rem, 0.8rem + 0.375vw, 1rem)',
-        'fluid-base': 'clamp(1rem, 0.925rem + 0.375vw, 1.125rem)',
-        'fluid-lg': 'clamp(1.125rem, 1rem + 0.625vw, 1.375rem)',
-        'fluid-xl': 'clamp(1.25rem, 1.05rem + 1vw, 1.75rem)',
-        'fluid-2xl': 'clamp(1.5rem, 1.1rem + 2vw, 2.5rem)',
-        'fluid-3xl': 'clamp(1.875rem, 1.2rem + 3.375vw, 3.5rem)',
-        'fluid-4xl': 'clamp(2.25rem, 1.3rem + 4.75vw, 4.5rem)',
+        'step--1': 'var(--step--1)',
+        'step-0':  'var(--step-0)',
+        'step-1':  'var(--step-1)',
+        'step-2':  'var(--step-2)',
+        'step-3':  'var(--step-3)',
+        'step-4':  'var(--step-4)',
       },
-      animation: {
-        'fade-in': 'fadeIn 0.8s ease-out forwards',
-        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-        'gradient-drift': 'gradientDrift 20s ease infinite',
-        'border-rotate': 'borderRotate 4s linear infinite',
-        'pulse-subtle': 'pulseSubtle 4s ease-in-out infinite',
+      spacing: {
+        's-1':  'var(--s-1)',
+        's-2':  'var(--s-2)',
+        's-3':  'var(--s-3)',
+        's-4':  'var(--s-4)',
+        's-5':  'var(--s-5)',
+        's-6':  'var(--s-6)',
+        's-7':  'var(--s-7)',
+        's-8':  'var(--s-8)',
+        's-9':  'var(--s-9)',
+        's-10': 'var(--s-10)',
+        's-11': 'var(--s-11)',
       },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(24px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        gradientDrift: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        },
-        borderRotate: {
-          '0%': { '--border-angle': '0deg' },
-          '100%': { '--border-angle': '360deg' },
-        },
-        pulseSubtle: {
-          '0%, 100%': { opacity: '0.4' },
-          '50%': { opacity: '0.7' },
-        },
+      maxWidth: {
+        container: 'var(--container)',
+        prose: '66ch',
+        hero: '18ch',
+      },
+      transitionTimingFunction: {
+        out: 'var(--ease-out)',
+        'in-out': 'var(--ease-in-out)',
+      },
+      transitionDuration: {
+        fast: '180ms',
+        DEFAULT: '420ms',
+        slow: '720ms',
       },
     },
   },

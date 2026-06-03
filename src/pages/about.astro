@@ -1,117 +1,116 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import metrics from '../data/metrics.json';
 
-const stats = [
-  { value: '10', label: 'Production-grade systems' },
-  { value: '1.3M', label: 'LOC since January 2026' },
-  { value: '5', label: 'Months solo, active-duty' },
-  { value: 'Dec 10', label: 'DD-214 / Contracts open 2026' },
-];
+const m = metrics;
 
 const credentials = [
-  { label: 'Status', value: 'Active-duty USMC (DD-214: Dec 10, 2026)' },
-  { label: 'Clearance', value: 'TS/SCI' },
-  { label: 'Service', value: 'USMC, Staff Sergeant (8+ years)' },
-  { label: 'Discipline', value: 'Signals Intelligence — 6 countries, 1,400+ national-level reports' },
-  { label: 'Languages', value: 'Modern Standard Arabic + 3 dialects' },
-  { label: 'Education', value: 'BA, Arabic — Defense Language Institute' },
+  { label: 'Status',     value: 'Active-duty USMC · DD-214 December 10, 2026' },
+  { label: 'Clearance',  value: 'TS/SCI' },
+  { label: 'Service',    value: 'USMC, Staff Sergeant (8+ years)' },
+  { label: 'Discipline', value: 'Signals Intelligence — 6 countries deployed' },
+  { label: 'Languages',  value: 'Modern Standard Arabic + 3 dialects' },
+  { label: 'Education',  value: 'BA, Arabic — Defense Language Institute' },
 ];
 ---
 
 <BaseLayout
   title="About | Thornveil"
-  description="Thornveil is a one-person research and engineering shop founded by Jesse Morgan — a USMC Signals Intelligence veteran turned AI infrastructure builder."
+  description="Thornveil is a one-person research and engineering shop founded by Jesse Morgan — a USMC Signals Intelligence veteran building sovereign AI infrastructure."
 >
   <!-- HERO -->
-  <section class="section-padding pt-32 md:pt-40">
-    <div class="container-max mx-auto max-w-3xl">
-      <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">About</p>
-      <h1 class="text-fluid-3xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">
-        Active-duty USMC. Solo founder. 10 systems shipped since January.
+  <section class="tv-section pt-s-11">
+    <div class="tv-container max-w-3xl">
+      <h1 class="tv-h1 mt-s-3 reveal reveal-delay-1">
+        The shift from analyst to builder happened gradually, then all at once.
       </h1>
-      <p class="text-base mt-6 leading-relaxed reveal reveal-delay-2" style="color: var(--color-text-secondary);">
-        I'm Jesse Morgan. I founded Thornveil to build the AI infrastructure I wanted to use as an analyst — local, data-sovereign, accountable to the people running it. Eight years in as a Signals Intelligence Marine. Six countries. 1,400+ national-level intelligence reports. Learned firsthand how brittle the cloud-dependent toolchain is for the people doing the actual mission. I'm still active-duty today (DD-214: December 10, 2026) and direct federal contracts open then.
+      <p class="text-step-1 text-text-2 mt-s-6 reveal reveal-delay-2" style="max-width: 64ch;">
+        I'm Jesse Morgan. I founded Thornveil to build the AI infrastructure I wanted to use as an analyst —
+        local, data-sovereign, accountable to the people running it. Eight years as a Signals Intelligence
+        Marine — six countries, national-level reporting under classified handling — taught me how brittle
+        the cloud-dependent toolchain is for the people doing the actual mission.
       </p>
     </div>
   </section>
 
-  <!-- BACKGROUND -->
-  <section class="section-padding pt-12">
-    <div class="container-max mx-auto max-w-3xl">
-      <div class="space-y-5 text-sm leading-relaxed reveal" style="color: var(--color-text-secondary);">
+  <!-- BACKGROUND PROSE — net-new context only -->
+  <section class="tv-section pt-0">
+    <div class="tv-container max-w-3xl">
+      <div class="space-y-s-5 text-step-0 text-text-2 reveal">
         <p>
-          The shift from analyst to builder happened gradually, then all at once. I taught myself to code on overnight watches, then on weekends, then between deployments. The systems started piling up — each one solving a real mission problem I'd run into firsthand. By January 2026 the work had compounded into something coherent: a portfolio of defense-relevant systems that nobody else was building. Sub-million-parameter perception models that match SOTA in their weight class across six unrelated domains. An IL5-pathway AI chat application with classification-gated routing enforced at the type-system level. A distributed AI mesh with substitute-on-failure inference, validated end-to-end with cryptographically chained audit logs. An autonomous AI red team gated by a capability-based safety pipeline. A memory-safe Rust autopilot with 98K lines of code and 47K lines of parity-audit notes.
+          I taught myself to code on overnight watches, then on weekends, then between deployments.
+          Each system in the
+          {' '}<a href="/systems" class="text-signal-text underline underline-offset-4 decoration-1">portfolio</a>
+          {' '}solves a problem I ran into firsthand: brittle cloud routing for classified queries,
+          inference that hangs the second a worker drops, audit chains that won't survive a 3PAO,
+          autopilots that can't tell the difference between a real GPS signal and a spoofed one.
         </p>
         <p>
-          Thornveil is the company that ships those systems. <a href="/systems" style="color: var(--color-accent); text-decoration: underline;">Ten of them today</a>, all on <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: underline;">github.com/thornveil-ai</a> for review. Trade-secret-grade internals where they need to be. Public-companion repositories everywhere else for evaluators and partners to read. Production-grade test coverage, signed commits, NIST 800-53 traceability where it matters.
+          Active-duty until {m.company.directContractsOpen}. That's a regulatory constraint, not an
+          execution constraint — the work keeps shipping. What it means for federal evaluators: we can
+          start the technical conversation today, walk you through the substrate today, sign an evaluation
+          NDA today. Direct contracts queue for December.
         </p>
         <p>
-          Until December 10, 2026, I'm still a one-person shop on active duty. That's a regulatory constraint, not an execution constraint — the work keeps shipping. What it means for you: there's no commercial transaction we can close before separation, but every conversation that starts now compounds. Customers, partners, primes, federal program offices — review the work, get on a call, and we'll be in the right position when the calendar turns.
+          Co-founder applications are
+          {' '}<a href="/cofounder" class="text-signal-text underline underline-offset-4 decoration-1">open</a>
+          {' '}for a senior offensive cyber operator with a post-uniform defense-AI startup rotation.
         </p>
-        <p>
-          Co-founder applications are <a href="/cofounder" style="color: var(--color-accent); text-decoration: underline;">open now</a>. The seat is for a senior offensive cyber operator with a post-uniform defense-AI startup rotation. Federal Rolodex required. The technical wedge is already shipped — your work compounds onto a substrate that's already credible.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="py-16 md:py-24 overflow-hidden">
-    <div class="container-max mx-auto max-w-4xl">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
-        {stats.map((s, i) => (
-          <div class={`text-center reveal reveal-delay-${Math.min(i + 1, 4)} ${i > 0 ? 'md:border-l' : ''}`} style={i > 0 ? 'border-color: var(--color-border-subtle);' : ''}>
-            <div class="stat-number text-fluid-2xl" style="color: var(--color-accent);">{s.value}</div>
-            <div class="font-mono text-[10px] tracking-[0.15em] uppercase mt-2" style="color: var(--color-text-tertiary);">{s.label}</div>
-          </div>
-        ))}
       </div>
     </div>
   </section>
 
   <!-- CREDENTIALS -->
-  <section class="section-padding" style="background: var(--color-surface-secondary);">
-    <div class="container-max mx-auto max-w-3xl">
-      <div class="mb-10">
-        <p class="text-[11px] font-semibold tracking-[0.3em] uppercase reveal" style="color: var(--color-accent);">Credentials</p>
-        <h2 class="text-fluid-2xl font-semibold tracking-tight mt-3 reveal reveal-delay-1">Background</h2>
-      </div>
-      <div class="rounded-xl p-7 reveal reveal-delay-2" style="background: var(--color-surface-elevated); border: 1px solid var(--color-border);">
-        <div class="space-y-4">
+  <section class="tv-section">
+    <div class="tv-container max-w-3xl">
+      <h2 class="tv-h2 mt-s-3 mb-s-6 reveal reveal-delay-1">Background</h2>
+      <div class="tv-tile reveal reveal-delay-2">
+        <dl class="space-y-s-4">
           {credentials.map((c) => (
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 pb-3" style="border-bottom: 1px solid var(--color-border-subtle);">
-              <span class="text-xs tracking-wider uppercase" style="color: var(--color-text-tertiary);">{c.label}</span>
-              <span class="text-sm font-medium">{c.value}</span>
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-s-2 pb-s-3 border-b border-line last:border-0 last:pb-0">
+              <dt class="font-mono text-step--1 tracking-[0.12em] uppercase text-text-3">{c.label}</dt>
+              <dd class="text-step-0 text-text">{c.value}</dd>
             </div>
           ))}
-        </div>
+        </dl>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="section-padding relative overflow-hidden">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="opacity: 0.07; background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);"></div>
-    <div class="relative container-max mx-auto max-w-2xl text-center">
-      <h2 class="text-fluid-2xl font-semibold tracking-tight reveal">Want to talk?</h2>
-      <p class="mt-4 text-sm max-w-md mx-auto leading-relaxed reveal reveal-delay-1" style="color: var(--color-text-secondary);">
-        Direct line to the founder. Federal inquiries welcome — direct contracts open December 10, 2026. Co-founder applications open now. Tell me what you're working on; the substrate is already there to compound onto.
+  <section class="tv-section pt-0">
+    <div class="tv-container max-w-2xl text-center">
+      <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Want to talk?</h2>
+      <p class="text-step-0 text-text-2 mt-s-4 mx-auto reveal reveal-delay-2" style="max-width: 52ch;">
+        Direct line to the founder. Federal inquiries welcome — direct contracts open {m.company.directContractsOpen}.
+        Co-founder applications open now. Tell me what you're working on; the substrate is already there
+        to compound onto.
       </p>
-      <div class="mt-8 reveal reveal-delay-2">
-        <a href="mailto:jesse@thornveil.ai" class="btn-primary">
-          jesse@thornveil.ai
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-          </svg>
-        </a>
+      <div class="mt-s-7 reveal reveal-delay-3">
+        <a href="mailto:jesse@thornveil.ai" class="tv-btn tv-btn--primary">jesse@thornveil.ai</a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <script>
-  import Lenis from 'lenis';
-  const lenis = new Lenis({ duration: 1.2, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-  function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
+  function easeOutCubic(t: number) { return 1 - Math.pow(1 - t, 3); }
+  function isAnimatable(s: string) { return /^\d+(\.\d+)?[KMB]?$/.test(s); }
+  document.querySelectorAll<HTMLElement>('[data-countup]').forEach((el) => {
+    const target = el.dataset.countup ?? '';
+    if (!isAnimatable(target)) return;
+    const suffix = (target.match(/[KMB]$/) ?? [''])[0];
+    const final  = parseFloat(target.replace(/[KMB]$/, ''));
+    if (Number.isNaN(final)) return;
+    const start = performance.now();
+    const tick  = (t: number) => {
+      const e = Math.min(1, (t - start) / 720);
+      const v = final * easeOutCubic(e);
+      const shown = Number.isInteger(final) ? Math.round(v) : v.toFixed(1);
+      el.textContent = `${shown}${suffix}`;
+      if (e < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(tick);
+  });
 </script>

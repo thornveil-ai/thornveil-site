@@ -1,23 +1,62 @@
 ---
+import metrics from '../data/metrics.json';
+
 const currentYear = new Date().getFullYear();
+const naics = metrics.company.naics.join(', ');
+const a11y = metrics.accessibility;
+const buildDate = new Date().toISOString().slice(0, 10);
 ---
 
-<footer class="py-8 px-6" style="border-top: 1px solid var(--color-border-subtle);">
-  <div class="container-max mx-auto">
-    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-4">
-      <a href="/systems" class="font-mono text-[10px] tracking-wider uppercase transition-colors hover:opacity-80" style="color: var(--color-text-tertiary);">Systems</a>
-      <a href="/privacy" class="font-mono text-[10px] tracking-wider uppercase transition-colors hover:opacity-80" style="color: var(--color-text-tertiary);">Privacy</a>
-      <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" class="font-mono text-[10px] tracking-wider uppercase transition-colors hover:opacity-80" style="color: var(--color-text-tertiary);">GitHub</a>
-      <a href="https://www.linkedin.com/company/thornveil-llc" target="_blank" rel="noopener" class="font-mono text-[10px] tracking-wider uppercase transition-colors hover:opacity-80" style="color: var(--color-text-tertiary);">LinkedIn</a>
-      <a href="mailto:jesse@thornveil.ai" class="font-mono text-[10px] tracking-wider uppercase transition-colors hover:opacity-80" style="color: var(--color-text-tertiary);">jesse@thornveil.ai</a>
+<footer class="border-t border-line mt-s-10">
+  <div class="tv-container py-s-7">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-s-6 items-start">
+      <!-- Wordmark + tagline -->
+      <div>
+        <a href="/" class="inline-flex items-center" aria-label="Thornveil — home">
+          <img src="/logo-horizontal-white.png" alt="Thornveil" class="h-12 w-auto" />
+        </a>
+        <p class="font-mono text-[var(--step--1)] tracking-[0.10em] uppercase text-text-3 mt-s-3">
+          Sovereign AI infrastructure
+        </p>
+      </div>
+
+      <!-- Link columns -->
+      <nav class="flex flex-wrap gap-x-s-6 gap-y-s-2" aria-label="Footer">
+        <a href="/systems"   class="tv-nav-link">Systems</a>
+        <a href="/defense"   class="tv-nav-link">Defense</a>
+        <a href="/research"  class="tv-nav-link">Research</a>
+        <a href="/cofounder" class="tv-nav-link">Co-founder</a>
+        <a href="/about"     class="tv-nav-link">About</a>
+        <a href="/contact"   class="tv-nav-link">Contact</a>
+        <a href="/privacy"   class="tv-nav-link">Privacy</a>
+      </nav>
+
+      <!-- External links -->
+      <div class="flex flex-wrap gap-x-s-6 gap-y-s-2 md:justify-end">
+        <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" class="tv-nav-link">GitHub ↗</a>
+        <a href="https://www.linkedin.com/company/thornveil-llc" target="_blank" rel="noopener" class="tv-nav-link">LinkedIn ↗</a>
+        <a href="mailto:jesse@thornveil.ai" class="tv-nav-link">jesse@thornveil.ai</a>
+      </div>
     </div>
-    <div class="flex flex-wrap justify-between items-center gap-y-2">
-      <p class="font-mono text-[10px] tracking-wider" style="color: var(--color-text-tertiary);">
-        &copy; {currentYear} Thornveil LLC
-      </p>
-      <p class="font-mono text-[10px] tracking-wider" style="color: var(--color-text-tertiary);">
-        Tampa, FL &middot; NAICS 541511, 541512, 334511
-      </p>
+
+    <div class="tv-rule" role="separator"></div>
+
+    <!-- Telemetry footer: registry + compliance-claim line + build date -->
+    <div class="flex flex-wrap items-center justify-between gap-s-3 font-mono text-[var(--step--1)] tracking-[0.12em] uppercase text-text-3">
+      <p>&copy; {currentYear} {metrics.company.name} · {metrics.company.city} · NAICS {naics}</p>
+      <p>508 {a11y.section508} · Lighthouse {a11y.lighthouseTarget}+ · last updated {buildDate}</p>
+    </div>
+
+    <!-- Transmission terminator — the "end of transmission" mono signature
+         at the absolute bottom. Subtle hairline-flanked end marker. -->
+    <div
+      class="flex items-center gap-s-3 mt-s-5 font-mono text-text-3"
+      style="font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;"
+      aria-hidden="true"
+    >
+      <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 8px rgba(143, 179, 196, 0.8);"></span>
+      <span>END TRANSMISSION</span>
+      <span style="flex: 1; height: 1px; background: linear-gradient(to right, var(--signal-line), transparent);"></span>
     </div>
   </div>
 </footer>
