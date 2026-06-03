@@ -9,3 +9,6 @@ assets/
 
 # Local Netlify folder
 .netlify
+
+# Generated capability-statement PDF (regenerates from .tex)
+capabilities/*.pdf
