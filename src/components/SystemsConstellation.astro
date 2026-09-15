@@ -7,11 +7,8 @@
  * node; edges are declared dependencies (Signet → Auspex, Pyros → RigRun,
  * HawkStack → Meridian, etc.).
  *
- * Hover any node → its outgoing edges brighten, non-connected nodes
- * desaturate, and the system's tagline + version line appears in the
- * telemetry strip below the graph.
- *
- * Pure SVG + CSS + ~30 LOC of vanilla JS. No R3F, no bundle bloat.
+  * Hover previews a system; the equivalent button list supports keyboard
+  * and touch selection. The readout describes directed relationships in text.
  * Reduced-motion: hover interactions still work; only the ambient pulse
  * animations are stilled.
  */
@@ -24,9 +21,16 @@ const edges = graph.edges;
 
 // Pre-compute a lookup so we can pull node positions inline.
 const posById = Object.fromEntries(nodes.map((n) => [n.id, n]));
+const relationships = (id: string) => edges
+  .filter((e) => e.from === id || e.to === id)
+  .map((e) => `${posById[e.from].name} → ${posById[e.to].name} (${e.label})`)
+  .join('; ') || 'No declared dependencies.';
 ---
 
-<div class="constellation-wrap">
+<systems-constellation class="constellation-wrap">
+  <p class="constellation-instructions">Explore a system: hover a node or focus a button to preview. Tap or press Enter / Space to select; select it again, use Clear selection, or press Escape to clear. Arrows in the details show each declared relationship’s direction.</p>
+  <div class="constellation-scroll" tabindex="0" role="region" aria-label="System graph; scroll horizontally on small screens. Equivalent system controls follow.">
+  <div class="constellation-stage">
   <svg
     viewBox={`0 0 ${W} ${H}`}
     width="100%"
@@ -83,6 +87,7 @@ const posById = Object.fromEntries(nodes.map((n) => [n.id, n]));
           transform={`translate(${n.x}, ${n.y})`}
         >
           <!-- ambient glow halo -->
+          <circle r="34" fill="transparent" />
           <circle r="28" fill="url(#con-glow)" opacity="0.55" class="constellation-glow" />
 
           <!-- shield outline echoing the brand mark — simplified -->
@@ -115,20 +120,66 @@ const posById = Object.fromEntries(nodes.map((n) => [n.id, n]));
       ))}
     </g>
   </svg>
-
-  <!-- Telemetry readout — updated on hover -->
-  <div class="constellation-hud" aria-live="polite">
-    <span data-hud-name>HOVER A NODE</span>
-    <span data-hud-tagline> · 10 SYSTEMS · 12 DECLARED DEPENDENCIES</span>
   </div>
-</div>
+  </div>
+
+  <div class="constellation-controls" role="group" aria-label="Explore system dependencies">
+    {nodes.map((n) => (
+      <button type="button" data-system={n.id} data-name={n.name}
+        data-tagline={`${n.tagline} · ${n.stat}`} data-relationships={relationships(n.id)}
+        aria-pressed="false">{n.name}</button>
+    ))}
+    <button type="button" data-clear>Clear selection</button>
+  </div>
+  <div class="constellation-hud" role="status" aria-live="polite" aria-atomic="true">
+    <strong data-hud-name>Explore a system</strong>
+    <p data-hud-tagline>{nodes.length} systems · {edges.length} declared dependencies</p>
+    <p data-hud-relationships>Select a system to read its relationships.</p>
+  </div>
+</systems-constellation>
 
 <style>
   .constellation-wrap {
+    display: block;
     position: relative;
     width: 100%;
-    height: auto;
+    min-width: 0;
+  }
+  .constellation-scroll { overflow-x: auto; }
+  .constellation-stage {
+    min-width: 720px;
     aspect-ratio: 1200 / 580;
+  }
+  .constellation-instructions {
+    color: var(--text-2, #b8c2cb);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+  .constellation-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .constellation-controls button {
+    min-height: 44px;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid #668696;
+    border-radius: 4px;
+    background: var(--bg-inset, #050b18);
+    color: #e8ecee;
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+  .constellation-controls button[aria-pressed="true"] {
+    background: #b4d2de;
+    color: #050b18;
+    border-color: #b4d2de;
+  }
+  .constellation-controls button:focus-visible,
+  .constellation-scroll:focus-visible {
+    outline: 3px solid #b4d2de;
+    outline-offset: 3px;
   }
   .constellation {
     width: 100%;
@@ -141,7 +192,7 @@ const posById = Object.fromEntries(nodes.map((n) => [n.id, n]));
   }
 
   .constellation-node {
-    cursor: default;
+    cursor: pointer;
     transition: opacity 320ms var(--ease-out, ease-out);
   }
   .constellation-glow {
@@ -159,19 +210,17 @@ const posById = Object.fromEntries(nodes.map((n) => [n.id, n]));
 
   /* HUD */
   .constellation-hud {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: var(--s-3) var(--s-4);
+    position: relative;
+    min-height: 10rem;
+    padding: 1rem 0;
     font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: var(--step--1);
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
-    color: var(--text-3);
+    font-size: 0.875rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+    color: #b8c2cb;
     background: linear-gradient(to top, var(--bg-inset) 0%, rgba(5,11,24,0) 100%);
-    pointer-events: none;
   }
+  .constellation-hud p { margin: 0.5rem 0 0; }
   .constellation-hud [data-hud-name] {
     color: var(--signal-text);
   }
@@ -193,23 +242,41 @@ const posById = Object.fromEntries(nodes.map((n) => [n.id, n]));
     .constellation-glow { animation: none; }
   }
 
-  @media (max-width: 720px) {
-    .constellation-hud { font-size: 10px; }
-  }
 </style>
 
 <script>
-  // Wire up hover interactions. Re-runs on astro:page-load so view transitions
-  // don't break the listeners.
-  function bindConstellation() {
-    const svg = document.querySelector('.constellation');
+  // Custom-element lifecycle scopes every listener to this instance and removes
+  // them on Astro swaps. Reconnecting the same element is safe.
+  class SystemsConstellation extends HTMLElement {
+   controller;
+   connectedCallback() {
+    this.controller?.abort();
+    this.controller = new AbortController();
+    const { signal } = this.controller;
+    const svg = this.querySelector('.constellation');
     if (!svg) return;
     const nodes = svg.querySelectorAll('.constellation-node');
     const edges = svg.querySelectorAll('.constellation-edge');
-    const hudName = document.querySelector('.constellation-hud [data-hud-name]');
-    const hudTag  = document.querySelector('.constellation-hud [data-hud-tagline]');
+    const controls = this.querySelectorAll('[data-system]');
+    const hudName = this.querySelector('[data-hud-name]');
+    const hudTag = this.querySelector('[data-hud-tagline]');
+    const hudRelationships = this.querySelector('[data-hud-relationships]');
+    let selected = null;
+    let focused = null;
+    let hovered = null;
 
-    function setActive(id) {
+    function render() {
+      const id = hovered ?? focused ?? selected;
+      controls.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.system === selected)));
+      if (!id) {
+        svg.removeAttribute('data-active');
+        nodes.forEach((n) => n.removeAttribute('data-active'));
+        edges.forEach((e) => e.removeAttribute('data-active'));
+        hudName.textContent = 'Explore a system';
+        hudTag.textContent = `${nodes.length} systems · ${edges.length} declared dependencies`;
+        hudRelationships.textContent = 'Select a system to read its relationships.';
+        return;
+      }
       svg.setAttribute('data-active', id);
       nodes.forEach((n) => {
         const nid = n.getAttribute('data-id');
@@ -232,34 +299,45 @@ const posById = Object.fromEntries(nodes.map((n) => [n.id, n]));
           e.removeAttribute('data-active');
         }
       });
-      const node = svg.querySelector(`.constellation-node[data-id="${id}"]`);
-      if (node && hudName && hudTag) {
-        const name    = node.getAttribute('data-name') || '';
-        const tagline = node.getAttribute('data-tagline') || '';
-        const stat    = node.getAttribute('data-stat') || '';
-        hudName.textContent = `// ${name.toUpperCase()}`;
-        hudTag.textContent  = ` · ${tagline.toUpperCase()} · ${stat.toUpperCase()}`;
+      const button = Array.from(controls).find((button) => button.dataset.system === id);
+      if (button) {
+        hudName.textContent = button.dataset.name;
+        hudTag.textContent = button.dataset.tagline;
+        hudRelationships.textContent = button.dataset.relationships;
       }
     }
 
-    function clearActive() {
-      svg.removeAttribute('data-active');
-      nodes.forEach((n) => n.removeAttribute('data-active'));
-      edges.forEach((e) => e.removeAttribute('data-active'));
-      if (hudName) hudName.textContent = '// HOVER A NODE';
-      if (hudTag)  hudTag.textContent  = ' · 10 SYSTEMS · 12 DECLARED DEPENDENCIES';
+    function clear() {
+      selected = focused = hovered = null;
+      render();
     }
-
-    nodes.forEach((n) => {
-      const id = n.getAttribute('data-id');
-      n.style.pointerEvents = 'all';
-      n.addEventListener('mouseenter', () => setActive(id));
-      n.addEventListener('mouseleave', clearActive);
-      n.addEventListener('focus', () => setActive(id));
-      n.addEventListener('blur', clearActive);
+    function select(id) {
+      selected = selected === id ? null : id;
+      focused = hovered = null;
+      render();
+    }
+    controls.forEach((button) => {
+      button.addEventListener('focus', () => { focused = button.dataset.system; render(); }, { signal });
+      button.addEventListener('blur', () => { focused = null; render(); }, { signal });
+      button.addEventListener('click', () => select(button.dataset.system), { signal });
     });
+    nodes.forEach((n) => {
+      const id = n.dataset.id;
+      n.addEventListener('pointerenter', (event) => {
+        if (event.pointerType === 'mouse') { hovered = id; render(); }
+      }, { signal });
+      n.addEventListener('pointerleave', () => { hovered = null; render(); }, { signal });
+      n.addEventListener('click', () => select(id), { signal });
+    });
+    this.querySelector('[data-clear]')?.addEventListener('click', clear, { signal });
+    this.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') { clear(); event.preventDefault(); }
+    }, { signal });
+    render();
+   }
+   disconnectedCallback() { this.controller?.abort(); }
   }
-
-  bindConstellation();
-  document.addEventListener('astro:page-load', bindConstellation);
+  if (!customElements.get('systems-constellation')) {
+    customElements.define('systems-constellation', SystemsConstellation);
+  }
 </script>

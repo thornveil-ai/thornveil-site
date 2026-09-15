@@ -1,2 +1,3 @@
 - [Astro Replit setup](astro-replit-setup.md) — respect package-firewall blocks and align Astro with a compatible Node runtime.
 - [Astro smoke-check pitfalls](astro-smoke-checks.md) — distinguish stale optimized imports and Vite client code from real transform failures.
+- [Astro component scripts](astro-component-scripts.md) — verify dev transforms separately from production builds; configure browser focus for direct Chromium tests.
