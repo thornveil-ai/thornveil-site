@@ -94,23 +94,5 @@ const credentials = [
 </BaseLayout>
 
 <script>
-  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-  function isAnimatable(s) { return /^\d+(\.\d+)?[KMB]?$/.test(s); }
-  document.querySelectorAll('[data-countup]').forEach((el) => {
-    const target = el.dataset.countup ?? '';
-    if (!isAnimatable(target)) return;
-    const suffix = (target.match(/[KMB]$/) ?? [''])[0];
-    const final  = parseFloat(target.replace(/[KMB]$/, ''));
-    if (Number.isNaN(final)) return;
-    const start = performance.now();
-    const tick  = (t) => {
-      const e = Math.min(1, (t - start) / 720);
-      const v = final * easeOutCubic(e);
-      const shown = Number.isInteger(final) ? Math.round(v) : v.toFixed(1);
-      el.textContent = `${shown}${suffix}`;
-      if (e < 1) requestAnimationFrame(tick);
-      else el.textContent = target;
-    };
-    requestAnimationFrame(tick);
-  });
+  import '../scripts/page-motion-entry.js';
 </script>

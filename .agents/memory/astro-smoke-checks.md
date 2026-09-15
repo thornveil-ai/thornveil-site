@@ -14,3 +14,9 @@ Do not search every response body for the plain string `vite-error-overlay`.
 **Why:** Vite's healthy client JavaScript contains that name because it implements the overlay.
 
 **How to apply:** Detect actual overlay HTML tags in HTML responses; check JavaScript using its HTTP status, content type, and syntax.
+
+A passing local screenshot does not prove the Replit proxied preview is reachable.
+
+**Why:** Browser verification found the development domain returning Vite's “host is not allowed” response while the same running app worked through the local screenshot endpoint.
+
+**How to apply:** Check the development-domain response separately when verifying preview access; distinguish a host-allowlist rejection from page-script failures.

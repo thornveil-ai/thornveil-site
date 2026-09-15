@@ -212,52 +212,5 @@ const myceliumRtpDate = m.systems.mycelium.rtpDate;
 </BaseLayout>
 
 <script>
-  import Lenis from 'lenis';
-
-  // Skip Lenis for reduced-motion users
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduce) {
-    const lenis = new Lenis({
-      duration: 1.0,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    });
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener('click', (e) => {
-        e.preventDefault();
-        const href = anchor.getAttribute('href');
-        const target = href ? document.querySelector(href) : null;
-        if (target) lenis.scrollTo(target);
-      });
-    });
-  }
-
-  // Count-up — runs once, on load, for mono stat numbers
-  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-  function isAnimatable(s) {
-    return /^\d+(\.\d+)?[KMB]?$/.test(s);
-  }
-  document.querySelectorAll('[data-countup]').forEach((el) => {
-    const target = el.dataset.countup ?? '';
-    if (!isAnimatable(target)) return;
-    const suffix = (target.match(/[KMB]$/) ?? [''])[0];
-    const final  = parseFloat(target.replace(/[KMB]$/, ''));
-    if (Number.isNaN(final)) return;
-    const start = performance.now();
-    const dur   = 720;
-    const tick  = (t) => {
-      const e = Math.min(1, (t - start) / dur);
-      const v = final * easeOutCubic(e);
-      const shown = (Number.isInteger(final) ? Math.round(v) : v.toFixed(1));
-      el.textContent = `${shown}${suffix}`;
-      if (e < 1) requestAnimationFrame(tick);
-      else el.textContent = target;
-    };
-    requestAnimationFrame(tick);
-  });
+  import '../scripts/page-motion-entry.js';
 </script>
