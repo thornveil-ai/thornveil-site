@@ -2,20 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Page not found | Thornveil">
+<BaseLayout title="Page not found | Thornveil" description="This URL does not match a published Thornveil page. Return home or contact Thornveil for help finding what you need.">
   <section class="tv-section pt-s-11 min-h-[70vh] flex items-center">
     <div class="tv-container text-center">
-      <h1 class="tv-h1 mx-auto reveal" style="max-width: none;">Page not found.</h1>
-      <p class="text-step-1 text-text-2 mt-s-4 mx-auto reveal reveal-delay-2" style="max-width: 52ch;">
-        That URL does not match a published Thornveil page.
+      <p class="font-mono text-step--1 text-signal-text mb-s-4">404 · PAGE NOT FOUND</p>
+      <h1 class="tv-h1 mx-auto" style="max-width: none;">Page not found.</h1>
+      <p class="text-step-1 text-text-2 mt-s-4 mx-auto" style="max-width: 52ch;">
+        That URL does not match a published Thornveil page. Return home to explore the site, or contact us for help.
       </p>
-      <div class="mt-s-7 reveal reveal-delay-3 flex flex-wrap gap-s-3 justify-center">
+      <div class="mt-s-7 flex flex-col sm:flex-row gap-s-3 justify-center">
         <a href="/" class="tv-btn tv-btn--primary">
           Return to home
           <span aria-hidden="true">→</span>
         </a>
-        <a href="/systems" class="tv-btn tv-btn--secondary">
-          Browse the 10 systems
+        <a href="/contact" class="tv-btn tv-btn--secondary">
+          Contact Thornveil
         </a>
       </div>
     </div>

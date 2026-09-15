@@ -3,3 +3,4 @@
 - [Astro component scripts](astro-component-scripts.md) — verify dev transforms separately from production builds; configure browser focus for direct Chromium tests.
 - [Chromium interaction checks](chromium-keyboard-checks.md) — configure realistic Enter events and desktop pointer capabilities before testing interactions.
 - [WebGL initialization failures](webgl-initialization.md) — catch asynchronous renderer setup explicitly; React boundaries alone do not catch it.
+- [Astro static metadata](astro-static-metadata.md) — generated error-route identities and static redirects do not establish live hosting behavior.

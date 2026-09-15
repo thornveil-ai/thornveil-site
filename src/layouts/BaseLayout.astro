@@ -14,11 +14,17 @@ interface Props {
 
 const {
   title = 'Thornveil | Sovereign AI infrastructure',
-  description = 'Ten engineering systems for sovereign federal AI infrastructure. IL5-ready, ECCN-aware, governance-first. Built solo while active-duty USMC. Direct contracts open December 10, 2026.',
+  description = Astro.url.pathname.replace(/\/$/, '') === '/privacy'
+    ? 'How the Thornveil website handles analytics, third-party services, and email contact, with operational details pending confirmation.'
+    : 'Ten engineering systems for sovereign federal AI infrastructure. IL5-ready, ECCN-aware, governance-first. Built solo while active-duty USMC. Direct contracts open December 10, 2026.',
   ogImage = '/og-image.jpg',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// Static directory routes use the same trailing slash as the generated sitemap.
+const pathname = Astro.url.pathname;
+const canonicalPath = pathname.replace(/\/$/, '') === '/404' ? '/404.html'
+  : pathname.endsWith('/') || /\.[^/]+$/.test(pathname) ? pathname : `${pathname}/`;
+const canonicalURL = new URL(canonicalPath, Astro.site);
 ---
 
 <!doctype html>
@@ -34,12 +40,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Favicons + PWA manifest. Single PNG asset rescaled by the browser; explicit sizes for older Safari. -->
-    <link rel="icon" type="image/png" href="/favicon.png" sizes="any" />
-    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="/favicon.png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
-    <link rel="mask-icon" href="/favicon.png" color="#132a4c" />
+    <!-- Declared dimensions match the actual PNG files. -->
+    <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="512x512" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Open Graph -->
@@ -48,12 +52,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    {ogImage === '/og-image.jpg' && <>
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="Thornveil — Built at the Edge" />
+    </>}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+    {ogImage === '/og-image.jpg' && <meta name="twitter:image:alt" content="Thornveil — Built at the Edge" />}
 
     <!-- Fonts: Archivo (variable, wdth+wght axes for Expanded headlines) + IBM Plex Mono.
          Ital axis dropped — no italics in use. Cuts payload. -->
