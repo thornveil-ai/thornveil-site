@@ -14,3 +14,9 @@ Keep Tailwind 3 on PostCSS when aligning Astro integrations rather than reintrod
 **Why:** The official Tailwind integration's latest release declares compatibility only through Astro 5. PostCSS preserves the existing site's styling without that incompatible peer dependency.
 
 **How to apply:** Recheck official package metadata before adding an Astro Tailwind integration; keep any Tailwind major-version migration separately scoped.
+
+Scope development host allowances to the workspace's Replit hostname, rather than allowing every host.
+
+**Why:** Unrestricted host acceptance on a network-exposed Vite server removes DNS-rebinding protection. A successful preview does not justify disabling that protection.
+
+**How to apply:** Use the exact development hostname provided by Replit, preserve defaults outside Replit, and verify both proxy access and rejection of an unrelated Host header.

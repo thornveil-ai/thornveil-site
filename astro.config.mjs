@@ -15,6 +15,10 @@ export default defineConfig({
     '/technology': '/systems',
   },
   vite: {
+    server: {
+      // Allow this workspace's proxy without disabling Vite's host protection.
+      allowedHosts: process.env.REPLIT_DEV_DOMAIN ? [process.env.REPLIT_DEV_DOMAIN] : [],
+    },
     ssr: {
       // three is a CJS module from npm; let Vite externalize it for SSR
       noExternal: ['three', '@react-three/fiber', '@react-three/drei'],
