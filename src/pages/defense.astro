@@ -26,7 +26,7 @@ const systems = [
   {
     name: 'RigRun',
     tagline: 'Professional AI chat. Classification-gated routing.',
-    description: 'Three apps (desktop, mobile, web) on one Go backend. 44 NIST 800-53 controls implemented as discrete code paths. Classification gate enforced at the type-system level — CUI+ queries hard-blocked from cloud routing as architectural narrowing, not runtime policy. 6,950 tests across the three apps. IL5-pathway posture. ATO sponsor outreach active post-DD-214.',
+    description: 'Three apps (desktop, mobile, web) on one Go backend. 44 NIST 800-53 controls implemented as discrete code paths. The type system excludes cloud routing for CUI+ queries. 6,950 tests across the three apps. IL5-pathway posture. ATO sponsor outreach active post-DD-214.',
     programFit: 'IL5-pathway federal AI chat · FedRAMP-Mod path · NIST 800-53 / IR-9 spillage detection',
     status: 'live', statusLabel: 'v0.9 · federal evaluation',
     overview: 'https://github.com/thornveil-ai/rigrun-overview',
@@ -53,7 +53,7 @@ const systems = [
   {
     name: 'Canopy',
     tagline: 'Multi-modal counter-UAS situational awareness.',
-    description: 'RF + acoustic + thermal + Remote ID + ADS-B fusion. Real Kalman tracking + Dempster-Shafer evidence fusion + bearing-intersection geolocation (tested). Mesh networking + decision engine scaffolded; ML classifiers stubbed. Honest Phase 0 framing — designed to replace DragonOS/WarDragon with mesh-aware open architecture. Hardware tiers from $270 (Pi 5 + RTL-SDR) to $1,650 (KrakenSDR + UCA DF).',
+    description: 'RF + acoustic + thermal + Remote ID + ADS-B fusion. Kalman tracking, Dempster-Shafer evidence fusion and bearing-intersection geolocation have been tested. With mesh networking and the decision engine scaffolded and ML classifiers still stubbed, this Phase 0 project is intended to replace DragonOS/WarDragon with an open architecture that supports mesh networking. Hardware tiers from $270 (Pi 5 + RTL-SDR) to $1,650 (KrakenSDR + UCA DF).',
     programFit: 'DHS/CBP border CUAS · FAA Section 2209 · 14 CFR Part 89 Remote ID enforcement',
     status: 'warn', statusLabel: 'Phase 0 · architecture validated',
     overview: 'https://github.com/thornveil-ai/canopy-preview',
@@ -62,7 +62,7 @@ const systems = [
   {
     name: 'Signet',
     tagline: 'Capability-based safety gate for LLM agents.',
-    description: '4-stage check pipeline (ADMISSION / INSPECTION / COMMITMENT / RECORD) with 11 production checks and HMAC-chained tamper-evident audit log. RFC 3161 anchor backend (FreeTSA / DigiCert). The Signet vocabulary that Auspex extends with engagement-specific checks. Apache-2.0 public OSS. Available on PyPI as `signet-sign`.',
+    description: '4-stage check pipeline (ADMISSION / INSPECTION / COMMITMENT / RECORD) with 11 production checks and HMAC-chained tamper-evident audit log. RFC 3161 anchor backend (FreeTSA / DigiCert). Auspex extends Signet\'s check vocabulary with checks specific to each engagement. Apache-2.0 public OSS. Available on PyPI as `signet-sign`.',
     programFit: 'NIST AI RMF · DoD AISI baseline · Federal LLM-agent safety reference',
     status: 'live', statusLabel: 'v0.1.10.1 · Apache-2.0 OSS',
     overview: 'https://github.com/thornveil-ai/signet',
@@ -121,7 +121,7 @@ const posture = [
               </div>
               <div class="flex md:justify-end items-end gap-s-3 flex-wrap">
                 {s.detail ? (
-                  <a href={s.detail} class="tv-btn tv-btn--primary" style="padding: var(--s-2) var(--s-4);">Deep dive</a>
+                  <a href={s.detail} class="tv-btn tv-btn--primary" style="padding: var(--s-2) var(--s-4);">Mycelium mechanism and test status</a>
                 ) : null}
                 {s.overview ? (
                   <a href={s.overview} target="_blank" rel="noopener" class="tv-btn tv-btn--secondary" style="padding: var(--s-2) var(--s-4);">

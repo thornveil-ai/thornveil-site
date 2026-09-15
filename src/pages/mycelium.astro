@@ -10,13 +10,13 @@ const features = [
     tag: 'RTP 2026-05-08',
   },
   {
-    title: 'OpenAI-compatible surface.',
+    title: 'OpenAI-compatible chat endpoint.',
     body: 'Any client that speaks /v1/chat/completions works without code changes. The mesh is an implementation detail your operators never see — they get the same interface their tooling already targets.',
     tag: 'MOSA',
   },
   {
     title: 'Tamper-evident audit chain.',
-    body: 'Every chat HMAC-chained into a canonical-JSON ledger, RFC 3161 trusted-timestamp anchored. Replay package available under evaluation NDA. A 3PAO can verify the chain end-to-end.',
+    body: 'Each chat is recorded in a canonical-JSON ledger with an HMAC chain and RFC 3161 trusted timestamps. A replay package is available under an evaluation NDA for end-to-end chain verification by a 3PAO.',
     tag: 'Sealed',
   },
 ];
@@ -31,7 +31,7 @@ const tiers = [
 
 const honestStatus = [
   { label: 'v1.0.0 tagged',                              state: 'live', detail: 'Cosign-signed binaries on GitHub. SBOMs. Reproducible build.' },
-  { label: 'Operator UI + ops dashboard',                state: 'live', detail: 'Brand-coherent web UIs. 5-minute evaluator stack via Docker.' },
+  { label: 'Operator UI + ops dashboard',                state: 'live', detail: 'Web interfaces for operators and evaluators. The Docker evaluator stack is described in the quickstart.' },
   { label: 'Substitute-on-failure dispatch',             state: 'live', detail: 'Reduction-to-practice recorded 2026-05-08 with HMAC-chained evidence. Replayable.' },
   { label: 'NIST 800-53 controls mapping',               state: 'live', detail: 'Author\'s interpretation. 41 of 44 in-scope controls met (2 partial, 1 N/A). Pending 3PAO review.' },
   { label: 'Physical ruggedized-tablet validation',      state: 'warn', detail: 'Demonstrated on RTX PRO 6000 with 6 simulated worker processes; physical bench scheduled when partner hardware lands.' },
@@ -104,8 +104,8 @@ const heroPills = [
           <img src="/mycelium/dashboard-baseline.png" alt="Mycelium ops dashboard — six worker tiles pooling compute for one Gemma-4-26B chat" style="display:block; width:100%; height:auto;" />
         </div>
         <figcaption class="font-mono text-step--1 tracking-[0.10em] uppercase text-text-3 mt-s-4 text-center">
-          Six workers running · one shared brain ·
-          {' '}<a href="#mesh-in-action" class="text-signal-text">watch what happens when three die →</a>
+          Six workers generating one response ·
+          {' '}<a href="#mesh-in-action" class="text-signal-text">see the three-worker-loss comparison →</a>
         </figcaption>
       </figure>
     </div>
@@ -117,9 +117,9 @@ const heroPills = [
       <div class="mb-s-7 max-w-3xl">
         <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Three things you can verify.</h2>
         <p class="text-step-0 text-text-2 mt-s-4 reveal reveal-delay-2" style="max-width: 60ch;">
-          Substrate properties, not marketing claims. Each one is observable in the
-          {' '}<a href="https://github.com/thornveil-ai/mycelium-overview" target="_blank" rel="noopener" class="text-signal-text underline underline-offset-4 decoration-1">public companion repo</a>
-          {' '}or in a 30-minute walkthrough.
+          Review the mechanisms in the
+          {' '}<a href="https://github.com/thornveil-ai/mycelium-overview" target="_blank" rel="noopener" class="text-signal-text underline underline-offset-4 decoration-1">public companion repository</a>
+          {' '}or request a 30-minute walkthrough.
         </p>
       </div>
 
@@ -140,7 +140,7 @@ const heroPills = [
     <div class="tv-container">
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-s-9 items-start">
         <div class="lg:col-span-2">
-          <h2 class="tv-h2 mt-s-3 mb-s-5 reveal reveal-delay-1">What survives when half the mesh dies.</h2>
+          <h2 class="tv-h2 mt-s-3 mb-s-5 reveal reveal-delay-1">How zero-vector substitution works</h2>
           <p class="text-step-0 text-text-2 mb-s-4 reveal reveal-delay-2">
             Distributed inference frameworks don't document what happens when an inference worker becomes
             unreachable mid-token. Most options are catastrophic: hang, error, drop the request. Mycelium's
@@ -256,7 +256,7 @@ const heroPills = [
   <section class="tv-section pt-0">
     <div class="tv-container">
       <div class="text-center mb-s-7">
-        <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Auto-tiered to whatever you've got.</h2>
+        <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Hardware detection assigns a tier.</h2>
         <p class="text-step-0 text-text-2 mt-s-4 mx-auto reveal reveal-delay-2" style="max-width: 64ch;">
           Mycelium detects local hardware on first run and assigns a tier. The mesh aggregates tier
           capability live; available models grow as peers join.
@@ -295,9 +295,9 @@ const heroPills = [
         <div>
           <h2 class="tv-h2 mt-s-3 mb-s-5 reveal reveal-delay-1">Operator UX on any laptop. No GPU.</h2>
           <p class="text-step-0 text-text-2 mb-s-4 reveal reveal-delay-2">
-            The evaluator stack is a brand-coherent replica of the operator chat + ops dashboard with
-            synthetic-but-interactive worker state. Kill workers from the dashboard and watch the headline
-            rewrite itself. ~50 MB image. Zero GPU. Zero model checkpoint.
+            The evaluator stack provides operator chat and dashboard interfaces with simulated worker state;
+            disable workers in the dashboard to see its display update. The image is approximately 50 MB and
+            requires neither a GPU nor a model checkpoint.
           </p>
           <p class="font-mono text-step--1 tracking-[0.08em] uppercase text-text-3 reveal reveal-delay-3">
             For the production stack — six GPU workers running real Gemma-4-26B-A4B FP8 with substitute-on-failure
@@ -320,9 +320,9 @@ $ cd mycelium
   <section class="tv-section pt-0">
     <div class="tv-container">
       <div class="text-center mb-s-7">
-        <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Today vs. roadmap.</h2>
+        <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Implementation status and pending validation</h2>
         <p class="text-step-0 text-text-2 mt-s-4 mx-auto reveal reveal-delay-2" style="max-width: 52ch;">
-          A pitch lives or dies on candor. Here's what's shipped and what's still ahead.
+          The status below separates released components from work awaiting validation.
         </p>
       </div>
 
@@ -347,8 +347,8 @@ $ cd mycelium
     <div class="tv-container max-w-2xl text-center">
       <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Build the AI tier of your stack on Mycelium.</h2>
       <p class="text-step-0 text-text-2 mt-s-4 mx-auto reveal reveal-delay-2" style="max-width: 52ch;">
-        Standards seat. Licensing terms. Live demo. Whatever shape the conversation needs to take, the door
-        is open. Direct contracts open {m.company.directContractsOpen}.
+        Contact Jesse to discuss standards participation, licensing or a live demonstration. Direct contracts
+        open {m.company.directContractsOpen}.
       </p>
       <div class="mt-s-7 flex flex-wrap gap-s-3 justify-center reveal reveal-delay-3">
         <a href="mailto:jesse@thornveil.ai?subject=Mycelium" class="tv-btn tv-btn--primary">Email jesse@thornveil.ai</a>

@@ -35,7 +35,7 @@
       "status": "live",
       "statusLabel": "production",
       "repo": "github.com/thornveil-ai/rigrun-overview",
-      "summary": "Classification-gated multi-domain LLM router. Three apps on one Go backend. NIST 800-53 controls implemented as discrete code paths."
+      "summary": "Three apps share one Go backend that routes LLM queries by classification. NIST 800-53 controls are implemented as discrete code paths."
     },
     "pyros": {
       "name": "Pyros",
@@ -101,7 +101,7 @@
       "status": "warn",
       "statusLabel": "arXiv pending",
       "repo": "github.com/thornveil-ai/hawkstack-paper",
-      "summary": "Compute-aware neural architecture topology theory + perception backbone family."
+      "summary": "A topology-based method for choosing neural architectures, with a family of perception models."
     },
     "meridian": {
       "name": "Meridian",
@@ -126,7 +126,7 @@
       "agents": 9,
       "status": "live",
       "statusLabel": "internal",
-      "summary": "Agent Factory + 9 production agents + adaptive subsystems."
+      "summary": "An internal pipeline for producing agents, with nine production agents and adaptive subsystems."
     }
   },
   "myceliumHero": [

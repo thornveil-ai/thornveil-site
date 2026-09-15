@@ -1,6 +1,6 @@
 # Thornveil public-copy review
 
-Review date: September 15, 2026. Status: editorial proposals for owner review, not approved publication copy.
+Review date: September 15, 2026. Original status: editorial proposals for owner review, not approved publication copy. The owner subsequently approved EDIT proposals only, leaving HOLD proposals unchanged; see the application record below.
 
 Factual reconciliation update: [Product claim evidence and owner decisions](product-claim-evidence.md) records the dated owner responses and delegated conservative publication decisions for F1–F11 and F13. Its dispositions take precedence over held factual assertions in proposals below; it does not verify unsupported claims or cover F12.
 
@@ -773,3 +773,32 @@ The proposals replace stock link labels, abstract headings, repeated readiness c
 Highest-priority owner decisions: F1 readiness/export claims; F3 simulated versus physical Mycelium evidence; F4 control-mapping scope; F5/F6 release and HawkStack inconsistencies; F2 availability dates. The remaining questions cover evidence provenance, novelty, research status, credentials, procurement, privacy and compatibility. No held replacement should be applied simply because it reads more clearly.
 
 After approval, apply the selected proposals in a separate change and rescan the complete rendered prose, including metadata and shared components. Reconcile contact/privacy suggestions with its authoritative work rather than applying this snapshot over it.
+
+## Approved EDIT application — September 15, 2026
+
+Owner selection: “Approve all EDIT proposals; leave HOLD proposals unchanged.” Evidence-qualified EDITs retain the original factual assertions and qualifications; applying them does not resolve their evidence holds.
+
+Applied after matching originals against current source:
+
+- H3/H4; S2/S4/S6/S9/S11 and S12's destination label. D3's references to S2/S6/S9 were applied consistently on Defense; D4's destination label only.
+- A1/A2/A4; M3's chat-endpoint title only; M4/M5; M10's hardware-detection title and simulated-evaluator description; all M11 replacements, including its operator-interface detail, implementation-status heading, introduction and contact paragraph.
+- C1/C2/C3; N1; SH1/SH2; J1/J4/J5. CT1 was initially matched, but omitted at merge because the authoritative contact work had replaced its original. Data keys, values other than these approved summaries, and technical identifiers were retained.
+
+Mixed-unit exclusions: S12's engagement alternative; D4's program-relevance, founder-posture and closing CTA narrowings; M3's universal-compatibility body; M10's universal-laptop heading. These mixed EDIT/HOLD units require substantive approval beyond EDIT wording. M11 is classified EDIT, so the owner's EDIT approval includes replacing the five-minute promise with its quickstart reference. All other HOLD and KEEP blocks remain untouched.
+
+Contact and Privacy retain the authoritative contact/privacy work. BaseLayout metadata, Footer, MomentumStrip and Research received no replacements because their proposals are held or retained. AudienceIntake retains the newer direct-contract date and email-draft/no-booking instructions alongside the approved inquiry-type sentence. Navigation, accessibility behavior, link destinations, analytics identifiers, commands and release/benchmark values were not changed.
+
+### Application verification
+
+After applying the remaining M11 operator-interface EDIT, the production build and whitespace check passed again. The rebuilt Mycelium HTML contains the exact approved quickstart wording and no five-minute installation claim. Its rendered prose and description/social metadata returned zero matches in each of catalog sections 1–4.
+
+Final post-merge correction restored C3's complete near-qualified-applicant exception sentence immediately after the approved two-sentence replacement. A fresh production build and whitespace check passed. A new scan parsed all ten built HTML pages, excluding scripts/styles and including description/social metadata: 7,391 words, 42 em dashes. Catalog sections 1–3 again had zero matches; section 4 had eleven matches (the previous six plus five concrete lists in the authoritative updated privacy notice). Those privacy lists describe processing details and unresolved operating questions and were retained. The scan asserts the restored exception appears in rendered output. This static-render extraction differs from the earlier browser corpus and its counts are not directly comparable.
+
+The rendered corpus and mobile observations below were captured before merging the concurrent functional changes. After conflict reconciliation, the production build passed again and the workflow restarted cleanly. The development domain then served the page (the earlier host rejection was resolved by incoming configuration), but live smoke traversal still stopped on a Vite dependency HTTP 504. CT1 was omitted and SH1 was combined with the newer contact instructions as recorded above; the earlier scan counts are not represented as a post-merge whole-site audit.
+
+- Production build passed; all four smoke-check fixture tests passed; `git diff --check` passed.
+- Chromium reviewed all ten public routes at a requested mobile width of 375px, including rendered body prose, metadata, shared components and data-backed descriptions. Each route rendered its expected title and heading. Edited destination labels were present with their original links; no visible “Deep dive” label remained. A desktop Mycelium screenshot also confirmed the page rendered.
+- The full rendered scan corpus contained 7,468 whitespace-separated words, including repeated route-level shared text and metadata. Catalog sections 1–3 each returned zero matches. Section 4 returned six: two genuine hardware price ranges and four distinct technical-information lists, retained after manual review. Zero matches do not validate held claims.
+- Body-only prose contained 39 em dashes across 5,855 words (approximately one per 150 words). Cadence review found varied paragraph lengths; uniform short runs were predominantly labels/card fragments. Founder parentheticals and meaningful technical distinctions remain. No emoji/header-style issue was identified. Held rhetorical claims remain intentionally unchanged.
+- Edited prose and link labels wrapped in the mobile review. Existing ticker, diagram and comparison-table content has separate clipping/scrolling behavior. The captured Defense and Systems document widths were 417px and 380px respectively against a 375px client width, while screenshots remained 375px wide. This is recorded as an unresolved mobile-width observation, not a clean whole-site overflow result; mobile polish remains separate.
+- Browser review recorded no runtime exceptions, but did encounter stale Vite dependency responses. Live smoke verification was not clean: the development-domain request returned a host-allowlist 403; a standalone smoke server was refused because the managed Astro server was already running; local smoke traversal stopped on `Outdated Optimize Dep`. These are preview/test-environment limitations, not passing route/script checks. No unrelated configuration changes were made.

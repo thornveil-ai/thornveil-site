@@ -31,3 +31,9 @@ production build; the equivalent plain JavaScript worked.
 **How to apply:** Keep `.astro` script wiring as plain JavaScript and put typed
 logic in imported `.ts` files. Check the running development route as well as
 the production build after changing page scripts.
+
+Prefer verifying against the managed development server rather than launching a competing instance.
+
+**Why:** Development tools may enforce a project-wide single-server lock, independent of port availability.
+
+**How to apply:** Supply the existing server URL to checks that support it; do not force a replacement merely to run verification.

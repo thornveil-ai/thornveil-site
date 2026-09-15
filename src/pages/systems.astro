@@ -32,7 +32,7 @@ const systems = [
   {
     name: 'Signet',
     tagline: 'Capability gates for LLM agents.',
-    description: '4-stage check pipeline (ADMISSION / INSPECTION / COMMITMENT / RECORD) with HMAC-chained tamper-evident audit log and RFC 3161 trusted-timestamp anchoring. 11 production checks. The Signet vocabulary that Auspex extends with engagement-specific checks. Apache-2.0 OSS. Available on PyPI as `signet-sign`.',
+    description: '4-stage check pipeline (ADMISSION / INSPECTION / COMMITMENT / RECORD) with HMAC-chained tamper-evident audit log and RFC 3161 trusted-timestamp anchoring. 11 production checks. Auspex extends Signet\'s check vocabulary with checks specific to each engagement. Apache-2.0 OSS. Available on PyPI as `signet-sign`.',
     stat: '25K + 31K', statLabel: 'source LOC + test LOC',
     status: 'live', statusLabel: 'v0.1.10.1 · public OSS',
     repoUrl: 'https://github.com/thornveil-ai/signet',
@@ -51,8 +51,8 @@ const systems = [
   },
   {
     name: 'Pyros',
-    tagline: 'Self-sustaining inference engine.',
-    description: '24 adaptive subsystems organized into 7 conceptual pillars. PID homeostasis + Holt forecaster + UCB1 bandit + epsilon-greedy variant evolution wired into one orchestrator. PAVA isotonic regression calibrator validated against sklearn. Race-clean across Linux/macOS/Windows. Backend-agnostic — wraps Ollama, vLLM, llama.cpp, LMStudio.',
+    tagline: 'Adaptive controls for inference backends.',
+    description: 'One orchestrator coordinates 24 adaptive subsystems in seven groups. It combines PID control with Holt forecasting, a UCB1 bandit and epsilon-greedy variant evolution. PAVA isotonic regression calibrator validated against sklearn. Race-clean across Linux/macOS/Windows. Backend-agnostic — wraps Ollama, vLLM, llama.cpp, LMStudio.',
     stat: '17K', statLabel: 'Go LOC · race-clean',
     status: 'live', statusLabel: 'v0.2.1 · used in RigRun + Mycelium',
     repoUrl: 'https://github.com/thornveil-ai/pyros-overview',
@@ -72,7 +72,7 @@ const systems = [
   {
     name: 'RigRun',
     tagline: 'Professional AI chat · classification-gated routing.',
-    description: 'Three apps (desktop, mobile, web) on one Go backend. Classification gate enforced at the type-system level — CUI+ queries hard-blocked from cloud routing as architectural narrowing, not runtime policy. 44 NIST 800-53 controls implemented as discrete code paths. 8-signal confidence pipeline. IR-9 spillage detection with Unicode normalization + entropy thresholding.',
+    description: 'Three apps (desktop, mobile, web) on one Go backend. The type system excludes cloud routing for CUI+ queries. 44 NIST 800-53 controls implemented as discrete code paths. 8-signal confidence pipeline. IR-9 spillage detection with Unicode normalization + entropy thresholding.',
     stat: '496K', statLabel: 'LOC · 6,950 tests',
     status: 'live', statusLabel: 'v0.9 · federal evaluation post-DD-214',
     repoUrl: 'https://github.com/thornveil-ai/rigrun-overview',
@@ -102,7 +102,7 @@ const systems = [
   {
     name: 'Canopy',
     tagline: 'Multi-modal counter-UAS situational awareness.',
-    description: 'RF + acoustic + thermal + Remote ID + ADS-B fusion. Real Kalman tracking + Dempster-Shafer evidence fusion + bearing-intersection geolocation (tested). Mesh networking + decision engine scaffolded; ML classifiers stubbed. Honest Phase 0 framing — designed to replace DragonOS/WarDragon with mesh-aware open architecture. Hardware tiers from $270 to $1,650.',
+    description: 'RF + acoustic + thermal + Remote ID + ADS-B fusion. Kalman tracking, Dempster-Shafer evidence fusion and bearing-intersection geolocation have been tested. With mesh networking and the decision engine scaffolded and ML classifiers still stubbed, this Phase 0 project is intended to replace DragonOS/WarDragon with an open architecture that supports mesh networking. Hardware tiers from $270 to $1,650.',
     stat: 'Phase 0', statLabel: 'architecture validated',
     status: 'warn', statusLabel: 'phase 0 · integration pending',
     repoUrl: 'https://github.com/thornveil-ai/canopy-preview',
@@ -121,7 +121,7 @@ const systems = [
   },
   {
     name: 'Navigator',
-    tagline: 'Internal AI ops center.',
+    tagline: 'Internal agent-production pipeline.',
     description: 'Internal AI ops infrastructure. A 14-step factory pipeline (decompose → multi-pass system prompt → tool selection → Opus calibration → 5-probe adversarial stress test → adversarial hardening → functional tests → quality gate) produces 9 production domain-expert agents covering federal-doctrine drafting, security review, sprint planning, technical writing, and research. 80 MCP-exposed tools across 9 domains. Not for external sale.',
     stat: '40K + 9', statLabel: 'LOC · production agents',
     status: 'live', statusLabel: 'internal · federal agent pack candidate',
@@ -201,7 +201,7 @@ const systems = [
             <div class="border-t border-line pt-s-4 flex flex-wrap items-center gap-x-s-4 gap-y-s-3">
               {s.detail ? (
                 <a href={s.detail} class="font-mono text-step--1 tracking-[0.10em] uppercase text-signal-text hover:text-text">
-                  Deep dive →
+                  Mycelium mechanism and test status →
                 </a>
               ) : null}
               {s.repoUrl ? (
@@ -224,7 +224,7 @@ const systems = [
   <!-- BUILD CONTEXT -->
   <section class="tv-section pt-0">
     <div class="tv-container max-w-3xl text-center">
-      <h2 class="tv-h2 mt-s-3 mb-s-5 reveal reveal-delay-1">Five months. Solo. Active duty.</h2>
+      <h2 class="tv-h2 mt-s-3 mb-s-5 reveal reveal-delay-1">Built solo while on active duty</h2>
       <div class="space-y-s-4 text-step-0 text-text-2 reveal reveal-delay-2">
         <p>
           First commit on the oldest repo: January 12, 2026. Combined ~{m.portfolio.totalLOC} LOC across Go,
