@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check:smoke": "node --experimental-vm-modules --disable-warning=ExperimentalWarning scripts/smoke.mjs",
+    "test:smoke": "node --test scripts/smoke.test.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.5",
