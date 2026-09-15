@@ -19,7 +19,7 @@ const tracks = [
     title: 'Federal program office',
     sub: 'Evaluator track',
     body: 'You get: a 30-min system walkthrough of your choice (Mycelium / RigRun / Auspex / HawkStack), access to the public companion repo, and a signed evaluation NDA when scope requires.',
-    cta: 'Schedule a federal eval call',
+    cta: 'Email to request a federal eval call',
     subject: 'Federal evaluation inquiry',
     template: `I'm with [agency/command/program].
 Role: [role / title]
@@ -32,7 +32,7 @@ Best contact + time window: [.gov or .mil email]`,
     title: 'Defense prime / SI',
     sub: 'Integration track',
     body: 'You get: a capability brief tailored to your program of record, an IP-license framework or subcontract sketch, and a teaming sketch on request.',
-    cta: 'Schedule a prime walkthrough',
+    cta: 'Email to request a prime walkthrough',
     subject: 'Prime / SI integration inquiry',
     template: `Company: [name]
 My role: [BD / CapDev / SE]
@@ -52,7 +52,7 @@ Timeline: [exploratory / Q3 / Q4 / FY27]`,
 
 function mailtoHref(t) {
   if (t.href) return t.href;
-  const body = encodeURIComponent(`Hi Jesse,\n\n${t.template}\n\n— [name]`);
+  const body = encodeURIComponent(`Hi Jesse,\n\n${t.template}\n\n— [name]`.replace(/\n/g, '\r\n'));
   return `mailto:jesse@thornveil.ai?subject=${encodeURIComponent(t.subject)}&body=${body}`;
 }
 ---
@@ -63,7 +63,9 @@ function mailtoHref(t) {
       <h2 class="tv-h2 reveal">Pick your track.</h2>
       <p class="text-step-1 text-text-2 mt-s-4 reveal reveal-delay-1" style="max-width: 56ch; margin-inline: auto;">
         Direct contracts open {m.company.directContractsOpen}. Conversations now compound.
-        Choose the track that fits and we'll route you cleanly from there.
+        Federal and prime tracks open a draft in your email app; review it and send when ready.
+        No call is booked automatically. The co-founder track opens a profile page.
+        If no email app opens, write to jesse@thornveil.ai using your usual email service.
       </p>
     </div>
 
@@ -71,7 +73,6 @@ function mailtoHref(t) {
       {tracks.map((t, i) => (
         <a
           href={mailtoHref(t)}
-          target={t.href ? '_self' : '_self'}
           class={`tv-tile audience-card reveal reveal-delay-${Math.min(i + 1, 4)} flex flex-col plausible-event-name=Audience+${t.id}`}
           data-track={t.id}
         >
@@ -98,6 +99,11 @@ function mailtoHref(t) {
   .audience-card:hover {
     border-color: var(--signal-line);
     background: var(--bg-inset);
+  }
+  .audience-card:focus-visible {
+    outline: 2px solid var(--signal-text);
+    outline-offset: 4px;
+    border-color: var(--signal-line);
   }
   .audience-arrow {
     color: var(--signal-text);
