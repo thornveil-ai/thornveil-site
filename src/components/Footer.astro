@@ -8,41 +8,41 @@ const buildDate = new Date().toISOString().slice(0, 10);
 ---
 
 <footer class="border-t border-line mt-s-10">
-  <div class="tv-container py-s-7">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-s-6 items-start">
+  <div class="tv-container py-s-5 md:py-s-7">
+    <div class="grid grid-cols-1 gap-s-4 md:grid-cols-3 md:gap-s-6 items-start">
       <!-- Wordmark + tagline -->
-      <div>
-        <a href="/" class="inline-flex items-center" aria-label="Thornveil — home">
-          <img src="/logo-horizontal-white.png" alt="Thornveil" class="h-12 w-auto" />
+      <div class="flex items-center justify-between gap-s-3 md:block">
+        <a href="/" class="inline-flex min-h-11 md:min-h-0 items-center" aria-label="Thornveil — home">
+          <img src="/logo-horizontal-white.png" alt="Thornveil" class="h-10 w-auto md:h-12" />
         </a>
-        <p class="font-mono text-[var(--step--1)] tracking-[0.10em] uppercase text-text-3 mt-s-3">
+        <p class="font-mono text-[var(--step--1)] tracking-[0.10em] uppercase text-text-3 text-right md:text-left md:mt-s-3">
           Sovereign AI infrastructure
         </p>
       </div>
 
       <!-- Link columns -->
-      <nav class="flex flex-wrap gap-x-s-6 gap-y-s-2" aria-label="Footer">
-        <a href="/systems"   class="tv-nav-link">Systems</a>
-        <a href="/defense"   class="tv-nav-link">Defense</a>
-        <a href="/research"  class="tv-nav-link">Research</a>
-        <a href="/cofounder" class="tv-nav-link">Co-founder</a>
-        <a href="/about"     class="tv-nav-link">About</a>
-        <a href="/contact"   class="tv-nav-link">Contact</a>
-        <a href="/privacy"   class="tv-nav-link">Privacy</a>
+      <nav class="grid grid-cols-2 gap-x-s-3 gap-y-1 md:flex md:flex-wrap md:gap-x-s-6 md:gap-y-s-2" aria-label="Footer">
+        <a href="/systems"   class="tv-nav-link flex min-h-11 items-center py-2 md:min-h-0 md:py-0">Systems</a>
+        <a href="/defense"   class="tv-nav-link flex min-h-11 items-center py-2 md:min-h-0 md:py-0">Defense</a>
+        <a href="/research"  class="tv-nav-link flex min-h-11 items-center py-2 md:min-h-0 md:py-0">Research</a>
+        <a href="/cofounder" class="tv-nav-link flex min-h-11 items-center py-2 md:min-h-0 md:py-0">Co-founder</a>
+        <a href="/about"     class="tv-nav-link flex min-h-11 items-center py-2 md:min-h-0 md:py-0">About</a>
+        <a href="/contact"   class="tv-nav-link flex min-h-11 items-center py-2 md:min-h-0 md:py-0">Contact</a>
+        <a href="/privacy"   class="tv-nav-link flex min-h-11 items-center py-2 md:min-h-0 md:py-0">Privacy</a>
       </nav>
 
       <!-- External links -->
-      <div class="flex flex-wrap gap-x-s-6 gap-y-s-2 md:justify-end">
-        <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" class="tv-nav-link">GitHub ↗</a>
-        <a href="https://www.linkedin.com/company/thornveil-llc" target="_blank" rel="noopener" class="tv-nav-link">LinkedIn ↗</a>
-        <a href="mailto:jesse@thornveil.ai" class="tv-nav-link">jesse@thornveil.ai</a>
+      <div class="border-t border-line pt-s-2 grid grid-cols-2 gap-x-s-3 gap-y-1 md:border-0 md:pt-0 md:flex md:flex-wrap md:gap-x-s-6 md:gap-y-s-2 md:justify-end">
+        <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" class="tv-nav-link flex min-h-11 items-center py-2 md:min-h-0 md:py-0">GitHub ↗</a>
+        <a href="https://www.linkedin.com/company/thornveil-llc" target="_blank" rel="noopener" class="tv-nav-link flex min-h-11 items-center py-2 md:min-h-0 md:py-0">LinkedIn ↗</a>
+        <a href="mailto:jesse@thornveil.ai" class="tv-nav-link col-span-2 flex min-h-11 items-center break-all py-2 md:col-auto md:min-h-0 md:py-0">jesse@thornveil.ai</a>
       </div>
     </div>
 
-    <div class="tv-rule" role="separator"></div>
+    <div class="tv-rule my-s-4 md:my-s-6" role="separator"></div>
 
     <!-- Telemetry footer: registry + compliance-claim line + build date -->
-    <div class="flex flex-wrap items-center justify-between gap-s-3 font-mono text-[var(--step--1)] tracking-[0.12em] uppercase text-text-3">
+    <div class="flex flex-col items-start justify-between gap-s-2 font-mono text-[var(--step--1)] tracking-[0.12em] uppercase text-text-3 md:flex-row md:flex-wrap md:items-center md:gap-s-3">
       <p>&copy; {currentYear} {metrics.company.name} · {metrics.company.city} · NAICS {naics}</p>
       <p>508 {a11y.section508} · Lighthouse {a11y.lighthouseTarget}+ · last updated {buildDate}</p>
     </div>
@@ -50,7 +50,7 @@ const buildDate = new Date().toISOString().slice(0, 10);
     <!-- Transmission terminator — the "end of transmission" mono signature
          at the absolute bottom. Subtle hairline-flanked end marker. -->
     <div
-      class="flex items-center gap-s-3 mt-s-5 font-mono text-text-3"
+      class="hidden md:flex items-center gap-s-3 mt-s-5 font-mono text-text-3"
       style="font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;"
       aria-hidden="true"
     >
@@ -60,3 +60,14 @@ const buildDate = new Date().toISOString().slice(0, 10);
     </div>
   </div>
 </footer>
+
+<style>
+  footer .tv-nav-link { overflow-wrap: anywhere; min-width: 0; }
+  footer p { overflow-wrap: anywhere; }
+  @media (max-width: 767px) {
+    footer { margin-top: var(--s-8); }
+    footer .tv-container > .grid > :first-child { flex-wrap: wrap; }
+    footer .tv-container > .grid > :first-child p { text-align: left; }
+    footer .font-mono { font-size: var(--shell-meta-size); letter-spacing: 0.04em; }
+  }
+</style>

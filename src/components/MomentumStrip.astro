@@ -27,7 +27,7 @@ const daysToContract = daysUntil(m.company.directContractsOpenISO);
   <div class="tv-container momentum-strip-inner">
     <span class="momentum-cell momentum-cell--accent">
       <span class="momentum-led" aria-hidden="true"></span>
-      <span>Evaluation engagements active · direct contracts {m.company.directContractsOpen}</span>
+      <span class="momentum-status"><span>Evaluation engagements active</span><span class="momentum-status-sep"> · </span><span>Direct contracts {m.company.directContractsOpen}</span></span>
     </span>
     <span class="momentum-sep" aria-hidden="true">·</span>
     <span class="momentum-cell">{m.portfolio.totalSystems} systems</span>
@@ -51,7 +51,7 @@ const daysToContract = daysUntil(m.company.directContractsOpenISO);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 0.625rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--text-3);
@@ -62,9 +62,8 @@ const daysToContract = daysUntil(m.company.directContractsOpenISO);
     align-items: center;
     gap: 12px;
     padding: 6px var(--gutter);
-    height: 28px;
-    overflow: hidden;
-    white-space: nowrap;
+    min-height: 28px;
+    flex-wrap: wrap;
   }
   .momentum-cell {
     display: inline-flex;
@@ -94,9 +93,21 @@ const daysToContract = daysUntil(m.company.directContractsOpenISO);
   @media (max-width: 880px) {
     .momentum-cell--hideable { display: none; }
   }
-  @media (max-width: 640px) {
-    .momentum-strip { font-size: 9px; }
-    .momentum-strip-inner { gap: 8px; height: 24px; }
+  @media (max-width: 767px) {
+    .momentum-strip {
+      position: relative;
+      z-index: auto;
+      margin-top: var(--nav-height);
+      font-size: var(--shell-meta-size);
+      letter-spacing: 0.02em;
+      text-transform: none;
+      backdrop-filter: none;
+    }
+    .momentum-strip-inner { padding-block: var(--s-3); }
+    .momentum-strip-inner > :not(.momentum-cell--accent),
+    .momentum-led, .momentum-status-sep { display: none; }
+    .momentum-status { display: grid; gap: var(--s-1); }
+    .momentum-status > :last-child { color: var(--text-3); }
   }
   @media (prefers-reduced-motion: reduce) {
     .momentum-led { animation: none; }

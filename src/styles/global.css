@@ -58,6 +58,10 @@
     --container: 1200px;
     --gutter: clamp(20px, 5vw, 64px);
     --section-y: clamp(80px, 12vh, 160px);
+    --nav-height: 80px;
+    --status-height: 28px;
+    --shell-meta-size: 0.8125rem;
+    --shell-anchor-gap: 16px;
 
     /* motion */
     --ease-out:    cubic-bezier(0.16, 1, 0.30, 1);
@@ -136,6 +140,17 @@
     outline-offset: 2px;
     border-radius: 2px;
   }
+}
+
+/* Shared fixed-shell clearance, including headings and native hash targets. */
+html main [id], html main[id] {
+  scroll-margin-top: calc(var(--nav-height) + var(--status-height) + var(--shell-anchor-gap));
+}
+@media (min-width: 768px) {
+  main { padding-top: max(0px, calc(var(--nav-height) + var(--status-height) - 108px)); }
+}
+@media (max-width: 767px) {
+  :root { --nav-height: 64px; --status-height: 0px; }
 }
 
 /* ============================================================

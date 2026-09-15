@@ -75,10 +75,23 @@ const isActive = (href: string) =>
 
 <style>
   .nav-with-momentum {
-    top: 28px;
+    top: var(--status-height);
   }
-  @media (max-width: 640px) {
-    .nav-with-momentum { top: 24px; }
+  nav {
+    height: auto;
+    min-height: 5rem;
+    gap: var(--s-4);
+    flex-wrap: wrap;
+  }
+  nav > div { flex-wrap: wrap; padding-block: var(--s-2); }
+  #mobile-toggle { min-width: 44px; min-height: 44px; justify-content: center; align-items: center; }
+  #mobile-menu { overflow-y: auto; }
+  #mobile-menu .tv-nav-link { min-height: 44px; display: flex; align-items: center; overflow-wrap: anywhere; }
+  @media (max-width: 767px) {
+    nav { min-height: 4rem; flex-wrap: nowrap; }
+    nav > a { min-width: 0; }
+    nav img { max-width: 100%; object-fit: contain; }
+    #mobile-toggle { flex-shrink: 0; }
   }
 </style>
 
@@ -106,6 +119,8 @@ const isActive = (href: string) =>
 
   const toggle = document.getElementById('mobile-toggle');
   const menu = document.getElementById('mobile-menu');
+  const navRow = nav?.querySelector('nav');
+  const strip = document.querySelector('.momentum-strip');
   const bar1 = document.getElementById('bar1');
   const bar2 = document.getElementById('bar2');
   const bar3 = document.getElementById('bar3');
@@ -124,7 +139,7 @@ const isActive = (href: string) =>
       menu.setAttribute('aria-hidden', String(!open));
     }
     if (open && menu) {
-      menu.style.maxHeight = menu.scrollHeight + 'px';
+      menu.style.maxHeight = `min(${menu.scrollHeight}px, calc(100dvh - var(--nav-height) - var(--status-height)))`;
       bar1?.classList.add('rotate-45', 'translate-y-[3px]');
       bar2?.classList.add('opacity-0');
       bar3?.classList.add('-rotate-45', '-translate-y-[3px]');
@@ -162,8 +177,27 @@ const isActive = (href: string) =>
     }
     setOpen(false);
   }, { signal });
+  const measureShell = () => {
+    const root = document.documentElement;
+    root.style.setProperty('--nav-height', `${navRow?.getBoundingClientRect().height ?? 64}px`);
+    root.style.setProperty('--status-height', `${desktop.matches ? strip?.getBoundingClientRect().height ?? 28 : 0}px`);
+    if (open) setOpen(true);
+  };
+  let shellFrame = 0;
+  const shellObserver = new ResizeObserver(() => {
+    cancelAnimationFrame(shellFrame);
+    shellFrame = requestAnimationFrame(measureShell);
+  });
+  if (navRow) shellObserver.observe(navRow);
+  if (strip) shellObserver.observe(strip);
+  window.addEventListener('resize', measureShell, { signal });
+  measureShell();
   setOpen(false);
-  cleanupNavigation = () => controller.abort();
+  cleanupNavigation = () => {
+    controller.abort();
+    shellObserver.disconnect();
+    cancelAnimationFrame(shellFrame);
+  };
   }
   bindNavigation();
   document.addEventListener('astro:page-load', bindNavigation);
