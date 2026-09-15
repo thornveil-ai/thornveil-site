@@ -27,7 +27,8 @@
  * via IntersectionObserver. dpr clamped to [1, 1.75].
  */
 
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
+import HeroCanvas from './HeroCanvas.jsx';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
@@ -573,12 +574,7 @@ export default function MyceliumHero() {
         pointerEvents: 'none',
       }}
     >
-      <Canvas
-        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-        dpr={[1, 1.75]}
-        camera={{ position: [0, 0.2, 6.5], fov: 38, near: 0.1, far: 50 }}
-        style={{ background: 'transparent' }}
-      >
+      <HeroCanvas>
         <color attach="background" args={[0x050B18]} />
         <MeshScene
           paused={paused}
@@ -587,7 +583,7 @@ export default function MyceliumHero() {
           hudRef={hudRef}
           swapLogRef={swapLogRef}
         />
-      </Canvas>
+      </HeroCanvas>
 
       {/* vignette — tightened to 30%/100% so the cluster reads as framed */}
       <div

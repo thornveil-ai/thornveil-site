@@ -41,13 +41,10 @@ const myceliumRtpDate = m.systems.mycelium.rtpDate;
     class="relative w-full overflow-hidden"
     style="background: var(--bg-inset); min-height: 100vh;"
   >
-    <!-- WebGL mesh (R3F island, hydrates on idle since hero is above-the-fold). -->
+    <!-- Always present: visible before hydration, without JS, or if WebGL fails. -->
+    <MeshFallback />
+    <!-- WebGL mesh paints over the static mesh only after successful setup. -->
     <MyceliumHero client:idle />
-
-    <!-- Static SVG fallback for no-JS contexts. The island layer paints over it. -->
-    <noscript>
-      <MeshFallback />
-    </noscript>
 
     <!-- Text-legibility mask. Darkens the left third where text sits, fades
          to transparent on the right where the mesh shines. Keeps the wow
