@@ -2,6 +2,8 @@
 
 Review date: September 15, 2026. Status: editorial proposals for owner review, not approved publication copy.
 
+Factual reconciliation update: [Product claim evidence and owner decisions](product-claim-evidence.md) records the dated owner responses and delegated conservative publication decisions for F1–F11 and F13. Its dispositions take precedence over held factual assertions in proposals below; it does not verify unsupported claims or cover F12.
+
 ## Scope and method
 
 Audience: technical evaluators, prospective defense partners and cofounders. The target register is specific landing-page copy with technical-documentation precision. Keep the founder's first person, contractions and direct invitations. Explain what a system does before naming its procurement relevance.
