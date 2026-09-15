@@ -44,6 +44,7 @@ const isActive = (href: string) =>
       aria-label="Toggle navigation"
       aria-expanded="false"
       aria-controls="mobile-menu"
+      type="button"
     >
       <span class="block w-5 h-px transition-all duration-fast ease-out origin-center bg-text-2" id="bar1"></span>
       <span class="block w-5 h-px transition-all duration-fast ease-out bg-text-2" id="bar2"></span>
@@ -53,6 +54,8 @@ const isActive = (href: string) =>
 
   <div
     id="mobile-menu"
+    inert
+    aria-hidden="true"
     class="md:hidden overflow-hidden max-h-0 transition-all duration-slow ease-out"
     style="background: rgba(5,7,8,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);"
   >
@@ -80,6 +83,11 @@ const isActive = (href: string) =>
 </style>
 
 <script>
+  let cleanupNavigation = () => {};
+  function bindNavigation() {
+  cleanupNavigation();
+  const controller = new AbortController();
+  const { signal } = controller;
   const nav = document.getElementById('nav');
   const onScroll = () => {
     if (!nav) return;
@@ -93,7 +101,7 @@ const isActive = (href: string) =>
       nav.style.borderBottomColor = 'transparent';
     }
   };
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true, signal });
   onScroll();
 
   const toggle = document.getElementById('mobile-toggle');
@@ -102,10 +110,19 @@ const isActive = (href: string) =>
   const bar2 = document.getElementById('bar2');
   const bar3 = document.getElementById('bar3');
   let open = false;
+  const desktop = window.matchMedia('(min-width: 768px)');
+  let lastFocused = null;
+  document.addEventListener('focusin', (event) => {
+    lastFocused = nav?.contains(event.target) ? event.target : null;
+  }, { signal });
 
-  toggle?.addEventListener('click', () => {
-    open = !open;
-    toggle.setAttribute('aria-expanded', String(open));
+  function setOpen(next, restoreFocus = false) {
+    open = next && !desktop.matches;
+    toggle?.setAttribute('aria-expanded', String(open));
+    if (menu) {
+      menu.inert = !open;
+      menu.setAttribute('aria-hidden', String(!open));
+    }
     if (open && menu) {
       menu.style.maxHeight = menu.scrollHeight + 'px';
       bar1?.classList.add('rotate-45', 'translate-y-[3px]');
@@ -117,16 +134,38 @@ const isActive = (href: string) =>
       bar2?.classList.remove('opacity-0');
       bar3?.classList.remove('-rotate-45', '-translate-y-[3px]');
     }
-  });
+    if (restoreFocus) toggle?.focus();
+  }
+  toggle?.addEventListener('click', () => setOpen(!open), { signal });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && open) {
+      event.preventDefault();
+      setOpen(false, true);
+    }
+  }, { signal });
 
   menu?.querySelectorAll('a').forEach((a) => {
     a.addEventListener('click', () => {
-      open = false;
-      toggle?.setAttribute('aria-expanded', 'false');
-      if (menu) menu.style.maxHeight = '0';
-      bar1?.classList.remove('rotate-45', 'translate-y-[3px]');
-      bar2?.classList.remove('opacity-0');
-      bar3?.classList.remove('-rotate-45', '-translate-y-[3px]');
-    });
+      setOpen(false, true);
+    }, { signal });
   });
+  desktop.addEventListener('change', () => {
+    // The browser may blur a newly display:none link before the media event.
+    const focused = document.activeElement === document.body ? lastFocused : document.activeElement;
+    if (desktop.matches && (menu?.contains(focused) || focused === toggle)) {
+      const href = focused?.getAttribute('href');
+      const links = nav?.querySelectorAll('nav a');
+      const target = Array.from(links ?? []).find((link) => link.getAttribute('href') === href);
+      (target ?? links?.[0])?.focus();
+    } else if (!desktop.matches && focused instanceof HTMLElement && nav?.contains(focused) && focused.closest('.hidden.md\\:flex')) {
+      toggle?.focus();
+    }
+    setOpen(false);
+  }, { signal });
+  setOpen(false);
+  cleanupNavigation = () => controller.abort();
+  }
+  bindNavigation();
+  document.addEventListener('astro:page-load', bindNavigation);
+  document.addEventListener('astro:before-swap', () => cleanupNavigation());
 </script>
