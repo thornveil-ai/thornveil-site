@@ -20,3 +20,12 @@ A passing local screenshot does not prove the Replit proxied preview is reachabl
 **Why:** Browser verification found the development domain returning Vite's “host is not allowed” response while the same running app worked through the local screenshot endpoint.
 
 **How to apply:** Check the development-domain response separately when verifying preview access; distinguish a host-allowlist rejection from page-script failures.
+Astro's current development transform can reject TypeScript annotations in a
+processed `.astro` script even when the production build succeeds.
+
+**Why:** The development Vite/Oxc transform was observed parsing an annotated
+script variable as JavaScript; the equivalent plain JavaScript worked.
+
+**How to apply:** Keep `.astro` script wiring as plain JavaScript and put typed
+logic in imported `.ts` files. Check the running development route as well as
+the production build after changing page scripts.

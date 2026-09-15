@@ -135,6 +135,9 @@ const tsY = 166;
         animation: none;
         opacity: 1;
       }
+      /* DENY and RETRY share coordinates in the replay; show only the final
+         decision in a static diagram instead of drawing both labels at once. */
+      .au-deny-flash, .au-cursor { opacity: 0; }
     }
   </style>
 

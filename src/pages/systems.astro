@@ -181,7 +181,7 @@ const systems = [
                  background, corner registration marks, top-strip LIVE LED +
                  ref ID, bottom-strip tick scale. -->
             {Viz ? (
-              <div class="mb-s-5 -mx-s-3 viz-panel" style="border: 1px solid var(--line); border-radius: 2px;">
+              <div data-system-viz class="mb-s-5 -mx-s-3 viz-panel" style="border: 1px solid var(--line); border-radius: 2px;">
                 <div class="viz-chrome"></div>
                 <div class="viz-strip">
                   <span class="viz-led">{s.status === 'live' ? 'LIVE' : 'DEV'}</span>
@@ -254,3 +254,46 @@ const systems = [
     </div>
   </section>
 </BaseLayout>
+
+<style is:global>
+  /* Static HTML first: no-JS visitors keep the diagrams, not continuous motion.
+     Scope includes the panel's animated LED pseudo-element, not just the SVG. */
+  [data-system-viz]:not([data-viz-managed]) *,
+  [data-system-viz]:not([data-viz-managed]) *::before,
+  [data-system-viz]:not([data-viz-managed]) *::after {
+    animation: none !important;
+  }
+  [data-system-viz][data-viz-managed]:not([data-viz-active]) *,
+  [data-system-viz][data-viz-managed]:not([data-viz-active]) *::before,
+  [data-system-viz][data-viz-managed]:not([data-viz-active]) *::after {
+    animation-play-state: paused !important;
+  }
+  [data-system-viz]:not([data-viz-managed]) .au-hash-elem,
+  [data-system-viz]:not([data-viz-managed]) .au-allow-recover,
+  [data-system-viz]:not([data-viz-managed]) .myc-hud-event-block,
+  [data-system-viz]:not([data-viz-managed]) .myc-rising,
+  [data-system-viz]:not([data-viz-managed]) .myc-rising-edge {
+    opacity: 1;
+  }
+  [data-system-viz]:not([data-viz-managed]) .au-cursor,
+  [data-system-viz]:not([data-viz-managed]) .myc-pulse {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  import { observeSystemDiagrams } from '../components/system-viz/visibility';
+
+  let cleanup = () => {};
+  function initializeDiagrams() {
+    cleanup();
+    cleanup = observeSystemDiagrams();
+  }
+  document.addEventListener('astro:page-load', initializeDiagrams);
+  document.addEventListener('astro:before-swap', () => {
+    cleanup();
+    cleanup = () => {};
+  });
+  // Also supports a direct load without Astro's client router.
+  initializeDiagrams();
+</script>
