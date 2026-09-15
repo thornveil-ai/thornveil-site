@@ -1,0 +1,1 @@
+- [Astro Replit setup](astro-replit-setup.md) — respect package-firewall blocks and align Astro with a compatible Node runtime.

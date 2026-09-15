@@ -94,16 +94,16 @@ const credentials = [
 </BaseLayout>
 
 <script>
-  function easeOutCubic(t: number) { return 1 - Math.pow(1 - t, 3); }
-  function isAnimatable(s: string) { return /^\d+(\.\d+)?[KMB]?$/.test(s); }
-  document.querySelectorAll<HTMLElement>('[data-countup]').forEach((el) => {
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  function isAnimatable(s) { return /^\d+(\.\d+)?[KMB]?$/.test(s); }
+  document.querySelectorAll('[data-countup]').forEach((el) => {
     const target = el.dataset.countup ?? '';
     if (!isAnimatable(target)) return;
     const suffix = (target.match(/[KMB]$/) ?? [''])[0];
     const final  = parseFloat(target.replace(/[KMB]$/, ''));
     if (Number.isNaN(final)) return;
     const start = performance.now();
-    const tick  = (t: number) => {
+    const tick  = (t) => {
       const e = Math.min(1, (t - start) / 720);
       const v = final * easeOutCubic(e);
       const shown = Number.isInteger(final) ? Math.round(v) : v.toFixed(1);
