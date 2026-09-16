@@ -19,7 +19,7 @@ const credentials = [
   description="Thornveil is a one-person research and engineering shop founded by Jesse Morgan — an active-duty USMC Signals Intelligence Marine building sovereign AI infrastructure."
 >
   <!-- HERO -->
-  <section class="tv-section pt-s-11">
+  <section class="tv-section pt-s-11 about-hero">
     <div class="tv-container max-w-3xl">
       <h1 class="tv-h1 mt-s-3 reveal reveal-delay-1">
         I started building the tools I wanted as an analyst.
@@ -53,7 +53,7 @@ const credentials = [
         </p>
         <p>
           Co-founder applications are
-          {' '}<a href="/cofounder" class="text-signal-text underline underline-offset-4 decoration-1">open</a>
+          {' '}<a href="/cofounder" aria-label="Co-founder applications open" class="about-inline-link text-signal-text underline underline-offset-4 decoration-1">open</a>
           {' '}for a senior offensive cyber operator with a post-uniform defense-AI startup rotation.
         </p>
       </div>
@@ -86,7 +86,7 @@ const credentials = [
         Co-founder applications open now. Tell me what you're working on and which system you want to evaluate.
       </p>
       <div class="mt-s-7 reveal reveal-delay-3">
-        <a href="mailto:jesse@thornveil.ai" class="tv-btn tv-btn--primary">jesse@thornveil.ai</a>
+        <a href="mailto:jesse@thornveil.ai" aria-label="Email jesse@thornveil.ai" class="tv-btn tv-btn--primary about-email">jesse@thornveil.ai</a>
       </div>
     </div>
   </section>
@@ -95,3 +95,41 @@ const credentials = [
 <script>
   import '../scripts/page-motion-entry.js';
 </script>
+
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+
+<style>
+  .about-email {
+    min-height: 44px;
+    text-transform: none;
+    letter-spacing: 0.03em;
+    overflow-wrap: anywhere;
+  }
+
+  .about-inline-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: 4px;
+    margin-inline: -4px;
+  }
+
+  @media (max-width: 767px) {
+    .about-hero {
+      padding-top: 48px;
+      padding-bottom: 56px;
+    }
+
+    .about-hero .tv-h1 {
+      font-size: clamp(2.35rem, 12vw, 2.7rem);
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+    }
+
+    .tv-h2 {
+      font-size: clamp(1.72rem, 8vw, 2.15rem);
+      line-height: 1.12;
+      overflow-wrap: anywhere;
+    }
+  }
+</style>

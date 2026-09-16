@@ -9,7 +9,7 @@ const m = metrics;
   description="Direct line to Jesse Morgan. Federal program offices, defense primes, evaluators, prospective co-founders. Direct contracts open December 10, 2026."
 >
   <!-- HERO -->
-  <section class="tv-section pt-s-11">
+  <section class="tv-section pt-s-11 contact-hero">
     <div class="tv-container max-w-3xl text-center">
       <h1 class="tv-h1 mt-s-3 mx-auto reveal reveal-delay-1">Inquiries welcome.</h1>
       <p class="text-step-1 text-text-2 mt-s-5 mx-auto reveal reveal-delay-2" style="max-width: 52ch;">
@@ -18,7 +18,7 @@ const m = metrics;
       </p>
 
       <div class="mt-s-7 reveal reveal-delay-3">
-        <a href="mailto:jesse@thornveil.ai" class="tv-btn tv-btn--primary text-step-0" style="padding: var(--s-4) var(--s-6);">
+        <a href="mailto:jesse@thornveil.ai" aria-label="Email jesse@thornveil.ai" class="tv-btn tv-btn--primary text-step-0 contact-email" style="padding: var(--s-4) var(--s-6);">
           jesse@thornveil.ai
         </a>
         <p class="text-step-0 text-text-2 mt-s-3">
@@ -31,9 +31,9 @@ const m = metrics;
       </div>
 
       <div class="mt-s-6 flex flex-wrap justify-center gap-s-5 reveal reveal-delay-3">
-        <a href="https://www.linkedin.com/company/thornveil-llc" target="_blank" rel="noopener" class="tv-nav-link">LinkedIn — Thornveil ↗</a>
-        <a href="https://www.linkedin.com/in/jeranaias/" target="_blank" rel="noopener" class="tv-nav-link">LinkedIn — Jesse ↗</a>
-        <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" class="tv-nav-link">GitHub — thornveil-ai ↗</a>
+        <a href="https://www.linkedin.com/company/thornveil-llc" target="_blank" rel="noopener" class="tv-nav-link contact-social">LinkedIn — Thornveil ↗</a>
+        <a href="https://www.linkedin.com/in/jeranaias/" target="_blank" rel="noopener" class="tv-nav-link contact-social">LinkedIn — Jesse ↗</a>
+        <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" class="tv-nav-link contact-social">GitHub — thornveil-ai ↗</a>
       </div>
     </div>
   </section>
@@ -117,3 +117,55 @@ const m = metrics;
     </div>
   </section>
 </BaseLayout>
+
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+
+<style>
+  .contact-email {
+    min-height: 44px;
+    text-transform: none;
+    letter-spacing: 0.03em;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px;
+    margin: -8px;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .tv-tile dd,
+  .tv-tile a {
+    overflow-wrap: anywhere;
+  }
+
+  .tv-tile a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  @media (max-width: 767px) {
+    .contact-hero {
+      padding-top: 48px;
+      padding-bottom: 56px;
+    }
+
+    .contact-hero .tv-h1 {
+      font-size: clamp(2.35rem, 12vw, 2.7rem);
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+    }
+
+    .tv-h2 {
+      font-size: clamp(1.72rem, 8vw, 2.15rem);
+      line-height: 1.12;
+      overflow-wrap: anywhere;
+    }
+  }
+</style>

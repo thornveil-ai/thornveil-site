@@ -59,7 +59,7 @@ const meta = [
   description="Thornveil LLC is hiring a co-founder to run the federal sales motion for a 10-system defense-AI portfolio. Senior offensive cyber operator with post-uniform defense-AI startup experience."
 >
   <!-- HERO / JOB HEADER -->
-  <section class="tv-section pt-s-11">
+  <section class="tv-section pt-s-11 cofounder-hero">
     <div class="tv-container max-w-4xl">
       <div class="flex items-center gap-s-3 mb-s-5 flex-wrap reveal">
         <span class="tv-pill tv-pill--live">
@@ -76,19 +76,19 @@ const meta = [
         Technical substrate already shipped.
       </p>
 
-      <div class="mt-s-9 grid grid-cols-2 md:grid-cols-4 gap-s-3 reveal reveal-delay-3">
-        {meta.map((p) => (
-          <div class="tv-tile" style="padding: var(--s-4);">
-            <div class="font-mono text-step--1 tracking-[0.12em] uppercase text-text-3">{p.label}</div>
-            <div class="text-step-0 text-text mt-s-2">{p.value}</div>
-          </div>
-        ))}
-      </div>
-
       <div class="mt-s-7 flex flex-wrap gap-s-3 reveal reveal-delay-4">
         <a href="#apply" class="tv-btn tv-btn--primary">Apply →</a>
         <a href="#substrate" class="tv-btn tv-btn--secondary">Verify the substrate first</a>
       </div>
+
+      <dl class="mt-s-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-s-3 reveal reveal-delay-3">
+        {meta.map((p) => (
+          <div class="tv-tile" style="padding: var(--s-4);">
+            <dt class="font-mono text-step--1 tracking-[0.12em] uppercase text-text-3">{p.label}</dt>
+            <dd class="text-step-0 text-text mt-s-2">{p.value}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
   </section>
 
@@ -201,7 +201,7 @@ const meta = [
       </div>
 
       <div class="text-center mt-s-6 reveal reveal-delay-2">
-        <a href="mailto:jesse@thornveil.ai?subject=Co-founder%20application" class="tv-btn tv-btn--primary text-step-0" style="padding: var(--s-4) var(--s-7);">
+        <a href="mailto:jesse@thornveil.ai?subject=Co-founder%20application" aria-label="Email jesse@thornveil.ai to apply as co-founder" class="tv-btn tv-btn--primary text-step-0 cofounder-email" style="padding: var(--s-4) var(--s-7);">
           jesse@thornveil.ai
         </a>
         <p class="font-mono text-step--1 tracking-[0.12em] uppercase text-text-3 mt-s-3">
@@ -242,3 +242,44 @@ const meta = [
     </div>
   </section>
 </BaseLayout>
+
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+
+<style>
+  .cofounder-hero .tv-btn,
+  .cofounder-email {
+    min-height: 44px;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .cofounder-email {
+    text-transform: none;
+    letter-spacing: 0.03em;
+    overflow-wrap: anywhere;
+  }
+
+  .tv-tile {
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 767px) {
+    .cofounder-hero {
+      padding-top: 48px;
+      padding-bottom: 56px;
+    }
+
+    .cofounder-hero .tv-h1 {
+      font-size: clamp(2.3rem, 11.5vw, 2.65rem);
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+    }
+
+    .tv-h2 {
+      font-size: clamp(1.72rem, 8vw, 2.15rem);
+      line-height: 1.12;
+      overflow-wrap: anywhere;
+    }
+  }
+</style>
