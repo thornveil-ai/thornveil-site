@@ -241,6 +241,32 @@ const relationships = (id: string) => edges
   @media (prefers-reduced-motion: reduce) {
     .constellation-glow { animation: none; }
   }
+  @media (max-width: 720px) {
+    .constellation-scroll {
+      position: relative;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      scrollbar-color: var(--signal-line) var(--bg-inset);
+      scrollbar-width: thin;
+    }
+    .constellation-scroll::after {
+      content: 'SWIPE TO EXPLORE GRAPH  →';
+      position: sticky;
+      left: 0;
+      bottom: 0;
+      display: block;
+      width: max-content;
+      margin: 0 0 .5rem .75rem;
+      padding: .3rem .5rem;
+      color: var(--signal-text);
+      background: var(--bg-inset);
+      border: 1px solid var(--signal-line);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: .13em;
+    }
+    .constellation-instructions { margin-bottom: var(--s-3); }
+  }
 
 </style>
 

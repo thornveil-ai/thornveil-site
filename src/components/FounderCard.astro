@@ -82,6 +82,30 @@ const dd214Days = daysUntil(m.company.directContractsOpenISO);
         </div>
       </div>
     </div>
+    <details class="founder-disclosure">
+      <summary>
+        <span>
+          <span class="founder-disclosure-kicker">The founder</span>
+          <strong>Jesse Morgan — eight years SIGINT, ten engineering systems, one company.</strong>
+        </span>
+        <span class="founder-disclosure-mark" aria-hidden="true">+</span>
+      </summary>
+      <div class="founder-disclosure-content">
+        <div class="founder-disclosure-meta">
+          <span>STAFF SGT · USMC</span><span>SIGINT · TS/SCI</span><span class="tabular">DD-214 · T −{dd214Days}d</span>
+        </div>
+        <div class="founder-bullets">
+          <div class="founder-bullet"><span class="founder-bullet-tag">SERVICE</span><span>USMC Staff Sergeant · 8+ years · 6 countries deployed · national-level intelligence reporting</span></div>
+          <div class="founder-bullet"><span class="founder-bullet-tag">DISCIPLINE</span><span>Signals Intelligence · TS/SCI · BA Arabic, Defense Language Institute</span></div>
+          <div class="founder-bullet"><span class="founder-bullet-tag">BUILD</span><span>Started Thornveil January 2026 · {m.portfolio.totalSystems} engineering systems by May 2026 · two Apache-2.0 OSS releases</span></div>
+          <div class="founder-bullet"><span class="founder-bullet-tag">POSTURE</span><span>Evaluation engagements active. Direct contracts open {m.company.directContractsOpen}.</span></div>
+        </div>
+        <div class="mt-s-5 flex flex-wrap gap-s-3">
+          <a href="/about" class="tv-nav-link">Full founder narrative →</a>
+          <a href="https://github.com/thornveil-ai" target="_blank" rel="noopener" class="tv-nav-link">Verify the work ↗</a>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -89,6 +113,7 @@ const dd214Days = daysUntil(m.company.directContractsOpenISO);
   .founder-card {
     padding: var(--s-7);
   }
+  .founder-disclosure { display: none; }
   .founder-grid {
     display: grid;
     grid-template-columns: 220px 1fr;
@@ -251,6 +276,43 @@ const dd214Days = daysUntil(m.company.directContractsOpenISO);
   }
 
   @media (max-width: 820px) {
+    .founder-card { display: none; }
+    .founder-disclosure {
+      display: block;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .founder-disclosure summary {
+      min-height: 5.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-4);
+      cursor: pointer;
+      list-style: none;
+    }
+    .founder-disclosure summary::-webkit-details-marker { display: none; }
+    .founder-disclosure summary:focus-visible {
+      outline: 2px solid var(--signal-text);
+      outline-offset: 4px;
+    }
+    .founder-disclosure-kicker {
+      display: block;
+      margin-bottom: var(--s-2);
+      color: var(--signal-text);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .founder-disclosure strong { display: block; font-size: var(--step-1); line-height: 1.15; }
+    .founder-disclosure-mark { color: var(--signal-text); font-size: 1.5rem; }
+    .founder-disclosure[open] .founder-disclosure-mark { transform: rotate(45deg); }
+    .founder-disclosure-content { padding: 0 0 var(--s-5); }
+    .founder-disclosure-meta {
+      display: flex; flex-wrap: wrap; gap: var(--s-2); margin-bottom: var(--s-4);
+      color: var(--text-3); font-family: var(--font-mono); font-size: 9px; letter-spacing: .1em;
+    }
     .founder-grid {
       grid-template-columns: 1fr;
       gap: var(--s-5);

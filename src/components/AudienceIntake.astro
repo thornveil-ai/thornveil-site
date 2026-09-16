@@ -69,7 +69,7 @@ function mailtoHref(t) {
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-s-5">
+    <div class="audience-desktop grid grid-cols-1 md:grid-cols-3 gap-s-5">
       {tracks.map((t, i) => (
         <a
           href={mailtoHref(t)}
@@ -89,6 +89,26 @@ function mailtoHref(t) {
         </a>
       ))}
     </div>
+    <div class="audience-mobile">
+      {tracks.map((t, i) => (
+        <details class="audience-disclosure">
+          <summary>
+            <span>
+              <span class="audience-number">{String(i + 1).padStart(2, '0')} · {t.id.toUpperCase()}</span>
+              <strong>{t.title}</strong>
+              <span class="audience-sub">{t.sub}</span>
+            </span>
+            <span class="audience-disclosure-mark" aria-hidden="true">+</span>
+          </summary>
+          <div>
+            <p class="text-step-0 text-text-2">{t.body}</p>
+            <a href={mailtoHref(t)} data-track={t.id} class={`tv-btn tv-btn--secondary plausible-event-name=Audience+${t.id}`}>
+              {t.cta} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </details>
+      ))}
+    </div>
   </div>
 </section>
 
@@ -96,6 +116,7 @@ function mailtoHref(t) {
   .audience-card {
     transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
   }
+  .audience-mobile { display: none; }
   .audience-card:hover {
     border-color: var(--signal-line);
     background: var(--bg-inset);
@@ -111,5 +132,38 @@ function mailtoHref(t) {
   }
   .audience-card:hover .audience-arrow {
     transform: translateX(4px);
+  }
+  @media (max-width: 767px) {
+    .audience-mobile { display: block; border-top: 1px solid var(--line); }
+    .audience-disclosure {
+      display: block;
+      border-bottom: 1px solid var(--line);
+    }
+    .audience-disclosure summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-3);
+      min-height: 5.5rem;
+      cursor: pointer;
+      list-style: none;
+    }
+    .audience-disclosure summary::-webkit-details-marker { display: none; }
+    .audience-disclosure summary:focus-visible { outline: 2px solid var(--signal-text); outline-offset: -2px; }
+    .audience-number, .audience-sub {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .audience-number { margin-bottom: var(--s-1); color: var(--signal-text); }
+    .audience-sub { margin-top: var(--s-1); color: var(--text-3); }
+    .audience-disclosure strong { font-size: var(--step-1); line-height: 1.1; }
+    .audience-disclosure-mark { color: var(--signal-text); font-size: 1.4rem; }
+    .audience-disclosure[open] .audience-disclosure-mark { transform: rotate(45deg); }
+    .audience-disclosure > div { padding: 0 0 var(--s-5); }
+    .audience-disclosure .tv-btn { width: 100%; justify-content: space-between; margin-top: var(--s-4); }
+    .audience-desktop { display: none; }
   }
 </style>

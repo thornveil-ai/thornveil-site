@@ -38,7 +38,7 @@ const myceliumRtpDate = m.systems.mycelium.rtpDate;
 >
   <!-- ============================== HERO ============================== -->
   <section
-    class="relative w-full overflow-hidden"
+    class="hero-section relative w-full overflow-hidden"
     style="background: var(--bg-inset); min-height: 100vh;"
   >
     <!-- Always present: visible before hydration, without JS, or if WebGL fails. -->
@@ -61,13 +61,13 @@ const myceliumRtpDate = m.systems.mycelium.rtpDate;
 
     <!-- Foreground content. Fixed at 100vh; the WebGL mesh sits behind,
          the H1 + lead + CTAs are the only foreground elements. -->
-    <div class="relative tv-container pt-s-11 pb-s-9 flex flex-col justify-center" style="height: 100vh; min-height: 640px;">
+    <div class="hero-content relative tv-container pt-s-11 pb-s-9 flex flex-col justify-center" style="height: 100vh; min-height: 640px;">
       <h1 class="tv-h1 line-reveal" style="max-width: 18ch;">
         <span>Sovereign AI</span>
         <span>you can run in a SCIF.</span>
       </h1>
 
-      <p class="tv-lead mt-s-5 reveal reveal-delay-2">
+      <p class="hero-lead tv-lead mt-s-5 reveal reveal-delay-2">
         Ten federally-fit systems shipped solo while active-duty USMC.
         The mesh on this page is one of them — Mycelium, surviving when half its workers die.
       </p>
@@ -150,9 +150,12 @@ const myceliumRtpDate = m.systems.mycelium.rtpDate;
           Hover any node to see what it depends on, and what depends on it.
         </p>
       </div>
-      <div class="reveal reveal-delay-3">
+      <homepage-graph>
+      <details open class="homepage-constellation">
+        <summary>Explore the system dependency graph <span aria-hidden="true">+</span></summary>
         <SystemsConstellation />
-      </div>
+      </details>
+      </homepage-graph>
 
       <div class="mt-s-7 flex justify-center reveal reveal-delay-4">
         <a href="/systems" class="tv-btn tv-btn--secondary">
@@ -208,6 +211,75 @@ const myceliumRtpDate = m.systems.mycelium.rtpDate;
   </section>
 </BaseLayout>
 
+<style>
+  .homepage-constellation > summary { display: none; }
+  homepage-graph { display: block; }
+  @media (max-width: 720px) {
+    .hero-section { min-height: 0 !important; }
+    .hero-content {
+      height: auto !important;
+      min-height: 0 !important;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      justify-content: center;
+    }
+    .hero-content h1 { max-width: 18ch !important; font-size: clamp(2rem, 9.5vw, 2.55rem); line-height: 1.08; }
+    .hero-lead { max-width: 35ch; font-size: 1rem; margin-top: 1.25rem; }
+    .hero-content > div { margin-top: 1.5rem; }
+    .hero-content .tv-btn--primary {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .hero-content .tv-btn--secondary {
+      width: 100%;
+      justify-content: center;
+      padding-inline: 0;
+      border-color: transparent;
+      background: transparent;
+      white-space: normal;
+      text-align: center;
+    }
+    .homepage-constellation {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .homepage-constellation > summary {
+      display: flex;
+      min-height: 4rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-3);
+      cursor: pointer;
+      color: var(--signal-text);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      list-style: none;
+    }
+    .homepage-constellation > summary::-webkit-details-marker { display: none; }
+    .homepage-constellation > summary:focus-visible { outline: 2px solid var(--signal-text); outline-offset: -2px; }
+    .homepage-constellation[open] > summary span { transform: rotate(45deg); }
+    .homepage-constellation > systems-constellation { padding-bottom: var(--s-4); }
+  }
+</style>
+
 <script>
   import '../scripts/page-motion-entry.js';
+
+  // Native disclosure stays open without scripts; only phones start collapsed.
+  class HomepageGraph extends HTMLElement {
+    controller;
+    connectedCallback() {
+      this.controller?.abort();
+      this.controller = new AbortController();
+      const details = this.querySelector('details');
+      const mobile = matchMedia('(max-width: 720px)');
+      const update = () => { if (details) details.open = !mobile.matches; };
+      update();
+      mobile.addEventListener('change', update, { signal: this.controller.signal });
+    }
+    disconnectedCallback() { this.controller?.abort(); }
+  }
+  if (!customElements.get('homepage-graph')) customElements.define('homepage-graph', HomepageGraph);
 </script>

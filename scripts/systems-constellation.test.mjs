@@ -108,6 +108,9 @@ test('constellation supports pointer, keyboard, touch, and returning navigation'
     await waitFor(`location.pathname === '/' && ${root}?.controller !== undefined`);
     await command('Emulation.setDeviceMetricsOverride', { width: 375, height: 812, deviceScaleFactor: 1, mobile: true });
     await command('Emulation.setTouchEmulationEnabled', { enabled: true });
+    // Homepage presents the graph as an optional native disclosure on phones.
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    await evaluate(`{ const disclosure = ${root}.closest('details'); if (disclosure) disclosure.open = true; }`);
     await evaluate(`${button('navigator')}.scrollIntoView({block:'center'})`);
     const bounds = await evaluate(`(() => { const r = ${button('navigator')}.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2,height:r.height}; })()`);
     assert.ok(bounds.height >= 44);
