@@ -6,12 +6,33 @@ not an adopted retention policy or legal opinion.
 ## Owner-confirmed facts
 
 - The owner personally operates Thornveil in Florida, describes it as registered
-  in Florida, and targets a US audience. The exact registered legal identity and
-  entity type have not been established; do not infer an LLC or corporation.
+  in Florida, and targets a US audience. The subsequent response identifies
+  Thornveil LLC, a Florida limited liability company, based on the Workspace
+  organization name. The exact registered identity still needs independent
+  confirmation; a Workspace name is not registration evidence.
 - Google Workspace provides the contact mailbox. Only the owner has mailbox access.
 - The owner has not set up a Plausible account.
 - The owner does not know the provider settings or retention practices and wants
   to establish a policy. Netlify was suggested tentatively, not confirmed.
+
+## Subsequent owner response — evidence limits
+
+- The response describes a single-owner AI infrastructure business serving a
+  US-wide audience, including positioning for restricted/offline environments.
+  Website positioning is not proof of actual customer deployments or data handling.
+- The response reports no knowing collection of children's, health, financial
+  or biometric data based on site content and forms. This does not establish
+  what arrives in unsolicited email or what separate products process.
+- It reports no personal-data sale/sharing, targeted advertising or affiliates.
+  “No sharing” must not be used as a blanket public claim: Workspace and other
+  service providers process data, and statutory sale/sharing definitions need review.
+- Revenue and annual numbers of people whose data is processed remain unknown.
+  A reported few hundred Netlify requests per week is not a count of people,
+  proof of legal thresholds, or independent verification of the live host.
+- No legal or retention advice has been obtained. Applicable requirements need
+  qualified review; no coverage or exemption determination has been made.
+- The owner approved developing the proposal for review only, not adoption or
+  deletion. See [the draft schedule and procedure](privacy-retention-request-draft.md).
 
 ## Documentation checked
 
