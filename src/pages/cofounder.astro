@@ -108,7 +108,7 @@ const meta = [
       <p class="text-step-0 text-text-2 mt-s-4 mb-s-6 reveal reveal-delay-2" style="max-width: 64ch;">
         Review the public companion repositories before deciding whether to join.
       </p>
-      <div class="space-y-s-3 reveal reveal-delay-3">
+      <div class="space-y-s-3">
         {substrate.map((s) => (
           <a href={s.href} target="_blank" rel="noopener" class="tv-tile flex items-start gap-s-4 flex-wrap">
             <div class="flex-1 min-w-0">
@@ -246,6 +246,7 @@ const meta = [
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 
 <style>
+  .cofounder-hero dt { color: var(--text-2); }
   .cofounder-hero .tv-btn,
   .cofounder-email {
     min-height: 44px;
@@ -265,6 +266,8 @@ const meta = [
   }
 
   @media (max-width: 767px) {
+    #substrate .tv-tile { flex-direction: column; }
+    #substrate .tv-pill { max-width: 100%; white-space: normal; }
     .cofounder-hero {
       padding-top: 48px;
       padding-bottom: 56px;

@@ -1,0 +1,4518 @@
+{
+  "baseline": "4d851255332733170d3e52a76d96cde654113f27",
+  "workingTree": "diff --git a/src/pages/cofounder.astro b/src/pages/cofounder.astro\nindex dab5ef6..a184b33 100644\n--- a/src/pages/cofounder.astro\n+++ b/src/pages/cofounder.astro\n@@ -108,7 +108,7 @@ const meta = [\n       <p class=\"text-step-0 text-text-2 mt-s-4 mb-s-6 reveal reveal-delay-2\" style=\"max-width: 64ch;\">\n         Review the public companion repositories before deciding whether to join.\n       </p>\n-      <div class=\"space-y-s-3 reveal reveal-delay-3\">\n+      <div class=\"space-y-s-3\">\n         {substrate.map((s) => (\n           <a href={s.href} target=\"_blank\" rel=\"noopener\" class=\"tv-tile flex items-start gap-s-4 flex-wrap\">\n             <div class=\"flex-1 min-w-0\">\n@@ -246,6 +246,7 @@ const meta = [\n <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>\n \n <style>\n+  .cofounder-hero dt { color: var(--text-2); }\n   .cofounder-hero .tv-btn,\n   .cofounder-email {\n     min-height: 44px;\n@@ -265,6 +266,8 @@ const meta = [\n   }\n \n   @media (max-width: 767px) {\n+    #substrate .tv-tile { flex-direction: column; }\n+    #substrate .tv-pill { max-width: 100%; white-space: normal; }\n     .cofounder-hero {\n       padding-top: 48px;\n       padding-bottom: 56px;\ndiff --git a/src/pages/index.astro b/src/pages/index.astro\nindex 734b1db..9f20f9f 100644\n--- a/src/pages/index.astro\n+++ b/src/pages/index.astro\n@@ -212,6 +212,7 @@ const myceliumRtpDate = m.systems.mycelium.rtpDate;\n </BaseLayout>\n \n <style>\n+  h2 { overflow-wrap: anywhere; }\n   .homepage-constellation > summary { display: none; }\n   homepage-graph { display: block; }\n   @media (max-width: 720px) {\ndiff --git a/src/pages/mycelium.astro b/src/pages/mycelium.astro\nindex c6faa70..55da0c0 100644\n--- a/src/pages/mycelium.astro\n+++ b/src/pages/mycelium.astro\n@@ -380,6 +380,7 @@ $ cd mycelium\n </BaseLayout>\n \n <style>\n+  figcaption a { display: inline-flex; align-items: center; min-height: 44px; }\n   h1, h2, h3, p, li, .tv-btn, .tv-pill { overflow-wrap: anywhere; }\n   .tv-pill { white-space: normal; max-width: 100%; }\n   .grid > *, .tv-tile { min-width: 0; }\ndiff --git a/src/pages/research.astro b/src/pages/research.astro\nindex da9f148..752942b 100644\n--- a/src/pages/research.astro\n+++ b/src/pages/research.astro\n@@ -121,6 +121,7 @@ const totals = [\n </BaseLayout>\n \n <style>\n+  h1 { overflow-wrap: anywhere; }\n   .paper-card {\n     overflow-wrap: anywhere;\n   }\ndiff --git a/src/pages/systems.astro b/src/pages/systems.astro\nindex b860c8b..db1d38a 100644\n--- a/src/pages/systems.astro\n+++ b/src/pages/systems.astro\n@@ -281,6 +281,7 @@ const systems = [\n   .system-card { min-width: 0; overflow-wrap: anywhere; }\n   .system-card .tv-pill { white-space: normal; }\n   .system-card .viz-panel { flex-shrink: 0; }\n+  .system-card > div:last-child > a { display: inline-flex; align-items: center; min-height: 44px; }\n   @media (max-width: 767px) {\n     .system-card .viz-panel { height: 165px; margin-inline: 0; }\n   }\n",
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/152.0.7977.64",
+    "revision": "@506c834ecceaa943c5f41e6cfe7f68acb5c45346",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+    "jsVersion": "15.2.124.18"
+  },
+  "captured": "2026-09-16T00:23:13.308Z",
+  "origin": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev",
+  "rows": [
+    {
+      "route": "/",
+      "profile": "320",
+      "width": 320,
+      "scrollWidth": 305,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 10,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.7806",
+            "timestamp": 5819.950344,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "320-home.jpg"
+    },
+    {
+      "route": "/systems",
+      "profile": "320",
+      "width": 320,
+      "scrollWidth": 305,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.7906",
+            "timestamp": 5825.421236,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "320-systems.jpg"
+    },
+    {
+      "route": "/defense",
+      "profile": "320",
+      "width": 320,
+      "scrollWidth": 305,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.7986",
+            "timestamp": 5833.273657,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "320-defense.jpg"
+    },
+    {
+      "route": "/mycelium",
+      "profile": "320",
+      "width": 320,
+      "scrollWidth": 305,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.8059",
+            "timestamp": 5839.508995,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "320-mycelium.jpg"
+    },
+    {
+      "route": "/research",
+      "profile": "320",
+      "width": 320,
+      "scrollWidth": 312,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.8138",
+            "timestamp": 5846.862734,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "320-research.jpg"
+    },
+    {
+      "route": "/about",
+      "profile": "320",
+      "width": 320,
+      "scrollWidth": 305,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.8211",
+            "timestamp": 5852.49451,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "320-about.jpg"
+    },
+    {
+      "route": "/cofounder",
+      "profile": "320",
+      "capturedAt": "2026-09-16T00:33:00.987Z",
+      "width": 320,
+      "scrollWidth": 305,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.14834",
+            "timestamp": 6399.370195,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "320-cofounder.jpg"
+    },
+    {
+      "route": "/contact",
+      "profile": "320",
+      "width": 320,
+      "scrollWidth": 305,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.8362",
+            "timestamp": 5863.710345,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "320-contact.jpg"
+    },
+    {
+      "route": "/privacy",
+      "profile": "320",
+      "width": 320,
+      "scrollWidth": 305,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.8437",
+            "timestamp": 5867.699914,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "320-privacy.jpg"
+    },
+    {
+      "route": "/404",
+      "profile": "320",
+      "width": 320,
+      "scrollWidth": 305,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/404",
+            "status": 404
+          }
+        },
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.8490",
+            "timestamp": 5872.163681,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "320-404.jpg"
+    },
+    {
+      "route": "/",
+      "profile": "360",
+      "width": 360,
+      "scrollWidth": 345,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 10,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.8563",
+            "timestamp": 5875.730191,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "360-home.jpg"
+    },
+    {
+      "route": "/systems",
+      "profile": "360",
+      "width": 360,
+      "scrollWidth": 345,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.8642",
+            "timestamp": 5880.840122,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "360-systems.jpg"
+    },
+    {
+      "route": "/defense",
+      "profile": "360",
+      "width": 360,
+      "scrollWidth": 345,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.8719",
+            "timestamp": 5887.916268,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "360-defense.jpg"
+    },
+    {
+      "route": "/mycelium",
+      "profile": "360",
+      "width": 360,
+      "scrollWidth": 345,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.8792",
+            "timestamp": 5893.89096,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "360-mycelium.jpg"
+    },
+    {
+      "route": "/research",
+      "profile": "360",
+      "width": 360,
+      "scrollWidth": 345,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.8849",
+            "timestamp": 5900.8694,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "360-research.jpg"
+    },
+    {
+      "route": "/about",
+      "profile": "360",
+      "width": 360,
+      "scrollWidth": 345,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.8922",
+            "timestamp": 5906.369789,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "360-about.jpg"
+    },
+    {
+      "route": "/cofounder",
+      "profile": "360",
+      "capturedAt": "2026-09-16T00:33:07.222Z",
+      "width": 360,
+      "scrollWidth": 345,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.14907",
+            "timestamp": 6406.082512,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "360-cofounder.jpg"
+    },
+    {
+      "route": "/contact",
+      "profile": "360",
+      "width": 360,
+      "scrollWidth": 345,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.9056",
+            "timestamp": 5919.043956,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "360-contact.jpg"
+    },
+    {
+      "route": "/privacy",
+      "profile": "360",
+      "width": 360,
+      "scrollWidth": 345,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.9129",
+            "timestamp": 5923.010419,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "360-privacy.jpg"
+    },
+    {
+      "route": "/404",
+      "profile": "360",
+      "width": 360,
+      "scrollWidth": 345,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/404",
+            "status": 404
+          }
+        },
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.9200",
+            "timestamp": 5927.350334,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "360-404.jpg"
+    },
+    {
+      "route": "/",
+      "profile": "390",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 10,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.9273",
+            "timestamp": 5930.914092,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "390-home.jpg"
+    },
+    {
+      "route": "/systems",
+      "profile": "390",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.9352",
+            "timestamp": 5936.056936,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "390-systems.jpg"
+    },
+    {
+      "route": "/defense",
+      "profile": "390",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.9429",
+            "timestamp": 5942.935838,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "390-defense.jpg"
+    },
+    {
+      "route": "/mycelium",
+      "profile": "390",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.9502",
+            "timestamp": 5949.737694,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "390-mycelium.jpg"
+    },
+    {
+      "route": "/research",
+      "profile": "390",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.9577",
+            "timestamp": 5956.766515,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "390-research.jpg"
+    },
+    {
+      "route": "/about",
+      "profile": "390",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.9650",
+            "timestamp": 5962.260641,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "390-about.jpg"
+    },
+    {
+      "route": "/cofounder",
+      "profile": "390",
+      "capturedAt": "2026-09-16T00:33:13.207Z",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.14980",
+            "timestamp": 6412.146433,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "390-cofounder.jpg"
+    },
+    {
+      "route": "/contact",
+      "profile": "390",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.9799",
+            "timestamp": 5973.433395,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "390-contact.jpg"
+    },
+    {
+      "route": "/privacy",
+      "profile": "390",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.9872",
+            "timestamp": 5977.452086,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "390-privacy.jpg"
+    },
+    {
+      "route": "/404",
+      "profile": "390",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/404",
+            "status": 404
+          }
+        },
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.9943",
+            "timestamp": 5981.687634,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "390-404.jpg"
+    },
+    {
+      "route": "/",
+      "profile": "430",
+      "width": 430,
+      "scrollWidth": 415,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 10,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10029",
+            "timestamp": 5985.094882,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "430-home.jpg"
+    },
+    {
+      "route": "/systems",
+      "profile": "430",
+      "width": 430,
+      "scrollWidth": 415,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10097",
+            "timestamp": 5990.036321,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "430-systems.jpg"
+    },
+    {
+      "route": "/defense",
+      "profile": "430",
+      "width": 430,
+      "scrollWidth": 415,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10177",
+            "timestamp": 5997.192156,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "430-defense.jpg"
+    },
+    {
+      "route": "/mycelium",
+      "profile": "430",
+      "width": 430,
+      "scrollWidth": 415,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10253",
+            "timestamp": 6003.225674,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "430-mycelium.jpg"
+    },
+    {
+      "route": "/research",
+      "profile": "430",
+      "width": 430,
+      "scrollWidth": 415,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10309",
+            "timestamp": 6010.250326,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "430-research.jpg"
+    },
+    {
+      "route": "/about",
+      "profile": "430",
+      "width": 430,
+      "scrollWidth": 415,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10382",
+            "timestamp": 6015.318144,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "430-about.jpg"
+    },
+    {
+      "route": "/cofounder",
+      "profile": "430",
+      "capturedAt": "2026-09-16T00:33:19.128Z",
+      "width": 430,
+      "scrollWidth": 415,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.15053",
+            "timestamp": 6418.017517,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "430-cofounder.jpg"
+    },
+    {
+      "route": "/contact",
+      "profile": "430",
+      "width": 430,
+      "scrollWidth": 415,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10520",
+            "timestamp": 6025.555705,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "430-contact.jpg"
+    },
+    {
+      "route": "/privacy",
+      "profile": "430",
+      "width": 430,
+      "scrollWidth": 415,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10576",
+            "timestamp": 6029.314689,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "430-privacy.jpg"
+    },
+    {
+      "route": "/404",
+      "profile": "430",
+      "width": 430,
+      "scrollWidth": 415,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/404",
+            "status": 404
+          }
+        },
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10629",
+            "timestamp": 6033.555738,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "430-404.jpg"
+    },
+    {
+      "route": "/",
+      "profile": "768",
+      "width": 768,
+      "scrollWidth": 753,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Defense",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Research",
+          "w": 74.375,
+          "h": 20.015625
+        },
+        {
+          "label": "Co-founder",
+          "w": 92.953125,
+          "h": 20.015625
+        },
+        {
+          "label": "About",
+          "w": 46.484375,
+          "h": 20.015625
+        },
+        {
+          "label": "Contact",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Privacy",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 74.390625,
+          "h": 20.015625
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 92.984375,
+          "h": 20.015625
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 167.3125,
+          "h": 20.015625
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 11,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10700",
+            "timestamp": 6036.930162,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "768-home.jpg"
+    },
+    {
+      "route": "/systems",
+      "profile": "768",
+      "width": 768,
+      "scrollWidth": 753,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Defense",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Research",
+          "w": 74.375,
+          "h": 20.015625
+        },
+        {
+          "label": "Co-founder",
+          "w": 92.953125,
+          "h": 20.015625
+        },
+        {
+          "label": "About",
+          "w": 46.484375,
+          "h": 20.015625
+        },
+        {
+          "label": "Contact",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Privacy",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 74.390625,
+          "h": 20.015625
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 92.984375,
+          "h": 20.015625
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 167.3125,
+          "h": 20.015625
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10804",
+            "timestamp": 6043.20815,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "768-systems.jpg"
+    },
+    {
+      "route": "/defense",
+      "profile": "768",
+      "width": 768,
+      "scrollWidth": 753,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Defense",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Research",
+          "w": 74.375,
+          "h": 20.015625
+        },
+        {
+          "label": "Co-founder",
+          "w": 92.953125,
+          "h": 20.015625
+        },
+        {
+          "label": "About",
+          "w": 46.484375,
+          "h": 20.015625
+        },
+        {
+          "label": "Contact",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Privacy",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 74.390625,
+          "h": 20.015625
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 92.984375,
+          "h": 20.015625
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 167.3125,
+          "h": 20.015625
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10884",
+            "timestamp": 6048.860146,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "768-defense.jpg"
+    },
+    {
+      "route": "/mycelium",
+      "profile": "768",
+      "width": 768,
+      "scrollWidth": 753,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Defense",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Research",
+          "w": 74.375,
+          "h": 20.015625
+        },
+        {
+          "label": "Co-founder",
+          "w": 92.953125,
+          "h": 20.015625
+        },
+        {
+          "label": "About",
+          "w": 46.484375,
+          "h": 20.015625
+        },
+        {
+          "label": "Contact",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Privacy",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 74.390625,
+          "h": 20.015625
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 92.984375,
+          "h": 20.015625
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 167.3125,
+          "h": 20.015625
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.10959",
+            "timestamp": 6053.714065,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "768-mycelium.jpg"
+    },
+    {
+      "route": "/research",
+      "profile": "768",
+      "width": 768,
+      "scrollWidth": 753,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Defense",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Research",
+          "w": 74.375,
+          "h": 20.015625
+        },
+        {
+          "label": "Co-founder",
+          "w": 92.953125,
+          "h": 20.015625
+        },
+        {
+          "label": "About",
+          "w": 46.484375,
+          "h": 20.015625
+        },
+        {
+          "label": "Contact",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Privacy",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 74.390625,
+          "h": 20.015625
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 92.984375,
+          "h": 20.015625
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 167.3125,
+          "h": 20.015625
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.11016",
+            "timestamp": 6060.671823,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "768-research.jpg"
+    },
+    {
+      "route": "/about",
+      "profile": "768",
+      "width": 768,
+      "scrollWidth": 753,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Defense",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Research",
+          "w": 74.375,
+          "h": 20.015625
+        },
+        {
+          "label": "Co-founder",
+          "w": 92.953125,
+          "h": 20.015625
+        },
+        {
+          "label": "About",
+          "w": 46.484375,
+          "h": 20.015625
+        },
+        {
+          "label": "Contact",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Privacy",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 74.390625,
+          "h": 20.015625
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 92.984375,
+          "h": 20.015625
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 167.3125,
+          "h": 20.015625
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.11089",
+            "timestamp": 6065.29297,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "768-about.jpg"
+    },
+    {
+      "route": "/cofounder",
+      "profile": "768",
+      "capturedAt": "2026-09-16T00:33:24.248Z",
+      "width": 768,
+      "scrollWidth": 753,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Defense",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Research",
+          "w": 74.375,
+          "h": 20.015625
+        },
+        {
+          "label": "Co-founder",
+          "w": 92.953125,
+          "h": 20.015625
+        },
+        {
+          "label": "About",
+          "w": 46.484375,
+          "h": 20.015625
+        },
+        {
+          "label": "Contact",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Privacy",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 74.390625,
+          "h": 20.015625
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 92.984375,
+          "h": 20.015625
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 167.3125,
+          "h": 20.015625
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.15126",
+            "timestamp": 6423.970322,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "768-cofounder.jpg"
+    },
+    {
+      "route": "/contact",
+      "profile": "768",
+      "width": 768,
+      "scrollWidth": 753,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Defense",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Research",
+          "w": 74.375,
+          "h": 20.015625
+        },
+        {
+          "label": "Co-founder",
+          "w": 92.953125,
+          "h": 20.015625
+        },
+        {
+          "label": "About",
+          "w": 46.484375,
+          "h": 20.015625
+        },
+        {
+          "label": "Contact",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Privacy",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 74.390625,
+          "h": 20.015625
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 92.984375,
+          "h": 20.015625
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 167.3125,
+          "h": 20.015625
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.11223",
+            "timestamp": 6074.828478,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "768-contact.jpg"
+    },
+    {
+      "route": "/privacy",
+      "profile": "768",
+      "width": 768,
+      "scrollWidth": 753,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Defense",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Research",
+          "w": 74.375,
+          "h": 20.015625
+        },
+        {
+          "label": "Co-founder",
+          "w": 92.953125,
+          "h": 20.015625
+        },
+        {
+          "label": "About",
+          "w": 46.484375,
+          "h": 20.015625
+        },
+        {
+          "label": "Contact",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Privacy",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 74.390625,
+          "h": 20.015625
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 92.984375,
+          "h": 20.015625
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 167.3125,
+          "h": 20.015625
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.11298",
+            "timestamp": 6078.594808,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "768-privacy.jpg"
+    },
+    {
+      "route": "/404",
+      "profile": "768",
+      "width": 768,
+      "scrollWidth": 753,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Defense",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Research",
+          "w": 74.375,
+          "h": 20.015625
+        },
+        {
+          "label": "Co-founder",
+          "w": 92.953125,
+          "h": 20.015625
+        },
+        {
+          "label": "About",
+          "w": 46.484375,
+          "h": 20.015625
+        },
+        {
+          "label": "Contact",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "Privacy",
+          "w": 65.078125,
+          "h": 20.015625
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 74.390625,
+          "h": 20.015625
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 92.984375,
+          "h": 20.015625
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 167.3125,
+          "h": 20.015625
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/404",
+            "status": 404
+          }
+        },
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.11351",
+            "timestamp": 6082.718184,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "768-404.jpg"
+    },
+    {
+      "route": "/",
+      "profile": "1280",
+      "width": 1280,
+      "scrollWidth": 1265,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Defense",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Research",
+          "w": 76.4375,
+          "h": 20.578125
+        },
+        {
+          "label": "Co-founder",
+          "w": 95.53125,
+          "h": 20.578125
+        },
+        {
+          "label": "About",
+          "w": 47.765625,
+          "h": 20.578125
+        },
+        {
+          "label": "Contact",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Privacy",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 76.453125,
+          "h": 20.578125
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 95.5625,
+          "h": 20.578125
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 171.96875,
+          "h": 20.578125
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 11,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.11422",
+            "timestamp": 6086.269291,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "1280-home.jpg"
+    },
+    {
+      "route": "/systems",
+      "profile": "1280",
+      "width": 1280,
+      "scrollWidth": 1265,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Defense",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Research",
+          "w": 76.4375,
+          "h": 20.578125
+        },
+        {
+          "label": "Co-founder",
+          "w": 95.53125,
+          "h": 20.578125
+        },
+        {
+          "label": "About",
+          "w": 47.765625,
+          "h": 20.578125
+        },
+        {
+          "label": "Contact",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Privacy",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 76.453125,
+          "h": 20.578125
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 95.5625,
+          "h": 20.578125
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 171.96875,
+          "h": 20.578125
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.11526",
+            "timestamp": 6093.146382,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "1280-systems.jpg"
+    },
+    {
+      "route": "/defense",
+      "profile": "1280",
+      "width": 1280,
+      "scrollWidth": 1265,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Defense",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Research",
+          "w": 76.4375,
+          "h": 20.578125
+        },
+        {
+          "label": "Co-founder",
+          "w": 95.53125,
+          "h": 20.578125
+        },
+        {
+          "label": "About",
+          "w": 47.765625,
+          "h": 20.578125
+        },
+        {
+          "label": "Contact",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Privacy",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 76.453125,
+          "h": 20.578125
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 95.5625,
+          "h": 20.578125
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 171.96875,
+          "h": 20.578125
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.11606",
+            "timestamp": 6099.042289,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "1280-defense.jpg"
+    },
+    {
+      "route": "/mycelium",
+      "profile": "1280",
+      "width": 1280,
+      "scrollWidth": 1265,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Defense",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Research",
+          "w": 76.4375,
+          "h": 20.578125
+        },
+        {
+          "label": "Co-founder",
+          "w": 95.53125,
+          "h": 20.578125
+        },
+        {
+          "label": "About",
+          "w": 47.765625,
+          "h": 20.578125
+        },
+        {
+          "label": "Contact",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Privacy",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 76.453125,
+          "h": 20.578125
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 95.5625,
+          "h": 20.578125
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 171.96875,
+          "h": 20.578125
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.11679",
+            "timestamp": 6104.107103,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "1280-mycelium.jpg"
+    },
+    {
+      "route": "/research",
+      "profile": "1280",
+      "width": 1280,
+      "scrollWidth": 1265,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Defense",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Research",
+          "w": 76.4375,
+          "h": 20.578125
+        },
+        {
+          "label": "Co-founder",
+          "w": 95.53125,
+          "h": 20.578125
+        },
+        {
+          "label": "About",
+          "w": 47.765625,
+          "h": 20.578125
+        },
+        {
+          "label": "Contact",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Privacy",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 76.453125,
+          "h": 20.578125
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 95.5625,
+          "h": 20.578125
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 171.96875,
+          "h": 20.578125
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.11758",
+            "timestamp": 6110.86875,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "1280-research.jpg"
+    },
+    {
+      "route": "/about",
+      "profile": "1280",
+      "width": 1280,
+      "scrollWidth": 1265,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Defense",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Research",
+          "w": 76.4375,
+          "h": 20.578125
+        },
+        {
+          "label": "Co-founder",
+          "w": 95.53125,
+          "h": 20.578125
+        },
+        {
+          "label": "About",
+          "w": 47.765625,
+          "h": 20.578125
+        },
+        {
+          "label": "Contact",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Privacy",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 76.453125,
+          "h": 20.578125
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 95.5625,
+          "h": 20.578125
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 171.96875,
+          "h": 20.578125
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.11829",
+            "timestamp": 6115.516901,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "1280-about.jpg"
+    },
+    {
+      "route": "/cofounder",
+      "profile": "1280",
+      "capturedAt": "2026-09-16T00:33:29.685Z",
+      "width": 1280,
+      "scrollWidth": 1265,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Defense",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Research",
+          "w": 76.4375,
+          "h": 20.578125
+        },
+        {
+          "label": "Co-founder",
+          "w": 95.53125,
+          "h": 20.578125
+        },
+        {
+          "label": "About",
+          "w": 47.765625,
+          "h": 20.578125
+        },
+        {
+          "label": "Contact",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Privacy",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 76.453125,
+          "h": 20.578125
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 95.5625,
+          "h": 20.578125
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 171.96875,
+          "h": 20.578125
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.15199",
+            "timestamp": 6429.096128,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "1280-cofounder.jpg"
+    },
+    {
+      "route": "/contact",
+      "profile": "1280",
+      "width": 1280,
+      "scrollWidth": 1265,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Defense",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Research",
+          "w": 76.4375,
+          "h": 20.578125
+        },
+        {
+          "label": "Co-founder",
+          "w": 95.53125,
+          "h": 20.578125
+        },
+        {
+          "label": "About",
+          "w": 47.765625,
+          "h": 20.578125
+        },
+        {
+          "label": "Contact",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Privacy",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 76.453125,
+          "h": 20.578125
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 95.5625,
+          "h": 20.578125
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 171.96875,
+          "h": 20.578125
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.11980",
+            "timestamp": 6125.263341,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "1280-contact.jpg"
+    },
+    {
+      "route": "/privacy",
+      "profile": "1280",
+      "width": 1280,
+      "scrollWidth": 1265,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Defense",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Research",
+          "w": 76.4375,
+          "h": 20.578125
+        },
+        {
+          "label": "Co-founder",
+          "w": 95.53125,
+          "h": 20.578125
+        },
+        {
+          "label": "About",
+          "w": 47.765625,
+          "h": 20.578125
+        },
+        {
+          "label": "Contact",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Privacy",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 76.453125,
+          "h": 20.578125
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 95.5625,
+          "h": 20.578125
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 171.96875,
+          "h": 20.578125
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12055",
+            "timestamp": 6129.165847,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "1280-privacy.jpg"
+    },
+    {
+      "route": "/404",
+      "profile": "1280",
+      "width": 1280,
+      "scrollWidth": 1265,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [
+        {
+          "label": "Systems",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Defense",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Research",
+          "w": 76.4375,
+          "h": 20.578125
+        },
+        {
+          "label": "Co-founder",
+          "w": 95.53125,
+          "h": 20.578125
+        },
+        {
+          "label": "About",
+          "w": 47.765625,
+          "h": 20.578125
+        },
+        {
+          "label": "Contact",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "Privacy",
+          "w": 66.875,
+          "h": 20.578125
+        },
+        {
+          "label": "GitHub ↗",
+          "w": 76.453125,
+          "h": 20.578125
+        },
+        {
+          "label": "LinkedIn ↗",
+          "w": 95.5625,
+          "h": 20.578125
+        },
+        {
+          "label": "jesse@thornveil.ai",
+          "w": 171.96875,
+          "h": 20.578125
+        }
+      ],
+      "brokenImages": [],
+      "runningAnimations": 1,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/404",
+            "status": 404
+          }
+        },
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12112",
+            "timestamp": 6133.261674,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "1280-404.jpg"
+    },
+    {
+      "route": "/",
+      "profile": "landscape",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 10,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12165",
+            "timestamp": 6136.61258,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "landscape-home.jpg"
+    },
+    {
+      "route": "/systems",
+      "profile": "landscape",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12269",
+            "timestamp": 6144.207716,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "landscape-systems.jpg"
+    },
+    {
+      "route": "/defense",
+      "profile": "landscape",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12349",
+            "timestamp": 6154.795762,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "landscape-defense.jpg"
+    },
+    {
+      "route": "/mycelium",
+      "profile": "landscape",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12426",
+            "timestamp": 6163.021841,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "landscape-mycelium.jpg"
+    },
+    {
+      "route": "/research",
+      "profile": "landscape",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12483",
+            "timestamp": 6174.207382,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "landscape-research.jpg"
+    },
+    {
+      "route": "/about",
+      "profile": "landscape",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12556",
+            "timestamp": 6181.245759,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "landscape-about.jpg"
+    },
+    {
+      "route": "/cofounder",
+      "profile": "landscape",
+      "capturedAt": "2026-09-16T00:33:38.581Z",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.15272",
+            "timestamp": 6434.528109,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "landscape-cofounder.jpg"
+    },
+    {
+      "route": "/contact",
+      "profile": "landscape",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12709",
+            "timestamp": 6194.945163,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "landscape-contact.jpg"
+    },
+    {
+      "route": "/privacy",
+      "profile": "landscape",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12765",
+            "timestamp": 6199.819351,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "landscape-privacy.jpg"
+    },
+    {
+      "route": "/404",
+      "profile": "landscape",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/404",
+            "status": 404
+          }
+        },
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12818",
+            "timestamp": 6205.202174,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "landscape-404.jpg"
+    },
+    {
+      "route": "/",
+      "profile": "zoom-reflow",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 10,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12889",
+            "timestamp": 6209.242177,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "zoom-reflow-home.jpg"
+    },
+    {
+      "route": "/systems",
+      "profile": "zoom-reflow",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.12993",
+            "timestamp": 6215.913287,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "zoom-reflow-systems.jpg"
+    },
+    {
+      "route": "/defense",
+      "profile": "zoom-reflow",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.13073",
+            "timestamp": 6224.783111,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "zoom-reflow-defense.jpg"
+    },
+    {
+      "route": "/mycelium",
+      "profile": "zoom-reflow",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.13150",
+            "timestamp": 6232.080692,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "zoom-reflow-mycelium.jpg"
+    },
+    {
+      "route": "/research",
+      "profile": "zoom-reflow",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.13207",
+            "timestamp": 6241.617442,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "zoom-reflow-research.jpg"
+    },
+    {
+      "route": "/about",
+      "profile": "zoom-reflow",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.13278",
+            "timestamp": 6247.910337,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "zoom-reflow-about.jpg"
+    },
+    {
+      "route": "/cofounder",
+      "profile": "zoom-reflow",
+      "capturedAt": "2026-09-16T00:33:46.298Z",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.15343",
+            "timestamp": 6443.463802,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "zoom-reflow-cofounder.jpg"
+    },
+    {
+      "route": "/contact",
+      "profile": "zoom-reflow",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.13412",
+            "timestamp": 6260.387746,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "zoom-reflow-contact.jpg"
+    },
+    {
+      "route": "/privacy",
+      "profile": "zoom-reflow",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.13487",
+            "timestamp": 6265.015753,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "zoom-reflow-privacy.jpg"
+    },
+    {
+      "route": "/404",
+      "profile": "zoom-reflow",
+      "width": 640,
+      "scrollWidth": 625,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/404",
+            "status": 404
+          }
+        },
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.13540",
+            "timestamp": 6269.94905,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "zoom-reflow-404.jpg"
+    },
+    {
+      "route": "/",
+      "profile": "no-js",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [
+        "Pick your track.",
+        "Start with these four systems.",
+        "RigRun",
+        "Pyros",
+        "Mycelium",
+        "Auspex",
+        "Dependencies across the ten systems",
+        "Shipping log.",
+        "A patient build, in the open.",
+        "Want to review, or co-found?"
+      ],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 10,
+      "errors": [],
+      "screenshot": "no-js-home.jpg"
+    },
+    {
+      "route": "/systems",
+      "profile": "no-js",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [
+        "Ten engineering systems. One sovereign AI stack.",
+        "Signet",
+        "Alchemist",
+        "Pyros",
+        "Mycelium",
+        "RigRun",
+        "HawkStack",
+        "Meridian",
+        "Canopy",
+        "Auspex",
+        "Navigator",
+        "Built solo while on active duty",
+        "Review the work. Reach out."
+      ],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [],
+      "screenshot": "no-js-systems.jpg"
+    },
+    {
+      "route": "/defense",
+      "profile": "no-js",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [
+        "Cleared for the next federal procurement window.",
+        "Mycelium",
+        "Auspex",
+        "RigRun",
+        "HawkStack",
+        "Meridian",
+        "Canopy",
+        "Signet",
+        "What's available, and when.",
+        "Federal program offices, primes, evaluators."
+      ],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [],
+      "screenshot": "no-js-defense.jpg"
+    },
+    {
+      "route": "/mycelium",
+      "profile": "no-js",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [
+        "AI that keeps thinkingwhen half the team goes dark.",
+        "Three things you can verify.",
+        "Survives worker loss.",
+        "OpenAI-compatible chat endpoint.",
+        "Tamper-evident audit chain.",
+        "How zero-vector substitution works",
+        "Same screen. Three seconds apart.",
+        "R2I-compliant by design.",
+        "Hardware detection assigns a tier.",
+        "Operator UX on any laptop. No GPU.",
+        "Implementation status and pending validation",
+        "v1.0.0 tagged",
+        "Operator UI + ops dashboard",
+        "Substitute-on-failure dispatch",
+        "NIST 800-53 controls mapping",
+        "Physical ruggedized-tablet validation",
+        "NIST FIPS 140-3 certification",
+        "Build the AI tier of your stack on Mycelium."
+      ],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [],
+      "screenshot": "no-js-mycelium.jpg"
+    },
+    {
+      "route": "/research",
+      "profile": "no-js",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [
+        "Evidence, not adjectives.",
+        "Technical reports",
+        "Selective-Buffer Streaming Safety for AI Coding Agents",
+        "Zeroth-Order Preference Optimization on 100B+ Quantized MoE Models via Live Inference API",
+        "Compressed KV Cache Attention as a Plugin Backend",
+        "Speculative Decoding Fails on Sparse MoE: A Negative Result and Practical Multi-Model Cascade",
+        "RigRun: Complete Local AI Infrastructure on a Single GPU",
+        "What's actually defensible.",
+        "Substitute-on-failure MoE expert dispatch",
+        "Scope-as-code engagement compilation + 13-check Signet gate",
+        "Compile-time classification-gated routing with cross-domain guard",
+        "8-signal confidence pipeline with adversarial self-audit",
+        "HMAC-chained tamper-evident audit ledger with RFC 3161 anchoring",
+        "Compute-aware neural topology recipe (3-parameter)",
+        "24-layer adaptive control loop (PID + Holt + UCB1 + ε-greedy)",
+        "Phase 10 trade-secret primitives — attest, secdef, beacon, vehicle-id, log",
+        "14-step agent-production pipeline with Opus calibration + 5-probe adversarial hardening"
+      ],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [],
+      "screenshot": "no-js-research.jpg"
+    },
+    {
+      "route": "/about",
+      "profile": "no-js",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [],
+      "screenshot": "no-js-about.jpg"
+    },
+    {
+      "route": "/cofounder",
+      "profile": "no-js",
+      "capturedAt": "2026-09-16T00:33:52.470Z",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [],
+      "screenshot": "no-js-cofounder.jpg"
+    },
+    {
+      "route": "/contact",
+      "profile": "no-js",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [],
+      "screenshot": "no-js-contact.jpg"
+    },
+    {
+      "route": "/privacy",
+      "profile": "no-js",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [
+        "Privacy Policy",
+        "Summary",
+        "Analytics",
+        "Hosting and fonts",
+        "Cookies and browser storage",
+        "Email contact and retention",
+        "Details awaiting owner confirmation",
+        "Contact"
+      ],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [],
+      "screenshot": "no-js-privacy.jpg"
+    },
+    {
+      "route": "/404",
+      "profile": "no-js",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/404",
+            "status": 404
+          }
+        }
+      ],
+      "screenshot": "no-js-404.jpg"
+    },
+    {
+      "route": "/",
+      "profile": "reduced-motion",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.13958",
+            "timestamp": 6328.702073,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "reduced-motion-home.jpg"
+    },
+    {
+      "route": "/systems",
+      "profile": "reduced-motion",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.14026",
+            "timestamp": 6333.81594,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "reduced-motion-systems.jpg"
+    },
+    {
+      "route": "/defense",
+      "profile": "reduced-motion",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.14103",
+            "timestamp": 6341.266806,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "reduced-motion-defense.jpg"
+    },
+    {
+      "route": "/mycelium",
+      "profile": "reduced-motion",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.14176",
+            "timestamp": 6348.20212,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "reduced-motion-mycelium.jpg"
+    },
+    {
+      "route": "/research",
+      "profile": "reduced-motion",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.14255",
+            "timestamp": 6355.270237,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "reduced-motion-research.jpg"
+    },
+    {
+      "route": "/about",
+      "profile": "reduced-motion",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.14330",
+            "timestamp": 6360.726646,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "reduced-motion-about.jpg"
+    },
+    {
+      "route": "/cofounder",
+      "profile": "reduced-motion",
+      "capturedAt": "2026-09-16T00:33:58.610Z",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.15460",
+            "timestamp": 6457.342875,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "reduced-motion-cofounder.jpg"
+    },
+    {
+      "route": "/contact",
+      "profile": "reduced-motion",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.14461",
+            "timestamp": 6370.968548,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "reduced-motion-contact.jpg"
+    },
+    {
+      "route": "/privacy",
+      "profile": "reduced-motion",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.14534",
+            "timestamp": 6374.924675,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "reduced-motion-privacy.jpg"
+    },
+    {
+      "route": "/404",
+      "profile": "reduced-motion",
+      "width": 390,
+      "scrollWidth": 375,
+      "h1": 1,
+      "main": 1,
+      "banner": 1,
+      "footer": 1,
+      "clipped": [],
+      "hidden": [],
+      "smallTargets": [],
+      "brokenImages": [],
+      "runningAnimations": 0,
+      "errors": [
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/404",
+            "status": 404
+          }
+        },
+        {
+          "type": "Network.responseReceived",
+          "detail": {
+            "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/@id/astro/runtime/client/dev-toolbar/entrypoint.js",
+            "status": 504
+          }
+        },
+        {
+          "type": "Network.loadingFailed",
+          "detail": {
+            "requestId": "331.14605",
+            "timestamp": 6379.154589,
+            "type": "Script",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "screenshot": "reduced-motion-404.jpg"
+    }
+  ]
+}

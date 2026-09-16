@@ -1,0 +1,960 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Focused recheck of the corrected four cofounder hero dt labels at desktop widths.",
+  "capturedAt": "2026-09-16T00:24:58.682Z",
+  "completedAt": "2026-09-16T00:25:03.416Z",
+  "gitCommit": "4d851255332733170d3e52a76d96cde654113f27",
+  "origin": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev",
+  "originKind": "managed development origin",
+  "production": false,
+  "browserControl": {
+    "protocol": "CDP",
+    "port": 9225,
+    "profile": "/tmp/qa-contrast",
+    "ownedChromium": true,
+    "otherDevToolsPortsTouched": []
+  },
+  "target": {
+    "route": "/cofounder",
+    "selector": ".cofounder-hero dt",
+    "labels": [
+      "Company",
+      "Location",
+      "Stage",
+      "Start"
+    ],
+    "cssCorrection": "color: var(--text-2)",
+    "normalTextThreshold": 4.5,
+    "backgroundMethod": "nearest computed solid opaque ancestor background",
+    "fullOpacityRequirement": "All target ancestors must have computed opacity 1; target animations must be idle."
+  },
+  "viewports": [
+    {
+      "name": "desktop-1280",
+      "width": 1280,
+      "height": 900
+    },
+    {
+      "name": "desktop-1440",
+      "width": 1440,
+      "height": 900
+    }
+  ],
+  "methodology": {
+    "waitFor": [
+      "document.readyState === complete",
+      "document.fonts.status === loaded",
+      "all four target labels are rendered in the viewport",
+      "all target ancestors have computed opacity 1",
+      "target animations are idle"
+    ],
+    "stabilityWaitMs": 300,
+    "note": "Only the four .cofounder-hero dt labels are measured; this is not a whole-site contrast audit."
+  },
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/140.0.7339.16",
+    "revision": "@b50d93d6db089ce82ddf985f059aa524051fcb2a",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/140.0.0.0 Safari/537.36",
+    "jsVersion": "14.0.365.1"
+  },
+  "results": [
+    {
+      "viewport": {
+        "name": "desktop-1280",
+        "width": 1280,
+        "height": 900
+      },
+      "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/cofounder",
+      "navigationError": null,
+      "stable": {
+        "elapsedMs": 1324,
+        "stabilityWaitMs": 300,
+        "scrollAdjustment": false,
+        "state": {
+          "ready": true,
+          "documentReadyState": "complete",
+          "fontsStatus": "loaded",
+          "labels": [
+            {
+              "text": "Company",
+              "color": "rgb(152, 164, 176)",
+              "rect": {
+                "x": 265.5,
+                "y": 710.422,
+                "width": 149,
+                "height": 20.578
+              },
+              "inViewport": true,
+              "fullOpacity": true,
+              "targetAnimations": 0,
+              "ancestors": [
+                {
+                  "element": "dt",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "dl",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "section",
+                  "opacity": 1
+                },
+                {
+                  "element": "main",
+                  "opacity": 1
+                },
+                {
+                  "element": "body",
+                  "opacity": 1
+                },
+                {
+                  "element": "html",
+                  "opacity": 1
+                }
+              ]
+            },
+            {
+              "text": "Location",
+              "color": "rgb(152, 164, 176)",
+              "rect": {
+                "x": 460.5,
+                "y": 710.422,
+                "width": 149,
+                "height": 20.578
+              },
+              "inViewport": true,
+              "fullOpacity": true,
+              "targetAnimations": 0,
+              "ancestors": [
+                {
+                  "element": "dt",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "dl",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "section",
+                  "opacity": 1
+                },
+                {
+                  "element": "main",
+                  "opacity": 1
+                },
+                {
+                  "element": "body",
+                  "opacity": 1
+                },
+                {
+                  "element": "html",
+                  "opacity": 1
+                }
+              ]
+            },
+            {
+              "text": "Stage",
+              "color": "rgb(152, 164, 176)",
+              "rect": {
+                "x": 655.5,
+                "y": 710.422,
+                "width": 149,
+                "height": 20.578
+              },
+              "inViewport": true,
+              "fullOpacity": true,
+              "targetAnimations": 0,
+              "ancestors": [
+                {
+                  "element": "dt",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "dl",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "section",
+                  "opacity": 1
+                },
+                {
+                  "element": "main",
+                  "opacity": 1
+                },
+                {
+                  "element": "body",
+                  "opacity": 1
+                },
+                {
+                  "element": "html",
+                  "opacity": 1
+                }
+              ]
+            },
+            {
+              "text": "Start",
+              "color": "rgb(152, 164, 176)",
+              "rect": {
+                "x": 850.5,
+                "y": 710.422,
+                "width": 149,
+                "height": 20.578
+              },
+              "inViewport": true,
+              "fullOpacity": true,
+              "targetAnimations": 0,
+              "ancestors": [
+                {
+                  "element": "dt",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "dl",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "section",
+                  "opacity": 1
+                },
+                {
+                  "element": "main",
+                  "opacity": 1
+                },
+                {
+                  "element": "body",
+                  "opacity": 1
+                },
+                {
+                  "element": "html",
+                  "opacity": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "measurement": {
+        "viewport": {
+          "width": 1280,
+          "height": 900,
+          "devicePixelRatio": 1
+        },
+        "text2": "#98A4B0",
+        "selector": ".cofounder-hero dt",
+        "expectedLabels": [
+          "Company",
+          "Location",
+          "Stage",
+          "Start"
+        ],
+        "visibleTargetLabels": 4,
+        "fullOpacityTargetLabels": 4,
+        "analyzedTargetLabels": 4,
+        "unresolvedTargetLabels": 0,
+        "passingTargetLabels": 4,
+        "failingTargetLabels": 0,
+        "rows": [
+          {
+            "text": "Company",
+            "element": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile > dt.font-mono.text-step--1",
+            "color": "rgb(152, 164, 176)",
+            "customProperty": "--text-2",
+            "customPropertyValue": "#98A4B0",
+            "background": "rgb(11, 20, 36)",
+            "backgroundElement": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile",
+            "fontSizePx": 13.28,
+            "fontWeight": 400,
+            "fullOpacity": true,
+            "ancestorOpacity": 1,
+            "ancestorOpacities": [
+              {
+                "element": "dt",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "dl",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "section",
+                "opacity": 1
+              },
+              {
+                "element": "main",
+                "opacity": 1
+              },
+              {
+                "element": "body",
+                "opacity": 1
+              },
+              {
+                "element": "html",
+                "opacity": 1
+              }
+            ],
+            "inViewport": true,
+            "effectiveForeground": "rgb(152, 164, 176)",
+            "ratio": 7.25778435011611,
+            "largeText": false,
+            "threshold": 4.5,
+            "status": "pass"
+          },
+          {
+            "text": "Location",
+            "element": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile > dt.font-mono.text-step--1",
+            "color": "rgb(152, 164, 176)",
+            "customProperty": "--text-2",
+            "customPropertyValue": "#98A4B0",
+            "background": "rgb(11, 20, 36)",
+            "backgroundElement": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile",
+            "fontSizePx": 13.28,
+            "fontWeight": 400,
+            "fullOpacity": true,
+            "ancestorOpacity": 1,
+            "ancestorOpacities": [
+              {
+                "element": "dt",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "dl",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "section",
+                "opacity": 1
+              },
+              {
+                "element": "main",
+                "opacity": 1
+              },
+              {
+                "element": "body",
+                "opacity": 1
+              },
+              {
+                "element": "html",
+                "opacity": 1
+              }
+            ],
+            "inViewport": true,
+            "effectiveForeground": "rgb(152, 164, 176)",
+            "ratio": 7.25778435011611,
+            "largeText": false,
+            "threshold": 4.5,
+            "status": "pass"
+          },
+          {
+            "text": "Stage",
+            "element": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile > dt.font-mono.text-step--1",
+            "color": "rgb(152, 164, 176)",
+            "customProperty": "--text-2",
+            "customPropertyValue": "#98A4B0",
+            "background": "rgb(11, 20, 36)",
+            "backgroundElement": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile",
+            "fontSizePx": 13.28,
+            "fontWeight": 400,
+            "fullOpacity": true,
+            "ancestorOpacity": 1,
+            "ancestorOpacities": [
+              {
+                "element": "dt",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "dl",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "section",
+                "opacity": 1
+              },
+              {
+                "element": "main",
+                "opacity": 1
+              },
+              {
+                "element": "body",
+                "opacity": 1
+              },
+              {
+                "element": "html",
+                "opacity": 1
+              }
+            ],
+            "inViewport": true,
+            "effectiveForeground": "rgb(152, 164, 176)",
+            "ratio": 7.25778435011611,
+            "largeText": false,
+            "threshold": 4.5,
+            "status": "pass"
+          },
+          {
+            "text": "Start",
+            "element": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile > dt.font-mono.text-step--1",
+            "color": "rgb(152, 164, 176)",
+            "customProperty": "--text-2",
+            "customPropertyValue": "#98A4B0",
+            "background": "rgb(11, 20, 36)",
+            "backgroundElement": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile",
+            "fontSizePx": 13.28,
+            "fontWeight": 400,
+            "fullOpacity": true,
+            "ancestorOpacity": 1,
+            "ancestorOpacities": [
+              {
+                "element": "dt",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "dl",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "section",
+                "opacity": 1
+              },
+              {
+                "element": "main",
+                "opacity": 1
+              },
+              {
+                "element": "body",
+                "opacity": 1
+              },
+              {
+                "element": "html",
+                "opacity": 1
+              }
+            ],
+            "inViewport": true,
+            "effectiveForeground": "rgb(152, 164, 176)",
+            "ratio": 7.25778435011611,
+            "largeText": false,
+            "threshold": 4.5,
+            "status": "pass"
+          }
+        ]
+      },
+      "labelsMatch": true,
+      "allPassed": true
+    },
+    {
+      "viewport": {
+        "name": "desktop-1440",
+        "width": 1440,
+        "height": 900
+      },
+      "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-2d4n7szp.reed.replit.dev/cofounder",
+      "navigationError": null,
+      "stable": {
+        "elapsedMs": 1322,
+        "stabilityWaitMs": 300,
+        "scrollAdjustment": false,
+        "state": {
+          "ready": true,
+          "documentReadyState": "complete",
+          "fontsStatus": "loaded",
+          "labels": [
+            {
+              "text": "Company",
+              "color": "rgb(152, 164, 176)",
+              "rect": {
+                "x": 345.5,
+                "y": 710.422,
+                "width": 149,
+                "height": 20.578
+              },
+              "inViewport": true,
+              "fullOpacity": true,
+              "targetAnimations": 0,
+              "ancestors": [
+                {
+                  "element": "dt",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "dl",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "section",
+                  "opacity": 1
+                },
+                {
+                  "element": "main",
+                  "opacity": 1
+                },
+                {
+                  "element": "body",
+                  "opacity": 1
+                },
+                {
+                  "element": "html",
+                  "opacity": 1
+                }
+              ]
+            },
+            {
+              "text": "Location",
+              "color": "rgb(152, 164, 176)",
+              "rect": {
+                "x": 540.5,
+                "y": 710.422,
+                "width": 149,
+                "height": 20.578
+              },
+              "inViewport": true,
+              "fullOpacity": true,
+              "targetAnimations": 0,
+              "ancestors": [
+                {
+                  "element": "dt",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "dl",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "section",
+                  "opacity": 1
+                },
+                {
+                  "element": "main",
+                  "opacity": 1
+                },
+                {
+                  "element": "body",
+                  "opacity": 1
+                },
+                {
+                  "element": "html",
+                  "opacity": 1
+                }
+              ]
+            },
+            {
+              "text": "Stage",
+              "color": "rgb(152, 164, 176)",
+              "rect": {
+                "x": 735.5,
+                "y": 710.422,
+                "width": 149,
+                "height": 20.578
+              },
+              "inViewport": true,
+              "fullOpacity": true,
+              "targetAnimations": 0,
+              "ancestors": [
+                {
+                  "element": "dt",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "dl",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "section",
+                  "opacity": 1
+                },
+                {
+                  "element": "main",
+                  "opacity": 1
+                },
+                {
+                  "element": "body",
+                  "opacity": 1
+                },
+                {
+                  "element": "html",
+                  "opacity": 1
+                }
+              ]
+            },
+            {
+              "text": "Start",
+              "color": "rgb(152, 164, 176)",
+              "rect": {
+                "x": 930.5,
+                "y": 710.422,
+                "width": 149,
+                "height": 20.578
+              },
+              "inViewport": true,
+              "fullOpacity": true,
+              "targetAnimations": 0,
+              "ancestors": [
+                {
+                  "element": "dt",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "dl",
+                  "opacity": 1
+                },
+                {
+                  "element": "div",
+                  "opacity": 1
+                },
+                {
+                  "element": "section",
+                  "opacity": 1
+                },
+                {
+                  "element": "main",
+                  "opacity": 1
+                },
+                {
+                  "element": "body",
+                  "opacity": 1
+                },
+                {
+                  "element": "html",
+                  "opacity": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "measurement": {
+        "viewport": {
+          "width": 1440,
+          "height": 900,
+          "devicePixelRatio": 1
+        },
+        "text2": "#98A4B0",
+        "selector": ".cofounder-hero dt",
+        "expectedLabels": [
+          "Company",
+          "Location",
+          "Stage",
+          "Start"
+        ],
+        "visibleTargetLabels": 4,
+        "fullOpacityTargetLabels": 4,
+        "analyzedTargetLabels": 4,
+        "unresolvedTargetLabels": 0,
+        "passingTargetLabels": 4,
+        "failingTargetLabels": 0,
+        "rows": [
+          {
+            "text": "Company",
+            "element": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile > dt.font-mono.text-step--1",
+            "color": "rgb(152, 164, 176)",
+            "customProperty": "--text-2",
+            "customPropertyValue": "#98A4B0",
+            "background": "rgb(11, 20, 36)",
+            "backgroundElement": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile",
+            "fontSizePx": 13.28,
+            "fontWeight": 400,
+            "fullOpacity": true,
+            "ancestorOpacity": 1,
+            "ancestorOpacities": [
+              {
+                "element": "dt",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "dl",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "section",
+                "opacity": 1
+              },
+              {
+                "element": "main",
+                "opacity": 1
+              },
+              {
+                "element": "body",
+                "opacity": 1
+              },
+              {
+                "element": "html",
+                "opacity": 1
+              }
+            ],
+            "inViewport": true,
+            "effectiveForeground": "rgb(152, 164, 176)",
+            "ratio": 7.25778435011611,
+            "largeText": false,
+            "threshold": 4.5,
+            "status": "pass"
+          },
+          {
+            "text": "Location",
+            "element": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile > dt.font-mono.text-step--1",
+            "color": "rgb(152, 164, 176)",
+            "customProperty": "--text-2",
+            "customPropertyValue": "#98A4B0",
+            "background": "rgb(11, 20, 36)",
+            "backgroundElement": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile",
+            "fontSizePx": 13.28,
+            "fontWeight": 400,
+            "fullOpacity": true,
+            "ancestorOpacity": 1,
+            "ancestorOpacities": [
+              {
+                "element": "dt",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "dl",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "section",
+                "opacity": 1
+              },
+              {
+                "element": "main",
+                "opacity": 1
+              },
+              {
+                "element": "body",
+                "opacity": 1
+              },
+              {
+                "element": "html",
+                "opacity": 1
+              }
+            ],
+            "inViewport": true,
+            "effectiveForeground": "rgb(152, 164, 176)",
+            "ratio": 7.25778435011611,
+            "largeText": false,
+            "threshold": 4.5,
+            "status": "pass"
+          },
+          {
+            "text": "Stage",
+            "element": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile > dt.font-mono.text-step--1",
+            "color": "rgb(152, 164, 176)",
+            "customProperty": "--text-2",
+            "customPropertyValue": "#98A4B0",
+            "background": "rgb(11, 20, 36)",
+            "backgroundElement": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile",
+            "fontSizePx": 13.28,
+            "fontWeight": 400,
+            "fullOpacity": true,
+            "ancestorOpacity": 1,
+            "ancestorOpacities": [
+              {
+                "element": "dt",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "dl",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "section",
+                "opacity": 1
+              },
+              {
+                "element": "main",
+                "opacity": 1
+              },
+              {
+                "element": "body",
+                "opacity": 1
+              },
+              {
+                "element": "html",
+                "opacity": 1
+              }
+            ],
+            "inViewport": true,
+            "effectiveForeground": "rgb(152, 164, 176)",
+            "ratio": 7.25778435011611,
+            "largeText": false,
+            "threshold": 4.5,
+            "status": "pass"
+          },
+          {
+            "text": "Start",
+            "element": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile > dt.font-mono.text-step--1",
+            "color": "rgb(152, 164, 176)",
+            "customProperty": "--text-2",
+            "customPropertyValue": "#98A4B0",
+            "background": "rgb(11, 20, 36)",
+            "backgroundElement": "main#main-content > section.tv-section.pt-s-11 > div.tv-container.max-w-4xl > dl.mt-s-7.grid > div.tv-tile",
+            "fontSizePx": 13.28,
+            "fontWeight": 400,
+            "fullOpacity": true,
+            "ancestorOpacity": 1,
+            "ancestorOpacities": [
+              {
+                "element": "dt",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "dl",
+                "opacity": 1
+              },
+              {
+                "element": "div",
+                "opacity": 1
+              },
+              {
+                "element": "section",
+                "opacity": 1
+              },
+              {
+                "element": "main",
+                "opacity": 1
+              },
+              {
+                "element": "body",
+                "opacity": 1
+              },
+              {
+                "element": "html",
+                "opacity": 1
+              }
+            ],
+            "inViewport": true,
+            "effectiveForeground": "rgb(152, 164, 176)",
+            "ratio": 7.25778435011611,
+            "largeText": false,
+            "threshold": 4.5,
+            "status": "pass"
+          }
+        ]
+      },
+      "labelsMatch": true,
+      "allPassed": true
+    }
+  ],
+  "limits": [
+    "This focused check measures only the four cofounder hero metadata labels at the two recorded desktop widths.",
+    "It does not count or assess other text, pseudo-elements, canvas/WebGL text, focus/hover-only states, or responsive branches outside these viewports.",
+    "The contrast ratio uses computed CSS colors and the nearest computed solid opaque ancestor background; complex compositing is not guessed."
+  ]
+}
