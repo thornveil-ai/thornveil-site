@@ -55,22 +55,30 @@ const totals = [
       </p>
       <div class="space-y-s-3">
         {papers.map((p, i) => (
-          <a
-            href={`/papers/${p.file}.pdf`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class={`tv-tile reveal reveal-delay-${Math.min(i + 1, 4)} flex items-start justify-between gap-s-4 flex-wrap`}
+          <article
+            aria-labelledby={`${p.file}-title`}
+            class={`tv-tile paper-card reveal reveal-delay-${Math.min(i + 1, 4)}`}
           >
             <div class="flex-1 min-w-0">
-              <h3 class="text-step-1 text-text mb-s-2" style="font-variation-settings: 'wdth' 125;">{p.title}</h3>
-              <div class="flex items-center gap-s-4 font-mono text-step--1 tracking-[0.10em] uppercase text-text-3">
+              <h3 id={`${p.file}-title`} class="text-step-1 text-text mb-s-2" style="font-variation-settings: 'wdth' 125;">{p.title}</h3>
+              <div class="flex flex-wrap items-center gap-s-4 font-mono text-step--1 tracking-[0.10em] uppercase text-text-3">
                 <span class="tv-pill tv-pill--ghost">{p.category}</span>
                 <span class="tabular">{p.pages} pages</span>
                 <span>J. Morgan · 2026</span>
               </div>
             </div>
-            <span class="tv-pill tv-pill--live shrink-0">PDF ↗</span>
-          </a>
+            <div class="paper-actions mt-s-4">
+              <a href={`/papers/${p.file}.pdf`} target="_blank" rel="noopener noreferrer"
+                class="tv-btn tv-btn--primary" aria-label={`Open PDF: ${p.title} (opens in a new tab)`}>
+                Open PDF <span aria-hidden="true">↗</span>
+              </a>
+              <a href={`/papers/${p.file}.pdf`} download={`${p.file}.pdf`}
+                class="tv-btn tv-btn--secondary" aria-label={`Save PDF: ${p.title}`}>
+                Save PDF <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+            <p class="text-step--1 text-text-3 mt-s-2">Open PDF opens in a new tab.</p>
+          </article>
         ))}
       </div>
     </div>
@@ -100,7 +108,7 @@ const totals = [
         ))}
       </div>
 
-      <div class="grid grid-cols-3 gap-s-5 mt-s-9 reveal reveal-delay-3">
+      <div class="research-totals grid gap-s-5 mt-s-9 reveal reveal-delay-3">
         {totals.map((t) => (
           <div class="text-center">
             <div class="font-mono tabular text-step-3 text-signal-text leading-none">{t.value}</div>
@@ -111,3 +119,27 @@ const totals = [
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .paper-card {
+    overflow-wrap: anywhere;
+  }
+  .paper-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+  }
+  .paper-actions a {
+    min-height: 44px;
+    max-width: 100%;
+  }
+  .research-totals {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 40rem) {
+    .research-totals {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
