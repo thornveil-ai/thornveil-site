@@ -155,6 +155,14 @@ const systems = [
           Browse the GitHub org ↗
         </a>
       </div>
+      <nav id="systems-index" class="section-nav mt-s-7" aria-label="Systems on this page">
+        <p class="font-mono text-step--1 text-text-3">On this page</p>
+        <ul>
+          {systems.map(s => <li><a href={`#${s.name.toLowerCase()}`}>{s.name}</a></li>)}
+          <li><a href="#build-context">Build context</a></li>
+          <li><a href="#reach-out">Reach out</a></li>
+        </ul>
+      </nav>
     </div>
   </section>
 
@@ -166,7 +174,10 @@ const systems = [
           const Viz = vizFor[s.name];
           const sysRef = `SYS.${String(i + 1).padStart(2, '0')}`;
           return (
-          <article id={s.name.toLowerCase()} class={`tv-tile reveal reveal-delay-${Math.min(i + 1, 4)} flex flex-col`}>
+          <article id={s.name.toLowerCase()} tabindex="-1" aria-labelledby={`${s.name.toLowerCase()}-title`} class={`system-card tv-tile reveal reveal-delay-${Math.min(i + 1, 4)} flex flex-col`}>
+            <h2 id={`${s.name.toLowerCase()}-title`} class="text-step-2 mb-s-2" style="font-variation-settings: 'wdth' 125;">{s.name}</h2>
+            <p class="font-mono text-step--1 tracking-[0.10em] uppercase text-text-3 mb-s-4">{s.tagline}</p>
+            <p class="text-step-0 text-text-2 mb-s-5 max-w-prose">{s.description}</p>
             <!-- top row: status pill | mono stat (per design spec) -->
             <div class="flex items-start justify-between gap-s-4 mb-s-4 flex-wrap">
               <span class={`tv-pill ${s.status === 'live' ? 'tv-pill--live' : 'tv-pill--warn'}`}>
@@ -191,14 +202,19 @@ const systems = [
                 <div class="viz-strip-bottom"><div class="viz-ticks"></div></div>
               </div>
             ) : null}
-
-            <h3 class="text-step-2 mb-s-2" style="font-variation-settings: 'wdth' 125;">{s.name}</h3>
-            <p class="font-mono text-step--1 tracking-[0.10em] uppercase text-text-3 mb-s-4">{s.tagline}</p>
-
-            <p class="text-step-0 text-text-2 mb-s-5 flex-1 max-w-prose">{s.description}</p>
+            {s.name === 'Mycelium' && (
+              <p class="text-step--1 text-text-2 mb-s-5">
+                Illustrative telemetry (not a live feed): alive 06 / 06 · pulses/sec 17.4 · continuity 100%.
+              </p>
+            )}
+            {s.name === 'Pyros' && (
+              <p class="text-step--1 text-text-2 mb-s-5">
+                Control loop: PID → Forecaster (Holt) → Bandit (UCB1) → Orchestrator (ε-greedy) → feedback.
+              </p>
+            )}
 
             <!-- footer row -->
-            <div class="border-t border-line pt-s-4 flex flex-wrap items-center gap-x-s-4 gap-y-s-3">
+            <div class="border-t border-line pt-s-4 mt-auto flex flex-wrap items-center gap-x-s-4 gap-y-s-3">
               {s.detail ? (
                 <a href={s.detail} class="font-mono text-step--1 tracking-[0.10em] uppercase text-signal-text hover:text-text">
                   Mycelium mechanism and test status →
@@ -213,6 +229,7 @@ const systems = [
                   internal-only
                 </span>
               )}
+              <a href="#systems-index" class="back-to-index text-step--1 text-text-3">Back to systems ↑</a>
             </div>
           </article>
           );
@@ -222,7 +239,7 @@ const systems = [
   </section>
 
   <!-- BUILD CONTEXT -->
-  <section class="tv-section pt-0">
+  <section id="build-context" tabindex="-1" class="tv-section pt-0">
     <div class="tv-container max-w-3xl text-center">
       <h2 class="tv-h2 mt-s-3 mb-s-5 reveal reveal-delay-1">Built solo while on active duty</h2>
       <div class="space-y-s-4 text-step-0 text-text-2 reveal reveal-delay-2">
@@ -241,7 +258,7 @@ const systems = [
   </section>
 
   <!-- CTA -->
-  <section class="tv-section pt-0" style="background: var(--bg-inset); border-top: 1px solid var(--line);">
+  <section id="reach-out" tabindex="-1" class="tv-section pt-0" style="background: var(--bg-inset); border-top: 1px solid var(--line);">
     <div class="tv-container max-w-2xl text-center">
       <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Review the work. Reach out.</h2>
       <p class="text-step-0 text-text-2 mt-s-4 mx-auto reveal reveal-delay-2" style="max-width: 52ch;">
@@ -254,6 +271,20 @@ const systems = [
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  h1, h2, p, .tv-btn { overflow-wrap: anywhere; }
+  .section-nav { border-block: 1px solid var(--line); padding-block: var(--s-4); }
+  .section-nav ul { display: flex; flex-wrap: wrap; gap: 0 var(--s-4); margin-top: var(--s-2); }
+  .section-nav a, .back-to-index { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; }
+  .section-nav a { color: var(--signal-text); }
+  .system-card { min-width: 0; overflow-wrap: anywhere; }
+  .system-card .tv-pill { white-space: normal; }
+  .system-card .viz-panel { flex-shrink: 0; }
+  @media (max-width: 767px) {
+    .system-card .viz-panel { height: 165px; margin-inline: 0; }
+  }
+</style>
 
 <style is:global>
   /* Static HTML first: no-JS visitors keep the diagrams, not continuous motion.

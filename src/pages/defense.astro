@@ -98,15 +98,29 @@ const posture = [
     </div>
   </section>
 
-  <!-- SYSTEMS LIST -->
-  <section class="tv-section pt-0">
+  <nav class="tv-section pt-0 defense-local-nav" aria-label="On this page">
     <div class="tv-container">
+      <div class="defense-local-nav__inner">
+        <span class="font-mono text-step--1 tracking-[0.10em] uppercase text-text-3">On this page</span>
+        <div class="defense-local-nav__links">
+          <a href="#systems">Systems</a>
+          <a href="#procurement-posture">Procurement posture</a>
+          <a href="#defense-contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SYSTEMS LIST -->
+  <section id="systems" class="tv-section pt-0" aria-labelledby="systems-heading" tabindex="-1">
+    <div class="tv-container">
+      <h2 id="systems-heading" class="sr-only">Defense-adjacent systems</h2>
       <div class="space-y-s-5">
         {systems.map((s, i) => (
           <article class={`tv-tile reveal reveal-delay-${Math.min(i + 1, 4)}`}>
             <div class="flex items-start justify-between gap-s-4 flex-wrap mb-s-4">
               <div class="flex-1 min-w-0">
-                <h3 class="text-step-2" style="font-variation-settings: 'wdth' 125;">{s.name}</h3>
+                <h3 class="text-step-2 defense-system-name" style="font-variation-settings: 'wdth' 125;">{s.name}</h3>
                 <p class="font-mono text-step--1 tracking-[0.10em] uppercase text-text-3 mt-s-2">{s.tagline}</p>
               </div>
               <span class={`tv-pill ${s.status === 'live' ? 'tv-pill--live' : 'tv-pill--warn'} shrink-0`}>
@@ -137,15 +151,15 @@ const posture = [
   </section>
 
   <!-- PROCUREMENT POSTURE -->
-  <section class="tv-section pt-0">
+  <section id="procurement-posture" class="tv-section pt-0" aria-labelledby="procurement-heading" tabindex="-1">
     <div class="tv-container max-w-4xl">
-      <h2 class="tv-h2 mt-s-3 mb-s-6 reveal reveal-delay-1">What's available, and when.</h2>
+      <h2 id="procurement-heading" class="tv-h2 mt-s-3 mb-s-6 reveal reveal-delay-1">What's available, and when.</h2>
       <div class="tv-tile reveal reveal-delay-2">
         <dl class="space-y-s-4">
           {posture.map((p) => (
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-s-2 pb-s-3 border-b border-line last:border-0 last:pb-0">
               <dt class="font-mono text-step--1 tracking-[0.12em] uppercase text-text-3">{p.label}</dt>
-              <dd class="text-step-0 text-text">{p.value}</dd>
+              <dd class="text-step-0 text-text defense-posture-value">{p.value}</dd>
             </div>
           ))}
         </dl>
@@ -154,9 +168,9 @@ const posture = [
   </section>
 
   <!-- CTA -->
-  <section class="tv-section pt-0">
+  <section id="defense-contact" class="tv-section pt-0" aria-labelledby="defense-contact-heading" tabindex="-1">
     <div class="tv-container max-w-2xl text-center">
-      <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Federal program offices, primes, evaluators.</h2>
+      <h2 id="defense-contact-heading" class="tv-h2 mt-s-3 reveal reveal-delay-1">Federal program offices, primes, evaluators.</h2>
       <p class="text-step-0 text-text-2 mt-s-4 mx-auto reveal reveal-delay-2" style="max-width: 52ch;">
         Conversations now compound into signed paper post-DD-214 ({m.company.directContractsOpen}).
         Review the public companions; the substrate is ready.
@@ -170,3 +184,59 @@ const posture = [
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .defense-local-nav {
+    padding-bottom: var(--s-5);
+  }
+
+  .defense-local-nav__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+    padding-block: var(--s-3);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .defense-local-nav__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-4);
+  }
+
+  .defense-local-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--text-2);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.06em;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.35em;
+  }
+
+  .defense-local-nav a:hover,
+  .defense-local-nav a:focus-visible {
+    color: var(--signal-text);
+    text-decoration-color: currentColor;
+  }
+
+  h1, h2, p, .tv-btn, .tv-pill,
+  .defense-system-name,
+  .defense-posture-value {
+    overflow-wrap: anywhere;
+  }
+  .tv-pill { white-space: normal; max-width: 100%; }
+  .tv-tile, .tv-tile > div { min-width: 0; }
+
+  @media (max-width: 40rem) {
+    .defense-local-nav__inner {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+  }
+</style>

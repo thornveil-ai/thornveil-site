@@ -4,3 +4,4 @@
 - [Chromium interaction checks](chromium-keyboard-checks.md) — configure realistic Enter events and desktop pointer capabilities before testing interactions.
 - [WebGL initialization failures](webgl-initialization.md) — catch asynchronous renderer setup explicitly; React boundaries alone do not catch it.
 - [Astro static metadata](astro-static-metadata.md) — generated error-route identities and static redirects do not establish live hosting behavior.
+- [Responsive clipping checks](responsive-clipping.md) — page scroll width alone misses text clipped by overflow containment; inspect visible text ranges.

@@ -111,6 +111,22 @@ const heroPills = [
     </div>
   </section>
 
+  <nav class="tv-section pt-0 mycelium-local-nav" aria-label="On this page">
+    <div class="tv-container">
+      <div class="mycelium-local-nav__inner">
+        <span class="font-mono text-step--1 tracking-[0.10em] uppercase text-text-3">On this page</span>
+        <div class="mycelium-local-nav__links">
+          <a href="#mechanism">Mechanism</a>
+          <a href="#mesh-in-action">Mesh in action</a>
+          <a href="#right-to-integrate">R2I</a>
+          <a href="#hardware-tiers">Hardware</a>
+          <a href="#installation">Install</a>
+          <a href="#implementation-status">Status</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
   <!-- THREE PILLARS -->
   <section class="tv-section pt-0" style="background: var(--bg-raised); border-top: 1px solid var(--line);">
     <div class="tv-container">
@@ -136,11 +152,11 @@ const heroPills = [
   </section>
 
   <!-- THE MECHANISM -->
-  <section class="tv-section pt-0">
+  <section id="mechanism" class="tv-section pt-0" aria-labelledby="mechanism-heading" tabindex="-1">
     <div class="tv-container">
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-s-9 items-start">
         <div class="lg:col-span-2">
-          <h2 class="tv-h2 mt-s-3 mb-s-5 reveal reveal-delay-1">How zero-vector substitution works</h2>
+          <h2 id="mechanism-heading" class="tv-h2 mt-s-3 mb-s-5 reveal reveal-delay-1">How zero-vector substitution works</h2>
           <p class="text-step-0 text-text-2 mb-s-4 reveal reveal-delay-2">
             Distributed inference frameworks don't document what happens when an inference worker becomes
             unreachable mid-token. Most options are catastrophic: hang, error, drop the request. Mycelium's
@@ -172,10 +188,10 @@ const heroPills = [
   </section>
 
   <!-- MESH IN ACTION (before/after) -->
-  <section id="mesh-in-action" class="tv-section pt-0" style="background: var(--bg-inset); border-top: 1px solid var(--line);">
+  <section id="mesh-in-action" class="tv-section pt-0" aria-labelledby="mesh-heading" tabindex="-1" style="background: var(--bg-inset); border-top: 1px solid var(--line);">
     <div class="tv-container">
       <div class="text-center mb-s-7">
-        <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Same screen. Three seconds apart.</h2>
+        <h2 id="mesh-heading" class="tv-h2 mt-s-3 reveal reveal-delay-1">Same screen. Three seconds apart.</h2>
         <p class="text-step-0 text-text-2 mt-s-4 mx-auto reveal reveal-delay-2" style="max-width: 64ch;">
           On the <strong class="text-text">left</strong>: six computers, all green, working together on one
           answer. On the <strong class="text-text">right</strong>: three are dead — and the answer is
@@ -229,11 +245,11 @@ const heroPills = [
   </section>
 
   <!-- R2I -->
-  <section class="tv-section pt-0">
+  <section id="right-to-integrate" class="tv-section pt-0" aria-labelledby="r2i-heading" tabindex="-1">
     <div class="tv-container max-w-3xl">
       <div class="text-center mb-s-7">
         <span class="tv-pill tv-pill--live">RIGHT TO INTEGRATE</span>
-        <h2 class="tv-h2 mt-s-4 reveal">R2I-compliant by design.</h2>
+        <h2 id="r2i-heading" class="tv-h2 mt-s-4 reveal">R2I-compliant by design.</h2>
         <p class="text-step-0 text-text-2 mt-s-4 italic reveal reveal-delay-1" style="max-width: 52ch; margin-inline: auto;">
           "If you do not expose your interfaces and your documentation, you will not be able to join the ecosystem."
         </p>
@@ -253,30 +269,31 @@ const heroPills = [
   </section>
 
   <!-- HARDWARE TIERS -->
-  <section class="tv-section pt-0">
+  <section id="hardware-tiers" class="tv-section pt-0" aria-labelledby="hardware-heading" tabindex="-1">
     <div class="tv-container">
       <div class="text-center mb-s-7">
-        <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Hardware detection assigns a tier.</h2>
+        <h2 id="hardware-heading" class="tv-h2 mt-s-3 reveal reveal-delay-1">Hardware detection assigns a tier.</h2>
         <p class="text-step-0 text-text-2 mt-s-4 mx-auto reveal reveal-delay-2" style="max-width: 64ch;">
           Mycelium detects local hardware on first run and assigns a tier. The mesh aggregates tier
           capability live; available models grow as peers join.
         </p>
       </div>
 
-      <div class="border border-line overflow-x-auto reveal reveal-delay-2">
+      <div class="mycelium-table-scroll border border-line reveal reveal-delay-2" tabindex="0" role="region" aria-label="Hardware tier reference" aria-describedby="hardware-scroll-note">
         <table class="w-full text-step-0">
+          <caption>Mycelium hardware detection tiers</caption>
           <thead style="background: var(--bg-raised);">
             <tr>
-              <th class="text-left p-s-4 font-mono text-step--1 tracking-[0.10em] uppercase text-text-3">Tier</th>
-              <th class="text-left p-s-4 font-mono text-step--1 tracking-[0.10em] uppercase text-text-3">Hardware</th>
-              <th class="text-left p-s-4 font-mono text-step--1 tracking-[0.10em] uppercase text-text-3">Capacity</th>
-              <th class="text-left p-s-4 font-mono text-step--1 tracking-[0.10em] uppercase text-text-3">Role</th>
+              <th scope="col" class="text-left p-s-4 font-mono text-step--1 tracking-[0.10em] uppercase text-text-3">Tier</th>
+              <th scope="col" class="text-left p-s-4 font-mono text-step--1 tracking-[0.10em] uppercase text-text-3">Hardware</th>
+              <th scope="col" class="text-left p-s-4 font-mono text-step--1 tracking-[0.10em] uppercase text-text-3">Capacity</th>
+              <th scope="col" class="text-left p-s-4 font-mono text-step--1 tracking-[0.10em] uppercase text-text-3">Role</th>
             </tr>
           </thead>
           <tbody>
             {tiers.map((t) => (
               <tr style="border-top: 1px solid var(--line);">
-                <td class="p-s-4 font-mono tabular text-signal-text">{t.tier}</td>
+                <th scope="row" class="p-s-4 text-left font-mono tabular text-signal-text">{t.tier}</th>
                 <td class="p-s-4 text-text-2">{t.hardware}</td>
                 <td class="p-s-4 font-mono tabular text-text-3">{t.capacity}</td>
                 <td class="p-s-4 text-text-2">{t.role}</td>
@@ -285,15 +302,16 @@ const heroPills = [
           </tbody>
         </table>
       </div>
+      <p id="hardware-scroll-note" class="font-mono text-step--1 tracking-[0.05em] text-text-3 mt-s-3">Scroll horizontally to view all columns. Focus the table and use arrow keys, a trackpad, mouse wheel, or touch to move sideways.</p>
     </div>
   </section>
 
   <!-- 5-MIN INSTALL -->
-  <section class="tv-section pt-0" style="background: var(--bg-raised); border-top: 1px solid var(--line);">
+  <section id="installation" class="tv-section pt-0" aria-labelledby="installation-heading" tabindex="-1" style="background: var(--bg-raised); border-top: 1px solid var(--line);">
     <div class="tv-container">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-s-9 items-start">
         <div>
-          <h2 class="tv-h2 mt-s-3 mb-s-5 reveal reveal-delay-1">Operator UX on any laptop. No GPU.</h2>
+          <h2 id="installation-heading" class="tv-h2 mt-s-3 mb-s-5 reveal reveal-delay-1">Operator UX on any laptop. No GPU.</h2>
           <p class="text-step-0 text-text-2 mb-s-4 reveal reveal-delay-2">
             The evaluator stack provides operator chat and dashboard interfaces with simulated worker state;
             disable workers in the dashboard to see its display update. The image is approximately 50 MB and
@@ -305,7 +323,7 @@ const heroPills = [
           </p>
         </div>
 
-        <pre class="font-mono text-step--1 leading-relaxed reveal reveal-delay-2 p-s-5" style="background: var(--bg-inset); color: var(--text); border: 1px solid var(--line); overflow-x: auto;"><code><span class="text-text-3">$ git clone https://github.com/thornveil-ai/mycelium-overview.git
+        <pre class="mycelium-install-code font-mono text-step--1 leading-relaxed reveal reveal-delay-2 p-s-5" tabindex="0" aria-label="Evaluator installation commands. Scroll horizontally to view long lines." style="background: var(--bg-inset); color: var(--text); border: 1px solid var(--line); overflow-x: auto;"><code><span class="text-text-3">$ git clone https://github.com/thornveil-ai/mycelium-overview.git
 $ cd mycelium
 </span><span class="text-signal-text">$ docker compose -f docker-compose.evaluator.yaml up</span>
 <span class="text-text-3">
@@ -317,10 +335,10 @@ $ cd mycelium
   </section>
 
   <!-- HONEST STATUS -->
-  <section class="tv-section pt-0">
+  <section id="implementation-status" class="tv-section pt-0" aria-labelledby="status-heading" tabindex="-1">
     <div class="tv-container">
       <div class="text-center mb-s-7">
-        <h2 class="tv-h2 mt-s-3 reveal reveal-delay-1">Implementation status and pending validation</h2>
+        <h2 id="status-heading" class="tv-h2 mt-s-3 reveal reveal-delay-1">Implementation status and pending validation</h2>
         <p class="text-step-0 text-text-2 mt-s-4 mx-auto reveal reveal-delay-2" style="max-width: 52ch;">
           The status below separates released components from work awaiting validation.
         </p>
@@ -360,3 +378,85 @@ $ cd mycelium
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  h1, h2, h3, p, li, .tv-btn, .tv-pill { overflow-wrap: anywhere; }
+  .tv-pill { white-space: normal; max-width: 100%; }
+  .grid > *, .tv-tile { min-width: 0; }
+  .mycelium-local-nav {
+    padding-bottom: var(--s-5);
+  }
+
+  .mycelium-local-nav__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+    padding-block: var(--s-3);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mycelium-local-nav__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-4);
+  }
+
+  .mycelium-local-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--text-2);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.06em;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.35em;
+  }
+
+  .mycelium-local-nav a:hover,
+  .mycelium-local-nav a:focus-visible {
+    color: var(--signal-text);
+    text-decoration-color: currentColor;
+  }
+
+  .mycelium-table-scroll {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+  }
+
+  .mycelium-table-scroll:focus-visible,
+  .mycelium-install-code:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+  }
+
+  .mycelium-table-scroll table {
+    min-width: 44rem;
+  }
+
+  .mycelium-table-scroll caption {
+    caption-side: top;
+    padding: var(--s-3) var(--s-4);
+    color: var(--text-2);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.06em;
+    text-align: left;
+  }
+
+  .mycelium-install-code {
+    max-width: 100%;
+    min-width: 0;
+    overscroll-behavior-inline: contain;
+  }
+
+  @media (max-width: 40rem) {
+    .mycelium-local-nav__inner {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+  }
+</style>
