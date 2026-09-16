@@ -1,0 +1,84 @@
+name: Build and smoke checks
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-smoke-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-smoke:
+    name: Build and smoke (Node 22)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      NO_COLOR: '1'
+      FORCE_COLOR: '0'
+      ASTRO_DEV_BACKGROUND: '0'
+      ASTRO_TELEMETRY_DISABLED: '1'
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up supported Node runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.22.0'
+          cache: npm
+
+      - name: Record runtime versions
+        run: |
+          mkdir -p ci-logs
+          { node --version; npm --version; } 2>&1 | tee ci-logs/runtime.log
+
+      - name: Normalize registry URLs in runner checkout
+        run: |
+          node --input-type=module <<'JS' 2>&1 | tee ci-logs/registry.log
+          import fs from 'node:fs';
+          const path = 'package-lock.json';
+          const lock = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const prefix = 'http://package-firewall.replit.internal/npm/';
+          let count = 0;
+          for (const pkg of Object.values(lock.packages)) {
+            if (!pkg.resolved?.startsWith(prefix)) continue;
+            if (!pkg.integrity) throw new Error('Cannot normalize a package without an integrity hash');
+            pkg.resolved = 'https://registry.npmjs.org/' + pkg.resolved.slice(prefix.length);
+            count++;
+          }
+          const output = JSON.stringify(lock, null, 2) + '\n';
+          if (output.includes('replit.internal')) throw new Error('Unrecognized internal registry URL');
+          fs.writeFileSync(path, output);
+          console.log(`Normalized ${count} tarball URLs; versions and integrity hashes unchanged.`);
+          JS
+
+      - name: Install locked dependencies
+        run: timeout --kill-after=10s 5m npm ci --registry=https://registry.npmjs.org 2>&1 | tee ci-logs/install.log
+
+      - name: Build static site
+        run: timeout --kill-after=10s 5m npm run build 2>&1 | tee ci-logs/build.log
+
+      - name: Test smoke checker
+        run: timeout --kill-after=10s 2m npm run test:smoke 2>&1 | tee ci-logs/smoke-unit.log
+
+      - name: Check routes and browser modules
+        run: timeout --kill-after=10s 5m npm run check:smoke 2>&1 | tee ci-logs/routes-modules.log
+
+      - name: Preserve diagnostic logs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-smoke-logs-${{ github.run_attempt }}
+          path: ci-logs/
+          if-no-files-found: warn
+          retention-days: 14
