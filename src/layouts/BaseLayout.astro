@@ -106,37 +106,76 @@ const canonicalURL = new URL(canonicalPath, Astro.site);
     <Footer />
 
     <script>
-      // View transitions: the script runs on initial document load *and* on every
-      // astro:page-load event, so reveal handlers are wired up after each nav.
+      // Content is always visible at rest. Only animate after intersection;
+      // a missing/broken observer must never become a content dependency.
+      let cleanupReveal = () => {};
       function bindRevealObserver() {
-        // Allow CSS transitions only after first paint to avoid initial-load flashes.
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            document.documentElement.classList.remove('no-transitions');
+        cleanupReveal();
+        const root = document.documentElement;
+        const targets = Array.from(document.querySelectorAll('.reveal, .line-reveal'));
+        let observer;
+        let motion;
+        let frame = 0;
+        let stopped = false;
+        const pending = new Set(targets.filter((el) => !el.classList.contains('visible')));
+        function cleanup() {
+          if (stopped) return;
+          stopped = true;
+          observer?.disconnect();
+          cancelAnimationFrame(frame);
+          frame = 0;
+          motion?.removeEventListener('change', cleanup);
+          root.classList.remove('no-transitions');
+          targets.forEach((el) => {
+            el.classList.remove('reveal-animate');
+            el.classList.add('visible');
           });
-        });
-
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduceMotion) {
-          document.querySelectorAll('.reveal, .line-reveal').forEach((el) => el.classList.add('visible'));
-          return;
+          pending.clear();
         }
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-              }
+        cleanupReveal = cleanup;
+        try {
+          motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+          if (motion.matches || typeof IntersectionObserver !== 'function') {
+            cleanup();
+            return;
+          }
+          motion.addEventListener('change', cleanup);
+          // Track both paint callbacks so a swap cannot mutate the next document.
+          frame = requestAnimationFrame(() => {
+            if (stopped) return;
+            frame = requestAnimationFrame(() => {
+              frame = 0;
+              if (!stopped) root.classList.remove('no-transitions');
             });
-          },
-          { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-        );
-        document.querySelectorAll('.reveal:not(.visible), .line-reveal:not(.visible)').forEach((el) => observer.observe(el));
+          });
+          if (!pending.size) return;
+          observer = new IntersectionObserver((entries) => {
+            if (stopped) return;
+            try {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting || !pending.has(entry.target)) return;
+                entry.target.classList.add('visible', 'reveal-animate');
+                observer.unobserve(entry.target);
+                pending.delete(entry.target);
+              });
+              if (!pending.size) observer.disconnect();
+            } catch {
+              cleanup();
+            }
+          }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+          pending.forEach((el) => observer.observe(el));
+        } catch {
+          cleanup();
+        }
       }
 
-      bindRevealObserver();
+      // Astro emits page-load on initial load too; avoid duplicate initial binding.
       document.addEventListener('astro:page-load', bindRevealObserver);
+      document.addEventListener('astro:before-swap', () => cleanupReveal());
+      window.addEventListener('pagehide', () => cleanupReveal());
+      window.addEventListener('pageshow', (event) => {
+        if (event.persisted) bindRevealObserver();
+      });
 
       // Magnetic buttons — signature interaction.
       // When the cursor approaches a .tv-btn within MAG_RADIUS, the button

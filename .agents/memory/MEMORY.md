@@ -6,3 +6,4 @@
 - [Astro static metadata](astro-static-metadata.md) — generated error-route identities and static redirects do not establish live hosting behavior.
 - [Responsive clipping checks](responsive-clipping.md) — page scroll width alone misses text clipped by overflow containment; inspect visible text ranges.
 - [Disclosure fallback checks](disclosure-fallback-checks.md) — test no-JS visibility under normal motion, not only reduced motion.
+- [Reveal enhancement safety](reveal-enhancement.md) — animate movement without hiding pending content; observer success does not guarantee callback delivery.

@@ -40,6 +40,17 @@ The matrix records findings rather than exiting unsuccessfully for known accessi
 
 ## Layout and content matrix
 
+### Shared reveal correction recheck
+
+The historical matrix and failure list below are preserved as baseline evidence.
+The shared reveal correction was subsequently checked at 390×844 and 1280×900
+on all ten routes: normal scrolling, JavaScript disabled, reduced motion,
+IntersectionObserver absent, and observer construction throwing all retained
+readable rendered headings. See the [scoped reveal verification](reveal-visibility-check.md)
+and its raw evidence for additional module-blocking and lifecycle checks and
+coverage limitations. This correction does not establish graph fallback,
+cross-browser, physical-device, or production-host readiness.
+
 Each result links to its full-page screenshot. **PASS here means only**: no measured document overflow, no measured visible heading clipping, no rendered heading hidden after traversal, one H1 and main landmark, no broken images; reduced-motion rows also require zero running browser animations. It does **not** mean a complete accessibility, graphics, network, or production pass.
 
 | Route | 320 | 360 | 390 | 430 | 768 | 1280 | landscape | zoom-reflow | no-js | reduced-motion |
@@ -64,7 +75,11 @@ Each result links to its full-page screenshot. **PASS here means only**: no meas
 - **/research, no-js:** hidden headings: Evidence, not adjectives.; Technical reports; Selective-Buffer Streaming Safety for AI Coding Agents; Zeroth-Order Preference Optimization on 100B+ Quantized MoE Models via Live Inference API; Compressed KV Cache Attention as a Plugin Backend; Speculative Decoding Fails on Sparse MoE: A Negative Result and Practical Multi-Model Cascade; RigRun: Complete Local AI Infrastructure on a Single GPU; What's actually defensible.; Substitute-on-failure MoE expert dispatch; Scope-as-code engagement compilation + 13-check Signet gate; Compile-time classification-gated routing with cross-domain guard; 8-signal confidence pipeline with adversarial self-audit; HMAC-chained tamper-evident audit ledger with RFC 3161 anchoring; Compute-aware neural topology recipe (3-parameter); 24-layer adaptive control loop (PID + Holt + UCB1 + ε-greedy); Phase 10 trade-secret primitives — attest, secdef, beacon, vehicle-id, log; 14-step agent-production pipeline with Opus calibration + 5-probe adversarial hardening
 - **/privacy, no-js:** hidden headings: Privacy Policy; Summary; Analytics; Hosting and fonts; Cookies and browser storage; Email contact and retention; Details awaiting owner confirmation; Contact
 
-No-JavaScript reveal failures belong to existing task **#15** (content must remain visible when animation/browser support is unavailable). The readable dependency-graph fallback remains **#17**. Observer lifecycle follow-up **#16** remains separate; this audit does not claim a leak test.
+These historical no-JavaScript reveal failures were corrected by the shared
+visible-default implementation; see the recheck above. The readable
+dependency-graph fallback remains separately scoped to **#17**. Shared observer
+lifecycle cleanup is included in **#15**; repeatable regression tests remain
+separately owned by **#16**.
 
 ## Behavioral journeys, accessibility, and network
 
