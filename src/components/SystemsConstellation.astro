@@ -28,6 +28,19 @@ const relationships = (id: string) => edges
 ---
 
 <systems-constellation class="constellation-wrap">
+  <section class="constellation-fallback" aria-label="Systems and declared dependencies">
+    <p>Systems and declared dependencies. Arrows run from the source system to the destination system.</p>
+    <dl>
+      {nodes.map((n) => (
+        <div>
+          <dt>{n.name} <span>{n.stat}</span></dt>
+          <dd>{n.tagline}</dd>
+          <dd>{relationships(n.id)}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+  <div class="constellation-interactive" hidden>
   <p class="constellation-instructions">Explore a system: hover a node or focus a button to preview. Tap or press Enter / Space to select; select it again, use Clear selection, or press Escape to clear. Arrows in the details show each declared relationship’s direction.</p>
   <div class="constellation-scroll" tabindex="0" role="region" aria-label="System graph; scroll horizontally on small screens. Equivalent system controls follow.">
   <div class="constellation-stage">
@@ -136,6 +149,7 @@ const relationships = (id: string) => edges
     <p data-hud-tagline>{nodes.length} systems · {edges.length} declared dependencies</p>
     <p data-hud-relationships>Select a system to read its relationships.</p>
   </div>
+  </div>
 </systems-constellation>
 
 <style>
@@ -146,6 +160,26 @@ const relationships = (id: string) => edges
     min-width: 0;
   }
   .constellation-scroll { overflow-x: auto; }
+  .constellation-wrap [hidden] { display: none !important; }
+  .constellation-fallback {
+    color: var(--text-2, #b8c2cb);
+    font-size: 0.875rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+  .constellation-fallback dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 1rem;
+  }
+  .constellation-fallback dl > div {
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid var(--signal-line, #668696);
+  }
+  .constellation-fallback dt { color: #e8ecee; font-weight: 700; }
+  .constellation-fallback dt span { font-weight: 400; }
+  .constellation-fallback dd { margin: 0.5rem 0 0; }
   .constellation-stage {
     min-width: 720px;
     aspect-ratio: 1200 / 580;
@@ -277,6 +311,12 @@ const relationships = (id: string) => edges
    controller;
    connectedCallback() {
     this.controller?.abort();
+    const fallback = this.querySelector('.constellation-fallback');
+    const interactive = this.querySelector('.constellation-interactive');
+    if (!fallback || !interactive) return;
+    fallback.hidden = false;
+    interactive.hidden = true;
+    try {
     this.controller = new AbortController();
     const { signal } = this.controller;
     const svg = this.querySelector('.constellation');
@@ -287,6 +327,7 @@ const relationships = (id: string) => edges
     const hudName = this.querySelector('[data-hud-name]');
     const hudTag = this.querySelector('[data-hud-tagline]');
     const hudRelationships = this.querySelector('[data-hud-relationships]');
+    if (!controls.length || !hudName || !hudTag || !hudRelationships || !this.querySelector('[data-clear]')) return;
     let selected = null;
     let focused = null;
     let hovered = null;
@@ -360,6 +401,14 @@ const relationships = (id: string) => edges
       if (event.key === 'Escape') { clear(); event.preventDefault(); }
     }, { signal });
     render();
+    interactive.hidden = false;
+    fallback.hidden = true;
+    } catch (error) {
+      this.controller?.abort();
+      interactive.hidden = true;
+      fallback.hidden = false;
+      console.warn('System graph initialization failed; static dependencies remain available.', error);
+    }
    }
    disconnectedCallback() { this.controller?.abort(); }
   }

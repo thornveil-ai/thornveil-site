@@ -1,7 +1,7 @@
 // Browser regression check: run with the dev workflow serving on port 5000.
 // Uses Chromium's debugging protocol directly, without a test-only dependency.
 import { spawn } from 'node:child_process';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, rm, writeFile, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import assert from 'node:assert/strict';
 import test from 'node:test';
@@ -48,6 +48,7 @@ test('constellation supports pointer, keyboard, touch, and returning navigation'
     });
     const command = (method, params) => send(method, params, sessionId);
     await command('Runtime.enable');
+    await command('Page.enable');
     await command('Page.bringToFront');
     await command('Emulation.setFocusEmulationEnabled', { enabled: true });
     const evaluate = async (expression) => {
@@ -67,9 +68,71 @@ test('constellation supports pointer, keyboard, touch, and returning navigation'
     const root = `document.querySelector('systems-constellation')`;
     const button = (id) => `${root}.querySelector('[data-system="${id}"]')`;
     const active = () => evaluate(`${root}.querySelector('svg').getAttribute('data-active')`);
+    const graph = JSON.parse(await readFile(new URL('../src/data/system-graph.json', import.meta.url), 'utf8'));
+    // These checks own component-local visibility. Ancestor reveal failures are
+    // covered by the shared reveal work, not repaired by this component.
+    for (const mode of ['no-js', 'registration-blocked', 'setup-throws']) {
+      await command('Emulation.setScriptExecutionDisabled', { value: mode === 'no-js' });
+      let injection;
+      if (mode !== 'no-js') {
+        ({ identifier: injection } = await command('Page.addScriptToEvaluateOnNewDocument', {
+          source: mode === 'registration-blocked'
+            ? `const define = customElements.define.bind(customElements);
+               customElements.define = (name, ...args) => { if (name !== 'systems-constellation') define(name, ...args); };`
+            : `const add = EventTarget.prototype.addEventListener;
+               EventTarget.prototype.addEventListener = function(type, ...args) {
+                 if (this instanceof Element && this.matches('[data-system]') && type === 'click') {
+                   window.graphSetupBlocked = true;
+                   throw new Error('Injected graph setup failure');
+                 }
+                 return add.call(this, type, ...args);
+               };`,
+        }));
+      }
+      for (const width of [320, 1440]) {
+        await command('Emulation.setDeviceMetricsOverride', { width, height: 1000, deviceScaleFactor: 1, mobile: false });
+        await command('Page.navigate', { url: `${base}/?graph-fallback=${mode}-${width}` });
+        await waitFor(`location.search === '?graph-fallback=${mode}-${width}' && document.readyState === 'complete' && ${root}`);
+        await evaluate(`{
+          const element = ${root};
+          const disclosure = element.closest('details');
+          if (disclosure && !disclosure.open) disclosure.querySelector('summary').click();
+          for (let ancestor = element.parentElement; ancestor; ancestor = ancestor.parentElement) {
+            ancestor.style.setProperty('opacity', '1', 'important');
+            ancestor.style.setProperty('visibility', 'visible', 'important');
+            ancestor.style.setProperty('transform', 'none', 'important');
+          }
+        }`);
+        assert.equal(await evaluate(`${root}.querySelector('.constellation-fallback').hidden`), false, mode);
+        assert.equal(await evaluate(`${root}.querySelector('.constellation-interactive').hidden`), true, mode);
+        if (mode === 'setup-throws') assert.equal(await evaluate('window.graphSetupBlocked'), true);
+        const entries = await evaluate(`Array.from(${root}.querySelectorAll('dt')).map(n => n.textContent)`);
+        assert.deepEqual(entries, graph.nodes.map(n => `${n.name} ${n.stat}`));
+        const text = await evaluate(`${root}.querySelector('.constellation-fallback').innerText`);
+        for (const edge of graph.edges) {
+          const from = graph.nodes.find(n => n.id === edge.from).name;
+          const to = graph.nodes.find(n => n.id === edge.to).name;
+          assert.ok(text.includes(`${from} → ${to} (${edge.label})`), `${mode}: ${from} → ${to}`);
+        }
+        assert.match(text, /No declared dependencies\./);
+        assert.equal(await evaluate(`(() => {
+          const fallback = ${root}.querySelector('.constellation-fallback');
+          return Array.from(fallback.querySelectorAll('dt, dd')).every(el => {
+            const style = getComputedStyle(el);
+            const range = document.createRange(); range.selectNodeContents(el);
+            return style.visibility === 'visible' && Number(style.opacity) > 0 &&
+              Array.from(range.getClientRects()).every(r => r.width > 0 && r.left >= 0 && r.right <= innerWidth + 1);
+          }) && getComputedStyle(fallback).display !== 'none';
+        })()`), true, `${mode}: readable text at ${width}px`);
+      }
+      if (injection) await command('Page.removeScriptToEvaluateOnNewDocument', { identifier: injection });
+    }
+    await command('Emulation.setScriptExecutionDisabled', { value: false });
     await command('Page.navigate', { url: base });
     await waitFor(`${root}?.controller !== undefined`);
     await waitFor(`document.readyState === 'complete'`);
+    assert.equal(await evaluate(`${root}.querySelector('.constellation-fallback').hidden`), true);
+    assert.equal(await evaluate(`${root}.querySelector('.constellation-interactive').hidden`), false);
     assert.equal(await evaluate(`${root}.querySelectorAll('[data-system]').length`), 10);
     await evaluate(`${button('signet')}.scrollIntoView({block:'center'})`);
     await waitFor(`getComputedStyle(${button('signet')}).visibility === 'visible'`);
