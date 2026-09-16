@@ -1,0 +1,201 @@
+{
+  "capturedAt": "2026-09-16T05:45:39.949Z",
+  "origin": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-gif0nw4e.reed.replit.dev",
+  "commit": "485ddab1f502a7292e429bfd5c016d49e4607581",
+  "physicalDevices": "UNVERIFIED",
+  "nativeZoom": "UNVERIFIED",
+  "nativeHandlers": "UNVERIFIED",
+  "scope": "Linux headless engines, normal motion, CSS viewport emulation; no graphics assertions",
+  "engines": [
+    {
+      "engine": "chromium",
+      "status": "PASS",
+      "checks": [
+        {
+          "name": "navigation-and-back",
+          "details": {
+            "routes": [
+              "/",
+              "/systems",
+              "/defense",
+              "/mycelium",
+              "/research",
+              "/about",
+              "/cofounder",
+              "/contact",
+              "/privacy",
+              "/404"
+            ],
+            "journey": "Home → Systems → browser Back"
+          },
+          "status": "PASS",
+          "screenshot": "docs/site-qa-evidence/browser-engines/chromium-navigation-and-back.png"
+        },
+        {
+          "name": "menu-390x844",
+          "details": {
+            "focusOrder": [
+              "/systems",
+              "/defense",
+              "/research",
+              "/about",
+              "/contact"
+            ],
+            "escape": "restores toggle",
+            "pointer": "Contact navigated"
+          },
+          "status": "PASS",
+          "screenshot": "docs/site-qa-evidence/browser-engines/chromium-menu-390x844.png"
+        },
+        {
+          "name": "menu-640x360",
+          "details": {
+            "focusOrder": [
+              "/systems",
+              "/defense",
+              "/research",
+              "/about",
+              "/contact"
+            ],
+            "escape": "restores toggle",
+            "pointer": "Contact navigated"
+          },
+          "status": "PASS",
+          "screenshot": "docs/site-qa-evidence/browser-engines/chromium-menu-640x360.png"
+        },
+        {
+          "name": "disclosures",
+          "details": {
+            "audience": 3,
+            "founder": 1,
+            "shipping": 5
+          },
+          "status": "PASS",
+          "screenshot": "docs/site-qa-evidence/browser-engines/chromium-disclosures.png"
+        },
+        {
+          "name": "pdf-responses-and-save",
+          "details": {
+            "papers": [
+              {
+                "href": "/papers/paper1-safety.pdf",
+                "rel": "noopener noreferrer",
+                "save": "/papers/paper1-safety.pdf",
+                "filename": "paper1-safety.pdf"
+              },
+              {
+                "href": "/papers/paper2-training.pdf",
+                "rel": "noopener noreferrer",
+                "save": "/papers/paper2-training.pdf",
+                "filename": "paper2-training.pdf"
+              },
+              {
+                "href": "/papers/paper3-turboquant.pdf",
+                "rel": "noopener noreferrer",
+                "save": "/papers/paper3-turboquant.pdf",
+                "filename": "paper3-turboquant.pdf"
+              },
+              {
+                "href": "/papers/paper4-cascade.pdf",
+                "rel": "noopener noreferrer",
+                "save": "/papers/paper4-cascade.pdf",
+                "filename": "paper4-cascade.pdf"
+              },
+              {
+                "href": "/papers/paper5-system.pdf",
+                "rel": "noopener noreferrer",
+                "save": "/papers/paper5-system.pdf",
+                "filename": "paper5-system.pdf"
+              }
+            ],
+            "limitation": "Native viewer rendering not asserted"
+          },
+          "status": "PASS",
+          "screenshot": "docs/site-qa-evidence/browser-engines/chromium-pdf-responses-and-save.png"
+        },
+        {
+          "name": "pdf-open",
+          "details": {
+            "href": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-gif0nw4e.reed.replit.dev/papers/paper1-safety.pdf",
+            "events": [
+              {
+                "kind": "Page.windowOpen",
+                "url": "https://12314fdd-e2ee-47bf-a166-866792b8671c-00-1vsg61hrl2ay4-gif0nw4e.reed.replit.dev/papers/paper1-safety.pdf"
+              }
+            ],
+            "limitation": "Matching popup/download event only, not native PDF viewer"
+          },
+          "status": "PASS",
+          "screenshot": "docs/site-qa-evidence/browser-engines/chromium-pdf-open.png"
+        },
+        {
+          "name": "email-activation",
+          "details": {
+            "mails": [
+              "mailto:jesse@thornveil.ai?subject=Federal%20evaluation%20inquiry&body=Hi%20Jesse%2C%0D%0A%0D%0AI%27m%20with%20%5Bagency%2Fcommand%2Fprogram%5D.%0D%0ARole%3A%20%5Brole%20%2F%20title%5D%0D%0AInterested%20in%3A%20%5BMycelium%20%2F%20RigRun%20%2F%20Auspex%20%2F%20HawkStack%20%2F%20other%5D%0D%0AUse-case%20sketch%3A%20%5B1-2%20sentences%5D%0D%0ABest%20contact%20%2B%20time%20window%3A%20%5B.gov%20or%20.mil%20email%5D%0D%0A%0D%0A%E2%80%94%20%5Bname%5D",
+              "mailto:jesse@thornveil.ai?subject=Prime%20%2F%20SI%20integration%20inquiry&body=Hi%20Jesse%2C%0D%0A%0D%0ACompany%3A%20%5Bname%5D%0D%0AMy%20role%3A%20%5BBD%20%2F%20CapDev%20%2F%20SE%5D%0D%0ATarget%20program%3A%20%5Bif%20any%5D%0D%0ASpecific%20Thornveil%20system(s)%20of%20interest%3A%20%5Blist%5D%0D%0ATimeline%3A%20%5Bexploratory%20%2F%20Q3%20%2F%20Q4%20%2F%20FY27%5D%0D%0A%0D%0A%E2%80%94%20%5Bname%5D",
+              "mailto:jesse@thornveil.ai"
+            ],
+            "limitation": "Intercepted; no mail client opened or email sent"
+          },
+          "status": "PASS",
+          "screenshot": "docs/site-qa-evidence/browser-engines/chromium-email-activation.png"
+        },
+        {
+          "name": "cofounder-action",
+          "details": {
+            "destination": "/cofounder"
+          },
+          "status": "PASS",
+          "screenshot": "docs/site-qa-evidence/browser-engines/chromium-cofounder-action.png"
+        },
+        {
+          "name": "skip-link-focus",
+          "details": {
+            "firstTab": "skip link",
+            "target": "#main-content"
+          },
+          "status": "PASS",
+          "screenshot": "docs/site-qa-evidence/browser-engines/chromium-skip-link-focus.png"
+        },
+        {
+          "name": "zoom-reflow",
+          "details": {
+            "viewport": "640×450",
+            "equivalent": "1280×900 at 200% layout zoom",
+            "nativeZoom": "UNVERIFIED",
+            "routes": [
+              "/",
+              "/systems",
+              "/defense",
+              "/mycelium",
+              "/research",
+              "/about",
+              "/cofounder",
+              "/contact",
+              "/privacy",
+              "/404"
+            ]
+          },
+          "status": "PASS",
+          "screenshot": "docs/site-qa-evidence/browser-engines/chromium-zoom-reflow.png"
+        }
+      ],
+      "version": "Chrome/152.0.7977.64",
+      "control": "CDP"
+    },
+    {
+      "engine": "firefox",
+      "status": "UNAVAILABLE",
+      "checks": [],
+      "error": "Cannot find package 'playwright' imported from /home/runner/workspace/scripts/journey-browser-adapter.mjs"
+    },
+    {
+      "engine": "webkit",
+      "status": "UNAVAILABLE",
+      "checks": [],
+      "error": "Cannot find package 'playwright' imported from /home/runner/workspace/scripts/journey-browser-adapter.mjs"
+    }
+  ],
+  "completedAt": "2026-09-16T05:46:06.757Z"
+}

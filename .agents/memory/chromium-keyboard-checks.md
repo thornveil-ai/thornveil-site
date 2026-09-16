@@ -14,3 +14,9 @@ Distinguish root-font enlargement from browser text-only zoom when reporting che
 **Why:** Doubling the root font also doubles rem-based spacing and logo dimensions; it is a useful stress test, but not an exact simulation of text-only zoom.
 
 **How to apply:** State the zoom mechanism used in verification reports and measure shell overflow separately from page-content overflow so unrelated content defects are not attributed to navigation.
+
+Validate focus before asserting keyboard activation on responsive pages.
+
+**Why:** A global selector can select a hidden desktop duplicate of a visible mobile link. Native `focus()` silently does nothing on that element, so the subsequent Enter timeout is a harness defect, not evidence of a broken link.
+
+**How to apply:** Scope actions to the visible responsive region and assert `document.activeElement` is the intended control before sending keyboard events.
