@@ -1,0 +1,1772 @@
+{
+  "startedAt": "2026-09-16T05:39:02.757Z",
+  "origin": "https://thornveil.ai",
+  "profile": {
+    "viewport": {
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "mobile": true
+    },
+    "network": {
+      "offline": false,
+      "latency": 150,
+      "downloadThroughput": 200000,
+      "uploadThroughput": 93750,
+      "connectionType": "cellular4g"
+    },
+    "cpuRate": 4,
+    "samplesPerRoute": 3,
+    "routes": [
+      "/",
+      "/mycelium"
+    ],
+    "afterLoadMs": 5000
+  },
+  "targetSource": "Deployment service reports no Replit deployment; owner-confirmed external Netlify primary domain in docs/privacy-operations-review.md, Reported settings and limits.",
+  "identityWarning": "Live-version baseline only. Document hashes/ETags are fingerprints, not verified release commits. Local changes are not assumed published.",
+  "localReferenceOnly": "485ddab1f502a7292e429bfd5c016d49e4607581",
+  "localStatus": "?? docs/published-performance-evidence.json\n?? scripts/published-performance.mjs",
+  "host": {
+    "platform": "linux",
+    "arch": "x64",
+    "logicalCpus": 8
+  },
+  "cache": "Fresh browser process and temporary profile for each sample; HTTP cache disabled, service workers bypassed. OS DNS and CDN cache are not flushed.",
+  "metricWindow": "Navigation through load + 5000ms; no input/scroll. CLS is maximum session window (1s gap/5s maximum). Bytes sum completed CDP encodedDataLength, excluding incomplete/failed transfers and redirect bodies.",
+  "contention": "Shared Replit host, not a calibrated phone. Host load averages recorded per sample; other work is not controlled.",
+  "samples": [
+    {
+      "route": "/",
+      "iteration": 1,
+      "startedAt": "2026-09-16T05:39:02.769Z",
+      "version": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/140.0.7339.16",
+        "revision": "@b50d93d6db089ce82ddf985f059aa524051fcb2a",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/140.0.0.0 Safari/537.36",
+        "jsVersion": "14.0.365.1"
+      },
+      "hostLoad": [
+        0.28,
+        0.12,
+        0.04
+      ],
+      "fcpMs": 1376,
+      "lcpMs": 2372,
+      "cls": 0.017824188160412924,
+      "shifts": [
+        {
+          "at": 2321.8000000000466,
+          "value": 0.017824188160412924
+        }
+      ],
+      "lcpElement": {
+        "tag": "SPAN",
+        "id": "",
+        "text": "you can run in a SCIF.",
+        "url": "",
+        "size": 39772
+      },
+      "observedUntilMs": 7420,
+      "href": "https://thornveil.ai/",
+      "title": "Thornveil | Sovereign AI infrastructure",
+      "readyState": "complete",
+      "fontsStatus": "loaded",
+      "userAgent": "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Mobile Safari/537.36",
+      "navigation": {
+        "name": "https://thornveil.ai/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 2264.6999999999534,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.8999999999068677,
+        "domainLookupStart": 1.8999999999068677,
+        "domainLookupEnd": 13.800000000046566,
+        "connectStart": 13.800000000046566,
+        "secureConnectionStart": 69.69999999995343,
+        "connectEnd": 141.10000000009313,
+        "requestStart": 254.30000000004657,
+        "responseStart": 289.30000000004657,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 289.30000000004657,
+        "responseEnd": 478.60000000009313,
+        "transferSize": 13464,
+        "encodedBodySize": 13164,
+        "decodedBodySize": 64625,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 986.3999999999069,
+        "domContentLoadedEventStart": 1080.8000000000466,
+        "domContentLoadedEventEnd": 1080.8000000000466,
+        "domComplete": 2262.6999999999534,
+        "loadEventStart": 2262.899999999907,
+        "loadEventEnd": 2264.6999999999534,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null
+      },
+      "documentIdentity": {
+        "sha256": "92fee769cf303c085d7d7c822a86b1ffba851e5ef96506de42b4fd909d7e14cd",
+        "headers": {
+          "age": "31",
+          "cache-control": "public,max-age=0,must-revalidate",
+          "cache-status": "\"Netlify Edge\"; hit; ttl=31535969",
+          "date": "Wed, 16 Sep 2026 05:39:03 GMT",
+          "etag": "\"74fc402b965eb89cc720ae0272ac3226-ssl-df\"",
+          "server": "Netlify"
+        },
+        "releaseCommit": null
+      },
+      "transferredBytes": 582006,
+      "requests": [
+        {
+          "url": "https://thornveil.ai/",
+          "type": "Document",
+          "status": 200,
+          "mimeType": "text/html",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 13907,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/index.CH7NQGQI.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1868,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/about.B0FOJWNQ.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5929,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/logo-horizontal-white.png",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 130386,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1184,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5295,
+          "finished": true
+        },
+        {
+          "url": "https://plausible.io/js/script.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1915,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/index.astro_astro_type_script_index_0_lang.BIHwbgzk.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5200,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10079,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10087,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/MyceliumHero.1jnb_GMp.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3537,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLmvDIaI.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 90135,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3086,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/site.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "mimeType": "application/octet-stream",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1166,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/client.NEysgmd8.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 55450,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3035,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3030,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/react-three.DuHX5KCM.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 52965,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3029,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/three-core.5dCn27cT.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 180723,
+          "finished": true
+        }
+      ],
+      "redirects": []
+    },
+    {
+      "route": "/mycelium",
+      "iteration": 1,
+      "startedAt": "2026-09-16T05:39:10.591Z",
+      "version": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/140.0.7339.16",
+        "revision": "@b50d93d6db089ce82ddf985f059aa524051fcb2a",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/140.0.0.0 Safari/537.36",
+        "jsVersion": "14.0.365.1"
+      },
+      "hostLoad": [
+        0.39,
+        0.14,
+        0.05
+      ],
+      "fcpMs": 1256,
+      "lcpMs": 1508,
+      "cls": 0.1334243232378382,
+      "shifts": [
+        {
+          "at": 2855.6999999999534,
+          "value": 0.1334243232378382
+        }
+      ],
+      "lcpElement": {
+        "tag": "H1",
+        "id": "",
+        "text": "AI that keeps thinkingwhen half the team goes dark.",
+        "url": "",
+        "size": 96503
+      },
+      "observedUntilMs": 7990.199999999953,
+      "href": "https://thornveil.ai/mycelium/",
+      "title": "Mycelium | Distributed AI Mesh | Thornveil",
+      "readyState": "complete",
+      "fontsStatus": "loaded",
+      "userAgent": "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Mobile Safari/537.36",
+      "navigation": {
+        "name": "https://thornveil.ai/mycelium/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 2913.6999999999534,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 1,
+        "redirectEnd": 426,
+        "fetchStart": 426,
+        "domainLookupStart": 426,
+        "domainLookupEnd": 426,
+        "connectStart": 426,
+        "secureConnectionStart": 426,
+        "connectEnd": 426,
+        "requestStart": 427.39999999990687,
+        "responseStart": 487,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 487,
+        "responseEnd": 620.6999999999534,
+        "transferSize": 8442,
+        "encodedBodySize": 8142,
+        "decodedBodySize": 32640,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 626.1999999999534,
+        "domContentLoadedEventStart": 1090.0999999998603,
+        "domContentLoadedEventEnd": 1090.0999999998603,
+        "domComplete": 2911.7999999998137,
+        "loadEventStart": 2912.899999999907,
+        "loadEventEnd": 2913.6999999999534,
+        "type": "navigate",
+        "redirectCount": 1,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null
+      },
+      "documentIdentity": {
+        "sha256": "a66e46e5912f270fd751d9b71b6c5eb122c0858406a20ebc6dd363016cb0fd33",
+        "headers": {
+          "age": "0",
+          "cache-control": "public,max-age=0,must-revalidate",
+          "cache-status": "\"Netlify Edge\"; fwd=miss; fwd-status=200; stored",
+          "date": "Wed, 16 Sep 2026 05:39:11 GMT",
+          "etag": "\"0399177ff62ed19a5034ac55c73f8648-ssl-df\"",
+          "server": "Netlify"
+        },
+        "releaseCommit": null
+      },
+      "transferredBytes": 445727,
+      "requests": [
+        {
+          "url": "https://thornveil.ai/mycelium/",
+          "type": "Document",
+          "status": 200,
+          "mimeType": "text/html",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 8786,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/about.B0FOJWNQ.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5956,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/logo-horizontal-white.png",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 130394,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/mycelium/dashboard-baseline.png",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 76445,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/mycelium/dashboard-half-down.png",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 81907,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1184,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5269,
+          "finished": true
+        },
+        {
+          "url": "https://plausible.io/js/script.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1915,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10079,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10087,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10147,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLmvDIaI.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 90135,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3086,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/site.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "mimeType": "application/octet-stream",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1166,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3058,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3084,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3029,
+          "finished": true
+        }
+      ],
+      "redirects": [
+        {
+          "url": "https://thornveil.ai/mycelium",
+          "status": 301
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "iteration": 2,
+      "startedAt": "2026-09-16T05:39:18.898Z",
+      "version": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/140.0.7339.16",
+        "revision": "@b50d93d6db089ce82ddf985f059aa524051fcb2a",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/140.0.0.0 Safari/537.36",
+        "jsVersion": "14.0.365.1"
+      },
+      "hostLoad": [
+        0.44,
+        0.16,
+        0.06
+      ],
+      "fcpMs": 956,
+      "lcpMs": 2876,
+      "cls": 0.01795820461274685,
+      "shifts": [
+        {
+          "at": 2853.899999999907,
+          "value": 0.01795820461274685
+        }
+      ],
+      "lcpElement": {
+        "tag": "SPAN",
+        "id": "",
+        "text": "you can run in a SCIF.",
+        "url": "",
+        "size": 39772
+      },
+      "observedUntilMs": 7956.300000000047,
+      "href": "https://thornveil.ai/",
+      "title": "Thornveil | Sovereign AI infrastructure",
+      "readyState": "complete",
+      "fontsStatus": "loaded",
+      "userAgent": "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Mobile Safari/537.36",
+      "navigation": {
+        "name": "https://thornveil.ai/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 2870.5,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 1.1000000000931323,
+        "domainLookupStart": 2.199999999953434,
+        "domainLookupEnd": 18.5,
+        "connectStart": 18.5,
+        "secureConnectionStart": 87.69999999995343,
+        "connectEnd": 160.60000000009313,
+        "requestStart": 286.89999999990687,
+        "responseStart": 351.19999999995343,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 351.19999999995343,
+        "responseEnd": 510.5,
+        "transferSize": 13491,
+        "encodedBodySize": 13191,
+        "decodedBodySize": 64625,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 994.6000000000931,
+        "domContentLoadedEventStart": 1056.6000000000931,
+        "domContentLoadedEventEnd": 1056.6000000000931,
+        "domComplete": 2868.600000000093,
+        "loadEventStart": 2868.600000000093,
+        "loadEventEnd": 2870.5,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null
+      },
+      "documentIdentity": {
+        "sha256": "92fee769cf303c085d7d7c822a86b1ffba851e5ef96506de42b4fd909d7e14cd",
+        "headers": {
+          "age": "0",
+          "cache-control": "public,max-age=0,must-revalidate",
+          "cache-status": "\"Netlify Edge\"; fwd=miss; fwd-status=200; stored",
+          "date": "Wed, 16 Sep 2026 05:39:19 GMT",
+          "etag": "\"74fc402b965eb89cc720ae0272ac3226-ssl-df\"",
+          "server": "Netlify"
+        },
+        "releaseCommit": null
+      },
+      "transferredBytes": 581281,
+      "requests": [
+        {
+          "url": "https://thornveil.ai/",
+          "type": "Document",
+          "status": 200,
+          "mimeType": "text/html",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 13946,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/index.CH7NQGQI.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1862,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/logo-horizontal-white.png",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 130385,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/about.B0FOJWNQ.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5938,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1184,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5267,
+          "finished": true
+        },
+        {
+          "url": "https://plausible.io/js/script.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1915,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/index.astro_astro_type_script_index_0_lang.BIHwbgzk.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5257,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10079,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10087,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/MyceliumHero.1jnb_GMp.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3560,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/client.NEysgmd8.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 55208,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLmvDIaI.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 90135,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/react-three.DuHX5KCM.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 52729,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3088,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/site.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "mimeType": "application/octet-stream",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1165,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3058,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3029,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3030,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/three-core.5dCn27cT.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 180359,
+          "finished": true
+        }
+      ],
+      "redirects": []
+    },
+    {
+      "route": "/mycelium",
+      "iteration": 2,
+      "startedAt": "2026-09-16T05:39:27.154Z",
+      "version": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/140.0.7339.16",
+        "revision": "@b50d93d6db089ce82ddf985f059aa524051fcb2a",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/140.0.0.0 Safari/537.36",
+        "jsVersion": "14.0.365.1"
+      },
+      "hostLoad": [
+        0.52,
+        0.19,
+        0.07
+      ],
+      "fcpMs": 1232,
+      "lcpMs": 1496,
+      "cls": 0.1334243232378382,
+      "shifts": [
+        {
+          "at": 2861.399999999907,
+          "value": 0.1334243232378382
+        }
+      ],
+      "lcpElement": {
+        "tag": "H1",
+        "id": "",
+        "text": "AI that keeps thinkingwhen half the team goes dark.",
+        "url": "",
+        "size": 96503
+      },
+      "observedUntilMs": 7994.399999999907,
+      "href": "https://thornveil.ai/mycelium/",
+      "title": "Mycelium | Distributed AI Mesh | Thornveil",
+      "readyState": "complete",
+      "fontsStatus": "loaded",
+      "userAgent": "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Mobile Safari/537.36",
+      "navigation": {
+        "name": "https://thornveil.ai/mycelium/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 2917.600000000093,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 1.1999999999534339,
+        "redirectEnd": 428,
+        "fetchStart": 428,
+        "domainLookupStart": 428,
+        "domainLookupEnd": 428,
+        "connectStart": 428,
+        "secureConnectionStart": 428,
+        "connectEnd": 428,
+        "requestStart": 429.5,
+        "responseStart": 480.39999999990687,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 480.39999999990687,
+        "responseEnd": 623.3000000000466,
+        "transferSize": 8444,
+        "encodedBodySize": 8144,
+        "decodedBodySize": 32640,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 632.1000000000931,
+        "domContentLoadedEventStart": 1078.6000000000931,
+        "domContentLoadedEventEnd": 1078.6000000000931,
+        "domComplete": 2915.600000000093,
+        "loadEventStart": 2916.6999999999534,
+        "loadEventEnd": 2917.600000000093,
+        "type": "navigate",
+        "redirectCount": 1,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null
+      },
+      "documentIdentity": {
+        "sha256": "a66e46e5912f270fd751d9b71b6c5eb122c0858406a20ebc6dd363016cb0fd33",
+        "headers": {
+          "age": "0",
+          "cache-control": "public,max-age=0,must-revalidate",
+          "cache-status": "\"Netlify Edge\"; fwd=miss; fwd-status=200; stored",
+          "date": "Wed, 16 Sep 2026 05:39:27 GMT",
+          "etag": "\"0399177ff62ed19a5034ac55c73f8648-ssl-df\"",
+          "server": "Netlify"
+        },
+        "releaseCommit": null
+      },
+      "transferredBytes": 445680,
+      "requests": [
+        {
+          "url": "https://thornveil.ai/mycelium/",
+          "type": "Document",
+          "status": 200,
+          "mimeType": "text/html",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 8788,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/about.B0FOJWNQ.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 6003,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/logo-horizontal-white.png",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 130394,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/mycelium/dashboard-baseline.png",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 76436,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1184,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/mycelium/dashboard-half-down.png",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 81908,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5244,
+          "finished": true
+        },
+        {
+          "url": "https://plausible.io/js/script.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1915,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10079,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10087,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10147,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLmvDIaI.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 90135,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3085,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/site.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "mimeType": "application/octet-stream",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1157,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3058,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3030,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3030,
+          "finished": true
+        }
+      ],
+      "redirects": [
+        {
+          "url": "https://thornveil.ai/mycelium",
+          "status": 301
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "iteration": 3,
+      "startedAt": "2026-09-16T05:39:35.477Z",
+      "version": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/140.0.7339.16",
+        "revision": "@b50d93d6db089ce82ddf985f059aa524051fcb2a",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/140.0.0.0 Safari/537.36",
+        "jsVersion": "14.0.365.1"
+      },
+      "hostLoad": [
+        0.6,
+        0.22,
+        0.08
+      ],
+      "fcpMs": 1072,
+      "lcpMs": 2924,
+      "cls": 0.01795820461274685,
+      "shifts": [
+        {
+          "at": 2861.1999999999534,
+          "value": 0.01795820461274685
+        }
+      ],
+      "lcpElement": {
+        "tag": "SPAN",
+        "id": "",
+        "text": "you can run in a SCIF.",
+        "url": "",
+        "size": 39772
+      },
+      "observedUntilMs": 7915.699999999953,
+      "href": "https://thornveil.ai/",
+      "title": "Thornveil | Sovereign AI infrastructure",
+      "readyState": "complete",
+      "fontsStatus": "loaded",
+      "userAgent": "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Mobile Safari/537.36",
+      "navigation": {
+        "name": "https://thornveil.ai/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 2796.899999999907,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 1.3999999999068677,
+        "domainLookupStart": 2.699999999953434,
+        "domainLookupEnd": 46,
+        "connectStart": 46,
+        "secureConnectionStart": 156.30000000004657,
+        "connectEnd": 206.0999999998603,
+        "requestStart": 247.39999999990687,
+        "responseStart": 305.39999999990687,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 305.39999999990687,
+        "responseEnd": 471.39999999990687,
+        "transferSize": 13540,
+        "encodedBodySize": 13240,
+        "decodedBodySize": 64625,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 938.1999999999534,
+        "domContentLoadedEventStart": 993.8999999999069,
+        "domContentLoadedEventEnd": 993.8999999999069,
+        "domComplete": 2794.6999999999534,
+        "loadEventStart": 2795.3000000000466,
+        "loadEventEnd": 2796.899999999907,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null
+      },
+      "documentIdentity": {
+        "sha256": "92fee769cf303c085d7d7c822a86b1ffba851e5ef96506de42b4fd909d7e14cd",
+        "headers": {
+          "age": "0",
+          "cache-control": "public,max-age=0,must-revalidate",
+          "cache-status": "\"Netlify Edge\"; fwd=miss; fwd-status=200; stored",
+          "date": "Wed, 16 Sep 2026 05:39:35 GMT",
+          "etag": "\"74fc402b965eb89cc720ae0272ac3226-ssl-df\"",
+          "server": "Netlify"
+        },
+        "releaseCommit": null
+      },
+      "transferredBytes": 582294,
+      "requests": [
+        {
+          "url": "https://thornveil.ai/",
+          "type": "Document",
+          "status": 200,
+          "mimeType": "text/html",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 14005,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/index.CH7NQGQI.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1930,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/logo-horizontal-white.png",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 130395,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/about.B0FOJWNQ.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5933,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1184,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5246,
+          "finished": true
+        },
+        {
+          "url": "https://plausible.io/js/script.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1915,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/index.astro_astro_type_script_index_0_lang.BIHwbgzk.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5199,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10079,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10087,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/MyceliumHero.1jnb_GMp.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3550,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/client.NEysgmd8.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 55436,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLmvDIaI.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 90135,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/react-three.DuHX5KCM.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 52886,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3086,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/site.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "mimeType": "application/octet-stream",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1166,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3058,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3029,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3084,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/three-core.5dCn27cT.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 180891,
+          "finished": true
+        }
+      ],
+      "redirects": []
+    },
+    {
+      "route": "/mycelium",
+      "iteration": 3,
+      "startedAt": "2026-09-16T05:39:43.716Z",
+      "version": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/140.0.7339.16",
+        "revision": "@b50d93d6db089ce82ddf985f059aa524051fcb2a",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/140.0.0.0 Safari/537.36",
+        "jsVersion": "14.0.365.1"
+      },
+      "hostLoad": [
+        0.55,
+        0.21,
+        0.08
+      ],
+      "fcpMs": 1212,
+      "lcpMs": 1496,
+      "cls": 0.1334243232378382,
+      "shifts": [
+        {
+          "at": 2835.4000000001397,
+          "value": 0.1334243232378382
+        }
+      ],
+      "lcpElement": {
+        "tag": "P",
+        "id": "",
+        "text": "Picture six computers working together on one conversation — like teammates sharing the load.\n        Now picture three of them getting unplugged, jammed, or destroyed mid-sentence",
+        "url": "",
+        "size": 96820
+      },
+      "observedUntilMs": 7984.40000000014,
+      "href": "https://thornveil.ai/mycelium/",
+      "title": "Mycelium | Distributed AI Mesh | Thornveil",
+      "readyState": "complete",
+      "fontsStatus": "loaded",
+      "userAgent": "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Mobile Safari/537.36",
+      "navigation": {
+        "name": "https://thornveil.ai/mycelium/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 2908.3000000000466,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0.9000000001396984,
+        "redirectEnd": 420.5,
+        "fetchStart": 420.5,
+        "domainLookupStart": 420.5,
+        "domainLookupEnd": 420.5,
+        "connectStart": 420.5,
+        "secureConnectionStart": 420.5,
+        "connectEnd": 420.5,
+        "requestStart": 422.60000000009313,
+        "responseStart": 486.80000000004657,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 486.80000000004657,
+        "responseEnd": 616.3000000000466,
+        "transferSize": 8444,
+        "encodedBodySize": 8144,
+        "decodedBodySize": 32640,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 623,
+        "domContentLoadedEventStart": 1068.9000000001397,
+        "domContentLoadedEventEnd": 1068.9000000001397,
+        "domComplete": 2906.1999999999534,
+        "loadEventStart": 2907,
+        "loadEventEnd": 2908.3000000000466,
+        "type": "navigate",
+        "redirectCount": 1,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null
+      },
+      "documentIdentity": {
+        "sha256": "a66e46e5912f270fd751d9b71b6c5eb122c0858406a20ebc6dd363016cb0fd33",
+        "headers": {
+          "age": "0",
+          "cache-control": "public,max-age=0,must-revalidate",
+          "cache-status": "\"Netlify Edge\"; fwd=miss; fwd-status=200; stored",
+          "date": "Wed, 16 Sep 2026 05:39:44 GMT",
+          "etag": "\"0399177ff62ed19a5034ac55c73f8648-ssl-df\"",
+          "server": "Netlify"
+        },
+        "releaseCommit": null
+      },
+      "transferredBytes": 445724,
+      "requests": [
+        {
+          "url": "https://thornveil.ai/mycelium/",
+          "type": "Document",
+          "status": 200,
+          "mimeType": "text/html",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 8789,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/about.B0FOJWNQ.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5951,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/logo-horizontal-white.png",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 130386,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/mycelium/dashboard-baseline.png",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 76444,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
+          "type": "Stylesheet",
+          "status": 200,
+          "mimeType": "text/css",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1184,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/mycelium/dashboard-half-down.png",
+          "type": "Image",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 81916,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 5295,
+          "finished": true
+        },
+        {
+          "url": "https://plausible.io/js/script.js",
+          "type": "Script",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1915,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10079,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10087,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 10147,
+          "finished": true
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLmvDIaI.woff2",
+          "type": "Font",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 90135,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3114,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/site.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "mimeType": "application/octet-stream",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 1166,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3057,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3029,
+          "finished": true
+        },
+        {
+          "url": "https://thornveil.ai/favicon.png",
+          "type": "Other",
+          "status": 200,
+          "mimeType": "image/png",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "bytes": 3030,
+          "finished": true
+        }
+      ],
+      "redirects": [
+        {
+          "url": "https://thornveil.ai/mycelium",
+          "status": 301
+        }
+      ]
+    }
+  ],
+  "completedAt": "2026-09-16T05:39:51.973Z"
+}
