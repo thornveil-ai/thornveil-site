@@ -26,13 +26,23 @@ npm run build
 npm run check:smoke
 ```
 
-The smoke check starts an isolated Astro dev server on port 5055 and stops it
+The smoke check starts a foreground Astro dev server on port 5055 using the
+installed Astro's supported `--ignore-lock` flag. It never uses `--force`,
+stops the normal preview, or changes its server lock. It stops its own server
 afterward, including on failure. It discovers static `.astro` public routes in
 `src/pages/`, checks HTML responses and the missing-page 404, then requests and
 syntax-checks local browser scripts, their static imports, and Astro island
 entry modules. This catches lazy Vite transform failures that a successful
 production build or an HTML-only request can miss. Failures exit nonzero and
 identify the route or script. Keep port 5055 free for this command.
+An occupied port fails rather than silently checking another server. Interrupts
+also clean up the owned server, with a bounded forced shutdown if needed.
+
+Only HTTP 504 responses identifying Vite's outdated optimized dependencies
+(in the status text or specific error body) retry, at most twice per page,
+including the custom 404. Each retry reloads the page and its module graph
+to obtain new dependency URLs. Generic 504s, transform errors, and invalid
+JavaScript fail immediately; persistent stale responses also fail.
 
 To check an already-running dev server (or `astro preview` after a build):
 
@@ -47,5 +57,5 @@ scripts, and visual behavior still need a browser check. Dynamic routes must
 be given concrete test URLs when they are added.
 
 `npm run test:smoke` tests the checker itself against isolated HTTP fixtures,
-including failed routes, failed script transforms, and TypeScript accidentally
-left inside an inline browser script.
+including stale recovery and exhaustion, generic 504s, failed routes and script
+transforms, invalid JavaScript, and owned-server lifecycle cleanup.

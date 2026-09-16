@@ -1,8 +1,10 @@
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { readdir } from 'node:fs/promises';
-import { Script, SourceTextModule } from 'node:vm';
+import vm from 'node:vm';
 import { setTimeout as delay } from 'node:timers/promises';
+import { pathToFileURL } from 'node:url';
+const { Script, SourceTextModule } = vm;
 
 // No browser or extra packages required. Parse modules without executing DOM code.
 const args = process.argv.slice(2);
@@ -11,14 +13,17 @@ if (args.length && (args.length !== 2 || args[0] !== '--url')) {
 }
 const base = new URL(args[1] || 'http://127.0.0.1:5055');
 let server;
-let logs = '';
 const checked = new Set();
 
 async function request(url, status = 200) {
   const response = await fetch(url, { signal: AbortSignal.timeout(15000) });
   const body = await response.text();
-  if (response.status === 504 && /Outdated Optimize Dep/i.test(response.statusText)) {
-    const error = new Error(`${url}: Vite optimized dependencies changed`);
+  if (response.status === 504 && (
+    /\bOutdated Optimize Dep\b/i.test(response.statusText) ||
+    /\bOutdated Optimize Dep\b|\bERR_OUTDATED_OPTIMIZED_DEP\b/.test(body) ||
+    /There is a new version of the pre-bundle for "[^"\n]+", a page reload is going to ask for it\./.test(body)
+  )) {
+    const error = new Error(`${url}: Vite optimized dependencies changed (HTTP 504; stale retry limit may be exhausted)`);
     error.code = 'STALE_VITE_DEPS';
     throw error;
   }
@@ -95,59 +100,89 @@ async function checkPage(path, status = 200) {
   console.log(`PASS ${path} (HTTP ${status})`);
 }
 
-async function startServer() {
-  server = spawn(process.execPath, [
+export async function startServer({
+  command = process.execPath,
+  argv = [
     'node_modules/astro/bin/astro.mjs', 'dev',
-    '--host', '127.0.0.1', '--port', '5055',
-  ], {
+    '--ignore-lock', '--host', '127.0.0.1', '--port', '5055',
+  ],
+  readyTimeout = 60000,
+  killTimeout = 5000,
+} = {}) {
+  let logs = '';
+  let spawnError;
+  const child = spawn(command, argv, {
     env: { ...process.env, ASTRO_DEV_BACKGROUND: '0' },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
-  server.on('error', error => { logs += error.message; });
-  for (const stream of [server.stdout, server.stderr]) {
+  child.on('error', error => { spawnError = error; });
+  for (const stream of [child.stdout, child.stderr]) {
     stream.on('data', chunk => { logs = (logs + chunk).slice(-30000); });
   }
-  for (let i = 0; i < 120; i++) {
-    if (server.exitCode !== null || server.signalCode) throw new Error(`Dev server exited:\n${logs}`);
-    if (/EADDRINUSE|already in use/i.test(logs)) throw new Error('Smoke port 5055 is busy. Stop its owner or use --url.');
-    // Wait for this process, not an unrelated server already listening on the port.
-    if (/Local\s+http/.test(logs)) return;
-    await delay(500);
+  let stopping;
+  const stop = () => stopping ??= (async () => {
+    if (!child.pid || child.exitCode !== null || child.signalCode) return;
+    const exited = once(child, 'exit');
+    child.kill('SIGTERM');
+    const timer = setTimeout(() => child.kill('SIGKILL'), killTimeout);
+    try { await exited; } finally { clearTimeout(timer); }
+  })();
+  const onSignal = signal => {
+    void stop().finally(() => process.exit(signal === 'SIGINT' ? 130 : 143));
+  };
+  process.on('SIGINT', onSignal);
+  process.on('SIGTERM', onSignal);
+  const cleanup = async () => {
+    await stop();
+    process.off('SIGINT', onSignal);
+    process.off('SIGTERM', onSignal);
+  };
+  try {
+    const deadline = Date.now() + readyTimeout;
+    while (Date.now() < deadline) {
+      if (spawnError) throw spawnError;
+      if (child.exitCode !== null || child.signalCode) throw new Error(`Dev server exited:\n${logs}`);
+      if (/EADDRINUSE|already in use/i.test(logs)) throw new Error(`Smoke port 5055 is busy. Stop its owner or use --url.\n${logs}`);
+      // Require our exact port: Astro can otherwise silently choose another.
+      if (/Local\s+http:\/\/127\.0\.0\.1:5055(?:\/|\s|$)/.test(logs)) {
+        return { stop: cleanup, getLogs: () => logs, pid: child.pid };
+      }
+      await delay(100);
+    }
+    throw new Error(`Dev server did not become ready:\n${logs}`);
+  } catch (error) {
+    await cleanup();
+    throw error;
   }
-  throw new Error(`Dev server did not become ready:\n${logs}`);
 }
 
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
 try {
-  if (!args.length) await startServer();
+  if (!args.length) server = await startServer();
   const pages = await readdir(new URL('../src/pages/', import.meta.url), { recursive: true });
   const routes = pages.filter(page => page.endsWith('.astro') && !page.includes('[') && page !== '404.astro')
     .map(page => '/' + page.replace(/\.astro$/, '').replace(/(^|\/)index$/, '$1'));
-  for (const route of routes.sort()) {
+  for (const [route, status] of [...routes.sort().map(route => [route, 200]), ['/__smoke_missing_page__', 404]]) {
     for (let attempt = 0; ; attempt++) {
       try {
-        await checkPage(route);
+        await checkPage(route, status);
         break;
       } catch (error) {
         // Like a browser reload after Vite's initial dependency optimization.
         // Never retry actual transform, syntax, or HTTP failures.
         if (error.code !== 'STALE_VITE_DEPS' || attempt >= 2) throw error;
+        console.warn(`Retrying ${route}: outdated optimized dependency (${attempt + 1}/2)`);
         checked.clear();
         await delay(1000);
       }
     }
   }
-  await checkPage('/__smoke_missing_page__', 404);
   console.log(`Smoke check passed: ${routes.length} public routes, custom 404, ${checked.size} local JavaScript modules.`);
 } catch (error) {
   console.error(`Smoke check FAILED: ${error.message}`);
-  if (server) console.error(logs);
+  if (server) console.error(server.getLogs());
   process.exitCode = 1;
 } finally {
-  if (server && server.exitCode === null && !server.signalCode) {
-    const exited = once(server, 'exit');
-    server.kill('SIGTERM');
-    const timer = setTimeout(() => server.kill('SIGKILL'), 5000);
-    await exited;
-    clearTimeout(timer);
-  }
+  await server?.stop();
+}
 }
