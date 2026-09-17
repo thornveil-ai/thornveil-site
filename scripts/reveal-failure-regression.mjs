@@ -211,10 +211,13 @@ try {
       ['/research', '/research'], ['/privacy', '/privacy'], ['back', '/research'], ['forward', '/privacy'],
       ['/systems', '/systems'], ['/research', '/research'], ['back', '/systems'], ['forward', '/research'],
     ];
+    let sourceObserverStart = 0;
     for (const [action, expected] of journey) {
       const before = await evaluate(`(() => {
         const s = window.__revealTest;
-        const observerStart = s.observers.length;
+        // Count this document's observers, not just observers created by the
+        // duplicate event. Idempotent cleanup may reveal all pending targets.
+        const observerStart = ${sourceObserverStart};
         const frameStart = s.frames.length;
         s.hold = true;
         document.dispatchEvent(new Event('astro:page-load'));
@@ -235,15 +238,16 @@ try {
           observed: s.observers.slice(${before.observerStart},${before.observers}).filter(o => o.reveal).length,
           leaks: s.observers.slice(0,${before.observers}).filter(o => o.reveal && !o.disconnected).length,
           expected: ${JSON.stringify(expected)},
-          destinationObservers: s.observers.slice(${before.observers}).filter(o => o.reveal && !o.disconnected).length,
+          destinationObservers: s.observers.slice(${before.observers}).filter(o => o.reveal).length,
           destinationFrames: s.frames.slice(${before.frames}).filter(f => f.held && !f.fired && !f.cancelled).length,
           uncancelled: s.frames.filter(f => ${JSON.stringify(before.pendingIDs)}.includes(f.id) && !f.cancelled).length };
       })()`);
       evidence.push(result);
+      sourceObserverStart = before.observers;
       await sleep(150);
       // Continue all transitions even on a lifecycle regression.
     }
-    assert(evidence.every(e => e.observed > 0), 'No reveal observers exercised');
+    assert(evidence.every(e => e.observed > 0), 'No reveal observers exercised: ' + JSON.stringify(evidence));
     assert(evidence.every(e => e.destinationObservers > 0 && e.destinationFrames > 0), 'Destination reveal initialization missing: ' + JSON.stringify(evidence));
     assert(evidence.every(e => e.path.replace(/\/$/, '') === e.expected), JSON.stringify(evidence));
     assert(evidence.every(e => e.leaks === 0 && e.uncancelled === 0), JSON.stringify(evidence));

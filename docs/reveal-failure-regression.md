@@ -1,5 +1,18 @@
 # Reveal visibility and navigation regression tests
 
+## Combined pre-push check — 2026-09-17
+
+On the merged development preview, all 70 route/mode visibility checks passed.
+The lifecycle test initially failed because it required a fresh observer after
+duplicate initialization and an observer still connected after revealing all
+targets. Its assertions now count observers created for each document while
+retaining the destination initialization, source disconnection and pending-frame
+cancellation checks. The focused lifecycle rerun passed all eight transitions.
+The visibility checks were unchanged by that test-only correction.
+Build, all 14 smoke-check unit tests, and the route/module smoke check also passed.
+This is Chromium development-preview evidence, not production or cross-browser
+release approval; the historical baseline results below remain unchanged.
+
 This suite owns tests only. It does not fix reveal behavior, change page styles,
 install packages, reuse shared browser harnesses, or update the historical QA report.
 
@@ -80,7 +93,10 @@ deterministically exercises idempotent re-binding and pending-work cleanup witho
 depending on network speed. Frame attribution recognizes reveal/no-transitions
 callback text and stacks. If a future refactor changes those names, missing frame
 coverage fails explicitly and the harness must be updated; it must not be skipped.
-Each rebind must create new observer/frame coverage. Only frame IDs actually
+Each destination must create observer/frame coverage. The duplicate page-load
+event may finish revealing the source document without creating another observer.
+An observer may also legitimately disconnect after revealing every target.
+Only frame IDs actually
 pending at navigation start are required to be cancelled; historical callbacks
 that already fired are not counted as pending work.
 
